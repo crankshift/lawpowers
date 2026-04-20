@@ -1,0 +1,32 @@
+{
+  "name": "legal-ua",
+  "owner": {
+    "name": "Yurii"
+  },
+  "metadata": {
+    "description": "Маркетплейс плагіна legal-ua — інструментарій для роботи з українським правом у Claude Code",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "legal-ua",
+      "source": "./",
+      "description": "Спеціалізовані субагенти та скіли для роботи з українським законодавством і правничими документами",
+      "version": "0.1.0",
+      "author": {
+        "name": "Yurii"
+      },
+      "license": "MIT",
+      "keywords": [
+        "ukraine",
+        "ukrainian-law",
+        "legal",
+        "law",
+        "arbitration",
+        "litigation"
+      ],
+      "category": "legal",
+      "tags": ["ukraine", "law", "legal-ua", "zakon-rada", "yedrsr"]
+    }
+  ]
+}
