@@ -1,61 +1,69 @@
 # lawpowers
 
-Колекція юридичних плагінів для **Claude Code** — монорепо з окремими плагінами для кожної юрисдикції. Встановлюєте лише ті плагіни, які вам потрібні.
+A collection of jurisdiction-specific legal plugins for **Claude Code**. Each plugin wraps a set of subagents and skills tuned to one country's legal system, official sources, and procedural quirks.
 
-| Плагін | Юрисдикція | Префікс команд | Мова |
-|---|---|---|---|
-| [`ua`](./ua) | Україна | `/ua:…` | українська |
-| [`pl`](./pl) | Польща | `/pl:…` | polski |
+Monorepo structure — install only the jurisdictions you need.
 
-## Встановлення
+## Available plugins
 
-Встановлення відбувається в два кроки: додавання маркетплейсу (одноразово) і установка конкретного плагіна. Можна встановити один з плагінів або обидва.
+| Plugin | Jurisdiction | Command prefix | Documentation | Language |
+|---|---|---|---|---|
+| [`ua`](./ua) | Ukraine | `/ua:…` | [`ua/README.md`](./ua/README.md) | Ukrainian |
+| [`pl`](./pl) | Poland | `/pl:…` | [`pl/README.md`](./pl/README.md) | Polish |
 
-### Крок 1. Додати маркетплейс
+Each plugin's README covers the agents and skills it provides. The plugins are independent — installing one doesn't pull in the other.
 
-#### Через Claude Desktop App (macOS/Windows)
+## Installation
 
-1. Відкрити **Settings → Extensions → Plugins**.
-2. Перейти на вкладку **Personal**.
-3. Натиснути «**+**» поруч із «Local uploads».
-4. У меню обрати **Add marketplace**.
-5. Вказати джерело: `crankshift/lawpowers` (або повний URL `https://github.com/crankshift/lawpowers`).
+Installation is a two-step process: add the marketplace once, then install each plugin you want.
 
-#### Через Claude Code CLI
+### Step 1. Add the marketplace
+
+#### Claude Desktop App (macOS/Windows)
+
+1. **Settings → Extensions → Plugins**.
+2. Switch to the **Personal** tab.
+3. Click the «**+**» next to `Local uploads`.
+4. Select **Add marketplace**.
+5. Enter `crankshift/lawpowers` (or the full URL `https://github.com/crankshift/lawpowers`).
+
+#### Claude Code CLI
 
 ```bash
 claude
 ```
 
-У відкритій сесії:
+Then in the running session:
 
 ```
 /plugin marketplace add crankshift/lawpowers
 ```
 
-### Крок 2. Встановити плагін(и)
+### Step 2. Install the plugin(s)
 
-#### Тільки український плагін
+#### Ukraine only
 
 ```
 /plugin install ua@lawpowers
 /reload-plugins
 ```
 
-Або в Desktop App — знайти плагін `ua` у списку маркетплейсу і натиснути «+».
+Agents and skills become available under the `ua:` namespace — e.g. `ua:claim-drafter`, `ua:raport-drafter`, `ua:calculating-sudovyi-zbir`.
 
-Команди будуть доступні з префіксом `/ua:…` — наприклад, `/ua:claim-drafter`, `/ua:raport-drafter`.
+See [`ua/README.md`](./ua/README.md) for the full catalog (includes a dedicated military-law block for service members in ЗСУ and their families).
 
-#### Тільки польський плагін
+#### Poland only
 
 ```
 /plugin install pl@lawpowers
 /reload-plugins
 ```
 
-Команди — з префіксом `/pl:…`.
+Agents and skills under the `pl:` namespace — e.g. `pl:claim-drafter`, `pl:searching-orzeczenia`.
 
-#### Обидва плагіни
+See [`pl/README.md`](./pl/README.md) for the full catalog.
+
+#### Both
 
 ```
 /plugin install ua@lawpowers
@@ -63,9 +71,9 @@ claude
 /reload-plugins
 ```
 
-Неймспейси `ua:` і `pl:` не конфліктують — можна мати обидва плагіни активними одночасно.
+The `ua:` and `pl:` namespaces are isolated — you can have both active at once and they won't conflict.
 
-### Локально для розробки
+### Local development
 
 ```bash
 git clone https://github.com/crankshift/lawpowers.git
@@ -73,69 +81,62 @@ cd lawpowers
 claude --plugin-dir ./ua --plugin-dir ./pl
 ```
 
-Або лише один плагін:
+Or only one plugin:
+
 ```bash
 claude --plugin-dir ./ua
 ```
 
-### Перевірка встановлення
+### Verification
 
-- `/plugin` → вкладка **Installed** — встановлені плагіни.
-- `/agents` — субагенти з префіксами `ua:` та/або `pl:`.
+- `/plugin` → **Installed** tab — lists the plugins you've added.
+- `/agents` — subagents show up with the `ua:` and/or `pl:` prefix.
+- Skills trigger automatically based on context (for example, mentioning «судовий збір» triggers `ua:calculating-sudovyi-zbir`; «opłata sądowa» triggers `pl:calculating-oplata-sadowa`).
 
-### Оновлення
+### Updating
 
 ```
 /plugin marketplace update lawpowers
 /reload-plugins
 ```
 
-Або увімкнути auto-update у `/plugin` → **Marketplaces** → `lawpowers` → **Enable auto-update**.
+Or enable auto-update from `/plugin` → **Marketplaces** → `lawpowers` → **Enable auto-update**.
 
-### Видалення окремого плагіна
+### Uninstalling a single plugin
 
 ```
-/plugin uninstall ua@lawpowers   # прибрати лише UA
-/plugin uninstall pl@lawpowers   # прибрати лише PL
+/plugin uninstall ua@lawpowers   # remove only UA
+/plugin uninstall pl@lawpowers   # remove only PL
 ```
 
-Маркетплейс лишається — можна перевстановити плагін пізніше.
+The marketplace stays registered; reinstall whenever you need.
 
-## Короткий огляд плагінів
+## Shared principles
 
-### `ua` — українське право
+All plugins in this monorepo follow the same working principles:
 
-- Позови, зустрічні позови, уточнення, апеляції, касації (ЦПК/ГПК/КАС).
-- Процесуальні клопотання, адвокатські запити, правові висновки.
-- Договори, претензії, виконавче провадження, арбітраж (ЦК/ГК, МКАС).
-- **Окремий блок для ЗСУ:** рапорти, ВЛК (оскарження), ТЦК і бронювання, виплати (КМУ № 168, ЗУ 3995-IX), СЗЧ (ч. 5 ст. 401 КК).
-- Скіли для роботи з `zakon.rada.gov.ua`, ЄДРСР, судовим збором, позовною давністю.
+- **Verbatim citations of statutes.** Articles are quoted in the exact wording in force on a given date, with a direct link to the primary source (`zakon.rada.gov.ua` for UA, `isap.sejm.gov.pl` for PL).
+- **Mandatory source references.** Every legal position carries a link to the article + source + verification date.
+- **No fabricated case law.** Case numbers, dates, and quotes come only from official registries (ЄДРСР for UA, Portal Orzeczeń for PL). Claude should never invent a citation.
+- **Placeholders for personal data.** Templates use placeholders (`[ПІБ]` / `[imię i nazwisko]`, `[РНОКПП]` / `[PESEL]`, `[адреса]` / `[adres]`) — never real client data in source files.
+- **Drafts, not final advice.** Everything the agents produce is a working draft for a human lawyer to review, adapt, and sign off on. Final editorial responsibility is always human.
 
-Детальніше — у [`ua/CLAUDE.md`](./ua/CLAUDE.md).
+## Extending the monorepo
 
-### `pl` — polskie prawo
+Adding a plugin for a new jurisdiction (e.g. `eu`, `us`, `de`):
 
-- Pozwy, odpowiedzi, apelacje, kasacje (KPC / KPA / KPK).
-- Wezwania przedsądowe, zapytania adwokackie, opinie prawne.
-- Umowy, windykacja, postępowanie egzekucyjne.
-- Skille do pracy z `isap.sejm.gov.pl`, orzeczeniami, przedawnieniem, opłatą sądową.
+1. Create a `./xx/` directory at the repo root with a short ISO-style code.
+2. Add `xx/.claude-plugin/plugin.json` with `"name": "xx"`, `xx/agents/`, `xx/skills/`, and `xx/README.md` + `xx/CLAUDE.md` documenting the plugin.
+3. Register it in `.claude-plugin/marketplace.json` under `plugins` with `"source": "./xx"`.
+4. Add a CHANGELOG entry and bump `metadata.version` in the marketplace manifest.
+5. Open a PR, merge, then tag a release as described in the [release flow](./CHANGELOG.md).
 
-Szczegóły — w [`pl/CLAUDE.md`](./pl/CLAUDE.md).
+See [`CLAUDE.md`](./CLAUDE.md) for the project-level guidelines.
 
-## Принципи / Zasady
+## Release history
 
-Усі плагіни дотримуються спільних принципів:
+Full changelog — [CHANGELOG.md](./CHANGELOG.md). Releases are published on the [Releases page](https://github.com/crankshift/lawpowers/releases).
 
-- **Дослівність цитат НПА** — норма наводиться в точній редакції, чинній на дату.
-- **Посилання на первинні джерела** — `zakon.rada.gov.ua` для UA, `isap.sejm.gov.pl` для PL.
-- **Не вигадувати судову практику** — лише з офіційних реєстрів (ЄДРСР, Portal Orzeczeń).
-- **Плейсхолдери для персональних даних** — не зберігати реальні дані клієнтів.
-- **Документи — чернетки** — фінальна редакція і відповідальність на людині.
+## License
 
-## Історія версій
-
-Повний перелік змін — у [CHANGELOG.md](./CHANGELOG.md). Релізи — на [сторінці Releases](https://github.com/crankshift/lawpowers/releases).
-
-## Ліцензія
-
-MIT — [LICENSE](./LICENSE).
+MIT — see [LICENSE](./LICENSE).
