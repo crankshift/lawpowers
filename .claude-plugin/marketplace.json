@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Lawpowers — колекція юридичних плагінів для Claude Code. Зараз: ua (Україна) і pl (Польща).",
-    "version": "0.4.1"
+    "version": "0.4.2"
   },
   "plugins": [
     {
@@ -31,7 +31,15 @@
         "mobilization"
       ],
       "category": "legal",
-      "tags": ["ukraine", "law", "lawpowers", "zakon-rada", "yedrsr", "military", "zsu"]
+      "tags": [
+        "ukraine",
+        "law",
+        "lawpowers",
+        "zakon-rada",
+        "yedrsr",
+        "military",
+        "zsu"
+      ]
     },
     {
       "name": "pl",
@@ -52,7 +60,13 @@
         "sejm"
       ],
       "category": "legal",
-      "tags": ["poland", "law", "lawpowers", "isap", "orzeczenia"]
+      "tags": [
+        "poland",
+        "law",
+        "lawpowers",
+        "isap",
+        "orzeczenia"
+      ]
     }
   ]
 }
