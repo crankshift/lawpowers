@@ -1,6 +1,35 @@
-# legal-ua — Changelog
+# lawpowers / ua — Changelog
 
 Формат — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); версіонування — [SemVer](https://semver.org/spec/v2.0.0.html).
+
+## [0.3.0] — 2026-04-20
+
+### Changed — BREAKING
+
+Підготовка до монорепо `lawpowers` з кількома юридичними плагінами.
+
+- **Репозиторій:** `crankshift/legal-ua` → `crankshift/lawpowers`. GitHub авторедіректить старий URL, але всі внутрішні посилання оновлено.
+- **Маркетплейс:** `name: "legal-ua"` → `name: "lawpowers"` у `marketplace.json`.
+- **Плагін:** `name: "legal-ua"` → `name: "ua"` у `plugin.json` і в записі `plugins[0].name` маркетплейсу.
+- **Команди:** усі агенти і скіли тепер викликаються з префіксом `ua:` замість `legal-ua:` — наприклад, `ua:claim-drafter`, `ua:raport-drafter`, `ua:calculating-sudovyi-zbir`. Файли агентів/скілів у репо НЕ перейменовано — префікс додається автоматично з `name` у `plugin.json`.
+- **Встановлення:** `/plugin marketplace add crankshift/lawpowers` + `/plugin install ua@lawpowers`.
+- `README.md` і `CLAUDE.md` оновлено під нову структуру; додано розділ «Правила найменування» у `CLAUDE.md`.
+
+### Migration (обов'язкова для існуючих установок)
+
+Автоматичне оновлення не спрацює (змінилися ідентифікатори маркетплейсу і плагіна). Послідовність:
+
+```
+/plugin uninstall legal-ua@legal-ua
+/plugin marketplace remove legal-ua
+/plugin marketplace add crankshift/lawpowers
+/plugin install ua@lawpowers
+/reload-plugins
+```
+
+### Rationale
+
+Короткий префікс `ua:` зручніший у повсякденному використанні, ніж `legal-ua:`. Назва маркетплейсу `lawpowers` — парасолька для майбутніх плагінів з іншими юрисдикціями (`eu`, `us` тощо); плагін `ua` далі стосується виключно права України.
 
 ## [0.2.0] — 2026-04-20
 
@@ -43,7 +72,7 @@ TOP-10 болів встановлено за публічними даними:
 **Початкова конвертація репозиторію в інсталяційний Claude Code plugin.**
 
 - Створено `.claude-plugin/plugin.json` — маніфест плагіна (name, version, author, license, keywords).
-- Створено `.claude-plugin/marketplace.json` — власний маркетплейс (`source: "./"`), щоб користувачі могли встановлювати через `/plugin marketplace add crankshift/legal-ua` → `/plugin install legal-ua@legal-ua`.
+- Створено `.claude-plugin/marketplace.json` — власний маркетплейс (`source: "./"`), щоб користувачі могли встановлювати через `/plugin marketplace add crankshift/lawpowers` → `/plugin install legal-ua@legal-ua`.
 - Перенесено `agents/` і `skills/` з `.claude/` у корінь плагіна (вимога Claude Code plugin layout).
 - Додано `README.md` з інструкціями встановлення українською (варіанти: CLI, локально через `--plugin-dir`).
 - Додано `.gitignore` для `.DS_Store`.
@@ -74,5 +103,6 @@ TOP-10 болів встановлено за публічними даними:
 - `fetching-arbitration-rules` — регламенти арбітражних інституцій.
 - `applying-new-york-convention` — NYC 1958 при визнанні/виконанні арбітражних рішень в Україні.
 
-[0.2.0]: https://github.com/crankshift/legal-ua/releases/tag/v0.2.0
-[0.1.0]: https://github.com/crankshift/legal-ua/releases/tag/v0.1.0
+[0.3.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.3.0
+[0.2.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.2.0
+[0.1.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.1.0

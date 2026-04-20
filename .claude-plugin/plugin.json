@@ -1,12 +1,12 @@
 {
-  "name": "legal-ua",
-  "description": "Спеціалізовані субагенти та скіли для роботи з українським законодавством і правничими документами, включно з окремим блоком для військовослужбовців ЗСУ",
-  "version": "0.2.0",
+  "name": "ua",
+  "description": "Lawpowers Ukraine — субагенти та скіли для роботи з українським законодавством і правничими документами, включно з окремим блоком для військовослужбовців ЗСУ. Команди в Claude Code отримують префікс /ua:…",
+  "version": "0.3.0",
   "author": {
     "name": "Yurii"
   },
-  "homepage": "https://github.com/crankshift/legal-ua",
-  "repository": "https://github.com/crankshift/legal-ua",
+  "homepage": "https://github.com/crankshift/lawpowers",
+  "repository": "https://github.com/crankshift/lawpowers",
   "license": "MIT",
   "keywords": [
     "ukraine",

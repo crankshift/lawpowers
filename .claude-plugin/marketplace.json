@@ -1,18 +1,18 @@
 {
-  "name": "legal-ua",
+  "name": "lawpowers",
   "owner": {
     "name": "Yurii"
   },
   "metadata": {
-    "description": "Маркетплейс плагіна legal-ua — інструментарій для роботи з українським правом у Claude Code, включно з окремим блоком для військовослужбовців ЗСУ",
-    "version": "0.2.0"
+    "description": "Lawpowers — колекція юридичних плагінів для Claude Code. Наразі один плагін: ua (Україна).",
+    "version": "0.3.0"
   },
   "plugins": [
     {
-      "name": "legal-ua",
+      "name": "ua",
       "source": "./",
-      "description": "Спеціалізовані субагенти та скіли для роботи з українським законодавством і правничими документами, включно з окремим блоком для військовослужбовців ЗСУ (рапорти, ВЛК, ТЦК, виплати, СЗЧ)",
-      "version": "0.2.0",
+      "description": "Lawpowers Ukraine — субагенти та скіли для роботи з українським законодавством і правничими документами, включно з окремим блоком для військовослужбовців ЗСУ (рапорти, ВЛК, ТЦК, виплати, СЗЧ). Команди отримують префікс /ua:…",
+      "version": "0.3.0",
       "author": {
         "name": "Yurii"
       },
@@ -31,7 +31,7 @@
         "mobilization"
       ],
       "category": "legal",
-      "tags": ["ukraine", "law", "legal-ua", "zakon-rada", "yedrsr", "military", "zsu"]
+      "tags": ["ukraine", "law", "lawpowers", "zakon-rada", "yedrsr", "military", "zsu"]
     }
   ]
 }

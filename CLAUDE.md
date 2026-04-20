@@ -1,6 +1,8 @@
-# legal-ua
+# lawpowers / ua
 
 Робочий простір для роботи з українським законодавством та правничими документами. Містить спеціалізованих агентів під конкретні юридичні задачі.
+
+Плагін `ua` у монорепо `lawpowers` (`crankshift/lawpowers`). Команди в Claude Code отримують префікс `/ua:…` (наприклад, `/ua:claim-drafter`). У майбутньому можливі сусідні плагіни для інших юрисдикцій (`eu`, `us` тощо) у тому ж маркетплейсі.
 
 ## Мова спілкування
 
@@ -110,12 +112,14 @@
 Репозиторій зібраний як **Claude Code plugin** (див. [код-доки про плагіни](https://code.claude.com/docs/en/plugins)). Директорії `agents/` і `skills/` — на корені плагіна, `plugin.json` і `marketplace.json` — в `.claude-plugin/`.
 
 ```
-legal-ua/
+lawpowers/                 # репо на GitHub: crankshift/lawpowers
 ├── CLAUDE.md              # цей файл — загальний контекст і архітектура
 ├── README.md              # user-facing документація, інструкції встановлення
+├── CHANGELOG.md           # історія релізів (Keep a Changelog)
+├── .version-bump.json     # файли, де тримається версія плагіна
 ├── .claude-plugin/
-│   ├── plugin.json        # маніфест плагіна (name, version, author, keywords)
-│   └── marketplace.json   # каталог маркетплейсу (щоб інсталити через /plugin install)
+│   ├── plugin.json        # маніфест плагіна (name: "ua", version, author, keywords)
+│   └── marketplace.json   # каталог маркетплейсу (name: "lawpowers")
 ├── agents/                # субагенти під конкретні задачі
 │   ├── claim-drafter.md
 │   ├── legislation-analyst.md
@@ -129,4 +133,10 @@ legal-ua/
 └── references/            # (плановано) вибірки норм, правові позиції, методички
 ```
 
-**Важливо:** після встановлення як плагін скіли та агенти будуть неймспейсовані — `/legal-ua:searching-edrsr` замість `/searching-edrsr`. Це запобігає конфліктам із іншими плагінами.
+**Важливо:** після встановлення всі агенти і скіли виходять з префіксом `/ua:…` (з неймспейсом плагіна `ua`) — наприклад, `ua:claim-drafter`, `ua:searching-edrsr`. Це запобігає конфліктам з іншими плагінами, зокрема з сусідами в монорепо `lawpowers`.
+
+## Правила найменування
+
+- **Файли агентів/скілів** — без префікса (`claim-drafter.md`, `skills/searching-edrsr/SKILL.md`). Префікс `ua:` додається автоматично з `name` у `plugin.json`.
+- **У документації** — посилатися на агентів через виклик (`ua:claim-drafter`), щоб користувач бачив точну команду.
+- **Нові агенти/скіли** — додавати без префікса в імені; вони автоматично отримають `ua:`.
