@@ -6,6 +6,8 @@ Część monorepo [`lawpowers`](../README.md) — kolekcji plaginów prawnych dl
 
 > Przestrzeń robocza dla prawnika-praktyka. Wszystkie dokumenty, odpowiedzi i szablony — po polsku.
 
+> ⚠️ **Zastrzeżenie.** To narzędzie do **wspomagania sporządzania dokumentów prawnych**, a nie porada prawna ani zastępstwo adwokata lub radcy prawnego. Wszystkie wyniki agentów to projekty robocze generowane przez model AI na podstawie tekstu aktów prawnych i **wymagają** weryfikacji przez wykwalifikowanego prawnika względem aktualnych źródeł pierwotnych przed podpisaniem, złożeniem w sądzie lub jakimkolwiek innym użyciem. Ani Anthropic (Claude), ani autorzy i współtwórcy tego repozytorium **nie gwarantują** poprawności, kompletności ani aktualności wyników i **nie ponoszą żadnej odpowiedzialności** za jakiekolwiek skutki ich użycia. Korzystasz na własne ryzyko.
+
 ## Instalacja
 
 Pełna instrukcja instalacji (oba plaginy) — w [root README](../README.md#installation). Skrót dla samego `pl`:
@@ -94,7 +96,14 @@ Wszystkie komendy wywoływane z prefiksem `/pl:…`.
 
 ## Zastrzeżenie
 
-Materiały tworzone przez agentów to robocze projekty dla prawnika-użytkownika, a nie końcowa konsultacja dla klienta. Ostateczną redakcję i odpowiedzialność ponosi człowiek.
+Plagin `pl` to **narzędzie wspomagające sporządzanie dokumentów prawnych**, a nie świadczenie pomocy prawnej. Instalacja i używanie nie tworzą relacji adwokat–klient ani radca prawny–klient.
+
+- **Nie jest poradą prawną.** Żaden wynik pracy plagina nie stanowi porady prawnej, opinii adwokata/radcy prawnego ani zastępstwa profesjonalnej pomocy prawnej.
+- **Projekty generowane przez AI.** Wszystkie teksty tworzy duży model językowy; mogą zawierać błędy, nieaktualne brzmienia przepisów, nieścisłe odesłania do orzecznictwa. Polskie prawo zmienia się często (reformy KPC 2019/2023, przedawnienie 2018) — każde odesłanie należy zweryfikować w źródle pierwotnym (`isap.sejm.gov.pl`, Portal Orzeczeń, sn.pl) w dniu użycia.
+- **Obowiązkowa weryfikacja przez człowieka.** Każdy dokument stworzony przy użyciu tego plagina musi zostać przejrzany, poprawiony i zaakceptowany przez wykwalifikowanego prawnika przed podpisaniem, złożeniem do sądu, przesłaniem kontrahentowi lub innym wykorzystaniem. Osoba podpisująca dokument ponosi pełną odpowiedzialność zawodową i prawną.
+- **Bez gwarancji.** Oprogramowanie dostarczane jest "TAK JAK JEST", bez jakichkolwiek gwarancji, wyraźnych ani dorozumianych, w szczególności co do dokładności, kompletności, aktualności, przydatności do określonego celu lub zgodności z prawem.
+- **Bez odpowiedzialności.** W maksymalnym zakresie dopuszczalnym przez prawo ani Anthropic (dostawca Claude), ani autorzy, opiekunowie i współtwórcy tego repozytorium nie ponoszą odpowiedzialności za jakiekolwiek szkody bezpośrednie, pośrednie, przypadkowe, wynikowe, specjalne lub przykładowe powstałe w wyniku użycia lub niemożności użycia tego oprogramowania — w tym za szkody wynikające z błędnych projektów, przekroczonych terminów, niewłaściwie cytowanych przepisów, niekorzystnych rozstrzygnięć sądowych czy jakichkolwiek innych skutków prawnych lub finansowych. Korzystasz z plagina całkowicie na własne ryzyko.
+- **Twoja odpowiedzialność.** To, jak używasz narzędzia, co robisz z jego wynikiem i jakie są tego skutki (wobec klientów, kontrahentów, sądu, organów), pozostaje wyłącznie w Twojej gestii. Jeśli nie jesteś wykwalifikowanym prawnikiem, przed działaniem na podstawie jakichkolwiek wyników skonsultuj się z takim.
 
 ## Historia wersji
 
