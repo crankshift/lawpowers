@@ -70,19 +70,14 @@ Example: adding a plugin for EU law.
 
 ## Release flow
 
+Full step-by-step reference with commands, common pitfalls, and rollback guidance — see [`docs/RELEASING.md`](./docs/RELEASING.md). Summary:
+
 1. Decide the version bump per semver. For a breaking change in 0.x releases, a minor bump is appropriate.
-2. Update the affected version fields listed in `.version-bump.json` (plugin-level `version` + corresponding marketplace entry + marketplace `metadata.version`).
+2. Update the affected version fields listed in [`.version-bump.json`](./.version-bump.json) (plugin-level `version` + corresponding marketplace entry + marketplace `metadata.version`). Validate with `claude plugin validate .`.
 3. Add a new section at the top of [`CHANGELOG.md`](./CHANGELOG.md) in Keep-a-Changelog format, noting which plugin(s) changed.
 4. Open a PR and merge.
-5. After merge, check out `main`, pull, and tag the merge commit:
-   ```bash
-   git tag -a vX.Y.Z <merge-sha> -m "vX.Y.Z — <headline>"
-   git push origin vX.Y.Z
-   ```
-6. Create a GitHub Release with body copied from the CHANGELOG section:
-   ```bash
-   gh release create vX.Y.Z --title "vX.Y.Z — <headline>" --notes-file <(awk '/## \[X.Y.Z\]/,/## \[/' CHANGELOG.md | head -n -1) --latest
-   ```
+5. After merge, tag the merge commit and push: `git tag -a vX.Y.Z <merge-sha> -m "..."` + `git push origin vX.Y.Z`.
+6. Publish a GitHub Release with body extracted from the CHANGELOG section.
 7. Users update with `/plugin marketplace update lawpowers` + `/reload-plugins`.
 
 ## Shared editorial rules (all plugins)
