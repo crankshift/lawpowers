@@ -4,15 +4,15 @@
     "name": "Yurii"
   },
   "metadata": {
-    "description": "Lawpowers — колекція юридичних плагінів для Claude Code. Наразі один плагін: ua (Україна).",
-    "version": "0.3.0"
+    "description": "Lawpowers — колекція юридичних плагінів для Claude Code. Зараз: ua (Україна) і pl (Польща).",
+    "version": "0.4.0"
   },
   "plugins": [
     {
       "name": "ua",
-      "source": "./",
+      "source": "./ua",
       "description": "Lawpowers Ukraine — субагенти та скіли для роботи з українським законодавством і правничими документами, включно з окремим блоком для військовослужбовців ЗСУ (рапорти, ВЛК, ТЦК, виплати, СЗЧ). Команди отримують префікс /ua:…",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "author": {
         "name": "Yurii"
       },
@@ -32,6 +32,27 @@
       ],
       "category": "legal",
       "tags": ["ukraine", "law", "lawpowers", "zakon-rada", "yedrsr", "military", "zsu"]
+    },
+    {
+      "name": "pl",
+      "source": "./pl",
+      "description": "Lawpowers Poland — wyspecjalizowani subagenci i skille do pracy z polskim ustawodawstwem oraz dokumentami prawniczymi (ISAP, orzeczenia, KC/KPC/KK). Komendy otrzymują prefiks /pl:…",
+      "version": "0.1.0",
+      "author": {
+        "name": "Yurii"
+      },
+      "license": "MIT",
+      "keywords": [
+        "poland",
+        "polish-law",
+        "legal",
+        "law",
+        "litigation",
+        "isap",
+        "sejm"
+      ],
+      "category": "legal",
+      "tags": ["poland", "law", "lawpowers", "isap", "orzeczenia"]
     }
   ]
 }
