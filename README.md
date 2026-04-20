@@ -6,34 +6,77 @@
 
 ## Встановлення
 
-### Через маркетплейс плагіна (рекомендовано)
+Це плагін **Claude Code**. Він працює в усіх клієнтах Claude Code: CLI в терміналі, десктоп-додатку (macOS/Windows), web-додатку (claude.ai/code) та IDE-розширеннях (VS Code, JetBrains). Команди `/plugin marketplace add` і `/plugin install` ідентичні в усіх.
 
-У Claude Code:
+> **Не плутати з додатком Claude.ai** (чат-додаток для macOS/Windows, claude.ai). Це окремий продукт. Плагіни Claude Code в ньому безпосередньо не встановлюються — плагіни `legal-ua` доступні лише через Claude Code.
+
+### Варіант 1. Claude Code CLI (термінал)
+
+```bash
+claude
+```
+
+У запрошенні Claude Code:
 
 ```
 /plugin marketplace add crankshift/legal-ua
 /plugin install legal-ua@legal-ua
+/reload-plugins
 ```
 
-Якщо форкаєте — підставте свій `owner/repo`.
+### Варіант 2. Claude Code Desktop App (macOS/Windows)
 
-Для приватного репозиторію через Git URL:
+1. Відкрити Claude Code Desktop App ([завантаження](https://claude.com/claude-code)).
+2. Відкрити будь-який проєкт або створити новий.
+3. У полі запиту ввести:
 
-```
-/plugin marketplace add https://github.com/crankshift/legal-ua.git
-/plugin install legal-ua@legal-ua
-```
+   ```
+   /plugin marketplace add crankshift/legal-ua
+   ```
 
-### Локально (для розробки / без публікації)
+4. Після підтвердження ввести:
+
+   ```
+   /plugin install legal-ua@legal-ua
+   ```
+
+5. Через інтерактивне меню плагін-менеджера: натиснути `/plugin` → вкладка **Discover** → обрати `legal-ua` → обрати scope (User / Project / Local) → Enter.
+6. `/reload-plugins` для активації без перезапуску.
+
+### Варіант 3. Claude Code у VS Code / JetBrains
+
+Якщо встановлено розширення Claude Code для IDE — відкрити панель Claude Code і ввести ті самі команди `/plugin marketplace add` та `/plugin install`.
+
+### Варіант 4. Локально для розробки / приватного репозиторію
 
 ```bash
 git clone https://github.com/crankshift/legal-ua.git
 claude --plugin-dir ./legal-ua
 ```
 
-### Перевірка
+Для приватного репо через Git URL:
 
-У Claude Code виконайте `/agents` — мають з'явитися субагенти з префіксом `legal-ua:`. Скіли активуються автоматично за контекстом (наприклад, згадка «судовий збір» тригерить `legal-ua:calculating-sudovyi-zbir`).
+```
+/plugin marketplace add https://github.com/crankshift/legal-ua.git
+/plugin install legal-ua@legal-ua
+```
+
+### Перевірка встановлення
+
+Незалежно від клієнта:
+
+- `/plugin` → вкладка **Installed** — плагін `legal-ua` у списку.
+- `/agents` — субагенти з префіксом `legal-ua:` (наприклад, `legal-ua:claim-drafter`, `legal-ua:raport-drafter`).
+- Скіли активуються автоматично за контекстом: згадка «судовий збір» тригерить `legal-ua:calculating-sudovyi-zbir`; «рапорт на відпустку» — `legal-ua:raport-drafter`.
+
+### Оновлення
+
+```
+/plugin marketplace update legal-ua
+/reload-plugins
+```
+
+Або увімкнути auto-update у `/plugin` → **Marketplaces** → `legal-ua` → **Enable auto-update**.
 
 ## Що всередині
 
