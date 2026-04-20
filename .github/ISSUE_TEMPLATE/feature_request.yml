@@ -1,0 +1,73 @@
+name: Feature request
+description: Propose a new agent, skill, jurisdiction, or tooling improvement.
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - New agent or skill in plugin `ua`
+        - New agent or skill in plugin `pl`
+        - New plugin (new jurisdiction)
+        - Marketplace / catalog metadata
+        - Tooling / scripts / docs
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What practical legal task is not currently supported, or is supported poorly? Who is the user (lawyer, service member, business owner, etc.)?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: |
+        Describe the agent/skill/feature. For an agent: name, zone of responsibility, primary legal references (statute articles, CMU resolutions, case law). For a skill: when it should trigger and what it returns.
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Primary legal sources
+      description: Statute URLs (zakon.rada / ISAP), relevant case law, procedural codes. Without this a proposal is hard to evaluate.
+      placeholder: |
+        - https://zakon.rada.gov.ua/laws/show/...
+        - …
+
+  - type: dropdown
+    id: new_jurisdiction_code
+    attributes:
+      label: "If proposing a new jurisdiction: proposed plugin code"
+      description: Short ISO-style code for the plugin (e.g. `eu`, `us`, `de`). Skip if this isn't a new-jurisdiction proposal.
+      options:
+        - N/A
+        - eu (European Union)
+        - us (United States)
+        - de (Germany)
+        - Other (describe below)
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Existing agents/skills that partly cover this, or third-party resources. Why are they not enough?
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Pre-flight checks
+      options:
+        - label: I searched open and closed issues and this hasn't been proposed already.
+          required: true
+        - label: The feature is scoped to one plugin (or is explicitly cross-plugin tooling) — not a mix of UA and PL legal content in the same artifact.
+          required: true

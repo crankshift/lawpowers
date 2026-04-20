@@ -22,6 +22,17 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 ├── LICENSE                         # MIT — covers the whole repo
 ├── .claude-plugin/
 │   └── marketplace.json            # marketplace catalog ("lawpowers"); lists ua and pl with their source paths
+├── .github/
+│   ├── PULL_REQUEST_TEMPLATE.md    # prefills scope / CHANGELOG / test-plan checkboxes on every PR
+│   └── ISSUE_TEMPLATE/
+│       ├── config.yml              # hides blank issues; contact links to RELEASING.md, zakon.rada, ISAP
+│       ├── bug_report.yml          # installation / runtime bugs
+│       ├── legal-issue.yml         # outdated statute or wrong case-law; requires primary-source URL + date
+│       └── feature_request.yml     # new agent / skill / jurisdiction / tooling
+├── docs/
+│   └── RELEASING.md                # full release procedure
+├── scripts/
+│   └── release.sh                  # bump + PR + tag + GitHub Release helper
 ├── ua/                             # plugin "ua" — Ukrainian law
 │   ├── README.md                   # user-facing, Ukrainian
 │   ├── CLAUDE.md                   # contributor context for the UA plugin
@@ -37,6 +48,16 @@ lawpowers/                         # GitHub: crankshift/lawpowers
     ├── agents/
     └── skills/
 ```
+
+## Issue and PR templates
+
+`.github/` provides structured templates so the right metadata is captured up front:
+
+- **Pull requests** — the template forces contributors to pick the change's scope (`ua` / `pl` / marketplace / monorepo), tick the right CHANGELOG files, describe migration for breaking changes, and confirm `claude plugin validate` passed. Enforce this during review — PRs without a completed template should be bounced.
+- **Bug reports** — `bug_report.yml` captures plugin, plugin version, Claude Code version, client (CLI / Desktop App / IDE), and OS. Preflight checks include updating the marketplace before reporting.
+- **Legal accuracy issues** — `legal-issue.yml` is the channel for "agent cites an outdated statute / wrong case number". It **requires** a primary-source URL (`zakon.rada.gov.ua` for UA, `isap.sejm.gov.pl` for PL) and a verification date. No source, no fix — this is the quality gate for legal content.
+- **Feature requests** — `feature_request.yml` asks for the scope (existing plugin vs new jurisdiction), the practical legal task to solve, and primary-source citations. Cross-plugin feature proposals that would mix UA and PL legal content in one artifact are explicitly called out as out-of-scope.
+- **Blank issues disabled** — all issues go through one of the three structured forms so triage is fast.
 
 ## Contribution principles
 

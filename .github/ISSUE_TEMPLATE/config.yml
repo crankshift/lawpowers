@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Release flow
+    url: https://github.com/crankshift/lawpowers/blob/main/docs/RELEASING.md
+    about: How a release is cut (versions, CHANGELOG, tags, GitHub Releases).
+  - name: Official Ukrainian statutes — zakon.rada.gov.ua
+    url: https://zakon.rada.gov.ua
+    about: Primary source for any `ua:` legal citation.
+  - name: Official Polish statutes — ISAP
+    url: https://isap.sejm.gov.pl
+    about: Primary source for any `pl:` legal citation.
