@@ -1,6 +1,6 @@
 # Plagin `pl` — Changelog
 
-Historia zmian plagina `pl` (polskie prawo) w ramach monorepo [`lawpowers`](../CHANGELOG.md).
+Historia zmian plagina `pl` (polskie prawo) w ramach monorepo [`lawpowers`](../../CHANGELOG.md).
 
 Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Wersje plagina są wyrównane z tagami marketplace'u `vX.Y.Z`.
 

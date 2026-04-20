@@ -7,13 +7,13 @@
   "plugins": {
     "ua": {
       "files": [
-        { "path": "ua/.claude-plugin/plugin.json", "field": "version" },
+        { "path": "plugins/ua/.claude-plugin/plugin.json", "field": "version" },
         { "path": ".claude-plugin/marketplace.json", "field": "plugins.0.version" }
       ]
     },
     "pl": {
       "files": [
-        { "path": "pl/.claude-plugin/plugin.json", "field": "version" },
+        { "path": "plugins/pl/.claude-plugin/plugin.json", "field": "version" },
         { "path": ".claude-plugin/marketplace.json", "field": "plugins.1.version" }
       ]
     }

@@ -38,7 +38,7 @@ Semver guidelines for `0.x`:
 Edit each file listed in `.version-bump.json` for the plugin(s) you're releasing. Typical case — bumping `ua` alone:
 
 ```
-ua/.claude-plugin/plugin.json            → "version": "X.Y.Z"
+plugins/ua/.claude-plugin/plugin.json            → "version": "X.Y.Z"
 .claude-plugin/marketplace.json          → "plugins[0].version": "X.Y.Z"
 .claude-plugin/marketplace.json          → "metadata.version": "X.Y.Z"   # if catalog itself moved
 ```
@@ -58,8 +58,8 @@ Three changelogs are maintained in parallel. Which you edit depends on what chan
 | Changelog | Language | When to edit |
 |---|---|---|
 | [root `CHANGELOG.md`](../CHANGELOG.md) | English | Marketplace-level changes (catalog, monorepo structure, shared tooling). Also writes a short summary referencing the plugin CHANGELOG for every plugin-affecting release. |
-| [`ua/CHANGELOG.md`](../ua/CHANGELOG.md) | Ukrainian | Plugin `ua` changes — agents, skills, templates, docs. |
-| [`pl/CHANGELOG.md`](../pl/CHANGELOG.md) | Polish | Plugin `pl` changes. |
+| [`plugins/ua/CHANGELOG.md`](../plugins/plugins/ua/CHANGELOG.md) | Ukrainian | Plugin `ua` changes — agents, skills, templates, docs. |
+| [`plugins/pl/CHANGELOG.md`](../plugins/plugins/pl/CHANGELOG.md) | Polish | Plugin `pl` changes. |
 
 For a typical release you'll touch the root changelog **plus** the changelog of whichever plugin you modified. Every changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Insert a new section at the top (right below the heading) and add a matching link reference at the bottom.
 
@@ -70,7 +70,7 @@ For a typical release you'll touch the root changelog **plus** the changelog of 
 
 ### Changed — plugin `ua`
 
-One-line summary. Details in [`ua/CHANGELOG.md`](./ua/CHANGELOG.md).
+One-line summary. Details in [`plugins/ua/CHANGELOG.md`](./plugins/plugins/ua/CHANGELOG.md).
 
 ### Migration
 
@@ -84,7 +84,7 @@ Only if breaking. Exact commands users need to run:
 [X.Y.Z]: https://github.com/crankshift/lawpowers/releases/tag/vX.Y.Z
 ```
 
-### Plugin `ua/CHANGELOG.md` template (Ukrainian)
+### Plugin `plugins/ua/CHANGELOG.md` template (Ukrainian)
 
 ```markdown
 ## [X.Y.Z] — YYYY-MM-DD
@@ -96,7 +96,7 @@ Only if breaking. Exact commands users need to run:
 [X.Y.Z]: https://github.com/crankshift/lawpowers/releases/tag/vX.Y.Z
 ```
 
-### Plugin `pl/CHANGELOG.md` template (Polish)
+### Plugin `plugins/pl/CHANGELOG.md` template (Polish)
 
 ```markdown
 ## [X.Y.Z] — YYYY-MM-DD
@@ -150,7 +150,7 @@ If you want the per-plugin detail visible directly in the release page, append t
   echo
   echo '---'
   echo '### Плагін `ua` (детально)'
-  awk '/## \[X.Y.Z\]/,/## \[/' ua/CHANGELOG.md | sed '$d'
+  awk '/## \[X.Y.Z\]/,/## \[/' plugins/ua/CHANGELOG.md | sed '$d'
 } | gh release create vX.Y.Z --title "vX.Y.Z — <headline>" --notes-file - --latest
 ```
 
@@ -200,7 +200,7 @@ If a release has a critical issue:
 
 - [`scripts/release.sh`](../scripts/release.sh) — automates `bump`, `prepare` (bump + branch + PR), and `publish` (tag + GitHub Release).
 - [`CHANGELOG.md`](../CHANGELOG.md) — release history (root, English).
-- [`ua/CHANGELOG.md`](../ua/CHANGELOG.md) — plugin `ua` history (Ukrainian).
-- [`pl/CHANGELOG.md`](../pl/CHANGELOG.md) — plugin `pl` history (Polish).
+- [`plugins/ua/CHANGELOG.md`](../plugins/plugins/ua/CHANGELOG.md) — plugin `ua` history (Ukrainian).
+- [`plugins/pl/CHANGELOG.md`](../plugins/plugins/pl/CHANGELOG.md) — plugin `pl` history (Polish).
 - [`.version-bump.json`](../.version-bump.json) — inventory of versioned fields.
 - [`CLAUDE.md`](../CLAUDE.md) — contributor guide with the abbreviated release section.

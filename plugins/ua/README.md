@@ -2,7 +2,7 @@
 
 Плагін Claude Code для роботи з українським законодавством і правничими документами. Містить спеціалізованих субагентів під конкретні юридичні задачі та скіли для ефективної роботи з офіційними джерелами (`zakon.rada.gov.ua`, ЄДРСР, сайти ВС / КСУ / НААУ).
 
-Частина монорепо [`lawpowers`](../README.md) — колекції юридичних плагінів для Claude Code. Ідентифікатор плагіна: `ua`; усі команди отримують префікс `/ua:…`.
+Частина монорепо [`lawpowers`](../../README.md) — колекції юридичних плагінів для Claude Code. Ідентифікатор плагіна: `ua`; усі команди отримують префікс `/ua:…`.
 
 Окремий блок — для **військовослужбовців ЗСУ та їхніх сімей**: рапорти, оскарження ВЛК, питання ТЦК і бронювання, виплати, СЗЧ.
 
@@ -12,7 +12,7 @@
 
 ## Встановлення
 
-Повна інструкція (обидва плагіни) — у [root README](../README.md#installation). Скорочено для самого `ua`:
+Повна інструкція (обидва плагіни) — у [root README](../../README.md#installation). Скорочено для самого `ua`:
 
 ### Claude Desktop App (macOS/Windows)
 
@@ -32,7 +32,7 @@
 
 ```bash
 git clone https://github.com/crankshift/lawpowers.git
-claude --plugin-dir ./lawpowers/ua
+claude --plugin-dir ./lawpowers/plugins/ua
 ```
 
 ### Перевірка
@@ -132,8 +132,8 @@ claude --plugin-dir ./lawpowers/ua
 
 ## Історія версій
 
-Зміни саме плагіна `ua` — у [CHANGELOG.md](./CHANGELOG.md) цієї директорії (українською). Зведення по маркетплейсу і сусідніх плагінах — у root [CHANGELOG.md](../CHANGELOG.md) (англійською). Релізи — на [сторінці Releases](https://github.com/crankshift/lawpowers/releases).
+Зміни саме плагіна `ua` — у [CHANGELOG.md](./CHANGELOG.md) цієї директорії (українською). Зведення по маркетплейсу і сусідніх плагінах — у root [CHANGELOG.md](../../CHANGELOG.md) (англійською). Релізи — на [сторінці Releases](https://github.com/crankshift/lawpowers/releases).
 
 ## Ліцензія
 
-MIT — [LICENSE](../LICENSE).
+MIT — [LICENSE](../../LICENSE).

@@ -2,7 +2,7 @@
 
 Plagin Claude Code do pracy z polskim prawem i dokumentami prawniczymi. Zawiera wyspecjalizowanych subagentów pod konkretne zadania prawne oraz skille do efektywnej pracy z oficjalnymi źródłami (ISAP, Dziennik Ustaw, Portal Orzeczeń SP, SN, NSA, TK).
 
-Część monorepo [`lawpowers`](../README.md) — kolekcji plaginów prawnych dla Claude Code. Identyfikator plagina: `pl`; wszystkie komendy mają prefiks `/pl:…`.
+Część monorepo [`lawpowers`](../../README.md) — kolekcji plaginów prawnych dla Claude Code. Identyfikator plagina: `pl`; wszystkie komendy mają prefiks `/pl:…`.
 
 > Przestrzeń robocza dla prawnika-praktyka. Wszystkie dokumenty, odpowiedzi i szablony — po polsku.
 
@@ -10,7 +10,7 @@ Część monorepo [`lawpowers`](../README.md) — kolekcji plaginów prawnych dl
 
 ## Instalacja
 
-Pełna instrukcja instalacji (oba plaginy) — w [root README](../README.md#installation). Skrót dla samego `pl`:
+Pełna instrukcja instalacji (oba plaginy) — w [root README](../../README.md#installation). Skrót dla samego `pl`:
 
 ### Claude Desktop App (macOS/Windows)
 
@@ -30,7 +30,7 @@ Pełna instrukcja instalacji (oba plaginy) — w [root README](../README.md#inst
 
 ```bash
 git clone https://github.com/crankshift/lawpowers.git
-claude --plugin-dir ./lawpowers/pl
+claude --plugin-dir ./lawpowers/plugins/pl
 ```
 
 ### Weryfikacja
@@ -107,8 +107,8 @@ Plagin `pl` to **narzędzie wspomagające sporządzanie dokumentów prawnych**, 
 
 ## Historia wersji
 
-Zmiany samego plagina `pl` — w [CHANGELOG.md](./CHANGELOG.md) tego katalogu (po polsku). Zestawienie dla całego marketplace'u oraz sąsiednich plaginów — w root [CHANGELOG.md](../CHANGELOG.md) (po angielsku). Wydania — na [stronie Releases](https://github.com/crankshift/lawpowers/releases).
+Zmiany samego plagina `pl` — w [CHANGELOG.md](./CHANGELOG.md) tego katalogu (po polsku). Zestawienie dla całego marketplace'u oraz sąsiednich plaginów — w root [CHANGELOG.md](../../CHANGELOG.md) (po angielsku). Wydania — na [stronie Releases](https://github.com/crankshift/lawpowers/releases).
 
 ## Licencja
 
-MIT — [LICENSE](../LICENSE).
+MIT — [LICENSE](../../LICENSE).

@@ -2,8 +2,8 @@
 
 Marketplace-level change log. Plugin-specific entries live alongside each plugin:
 
-- [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) — Ukrainian law plugin (written in Ukrainian).
-- [`pl/CHANGELOG.md`](./pl/CHANGELOG.md) — Polish law plugin (written in Polish).
+- [`ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) — Ukrainian law plugin (written in Ukrainian).
+- [`pl/CHANGELOG.md`](./plugins/pl/CHANGELOG.md) — Polish law plugin (written in Polish).
 
 This root file covers:
 - Marketplace version bumps (`.claude-plugin/marketplace.json:metadata.version`).
@@ -13,6 +13,46 @@ This root file covers:
 For the release procedure see [`docs/RELEASING.md`](./docs/RELEASING.md).
 
 Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning — [SemVer](https://semver.org/spec/v2.0.0.html). Marketplace and individual plugin versions are tracked independently.
+
+## [0.5.0] — 2026-04-20
+
+### Changed — BREAKING (marketplace layout)
+
+- Plugin directories moved from repo root to a dedicated `plugins/` container:
+  - `ua/` → `plugins/ua/`
+  - `pl/` → `plugins/pl/`
+- Marketplace `plugins[N].source` paths updated accordingly (`"./ua"` → `"./plugins/ua"`, `"./pl"` → `"./plugins/pl"`).
+- `name` of each plugin is unchanged (`ua`, `pl`), so install commands stay as `/plugin install ua@lawpowers` and `/plugin install pl@lawpowers`. Command prefixes (`/ua:…`, `/pl:…`) are also unchanged.
+
+All cross-references were updated across root docs, scripts, templates, and plugin-nested files:
+
+- Root `README.md`, `CLAUDE.md` — layout diagrams and links.
+- `.github/PULL_REQUEST_TEMPLATE.md` — CHANGELOG paths, `--plugin-dir` examples.
+- `docs/RELEASING.md` — plugin-manifest paths in CHANGELOG templates.
+- `scripts/release.sh` — hard-coded `UA_PLUGIN_JSON` / `PL_PLUGIN_JSON` / `*_CHANGELOG` paths.
+- `.version-bump.json` — tracked file paths.
+- `plugins/ua/*` and `plugins/pl/*` — relative links updated (`../README.md` → `../../README.md`, etc.); internal structure diagrams refreshed.
+
+### Bumped
+
+- Marketplace `metadata.version`: `0.4.2` → `0.5.0`. Plugin `version` fields untouched (`ua` stays `0.4.0`, `pl` stays `0.1.0`).
+
+### Migration
+
+```
+/plugin marketplace update lawpowers
+/plugin uninstall ua@lawpowers
+/plugin install ua@lawpowers
+/plugin uninstall pl@lawpowers   # if installed
+/plugin install pl@lawpowers
+/reload-plugins
+```
+
+Claude Code re-fetches the plugin from the new source path; namespace and commands remain identical.
+
+### Rationale
+
+A `plugins/` container makes room for non-plugin tooling at the repo root (CI workflows, shared config, evaluation harnesses) without scattering plugin content. Future jurisdictions go in `plugins/<code>/` alongside `ua` and `pl`.
 
 ## [0.4.2] — 2026-04-20
 
@@ -65,11 +105,11 @@ No migration needed. Users just run:
 - `.version-bump.json` restructured for multi-plugin versioning.
 - `author`/`owner` fields across all manifests changed `"Yurii"` → `"crankshift"`.
 
-See [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) for plugin-level details.
+See [`ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) for plugin-level details.
 
 ### Added — plugin `pl` v0.1.0
 
-First release of the Polish law plugin. 10 agents, 6 skills. See [`pl/CHANGELOG.md`](./pl/CHANGELOG.md) for the full catalog.
+First release of the Polish law plugin. 10 agents, 6 skills. See [`pl/CHANGELOG.md`](./plugins/pl/CHANGELOG.md) for the full catalog.
 
 ### Added — documentation
 
@@ -99,7 +139,7 @@ Preparation for the monorepo — the repo, marketplace, and plugin were all rena
 - Plugin identifier: `legal-ua` → `ua`.
 - Command prefix: `/legal-ua:…` → `/ua:…`.
 
-Plugin-level changes (including the sonnet→inherit model switch) — see [`ua/CHANGELOG.md`](./ua/CHANGELOG.md).
+Plugin-level changes (including the sonnet→inherit model switch) — see [`ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md).
 
 ### Migration for existing users
 
@@ -115,14 +155,15 @@ Plugin-level changes (including the sonnet→inherit model switch) — see [`ua/
 
 ### Added — plugin `legal-ua` (predecessor of `ua`)
 
-Military block for service members in ЗСУ — 5 new agents and 4 new skills. Plugin-level details in [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) under 0.2.0.
+Military block for service members in ЗСУ — 5 new agents and 4 new skills. Plugin-level details in [`ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) under 0.2.0.
 
 ## [0.1.0] — 2026-04-20
 
 ### Added — initial plugin conversion
 
-Repo converted to an installable Claude Code plugin with `plugin.json` and `marketplace.json`. Plugin-level details in [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) under 0.1.0.
+Repo converted to an installable Claude Code plugin with `plugin.json` and `marketplace.json`. Plugin-level details in [`ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) under 0.1.0.
 
+[0.5.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.5.0
 [0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.2
 [0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.1
 [0.4.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.0
