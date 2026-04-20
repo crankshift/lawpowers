@@ -1,0 +1,24 @@
+{
+  "name": "legal-ua",
+  "description": "Спеціалізовані субагенти та скіли для роботи з українським законодавством і правничими документами",
+  "version": "0.1.0",
+  "author": {
+    "name": "Yurii"
+  },
+  "homepage": "https://github.com/crankshift/legal-ua",
+  "repository": "https://github.com/crankshift/legal-ua",
+  "license": "MIT",
+  "keywords": [
+    "ukraine",
+    "ukrainian-law",
+    "legal",
+    "law",
+    "civil-procedure",
+    "commercial-procedure",
+    "administrative-procedure",
+    "arbitration",
+    "litigation",
+    "zakon-rada",
+    "yedrsr"
+  ]
+}

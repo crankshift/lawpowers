@@ -58,7 +58,7 @@
 
 ## Агенти
 
-Вузькоспеціалізовані субагенти в `.claude/agents/`:
+Вузькоспеціалізовані субагенти в `agents/` (корінь плагіна):
 
 | Агент | Призначення |
 |---|---|
@@ -77,7 +77,7 @@
 
 ## Скіли
 
-Процедурні/довідкові скіли в `.claude/skills/` — використовувати при роботі з українськими правовими джерелами:
+Процедурні/довідкові скіли в `skills/` (корінь плагіна) — використовувати при роботі з українськими правовими джерелами:
 
 | Скіл | Коли застосовувати |
 |---|---|
@@ -93,25 +93,26 @@
 
 ## Структура проєкту
 
+Репозиторій зібраний як **Claude Code plugin** (див. [код-доки про плагіни](https://code.claude.com/docs/en/plugins)). Директорії `agents/` і `skills/` — на корені плагіна, `plugin.json` і `marketplace.json` — в `.claude-plugin/`.
+
 ```
 legal-ua/
 ├── CLAUDE.md              # цей файл — загальний контекст і архітектура
-├── .claude/
-│   ├── agents/            # субагенти під конкретні задачі
-│   │   ├── claim-drafter.md
-│   │   ├── legislation-analyst.md
-│   │   └── request-drafter.md
-│   └── skills/            # скіли для ефективної роботи з джерелами
-│       ├── fetching-zakon-rada/SKILL.md
-│       ├── searching-edrsr/SKILL.md
-│       ├── calculating-sudovyi-zbir/SKILL.md
-│       ├── citing-ukrainian-law/SKILL.md
-│       ├── determining-ua-jurisdiction/SKILL.md
-│       ├── checking-pozovna-davnist/SKILL.md
-│       ├── checking-martial-law-overrides/SKILL.md
-│       ├── fetching-arbitration-rules/SKILL.md
-│       └── applying-new-york-convention/SKILL.md
+├── README.md              # user-facing документація, інструкції встановлення
+├── .claude-plugin/
+│   ├── plugin.json        # маніфест плагіна (name, version, author, keywords)
+│   └── marketplace.json   # каталог маркетплейсу (щоб інсталити через /plugin install)
+├── agents/                # субагенти під конкретні задачі
+│   ├── claim-drafter.md
+│   ├── legislation-analyst.md
+│   └── ...
+├── skills/                # скіли для ефективної роботи з джерелами
+│   ├── fetching-zakon-rada/SKILL.md
+│   ├── searching-edrsr/SKILL.md
+│   └── ...
 ├── templates/             # (плановано) шаблони документів — позови, запити, договори
 ├── cases/                 # (плановано) робочі матеріали — з урахуванням конфіденційності
 └── references/            # (плановано) вибірки норм, правові позиції, методички
 ```
+
+**Важливо:** після встановлення як плагін скіли та агенти будуть неймспейсовані — `/legal-ua:searching-edrsr` замість `/searching-edrsr`. Це запобігає конфліктам із іншими плагінами.
