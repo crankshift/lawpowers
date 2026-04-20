@@ -1,0 +1,97 @@
+name: Bug report
+description: Something in lawpowers is broken (plugin won't install, agent crashes, skill doesn't trigger, etc.).
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. If the issue is that an agent cited an outdated statute or wrong case-law, use the **Legal accuracy issue** template instead — it has the right fields for that.
+
+  - type: dropdown
+    id: plugin
+    attributes:
+      label: Affected plugin
+      description: Which plugin shows the problem?
+      options:
+        - "`ua` (Ukrainian law)"
+        - "`pl` (Polish law)"
+        - Marketplace / installation flow
+        - Tooling / scripts / docs
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: plugin_version
+    attributes:
+      label: Plugin / marketplace version
+      description: "Run `/plugin` → Installed tab, or check `/plugin marketplace list`. Also fine: the tag you installed from."
+      placeholder: "e.g. lawpowers v0.4.2 / ua 0.4.0"
+    validations:
+      required: true
+
+  - type: input
+    id: claude_version
+    attributes:
+      label: Claude Code version
+      description: "`claude --version`"
+      placeholder: "e.g. Claude Code v2.1.114"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: client
+    attributes:
+      label: Client
+      options:
+        - Claude Code CLI (terminal)
+        - Claude Desktop App (macOS/Windows)
+        - Claude Code in IDE (VS Code / JetBrains)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "macOS 15.2 / Windows 11 / Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened
+      description: What you did and what went wrong. Paste exact commands and error output if any.
+      placeholder: |
+        1. `/plugin install ua@lawpowers`
+        2. Tried to call `/ua:claim-drafter`
+        3. Got this error: …
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs / screenshots
+      description: Output of `claude plugin validate .` if you ran it, any stack traces, screenshots. Redact personal data.
+      render: shell
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Pre-flight checks
+      options:
+        - label: I searched existing issues and didn't find a duplicate.
+          required: true
+        - label: I updated to the latest marketplace version (`/plugin marketplace update lawpowers`).
+          required: true

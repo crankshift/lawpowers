@@ -1,0 +1,83 @@
+name: Legal accuracy issue
+description: An agent or skill cites an outdated statute, wrong case-law, or misstates a procedural rule.
+title: "[legal] "
+labels: ["legal-accuracy"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template when the issue is about the **legal content**, not the tooling. For installation bugs or crashes use the Bug report template.
+
+        Please link the primary source (zakon.rada.gov.ua for UA, isap.sejm.gov.pl for PL). Reports without a verifiable source citation are hard to act on.
+
+  - type: dropdown
+    id: plugin
+    attributes:
+      label: Plugin
+      options:
+        - "`ua` (Ukrainian law)"
+        - "`pl` (Polish law)"
+    validations:
+      required: true
+
+  - type: input
+    id: component
+    attributes:
+      label: Agent or skill name
+      description: As invoked, e.g. `ua:vlk-appeal`, `pl:calculating-oplata-sadowa`.
+      placeholder: "ua:…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's incorrect
+      description: Quote the problematic output or the wording in the agent/skill file that is wrong or outdated.
+    validations:
+      required: true
+
+  - type: textarea
+    id: correct
+    attributes:
+      label: Correct position / wording
+      description: What should it say instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Primary source
+      description: |
+        - UA: URL on `zakon.rada.gov.ua` with the relevant article and the redaction date you verified.
+        - PL: URL on `isap.sejm.gov.pl` with the relevant article and the status on verification date.
+        - Case law: URL in ЄДРСР (reyestr.court.gov.ua) or Portal Orzeczeń (orzeczenia.ms.gov.pl) with case number and date.
+      placeholder: "https://zakon.rada.gov.ua/laws/show/...  — редакція від 2026-…"
+    validations:
+      required: true
+
+  - type: input
+    id: verified_on
+    attributes:
+      label: Verification date
+      description: When did you check the source? Ukrainian law especially changes often during martial law.
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Why does this matter in practice? Are there similar mistakes elsewhere in the plugin? Any deadline driving urgency?
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Pre-flight checks
+      options:
+        - label: I updated to the latest plugin version and the problem still reproduces.
+          required: true
+        - label: I verified the correct wording against the primary source URL above on the date shown.
+          required: true
