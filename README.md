@@ -6,11 +6,20 @@
 
 ## Встановлення
 
-Це плагін **Claude Code**. Він працює в усіх клієнтах Claude Code: CLI в терміналі, десктоп-додатку (macOS/Windows), web-додатку (claude.ai/code) та IDE-розширеннях (VS Code, JetBrains). Команди `/plugin marketplace add` і `/plugin install` ідентичні в усіх.
+Плагін `legal-ua` можна встановити двома способами:
+- через **Claude Desktop App** (macOS/Windows) — у UI налаштувань;
+- через **Claude Code CLI** (термінал) — командами `/plugin`.
 
-> **Не плутати з додатком Claude.ai** (чат-додаток для macOS/Windows, claude.ai). Це окремий продукт. Плагіни Claude Code в ньому безпосередньо не встановлюються — плагіни `legal-ua` доступні лише через Claude Code.
+### Варіант 1. Claude Desktop App (macOS/Windows)
 
-### Варіант 1. Claude Code CLI (термінал)
+1. Відкрити **Settings → Extensions → Plugins**.
+2. Перейти на вкладку **Personal**.
+3. Натиснути «**+**» поруч із «Local uploads».
+4. У меню обрати **Add marketplace**.
+5. Вказати джерело: `crankshift/legal-ua` (або повний URL `https://github.com/crankshift/legal-ua`).
+6. Після додавання маркетплейсу відкрити плагін `legal-ua` у списку і натиснути «+» для встановлення.
+
+### Варіант 2. Claude Code CLI (термінал)
 
 Запустити:
 
@@ -25,25 +34,6 @@ claude
 /plugin install legal-ua@legal-ua
 /reload-plugins
 ```
-
-### Варіант 2. Claude Code Desktop App (macOS/Windows)
-
-1. Відкрити Claude Code Desktop App ([завантаження](https://claude.com/download)).
-2. Відкрити будь-який проєкт або створити новий.
-3. У текстовому полі ввести:
-
-   ```
-   /plugin marketplace add crankshift/legal-ua
-   ```
-
-4. Після підтвердження ввести:
-
-   ```
-   /plugin install legal-ua@legal-ua
-   ```
-
-5. Альтернативно через інтерактивне меню: ввести `/plugin` → вкладка **Discover** → обрати `legal-ua` → вибрати scope (User / Project / Local) → Enter.
-6. Ввести `/reload-plugins` для активації без перезапуску.
 
 ### Варіант 3. Локально для розробки / приватного репозиторію
 
