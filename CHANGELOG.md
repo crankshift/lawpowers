@@ -14,6 +14,29 @@ For the release procedure see [`docs/RELEASING.md`](./docs/RELEASING.md).
 
 Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning — [SemVer](https://semver.org/spec/v2.0.0.html). Marketplace and individual plugin versions are tracked independently.
 
+## [0.4.1] — 2026-04-20
+
+### Changed — documentation
+
+Split the single CHANGELOG into three:
+
+- Root `CHANGELOG.md` (English) — marketplace-level summaries with references.
+- `ua/CHANGELOG.md` (Ukrainian) — detailed plugin-`ua` history, backfilled from v0.1.0.
+- `pl/CHANGELOG.md` (Polish) — plugin-`pl` history, starting at v0.1.0.
+
+`docs/RELEASING.md` updated with templates per language and an optional `gh release create` invocation that concatenates root + plugin CHANGELOG sections. `CLAUDE.md` and per-plugin `README.md` files link to the appropriate CHANGELOG first.
+
+### Bumped
+
+- Marketplace `metadata.version`: `0.4.0` → `0.4.1`. Plugin versions untouched (`ua` stays at `0.4.0`, `pl` at `0.1.0`) — no agent or skill changed.
+
+No migration needed. Users just run:
+
+```
+/plugin marketplace update lawpowers
+/reload-plugins
+```
+
 ## [0.4.0] — 2026-04-20
 
 ### Changed — BREAKING (monorepo restructure)
@@ -82,6 +105,7 @@ Military block for service members in ЗСУ — 5 new agents and 4 new skills. 
 
 Repo converted to an installable Claude Code plugin with `plugin.json` and `marketplace.json`. Plugin-level details in [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) under 0.1.0.
 
+[0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.1
 [0.4.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.0
 [0.3.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.3.0
 [0.2.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.2.0
