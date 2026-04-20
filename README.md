@@ -6,34 +6,65 @@
 
 ## Встановлення
 
-### Через маркетплейс плагіна (рекомендовано)
+Плагін `legal-ua` можна встановити двома способами:
+- через **Claude Desktop App** (macOS/Windows) — у UI налаштувань;
+- через **Claude Code CLI** (термінал) — командами `/plugin`.
 
-У Claude Code:
+### Варіант 1. Claude Desktop App (macOS/Windows)
+
+1. Відкрити **Settings → Extensions → Plugins**.
+2. Перейти на вкладку **Personal**.
+3. Натиснути «**+**» поруч із «Local uploads».
+4. У меню обрати **Add marketplace**.
+5. Вказати джерело: `crankshift/legal-ua` (або повний URL `https://github.com/crankshift/legal-ua`).
+6. Після додавання маркетплейсу відкрити плагін `legal-ua` у списку і натиснути «+» для встановлення.
+
+### Варіант 2. Claude Code CLI (термінал)
+
+Запустити:
+
+```bash
+claude
+```
+
+У відкритій сесії ввести по черзі:
 
 ```
 /plugin marketplace add crankshift/legal-ua
 /plugin install legal-ua@legal-ua
+/reload-plugins
 ```
 
-Якщо форкаєте — підставте свій `owner/repo`.
-
-Для приватного репозиторію через Git URL:
-
-```
-/plugin marketplace add https://github.com/crankshift/legal-ua.git
-/plugin install legal-ua@legal-ua
-```
-
-### Локально (для розробки / без публікації)
+### Варіант 3. Локально для розробки / приватного репозиторію
 
 ```bash
 git clone https://github.com/crankshift/legal-ua.git
 claude --plugin-dir ./legal-ua
 ```
 
-### Перевірка
+Для приватного репо через Git URL:
 
-У Claude Code виконайте `/agents` — мають з'явитися субагенти з префіксом `legal-ua:`. Скіли активуються автоматично за контекстом (наприклад, згадка «судовий збір» тригерить `legal-ua:calculating-sudovyi-zbir`).
+```
+/plugin marketplace add https://github.com/crankshift/legal-ua.git
+/plugin install legal-ua@legal-ua
+```
+
+### Перевірка встановлення
+
+Незалежно від клієнта:
+
+- `/plugin` → вкладка **Installed** — плагін `legal-ua` у списку.
+- `/agents` — субагенти з префіксом `legal-ua:` (наприклад, `legal-ua:claim-drafter`, `legal-ua:raport-drafter`).
+- Скіли активуються автоматично за контекстом: згадка «судовий збір» тригерить `legal-ua:calculating-sudovyi-zbir`; «рапорт на відпустку» — `legal-ua:raport-drafter`.
+
+### Оновлення
+
+```
+/plugin marketplace update legal-ua
+/reload-plugins
+```
+
+Або увімкнути auto-update у `/plugin` → **Marketplaces** → `legal-ua` → **Enable auto-update**.
 
 ## Що всередині
 
