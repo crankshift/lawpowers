@@ -14,6 +14,24 @@ For the release procedure see [`docs/RELEASING.md`](./docs/RELEASING.md).
 
 Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning — [SemVer](https://semver.org/spec/v2.0.0.html). Marketplace and individual plugin versions are tracked independently.
 
+## [0.4.2] — 2026-04-20
+
+### Added — tooling
+
+- `scripts/release.sh` — bash helper that automates the mechanical parts of the release flow: `bump`, `prepare` (bump + branch + PR), and `publish` (tag + GitHub Release). Safety checks for clean working tree, existing branch/tag, and `gh` auth. Runs `claude plugin validate` after every bump.
+- `docs/RELEASING.md` got a TL;DR pointer to the new script plus cross-links in "Related files".
+
+### Bumped
+
+- Marketplace `metadata.version`: `0.4.1` → `0.4.2`. Plugin versions untouched.
+
+No migration needed.
+
+```
+/plugin marketplace update lawpowers
+/reload-plugins
+```
+
 ## [0.4.1] — 2026-04-20
 
 ### Changed — documentation
@@ -105,6 +123,7 @@ Military block for service members in ЗСУ — 5 new agents and 4 new skills. 
 
 Repo converted to an installable Claude Code plugin with `plugin.json` and `marketplace.json`. Plugin-level details in [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) under 0.1.0.
 
+[0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.2
 [0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.1
 [0.4.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.0
 [0.3.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.3.0
