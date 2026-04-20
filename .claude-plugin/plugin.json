@@ -1,7 +1,7 @@
 {
   "name": "legal-ua",
-  "description": "Спеціалізовані субагенти та скіли для роботи з українським законодавством і правничими документами",
-  "version": "0.1.0",
+  "description": "Спеціалізовані субагенти та скіли для роботи з українським законодавством і правничими документами, включно з окремим блоком для військовослужбовців ЗСУ",
+  "version": "0.2.0",
   "author": {
     "name": "Yurii"
   },
@@ -19,6 +19,14 @@
     "arbitration",
     "litigation",
     "zakon-rada",
-    "yedrsr"
+    "yedrsr",
+    "military",
+    "zsu",
+    "tck",
+    "vlk",
+    "mobilization",
+    "rapport",
+    "szch",
+    "military-benefits"
   ]
 }
