@@ -95,35 +95,38 @@ Proceduralne / referencyjne skille w `skills/` (korzeń plagina) — używać pr
 
 ## Struktura projektu
 
-Plagin `pl` jest częścią monorepo `lawpowers` (zob. root [`CLAUDE.md`](../CLAUDE.md)). Jego pliki znajdują się w podkatalogu `pl/`:
+Plagin `pl` jest częścią monorepo `lawpowers` (zob. root [`CLAUDE.md`](../../CLAUDE.md)). Jego pliki znajdują się w `plugins/pl/`:
 
 ```
-lawpowers/                    # repo: crankshift/lawpowers
+lawpowers/                        # repo: crankshift/lawpowers
 ├── .claude-plugin/
-│   └── marketplace.json      # katalog marketplace'u z plaginami ua i pl
-├── ua/                       # plagin "ua" (ukraińskie prawo)
-└── pl/                       # ← ten plagin
-    ├── CLAUDE.md             # ten plik
-    ├── .claude-plugin/
-    │   └── plugin.json       # manifest plagina (name: "pl")
-    ├── agents/
-    │   ├── claim-drafter.md
-    │   ├── response-drafter.md
-    │   ├── appeal-drafter.md
-    │   ├── motion-drafter.md
-    │   ├── legislation-analyst.md
-    │   ├── legal-memo.md
-    │   ├── request-drafter.md
-    │   ├── contract-drafter.md
-    │   ├── debt-collector.md
-    │   └── enforcement-agent.md
-    └── skills/
-        ├── fetching-isap-sejm/SKILL.md
-        ├── searching-orzeczenia/SKILL.md
-        ├── calculating-oplata-sadowa/SKILL.md
-        ├── citing-polish-law/SKILL.md
-        ├── determining-pl-jurisdiction/SKILL.md
-        └── checking-przedawnienie/SKILL.md
+│   └── marketplace.json          # katalog marketplace'u z plaginami ua i pl
+└── plugins/
+    ├── ua/                       # plagin "ua" (ukraińskie prawo)
+    └── pl/                       # ← ten plagin
+        ├── CLAUDE.md             # ten plik
+        ├── README.md
+        ├── CHANGELOG.md
+        ├── .claude-plugin/
+        │   └── plugin.json       # manifest plagina (name: "pl")
+        ├── agents/
+        │   ├── claim-drafter.md
+        │   ├── response-drafter.md
+        │   ├── appeal-drafter.md
+        │   ├── motion-drafter.md
+        │   ├── legislation-analyst.md
+        │   ├── legal-memo.md
+        │   ├── request-drafter.md
+        │   ├── contract-drafter.md
+        │   ├── debt-collector.md
+        │   └── enforcement-agent.md
+        └── skills/
+            ├── fetching-isap-sejm/SKILL.md
+            ├── searching-orzeczenia/SKILL.md
+            ├── calculating-oplata-sadowa/SKILL.md
+            ├── citing-polish-law/SKILL.md
+            ├── determining-pl-jurisdiction/SKILL.md
+            └── checking-przedawnienie/SKILL.md
 ```
 
 **Ważne:** po instalacji plagina wszystkie skille i agenci mają prefiks `/pl:…` (namespace z pola `name` w `plugin.json`) — np. `pl:claim-drafter`, `pl:searching-orzeczenia`. Zapobiega to konfliktom z innymi plaginami w marketplace `lawpowers` (w szczególności z `ua:…`).

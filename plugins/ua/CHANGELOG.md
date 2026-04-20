@@ -1,6 +1,6 @@
 # Плагін `ua` — Changelog
 
-Історія змін плагіна `ua` (українське право) у межах монорепо [`lawpowers`](../CHANGELOG.md).
+Історія змін плагіна `ua` (українське право) у межах монорепо [`lawpowers`](../../CHANGELOG.md).
 
 Формат — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Версії плагіна вирівняно з тегами маркетплейсу `vX.Y.Z`.
 

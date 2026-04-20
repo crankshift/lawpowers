@@ -2,7 +2,7 @@
 Thanks for contributing to lawpowers! Before you submit, check:
   - Run `claude plugin validate .` locally. It must pass.
   - If you changed plugin content, update the matching CHANGELOG
-    (ua/CHANGELOG.md in Ukrainian or pl/CHANGELOG.md in Polish) AND
+    (plugins/ua/CHANGELOG.md in Ukrainian or plugins/pl/CHANGELOG.md in Polish) AND
     the root CHANGELOG.md in English.
   - If you bumped versions, follow docs/RELEASING.md.
 -->
@@ -40,8 +40,8 @@ If this is a fix for an outdated norm: link the current redaction on zakon.rada.
 ## CHANGELOG
 
 - [ ] Root `CHANGELOG.md` has an entry under the appropriate version section (or a new version section).
-- [ ] `ua/CHANGELOG.md` updated (Ukrainian) if plugin `ua` changed.
-- [ ] `pl/CHANGELOG.md` updated (Polish) if plugin `pl` changed.
+- [ ] `plugins/ua/CHANGELOG.md` updated (Ukrainian) if plugin `ua` changed.
+- [ ] `plugins/pl/CHANGELOG.md` updated (Polish) if plugin `pl` changed.
 - [ ] N/A — purely tooling/infra change.
 
 ## Migration
@@ -58,7 +58,7 @@ If this is a fix for an outdated norm: link the current redaction on zakon.rada.
 <!-- What did you actually verify? Examples below, edit to match. -->
 
 - [ ] `claude plugin validate .` → ✔ Validation passed.
-- [ ] Loaded locally with `claude --plugin-dir ./ua` (or `./pl`), confirmed agent appears under `/agents` with the correct namespace.
+- [ ] Loaded locally with `claude --plugin-dir ./plugins/ua` (or `./plugins/pl`), confirmed agent appears under `/agents` with the correct namespace.
 - [ ] Asked the agent a representative question and verified the output quotes the primary source (zakon.rada / isap.sejm) with a redaction date.
 - [ ] Cross-links in READMEs / CHANGELOGs render correctly on GitHub.
 

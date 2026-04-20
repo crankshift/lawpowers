@@ -4,8 +4,8 @@ Monorepo of jurisdiction-specific legal plugins for **Claude Code**. One marketp
 
 | Plugin | Jurisdiction | Command prefix | Working language | Documentation |
 |---|---|---|---|---|
-| [`ua`](./ua) | Ukraine | `/ua:…` | Ukrainian | [`ua/README.md`](./ua/README.md), [`ua/CLAUDE.md`](./ua/CLAUDE.md) |
-| [`pl`](./pl) | Poland | `/pl:…` | Polish | [`pl/README.md`](./pl/README.md), [`pl/CLAUDE.md`](./pl/CLAUDE.md) |
+| [`ua`](./plugins/ua) | Ukraine | `/ua:…` | Ukrainian | [`ua/README.md`](./plugins/ua/README.md), [`ua/CLAUDE.md`](./plugins/ua/CLAUDE.md) |
+| [`pl`](./plugins/pl) | Poland | `/pl:…` | Polish | [`pl/README.md`](./plugins/pl/README.md), [`pl/CLAUDE.md`](./plugins/pl/CLAUDE.md) |
 
 Plugins are independent: users install whichever jurisdiction(s) they need. Namespaces (`ua:`, `pl:`) don't collide, so both can be active at once.
 
@@ -33,20 +33,21 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 │   └── RELEASING.md                # full release procedure
 ├── scripts/
 │   └── release.sh                  # bump + PR + tag + GitHub Release helper
-├── ua/                             # plugin "ua" — Ukrainian law
-│   ├── README.md                   # user-facing, Ukrainian
-│   ├── CLAUDE.md                   # contributor context for the UA plugin
-│   ├── CHANGELOG.md                # plugin-level change log, Ukrainian
-│   ├── .claude-plugin/plugin.json  # name: "ua"
-│   ├── agents/
-│   └── skills/
-└── pl/                             # plugin "pl" — Polish law
-    ├── README.md                   # user-facing, Polish
-    ├── CLAUDE.md                   # contributor context for the PL plugin
-    ├── CHANGELOG.md                # plugin-level change log, Polish
-    ├── .claude-plugin/plugin.json  # name: "pl"
-    ├── agents/
-    └── skills/
+└── plugins/                        # all jurisdiction plugins live here
+    ├── ua/                         # plugin "ua" — Ukrainian law
+    │   ├── README.md               # user-facing, Ukrainian
+    │   ├── CLAUDE.md               # contributor context for the UA plugin
+    │   ├── CHANGELOG.md            # plugin-level change log, Ukrainian
+    │   ├── .claude-plugin/plugin.json  # name: "ua"
+    │   ├── agents/
+    │   └── skills/
+    └── pl/                         # plugin "pl" — Polish law
+        ├── README.md               # user-facing, Polish
+        ├── CLAUDE.md               # contributor context for the PL plugin
+        ├── CHANGELOG.md            # plugin-level change log, Polish
+        ├── .claude-plugin/plugin.json  # name: "pl"
+        ├── agents/
+        └── skills/
 ```
 
 ## Issue and PR templates
@@ -72,19 +73,20 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 
 Example: adding a plugin for EU law.
 
-1. Create `./eu/` at the repo root. Short ISO-style code; keep it two or three letters where possible.
+1. Create `./plugins/eu/` next to `./plugins/ua/` and `./plugins/pl/`. Short ISO-style code; keep it two or three letters where possible.
 2. Lay out the plugin directory:
    ```
-   eu/
+   plugins/eu/
    ├── README.md                    # user-facing documentation
    ├── CLAUDE.md                    # contributor context
+   ├── CHANGELOG.md                 # plugin-level change log
    ├── .claude-plugin/plugin.json   # name: "eu", initial version 0.1.0
    ├── agents/
    └── skills/
    ```
 3. Register the plugin in `.claude-plugin/marketplace.json` under `plugins[…]`:
    ```json
-   { "name": "eu", "source": "./eu", "version": "0.1.0", ... }
+   { "name": "eu", "source": "./plugins/eu", "version": "0.1.0", ... }
    ```
 4. Update [`.version-bump.json`](./.version-bump.json) so the new plugin's version fields are tracked.
 5. Bump the marketplace version in `.claude-plugin/marketplace.json:metadata.version`.
@@ -99,8 +101,8 @@ Full step-by-step reference with commands, common pitfalls, and rollback guidanc
 2. Update the affected version fields listed in [`.version-bump.json`](./.version-bump.json) (plugin-level `version` + corresponding marketplace entry + marketplace `metadata.version`). Validate with `claude plugin validate .`.
 3. Add a new section at the top of the relevant CHANGELOG(s) in Keep-a-Changelog format:
    - Root [`CHANGELOG.md`](./CHANGELOG.md) (English) — always, with a short summary and migration notes if any.
-   - [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) (Ukrainian) — only if plugin `ua` changed.
-   - [`pl/CHANGELOG.md`](./pl/CHANGELOG.md) (Polish) — only if plugin `pl` changed.
+   - [`ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) (Ukrainian) — only if plugin `ua` changed.
+   - [`pl/CHANGELOG.md`](./plugins/pl/CHANGELOG.md) (Polish) — only if plugin `pl` changed.
 4. Open a PR and merge.
 5. After merge, tag the merge commit and push: `git tag -a vX.Y.Z <merge-sha> -m "..."` + `git push origin vX.Y.Z`.
 6. Publish a GitHub Release with body extracted from the CHANGELOG section.

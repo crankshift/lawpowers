@@ -25,11 +25,11 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MARKETPLACE_JSON="$REPO_ROOT/.claude-plugin/marketplace.json"
-UA_PLUGIN_JSON="$REPO_ROOT/ua/.claude-plugin/plugin.json"
-PL_PLUGIN_JSON="$REPO_ROOT/pl/.claude-plugin/plugin.json"
+UA_PLUGIN_JSON="$REPO_ROOT/plugins/ua/.claude-plugin/plugin.json"
+PL_PLUGIN_JSON="$REPO_ROOT/plugins/pl/.claude-plugin/plugin.json"
 CHANGELOG="$REPO_ROOT/CHANGELOG.md"
-UA_CHANGELOG="$REPO_ROOT/ua/CHANGELOG.md"
-PL_CHANGELOG="$REPO_ROOT/pl/CHANGELOG.md"
+UA_CHANGELOG="$REPO_ROOT/plugins/ua/CHANGELOG.md"
+PL_CHANGELOG="$REPO_ROOT/plugins/pl/CHANGELOG.md"
 
 die() { echo "error: $*" >&2; exit 1; }
 info() { echo "==> $*"; }

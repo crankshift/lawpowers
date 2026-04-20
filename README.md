@@ -10,8 +10,8 @@ Monorepo structure — install only the jurisdictions you need.
 
 | Plugin | Jurisdiction | Command prefix | Documentation | Language |
 |---|---|---|---|---|
-| [`ua`](./ua) | Ukraine | `/ua:…` | [`ua/README.md`](./ua/README.md) | Ukrainian |
-| [`pl`](./pl) | Poland | `/pl:…` | [`pl/README.md`](./pl/README.md) | Polish |
+| [`ua`](./plugins/ua) | Ukraine | `/ua:…` | [`ua/README.md`](./plugins/ua/README.md) | Ukrainian |
+| [`pl`](./plugins/pl) | Poland | `/pl:…` | [`pl/README.md`](./plugins/pl/README.md) | Polish |
 
 Each plugin's README covers the agents and skills it provides. The plugins are independent — installing one doesn't pull in the other.
 
@@ -52,7 +52,7 @@ Then in the running session:
 
 Agents and skills become available under the `ua:` namespace — e.g. `ua:claim-drafter`, `ua:raport-drafter`, `ua:calculating-sudovyi-zbir`.
 
-See [`ua/README.md`](./ua/README.md) for the full catalog (includes a dedicated military-law block for service members in ЗСУ and their families).
+See [`ua/README.md`](./plugins/ua/README.md) for the full catalog (includes a dedicated military-law block for service members in ЗСУ and their families).
 
 #### Poland only
 
@@ -63,7 +63,7 @@ See [`ua/README.md`](./ua/README.md) for the full catalog (includes a dedicated 
 
 Agents and skills under the `pl:` namespace — e.g. `pl:claim-drafter`, `pl:searching-orzeczenia`.
 
-See [`pl/README.md`](./pl/README.md) for the full catalog.
+See [`pl/README.md`](./plugins/pl/README.md) for the full catalog.
 
 #### Both
 
@@ -80,13 +80,13 @@ The `ua:` and `pl:` namespaces are isolated — you can have both active at once
 ```bash
 git clone https://github.com/crankshift/lawpowers.git
 cd lawpowers
-claude --plugin-dir ./ua --plugin-dir ./pl
+claude --plugin-dir ./plugins/ua --plugin-dir ./plugins/pl
 ```
 
 Or only one plugin:
 
 ```bash
-claude --plugin-dir ./ua
+claude --plugin-dir ./plugins/ua
 ```
 
 ### Verification
