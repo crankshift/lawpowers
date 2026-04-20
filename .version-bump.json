@@ -1,0 +1,15 @@
+{
+  "files": [
+    { "path": ".claude-plugin/plugin.json", "field": "version" },
+    { "path": ".claude-plugin/marketplace.json", "field": "plugins.0.version" },
+    { "path": ".claude-plugin/marketplace.json", "field": "metadata.version" }
+  ],
+  "audit": {
+    "exclude": [
+      "CHANGELOG.md",
+      ".git",
+      ".version-bump.json",
+      "node_modules"
+    ]
+  }
+}
