@@ -28,7 +28,7 @@ claude
 
 ### Варіант 2. Claude Code Desktop App (macOS/Windows)
 
-1. Відкрити Claude Code Desktop App ([завантаження](https://claude.com/claude-code)).
+1. Відкрити Claude Code Desktop App ([завантаження](https://claude.com/download)).
 2. Відкрити будь-який проєкт або створити новий.
 3. У текстовому полі ввести:
 
@@ -45,11 +45,7 @@ claude
 5. Альтернативно через інтерактивне меню: ввести `/plugin` → вкладка **Discover** → обрати `legal-ua` → вибрати scope (User / Project / Local) → Enter.
 6. Ввести `/reload-plugins` для активації без перезапуску.
 
-### Варіант 3. Claude Code у VS Code / JetBrains
-
-Якщо встановлено розширення Claude Code для IDE — відкрити панель Claude Code і виконати ті самі команди `/plugin marketplace add` та `/plugin install`.
-
-### Варіант 4. Локально для розробки / приватного репозиторію
+### Варіант 3. Локально для розробки / приватного репозиторію
 
 ```bash
 git clone https://github.com/crankshift/legal-ua.git
