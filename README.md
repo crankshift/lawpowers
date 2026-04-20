@@ -12,11 +12,13 @@
 
 ### Варіант 1. Claude Code CLI (термінал)
 
+Запустити:
+
 ```bash
 claude
 ```
 
-У запрошенні Claude Code:
+У відкритій сесії ввести по черзі:
 
 ```
 /plugin marketplace add crankshift/legal-ua
@@ -28,7 +30,7 @@ claude
 
 1. Відкрити Claude Code Desktop App ([завантаження](https://claude.com/claude-code)).
 2. Відкрити будь-який проєкт або створити новий.
-3. У полі запиту ввести:
+3. У текстовому полі ввести:
 
    ```
    /plugin marketplace add crankshift/legal-ua
@@ -40,12 +42,12 @@ claude
    /plugin install legal-ua@legal-ua
    ```
 
-5. Через інтерактивне меню плагін-менеджера: натиснути `/plugin` → вкладка **Discover** → обрати `legal-ua` → обрати scope (User / Project / Local) → Enter.
-6. `/reload-plugins` для активації без перезапуску.
+5. Альтернативно через інтерактивне меню: ввести `/plugin` → вкладка **Discover** → обрати `legal-ua` → вибрати scope (User / Project / Local) → Enter.
+6. Ввести `/reload-plugins` для активації без перезапуску.
 
 ### Варіант 3. Claude Code у VS Code / JetBrains
 
-Якщо встановлено розширення Claude Code для IDE — відкрити панель Claude Code і ввести ті самі команди `/plugin marketplace add` та `/plugin install`.
+Якщо встановлено розширення Claude Code для IDE — відкрити панель Claude Code і виконати ті самі команди `/plugin marketplace add` та `/plugin install`.
 
 ### Варіант 4. Локально для розробки / приватного репозиторію
 
