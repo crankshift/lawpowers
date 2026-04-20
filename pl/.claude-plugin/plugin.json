@@ -3,7 +3,7 @@
   "description": "Lawpowers Poland — wyspecjalizowani subagenci i skille do pracy z polskim ustawodawstwem oraz dokumentami prawniczymi. Komendy w Claude Code mają prefiks /pl:…",
   "version": "0.1.0",
   "author": {
-    "name": "Yurii"
+    "name": "crankshift"
   },
   "homepage": "https://github.com/crankshift/lawpowers",
   "repository": "https://github.com/crankshift/lawpowers",

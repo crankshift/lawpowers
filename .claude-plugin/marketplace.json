@@ -1,7 +1,7 @@
 {
   "name": "lawpowers",
   "owner": {
-    "name": "Yurii"
+    "name": "crankshift"
   },
   "metadata": {
     "description": "Lawpowers — колекція юридичних плагінів для Claude Code. Зараз: ua (Україна) і pl (Польща).",
@@ -14,7 +14,7 @@
       "description": "Lawpowers Ukraine — субагенти та скіли для роботи з українським законодавством і правничими документами, включно з окремим блоком для військовослужбовців ЗСУ (рапорти, ВЛК, ТЦК, виплати, СЗЧ). Команди отримують префікс /ua:…",
       "version": "0.4.0",
       "author": {
-        "name": "Yurii"
+        "name": "crankshift"
       },
       "license": "MIT",
       "keywords": [
@@ -39,7 +39,7 @@
       "description": "Lawpowers Poland — wyspecjalizowani subagenci i skille do pracy z polskim ustawodawstwem oraz dokumentami prawniczymi (ISAP, orzeczenia, KC/KPC/KK). Komendy otrzymują prefiks /pl:…",
       "version": "0.1.0",
       "author": {
-        "name": "Yurii"
+        "name": "crankshift"
       },
       "license": "MIT",
       "keywords": [
