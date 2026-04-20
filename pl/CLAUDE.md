@@ -1,4 +1,4 @@
-# legal-pl
+# lawpowers / pl
 
 Przestrzeń robocza do pracy z polskim prawem oraz dokumentami prawniczymi. Zawiera wyspecjalizowanych subagentów pod konkretne zadania prawne.
 
@@ -95,36 +95,41 @@ Proceduralne / referencyjne skille w `skills/` (korzeń plagina) — używać pr
 
 ## Struktura projektu
 
-Repozytorium złożone jest jako **Claude Code plugin** (zob. [dokumentacja plaginów](https://code.claude.com/docs/en/plugins)). Katalogi `agents/` i `skills/` — w korzeniu plagina, `plugin.json` i `marketplace.json` — w `.claude-plugin/`.
+Plagin `pl` jest częścią monorepo `lawpowers` (zob. root [`CLAUDE.md`](../CLAUDE.md)). Jego pliki znajdują się w podkatalogu `pl/`:
 
 ```
-legal-pl/
-├── CLAUDE.md              # ten plik — ogólny kontekst i architektura
-├── README.md              # user-facing dokumentacja, instrukcje instalacji
+lawpowers/                    # repo: crankshift/lawpowers
 ├── .claude-plugin/
-│   ├── plugin.json        # manifest plagina (name, version, author, keywords)
-│   └── marketplace.json   # katalog marketplace'u (do instalacji przez /plugin install)
-├── agents/                # subagenci pod konkretne zadania
-│   ├── claim-drafter.md
-│   ├── legislation-analyst.md
-│   ├── request-drafter.md
-│   ├── response-drafter.md
-│   ├── appeal-drafter.md
-│   ├── motion-drafter.md
-│   ├── contract-drafter.md
-│   ├── legal-memo.md
-│   ├── debt-collector.md
-│   └── enforcement-agent.md
-├── skills/                # skille do efektywnej pracy ze źródłami
-│   ├── fetching-isap-sejm/SKILL.md
-│   ├── searching-orzeczenia/SKILL.md
-│   ├── calculating-oplata-sadowa/SKILL.md
-│   ├── citing-polish-law/SKILL.md
-│   ├── determining-pl-jurisdiction/SKILL.md
-│   └── checking-przedawnienie/SKILL.md
-├── templates/             # (planowane) szablony dokumentów — pozwy, wnioski, umowy
-├── cases/                 # (planowane) materiały robocze — z uwzględnieniem poufności
-└── references/            # (planowane) wybrane normy, stanowiska, metodyki
+│   └── marketplace.json      # katalog marketplace'u z plaginami ua i pl
+├── ua/                       # plagin "ua" (ukraińskie prawo)
+└── pl/                       # ← ten plagin
+    ├── CLAUDE.md             # ten plik
+    ├── .claude-plugin/
+    │   └── plugin.json       # manifest plagina (name: "pl")
+    ├── agents/
+    │   ├── claim-drafter.md
+    │   ├── response-drafter.md
+    │   ├── appeal-drafter.md
+    │   ├── motion-drafter.md
+    │   ├── legislation-analyst.md
+    │   ├── legal-memo.md
+    │   ├── request-drafter.md
+    │   ├── contract-drafter.md
+    │   ├── debt-collector.md
+    │   └── enforcement-agent.md
+    └── skills/
+        ├── fetching-isap-sejm/SKILL.md
+        ├── searching-orzeczenia/SKILL.md
+        ├── calculating-oplata-sadowa/SKILL.md
+        ├── citing-polish-law/SKILL.md
+        ├── determining-pl-jurisdiction/SKILL.md
+        └── checking-przedawnienie/SKILL.md
 ```
 
-**Ważne:** po instalacji jako plugin skille i agenci będą namespace'owani — `/legal-pl:searching-orzeczenia` zamiast `/searching-orzeczenia`. To zapobiega konfliktom z innymi plaginami.
+**Ważne:** po instalacji plagina wszystkie skille i agenci mają prefiks `/pl:…` (namespace z pola `name` w `plugin.json`) — np. `pl:claim-drafter`, `pl:searching-orzeczenia`. Zapobiega to konfliktom z innymi plaginami w marketplace `lawpowers` (w szczególności z `ua:…`).
+
+## Zasady nazewnictwa
+
+- **Pliki agentów/skilli** — bez prefiksu (`claim-drafter.md`, `skills/searching-orzeczenia/SKILL.md`). Prefiks `pl:` dodawany jest automatycznie z pola `name` w `plugin.json`.
+- **W dokumentacji** — odwoływać się do agentów przez wywołanie (`pl:claim-drafter`), żeby użytkownik widział dokładną komendę.
+- **Nowi agenci/skille** — dodawać bez prefiksu w nazwie; otrzymają `pl:` automatycznie.

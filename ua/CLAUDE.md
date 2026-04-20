@@ -109,31 +109,32 @@
 
 ## Структура проєкту
 
-Репозиторій зібраний як **Claude Code plugin** (див. [код-доки про плагіни](https://code.claude.com/docs/en/plugins)). Директорії `agents/` і `skills/` — на корені плагіна, `plugin.json` і `marketplace.json` — в `.claude-plugin/`.
+Плагін `ua` — частина монорепо `lawpowers` (див. root [`CLAUDE.md`](../CLAUDE.md)). Його файли лежать у підкаталозі `ua/`:
 
 ```
-lawpowers/                 # репо на GitHub: crankshift/lawpowers
-├── CLAUDE.md              # цей файл — загальний контекст і архітектура
-├── README.md              # user-facing документація, інструкції встановлення
-├── CHANGELOG.md           # історія релізів (Keep a Changelog)
-├── .version-bump.json     # файли, де тримається версія плагіна
+lawpowers/                    # репо: crankshift/lawpowers
 ├── .claude-plugin/
-│   ├── plugin.json        # маніфест плагіна (name: "ua", version, author, keywords)
-│   └── marketplace.json   # каталог маркетплейсу (name: "lawpowers")
-├── agents/                # субагенти під конкретні задачі
-│   ├── claim-drafter.md
-│   ├── legislation-analyst.md
-│   └── ...
-├── skills/                # скіли для ефективної роботи з джерелами
-│   ├── fetching-zakon-rada/SKILL.md
-│   ├── searching-edrsr/SKILL.md
-│   └── ...
-├── templates/             # (плановано) шаблони документів — позови, запити, договори
-├── cases/                 # (плановано) робочі матеріали — з урахуванням конфіденційності
-└── references/            # (плановано) вибірки норм, правові позиції, методички
+│   └── marketplace.json      # каталог маркетплейсу з плагінами ua і pl
+├── pl/                       # плагін "pl" (польське право)
+└── ua/                       # ← цей плагін
+    ├── CLAUDE.md             # цей файл
+    ├── .claude-plugin/
+    │   └── plugin.json       # маніфест плагіна (name: "ua")
+    ├── agents/               # субагенти
+    │   ├── claim-drafter.md
+    │   ├── legislation-analyst.md
+    │   ├── ...
+    │   └── szch-defense.md
+    ├── skills/               # скіли
+    │   ├── fetching-zakon-rada/SKILL.md
+    │   ├── searching-edrsr/SKILL.md
+    │   └── ...
+    ├── templates/            # (плановано) шаблони документів
+    ├── cases/                # (плановано) робочі матеріали
+    └── references/           # (плановано) вибірки норм, правові позиції
 ```
 
-**Важливо:** після встановлення всі агенти і скіли виходять з префіксом `/ua:…` (з неймспейсом плагіна `ua`) — наприклад, `ua:claim-drafter`, `ua:searching-edrsr`. Це запобігає конфліктам з іншими плагінами, зокрема з сусідами в монорепо `lawpowers`.
+**Важливо:** після встановлення всі агенти і скіли виходять з префіксом `/ua:…` (з неймспейсом плагіна `ua`) — наприклад, `ua:claim-drafter`, `ua:searching-edrsr`. Це запобігає конфліктам з іншими плагінами в маркетплейсі `lawpowers` (зокрема з `pl:…`).
 
 ## Правила найменування
 
