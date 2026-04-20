@@ -2,6 +2,14 @@
 
 How to cut a release of `lawpowers`. Manual, six steps, all from the command line.
 
+> **TL;DR:** most of this is automated by [`scripts/release.sh`](../scripts/release.sh):
+> ```bash
+> ./scripts/release.sh prepare 0.5.0       # bump + branch + PR
+> # … review and merge the PR on GitHub …
+> ./scripts/release.sh publish 0.5.0       # tag + GitHub Release
+> ```
+> The manual procedure below explains what the script does step by step; follow it when debugging or when you want finer control.
+
 ## Prerequisites
 
 - `gh` CLI installed and authenticated (`gh auth status`).
@@ -190,6 +198,9 @@ If a release has a critical issue:
 
 ## Related files
 
-- [`CHANGELOG.md`](../CHANGELOG.md) — release history.
+- [`scripts/release.sh`](../scripts/release.sh) — automates `bump`, `prepare` (bump + branch + PR), and `publish` (tag + GitHub Release).
+- [`CHANGELOG.md`](../CHANGELOG.md) — release history (root, English).
+- [`ua/CHANGELOG.md`](../ua/CHANGELOG.md) — plugin `ua` history (Ukrainian).
+- [`pl/CHANGELOG.md`](../pl/CHANGELOG.md) — plugin `pl` history (Polish).
 - [`.version-bump.json`](../.version-bump.json) — inventory of versioned fields.
 - [`CLAUDE.md`](../CLAUDE.md) — contributor guide with the abbreviated release section.
