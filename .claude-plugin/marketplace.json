@@ -4,15 +4,15 @@
     "name": "Yurii"
   },
   "metadata": {
-    "description": "Маркетплейс плагіна legal-ua — інструментарій для роботи з українським правом у Claude Code",
-    "version": "0.1.0"
+    "description": "Маркетплейс плагіна legal-ua — інструментарій для роботи з українським правом у Claude Code, включно з окремим блоком для військовослужбовців ЗСУ",
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "legal-ua",
       "source": "./",
-      "description": "Спеціалізовані субагенти та скіли для роботи з українським законодавством і правничими документами",
-      "version": "0.1.0",
+      "description": "Спеціалізовані субагенти та скіли для роботи з українським законодавством і правничими документами, включно з окремим блоком для військовослужбовців ЗСУ (рапорти, ВЛК, ТЦК, виплати, СЗЧ)",
+      "version": "0.2.0",
       "author": {
         "name": "Yurii"
       },
@@ -23,10 +23,15 @@
         "legal",
         "law",
         "arbitration",
-        "litigation"
+        "litigation",
+        "military",
+        "zsu",
+        "tck",
+        "vlk",
+        "mobilization"
       ],
       "category": "legal",
-      "tags": ["ukraine", "law", "legal-ua", "zakon-rada", "yedrsr"]
+      "tags": ["ukraine", "law", "legal-ua", "zakon-rada", "yedrsr", "military", "zsu"]
     }
   ]
 }
