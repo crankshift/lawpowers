@@ -123,7 +123,7 @@ claude --plugin-dir ./lawpowers/ua
 
 ## Історія версій
 
-Повний перелік змін — у root [CHANGELOG.md](../CHANGELOG.md). Релізи — на [сторінці Releases](https://github.com/crankshift/lawpowers/releases).
+Зміни саме плагіна `ua` — у [CHANGELOG.md](./CHANGELOG.md) цієї директорії (українською). Зведення по маркетплейсу і сусідніх плагінах — у root [CHANGELOG.md](../CHANGELOG.md) (англійською). Релізи — на [сторінці Releases](https://github.com/crankshift/lawpowers/releases).
 
 ## Ліцензія
 

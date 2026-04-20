@@ -17,7 +17,7 @@ User-facing install instructions live in the root [`README.md`](./README.md). Th
 lawpowers/                         # GitHub: crankshift/lawpowers
 ├── README.md                       # user-facing — install guide, links to per-plugin docs
 ├── CLAUDE.md                       # this file — contributor context
-├── CHANGELOG.md                    # release history (Keep a Changelog, shared across all plugins)
+├── CHANGELOG.md                    # marketplace-level release history in English; references per-plugin CHANGELOGs
 ├── .version-bump.json              # maps versioned fields in plugin/marketplace manifests
 ├── LICENSE                         # MIT — covers the whole repo
 ├── .claude-plugin/
@@ -25,12 +25,14 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 ├── ua/                             # plugin "ua" — Ukrainian law
 │   ├── README.md                   # user-facing, Ukrainian
 │   ├── CLAUDE.md                   # contributor context for the UA plugin
+│   ├── CHANGELOG.md                # plugin-level change log, Ukrainian
 │   ├── .claude-plugin/plugin.json  # name: "ua"
 │   ├── agents/
 │   └── skills/
 └── pl/                             # plugin "pl" — Polish law
     ├── README.md                   # user-facing, Polish
     ├── CLAUDE.md                   # contributor context for the PL plugin
+    ├── CHANGELOG.md                # plugin-level change log, Polish
     ├── .claude-plugin/plugin.json  # name: "pl"
     ├── agents/
     └── skills/
@@ -39,7 +41,7 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 ## Contribution principles
 
 - **One jurisdiction = one plugin.** Don't mix UA and PL law inside the same agents or skills — each plugin stays self-contained.
-- **Plugin language matches jurisdiction.** Agents, skills, templates, and plugin-level docs for `ua` are in Ukrainian; for `pl` in Polish. This root-level documentation (README/CLAUDE/CHANGELOG) is in English for broad accessibility.
+- **Plugin language matches jurisdiction.** Agents, skills, templates, and plugin-level docs (`README.md`, `CLAUDE.md`, `CHANGELOG.md`) for `ua` are in Ukrainian; for `pl` in Polish. Root-level documentation (README/CLAUDE/CHANGELOG at the repo root) is in English for broad accessibility.
 - **Command prefixes come from plugin names.** `name` in `plugin.json` becomes the namespace — `/ua:…`, `/pl:…`. Agent and skill file names inside the plugin don't need a prefix; Claude Code adds it automatically.
 - **Shared license.** MIT, applied at the repo root.
 - **Independent plugin versions.** Each plugin carries its own `version` in its `plugin.json` (and mirrored in the marketplace entry). The marketplace catalog itself has a separate version in `marketplace.json:metadata.version`.
@@ -74,7 +76,10 @@ Full step-by-step reference with commands, common pitfalls, and rollback guidanc
 
 1. Decide the version bump per semver. For a breaking change in 0.x releases, a minor bump is appropriate.
 2. Update the affected version fields listed in [`.version-bump.json`](./.version-bump.json) (plugin-level `version` + corresponding marketplace entry + marketplace `metadata.version`). Validate with `claude plugin validate .`.
-3. Add a new section at the top of [`CHANGELOG.md`](./CHANGELOG.md) in Keep-a-Changelog format, noting which plugin(s) changed.
+3. Add a new section at the top of the relevant CHANGELOG(s) in Keep-a-Changelog format:
+   - Root [`CHANGELOG.md`](./CHANGELOG.md) (English) — always, with a short summary and migration notes if any.
+   - [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) (Ukrainian) — only if plugin `ua` changed.
+   - [`pl/CHANGELOG.md`](./pl/CHANGELOG.md) (Polish) — only if plugin `pl` changed.
 4. Open a PR and merge.
 5. After merge, tag the merge commit and push: `git tag -a vX.Y.Z <merge-sha> -m "..."` + `git push origin vX.Y.Z`.
 6. Publish a GitHub Release with body extracted from the CHANGELOG section.
