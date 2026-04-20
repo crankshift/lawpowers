@@ -1,39 +1,44 @@
 # lawpowers — Changelog
 
-Формат — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); версіонування — [SemVer](https://semver.org/spec/v2.0.0.html).
+Marketplace-level change log. Plugin-specific entries live alongside each plugin:
 
-Маркетплейс і плагіни версіонуються окремо. Записи в цьому CHANGELOG супроводжуються позначкою «марктеплейс» / плагін (`ua`, `pl`) там, де це має значення.
+- [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) — Ukrainian law plugin (written in Ukrainian).
+- [`pl/CHANGELOG.md`](./pl/CHANGELOG.md) — Polish law plugin (written in Polish).
+
+This root file covers:
+- Marketplace version bumps (`.claude-plugin/marketplace.json:metadata.version`).
+- Monorepo-level structural changes.
+- Cross-cutting documentation and tooling.
+
+For the release procedure see [`docs/RELEASING.md`](./docs/RELEASING.md).
+
+Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning — [SemVer](https://semver.org/spec/v2.0.0.html). Marketplace and individual plugin versions are tracked independently.
 
 ## [0.4.0] — 2026-04-20
 
-### Changed — BREAKING (маркетплейс + плагін `ua`)
+### Changed — BREAKING (monorepo restructure)
 
-Перехід на **справжню монорепо-структуру** з плагінами-підкаталогами.
+- Plugin `ua` files moved from repo root to the `ua/` subdirectory. Marketplace `source` for `ua` changed from `"./"` to `"./ua"`.
+- `marketplace.json` now lists two plugins: `ua` and `pl`.
+- Root `CLAUDE.md` and `README.md` rewritten in English.
+- `.version-bump.json` restructured for multi-plugin versioning.
+- `author`/`owner` fields across all manifests changed `"Yurii"` → `"crankshift"`.
 
-- Файли плагіна `ua` перенесено з кореня репо в `ua/`:
-  - `.claude-plugin/plugin.json` → `ua/.claude-plugin/plugin.json`
-  - `agents/` → `ua/agents/`
-  - `skills/` → `ua/skills/`
-  - Колишній кореневий `CLAUDE.md` (UA-специфічний) → `ua/CLAUDE.md`
-- `marketplace.json` тепер перераховує два плагіни: `ua` і `pl`. Поле `source` для `ua` змінено `"./"` → `"./ua"`.
-- Кореневий `CLAUDE.md` — новий, тримає monorepo-рівень контекст (правила найменування плагінів, інструкції для додавання нової юрисдикції).
-- Кореневий `README.md` — переписано: установка обох плагінів окремо, видимі префікси `/ua:…`, `/pl:…`.
-- `.version-bump.json` — структура під мультиплагінне версіонування (окремо marketplace, окремо ua, окремо pl).
+See [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) for plugin-level details.
 
-### Added — плагін `pl`
+### Added — plugin `pl` v0.1.0
 
-Новий плагін `pl` для польського права — **v0.1.0** (перший реліз).
+First release of the Polish law plugin. 10 agents, 6 skills. See [`pl/CHANGELOG.md`](./pl/CHANGELOG.md) for the full catalog.
 
-- 10 агентів: `claim-drafter`, `response-drafter`, `appeal-drafter`, `motion-drafter`, `legislation-analyst`, `legal-memo`, `request-drafter`, `contract-drafter`, `debt-collector`, `enforcement-agent`.
-- 6 скілів: `fetching-isap-sejm`, `searching-orzeczenia`, `calculating-oplata-sadowa`, `checking-przedawnienie`, `citing-polish-law`, `determining-pl-jurisdiction`.
-- Мова плагіна — польська; працює з `isap.sejm.gov.pl`, Portal Orzeczeń, Sąd Najwyższy.
-- Встановлення: `/plugin install pl@lawpowers`; команди з префіксом `/pl:…`.
+### Added — documentation
 
-Ім'я плагіна скорочено з `legal-pl` на `pl` — аналогічно до `ua`.
+- `ua/README.md`, `pl/README.md` — detailed per-plugin user docs in each plugin's working language.
+- `ua/CLAUDE.md`, `pl/CLAUDE.md` — contributor context per plugin.
+- `docs/RELEASING.md` — full release procedure with commands and pitfalls.
 
-### Migration для користувачів `ua` з 0.3.0
+### Migration for `ua` users from 0.3.0
 
-Маркетплейс лишається `lawpowers`, плагін — `ua`. Зміна `source` плагіна всередині маркетплейсу (`./` → `./ua`) вимагатиме переустановки:
+Plugin name and namespace (`ua`, `/ua:…`) are unchanged, but the marketplace `source` change requires reinstall:
 
 ```
 /plugin marketplace update lawpowers
@@ -42,28 +47,20 @@
 /reload-plugins
 ```
 
-### Rationale
-
-- Монорепо дозволяє ділити інфраструктуру (CI, CHANGELOG, релізи) між плагінами різних юрисдикцій.
-- Окремі директорії плагінів — можна ставити лише потрібну юрисдикцію, без завантаження іншої.
-- Префікси `/ua:…`, `/pl:…` короткі й зрозумілі.
-
 ## [0.3.0] — 2026-04-20
 
-### Changed — BREAKING
+### Changed — BREAKING (rename cascade)
 
-Підготовка до монорепо `lawpowers` з кількома юридичними плагінами.
+Preparation for the monorepo — the repo, marketplace, and plugin were all renamed:
 
-- **Репозиторій:** `crankshift/legal-ua` → `crankshift/lawpowers`. GitHub авторедіректить старий URL, але всі внутрішні посилання оновлено.
-- **Маркетплейс:** `name: "legal-ua"` → `name: "lawpowers"` у `marketplace.json`.
-- **Плагін:** `name: "legal-ua"` → `name: "ua"` у `plugin.json` і в записі `plugins[0].name` маркетплейсу.
-- **Команди:** усі агенти і скіли тепер викликаються з префіксом `ua:` замість `legal-ua:` — наприклад, `ua:claim-drafter`, `ua:raport-drafter`, `ua:calculating-sudovyi-zbir`. Файли агентів/скілів у репо НЕ перейменовано — префікс додається автоматично з `name` у `plugin.json`.
-- **Встановлення:** `/plugin marketplace add crankshift/lawpowers` + `/plugin install ua@lawpowers`.
-- `README.md` і `CLAUDE.md` оновлено під нову структуру; додано розділ «Правила найменування» у `CLAUDE.md`.
+- GitHub repo: `crankshift/legal-ua` → `crankshift/lawpowers`.
+- Marketplace name: `legal-ua` → `lawpowers`.
+- Plugin identifier: `legal-ua` → `ua`.
+- Command prefix: `/legal-ua:…` → `/ua:…`.
 
-### Migration (обов'язкова для існуючих установок)
+Plugin-level changes (including the sonnet→inherit model switch) — see [`ua/CHANGELOG.md`](./ua/CHANGELOG.md).
 
-Автоматичне оновлення не спрацює (змінилися ідентифікатори маркетплейсу і плагіна). Послідовність:
+### Migration for existing users
 
 ```
 /plugin uninstall legal-ua@legal-ua
@@ -73,81 +70,17 @@
 /reload-plugins
 ```
 
-### Rationale
-
-Короткий префікс `ua:` зручніший у повсякденному використанні, ніж `legal-ua:`. Назва маркетплейсу `lawpowers` — парасолька для майбутніх плагінів з іншими юрисдикціями (`eu`, `us` тощо); плагін `ua` далі стосується виключно права України.
-
 ## [0.2.0] — 2026-04-20
 
-### Added
+### Added — plugin `legal-ua` (predecessor of `ua`)
 
-**Блок для військовослужбовців ЗСУ** — 5 нових агентів і 4 нових скіли. Пріоритизовано за TOP-10 болів (Юридична сотня, Офіс Військового омбудсмана, БПД).
-
-#### Нові агенти
-
-- **`raport-drafter`** — універсальний рапорт військовослужбовця: відпустка (щорічна, сімейна, за станом здоров'я, навчальна), рапорт на ВЛК, переведення (через Армія+), звільнення за ст. 26 ЗУ № 2232-XII (всі підпункти), матдопомога, ОГД, УБД, контракт, реєстрація шлюбу через відеозв'язок (постанова КМУ № 213).
-- **`vlk-appeal`** — оскарження висновків ВЛК: ієрархічне (гарнізонна → окружна → Центральна ВЛК МО) і судове (адмінпозов у КАС); категорії придатності А-Д; підстави для скасування (неповний склад, немотивованість, неврахування документів, неправильне застосування Розкладу хвороб). Біль №1 за частотою скарг.
-- **`military-social-benefits`** — оформлення виплат і пільг: бойові (постанова КМУ № 168), фронтова надбавка (КМУ № 419), ОГД при пораненні/інвалідності/загибелі (ст. 16 ЗУ № 2011-XII), виплати родинам полонених і зниклих безвісти (ЗУ № 3995-IX з розподілом 50/50), статус УБД, пенсії за ЗУ № 2262-XII. Шаблон **особистого розпорядження** на випадок полону — закриває ринковий пробіл.
-- **`mobilization-defense`** — правовий захист у питаннях ТЦК: відстрочки за ст. 23-1 ЗУ № 2232-XII, бронювання (мін. ЗП 21 617,50 грн з 01.01.2026 за постановою КМУ № 76), оскарження штрафів за ст. 210 КУпАП, адмінпозови до ТЦК у КАС, звернення до Військового омбудсмана.
-- **`szch-defense`** — супровід у справах про СЗЧ/дезертирство (ст. 407, 408, 409 КК); звільнення від кримінальної відповідальності за **ч. 5 ст. 401 КК** (Закон № 3902-IX від 20.08.2024): чек-лист умов, шаблон рапорту командиру, клопотання слідчому про закриття провадження.
-
-#### Нові скіли
-
-- **`military-statute-refs`** — таблиця zakon.rada ID для ключових військових НПА: статути (551-14, 548-14, 550-14, 549-14), закони (2232-12, 2011-12, 3551-12, 3543-12, 2262-12), накази МО (z1109-08, z1198-25), постанови КМУ (168, 419, 560, 76, 213, 511), закони 2024-2026 (3902-IX, 3995-IX, 4392-IX, 4490-IX).
-- **`calculating-military-payments`** — формули розрахунку виплат: бойові (100 000 грн/міс), фронтова надбавка (70 000 грн/30 діб), ОГД (з градацією за тяжкістю), матдопомога, пенсії; посилання на зразкову справу ВС **№ 280/8933/24** від 11.04.2025.
-- **`vlk-procedure`** — процедура ВЛК: категорії А-Д, послідовність кроків (рапорт → направлення → засідання → свідоцтво про хворобу), строки оскарження (6 міс. КАС / 3 міс. після досудового), підстави для судового скасування.
-- **`szch-decriminalization`** — чек-лист застосовності ч. 5 ст. 401 КК: перший випадок + добровільне звернення + письмова згода командира + явка у 72 год.
-
-### Changed
-
-- Усі 16 агентів (11 загальних + 5 військових) переведено з `model: sonnet` на `model: inherit` — модель тепер визначається сесією користувача, не примусово Sonnet.
-- `plugin.json` / `marketplace.json` — bump `0.1.0` → `0.2.0`; додано keywords `military`, `zsu`, `tck`, `vlk`, `mobilization`, `rapport`, `szch`.
-- `README.md` — додано секцію «Військовий блок» з каталогом агентів і скілів; оновлено інструкцію встановлення під Claude Desktop App UI (Settings → Extensions → Plugins → Personal → Add marketplace).
-- `CLAUDE.md` — оновлено секцію структури проєкту і каталог агентів.
-
-### Methodology
-
-TOP-10 болів встановлено за публічними даними: статистика Юридичної сотні (0800 308 100), Офісу Військового омбудсмана (milomb.gov.ua, з 27.01.2026), БПД (legalaid.gov.ua), позиції Верховного Суду 2024-2026.
-
-Всі цитати НПА супроводжено `zakon.rada` ID; посилання на судову практику містять попередження про обов'язкову перевірку в ЄДРСР перед використанням.
+Military block for service members in ЗСУ — 5 new agents and 4 new skills. Plugin-level details in [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) under 0.2.0.
 
 ## [0.1.0] — 2026-04-20
 
-### Added
+### Added — initial plugin conversion
 
-**Початкова конвертація репозиторію в інсталяційний Claude Code plugin.**
-
-- Створено `.claude-plugin/plugin.json` — маніфест плагіна (name, version, author, license, keywords).
-- Створено `.claude-plugin/marketplace.json` — власний маркетплейс (`source: "./"`), щоб користувачі могли встановлювати через `/plugin marketplace add crankshift/lawpowers` → `/plugin install legal-ua@legal-ua`.
-- Перенесено `agents/` і `skills/` з `.claude/` у корінь плагіна (вимога Claude Code plugin layout).
-- Додано `README.md` з інструкціями встановлення українською (варіанти: CLI, локально через `--plugin-dir`).
-- Додано `.gitignore` для `.DS_Store`.
-
-### Agents (11 загальних)
-
-- `claim-drafter` — позовні заяви (ЦПК/ГПК/КАС), зустрічні позови, розрахунок судового збору.
-- `response-drafter` — відзиви, заперечення, пояснення з боку відповідача.
-- `appeal-drafter` — апеляційні та касаційні скарги; правові позиції ВС.
-- `motion-drafter` — процесуальні клопотання.
-- `legislation-analyst` — аналіз законодавства, тлумачення норм, перевірка редакції на дату.
-- `legal-memo` — правові висновки і меморандуми.
-- `request-drafter` — адвокатські запити і запити на публічну інформацію.
-- `contract-drafter` — цивільно-правові та господарські договори.
-- `debt-collector` — стягнення заборгованості; ст. 625 ЦК.
-- `enforcement-agent` — виконавче провадження; ЗУ № 1404-19.
-- `arbitration-agent` — МКАС/МАК при ТПП, ICC/LCIA/SCC/SIAC/HKIAC/VIAC, ad hoc UNCITRAL, інвестарбітраж; визнання і скасування арбітражних рішень у держсуді (розд. IX ЦПК, NYC 1958).
-
-### Skills (9 загальних)
-
-- `fetching-zakon-rada` — фетч НПА з zakon.rada; історичні редакції.
-- `searching-edrsr` — пошук судової практики в ЄДРСР.
-- `calculating-sudovyi-zbir` — судовий збір за ЗУ 3674-17.
-- `citing-ukrainian-law` — формат цитування НПА, рішень ВС/КСУ/ЄСПЛ.
-- `determining-ua-jurisdiction` — підсудність (цивільна/господарська/адміністративна).
-- `checking-pozovna-davnist` — строки позовної давності.
-- `checking-martial-law-overrides` — спецрегулювання періоду воєнного стану.
-- `fetching-arbitration-rules` — регламенти арбітражних інституцій.
-- `applying-new-york-convention` — NYC 1958 при визнанні/виконанні арбітражних рішень в Україні.
+Repo converted to an installable Claude Code plugin with `plugin.json` and `marketplace.json`. Plugin-level details in [`ua/CHANGELOG.md`](./ua/CHANGELOG.md) under 0.1.0.
 
 [0.4.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.0
 [0.3.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.3.0

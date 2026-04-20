@@ -98,7 +98,7 @@ Materiały tworzone przez agentów to robocze projekty dla prawnika-użytkownika
 
 ## Historia wersji
 
-Pełna lista zmian — w root [CHANGELOG.md](../CHANGELOG.md). Wydania — na [stronie Releases](https://github.com/crankshift/lawpowers/releases).
+Zmiany samego plagina `pl` — w [CHANGELOG.md](./CHANGELOG.md) tego katalogu (po polsku). Zestawienie dla całego marketplace'u oraz sąsiednich plaginów — w root [CHANGELOG.md](../CHANGELOG.md) (po angielsku). Wydania — na [stronie Releases](https://github.com/crankshift/lawpowers/releases).
 
 ## Licencja
 

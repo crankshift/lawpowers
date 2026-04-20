@@ -43,20 +43,26 @@ claude plugin validate .
 
 Must report `✔ Validation passed`.
 
-## 3. Add a CHANGELOG entry
+## 3. Add CHANGELOG entries
 
-Edit [`CHANGELOG.md`](../CHANGELOG.md). Insert a new section at the top (right below the heading), using [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) conventions. Template:
+Three changelogs are maintained in parallel. Which you edit depends on what changed:
+
+| Changelog | Language | When to edit |
+|---|---|---|
+| [root `CHANGELOG.md`](../CHANGELOG.md) | English | Marketplace-level changes (catalog, monorepo structure, shared tooling). Also writes a short summary referencing the plugin CHANGELOG for every plugin-affecting release. |
+| [`ua/CHANGELOG.md`](../ua/CHANGELOG.md) | Ukrainian | Plugin `ua` changes — agents, skills, templates, docs. |
+| [`pl/CHANGELOG.md`](../pl/CHANGELOG.md) | Polish | Plugin `pl` changes. |
+
+For a typical release you'll touch the root changelog **plus** the changelog of whichever plugin you modified. Every changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Insert a new section at the top (right below the heading) and add a matching link reference at the bottom.
+
+### Root `CHANGELOG.md` template (English)
 
 ```markdown
 ## [X.Y.Z] — YYYY-MM-DD
 
 ### Changed — plugin `ua`
 
-- **Short bold lead** — concrete description. Mention statute ids, norm refs, PR numbers.
-
-### Added — plugin `pl`
-
-- New skill `xyz` — what it does.
+One-line summary. Details in [`ua/CHANGELOG.md`](./ua/CHANGELOG.md).
 
 ### Migration
 
@@ -70,7 +76,29 @@ Only if breaking. Exact commands users need to run:
 [X.Y.Z]: https://github.com/crankshift/lawpowers/releases/tag/vX.Y.Z
 ```
 
-Don't forget the link reference at the bottom of the file.
+### Plugin `ua/CHANGELOG.md` template (Ukrainian)
+
+```markdown
+## [X.Y.Z] — YYYY-MM-DD
+
+### Added / Changed / Fixed / Removed
+
+- **Короткий жирний заголовок** — конкретний опис. Посилатись на статті НПА (zakon.rada ID), рішення ВС, PR-номер.
+
+[X.Y.Z]: https://github.com/crankshift/lawpowers/releases/tag/vX.Y.Z
+```
+
+### Plugin `pl/CHANGELOG.md` template (Polish)
+
+```markdown
+## [X.Y.Z] — YYYY-MM-DD
+
+### Added / Changed / Fixed / Removed
+
+- **Krótki pogrubiony nagłówek** — konkretny opis. Odwołania do ISAP, Portal Orzeczeń, sygnatur akt, numer PR.
+
+[X.Y.Z]: https://github.com/crankshift/lawpowers/releases/tag/vX.Y.Z
+```
 
 ## 4. PR and merge
 
@@ -97,13 +125,25 @@ git push origin vX.Y.Z
 
 ## 6. Create the GitHub Release
 
-Extract the CHANGELOG section for this version and use it as the release body. The `awk` below reads everything between the target version header and the next version header, then trims the trailing separator line.
+Release notes use the **root** `CHANGELOG.md` section as the body (English). The `awk` below reads everything between the target version header and the next one, then trims the trailing separator line.
 
 ```bash
 gh release create vX.Y.Z \
   --title "vX.Y.Z — <headline>" \
   --notes-file <(awk '/## \[X.Y.Z\]/,/## \[/' CHANGELOG.md | sed '$d') \
   --latest
+```
+
+If you want the per-plugin detail visible directly in the release page, append the plugin changelog section too:
+
+```bash
+{
+  awk '/## \[X.Y.Z\]/,/## \[/' CHANGELOG.md | sed '$d'
+  echo
+  echo '---'
+  echo '### Плагін `ua` (детально)'
+  awk '/## \[X.Y.Z\]/,/## \[/' ua/CHANGELOG.md | sed '$d'
+} | gh release create vX.Y.Z --title "vX.Y.Z — <headline>" --notes-file - --latest
 ```
 
 Flags:
