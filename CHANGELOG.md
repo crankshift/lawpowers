@@ -1,6 +1,52 @@
-# lawpowers / ua — Changelog
+# lawpowers — Changelog
 
 Формат — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); версіонування — [SemVer](https://semver.org/spec/v2.0.0.html).
+
+Маркетплейс і плагіни версіонуються окремо. Записи в цьому CHANGELOG супроводжуються позначкою «марктеплейс» / плагін (`ua`, `pl`) там, де це має значення.
+
+## [0.4.0] — 2026-04-20
+
+### Changed — BREAKING (маркетплейс + плагін `ua`)
+
+Перехід на **справжню монорепо-структуру** з плагінами-підкаталогами.
+
+- Файли плагіна `ua` перенесено з кореня репо в `ua/`:
+  - `.claude-plugin/plugin.json` → `ua/.claude-plugin/plugin.json`
+  - `agents/` → `ua/agents/`
+  - `skills/` → `ua/skills/`
+  - Колишній кореневий `CLAUDE.md` (UA-специфічний) → `ua/CLAUDE.md`
+- `marketplace.json` тепер перераховує два плагіни: `ua` і `pl`. Поле `source` для `ua` змінено `"./"` → `"./ua"`.
+- Кореневий `CLAUDE.md` — новий, тримає monorepo-рівень контекст (правила найменування плагінів, інструкції для додавання нової юрисдикції).
+- Кореневий `README.md` — переписано: установка обох плагінів окремо, видимі префікси `/ua:…`, `/pl:…`.
+- `.version-bump.json` — структура під мультиплагінне версіонування (окремо marketplace, окремо ua, окремо pl).
+
+### Added — плагін `pl`
+
+Новий плагін `pl` для польського права — **v0.1.0** (перший реліз).
+
+- 10 агентів: `claim-drafter`, `response-drafter`, `appeal-drafter`, `motion-drafter`, `legislation-analyst`, `legal-memo`, `request-drafter`, `contract-drafter`, `debt-collector`, `enforcement-agent`.
+- 6 скілів: `fetching-isap-sejm`, `searching-orzeczenia`, `calculating-oplata-sadowa`, `checking-przedawnienie`, `citing-polish-law`, `determining-pl-jurisdiction`.
+- Мова плагіна — польська; працює з `isap.sejm.gov.pl`, Portal Orzeczeń, Sąd Najwyższy.
+- Встановлення: `/plugin install pl@lawpowers`; команди з префіксом `/pl:…`.
+
+Ім'я плагіна скорочено з `legal-pl` на `pl` — аналогічно до `ua`.
+
+### Migration для користувачів `ua` з 0.3.0
+
+Маркетплейс лишається `lawpowers`, плагін — `ua`. Зміна `source` плагіна всередині маркетплейсу (`./` → `./ua`) вимагатиме переустановки:
+
+```
+/plugin marketplace update lawpowers
+/plugin uninstall ua@lawpowers
+/plugin install ua@lawpowers
+/reload-plugins
+```
+
+### Rationale
+
+- Монорепо дозволяє ділити інфраструктуру (CI, CHANGELOG, релізи) між плагінами різних юрисдикцій.
+- Окремі директорії плагінів — можна ставити лише потрібну юрисдикцію, без завантаження іншої.
+- Префікси `/ua:…`, `/pl:…` короткі й зрозумілі.
 
 ## [0.3.0] — 2026-04-20
 
@@ -103,6 +149,7 @@ TOP-10 болів встановлено за публічними даними:
 - `fetching-arbitration-rules` — регламенти арбітражних інституцій.
 - `applying-new-york-convention` — NYC 1958 при визнанні/виконанні арбітражних рішень в Україні.
 
+[0.4.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.0
 [0.3.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.3.0
 [0.2.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.2.0
 [0.1.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.1.0

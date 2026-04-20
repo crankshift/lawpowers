@@ -1,142 +1,105 @@
-# lawpowers / ua
+# lawpowers — monorepo
 
-Робочий простір для роботи з українським законодавством та правничими документами. Містить спеціалізованих агентів під конкретні юридичні задачі.
+Monorepo of jurisdiction-specific legal plugins for **Claude Code**. One marketplace (`lawpowers`) hosts several plugins; each plugin wraps subagents and skills for a single legal system.
 
-Плагін `ua` у монорепо `lawpowers` (`crankshift/lawpowers`). Команди в Claude Code отримують префікс `/ua:…` (наприклад, `/ua:claim-drafter`). У майбутньому можливі сусідні плагіни для інших юрисдикцій (`eu`, `us` тощо) у тому ж маркетплейсі.
+| Plugin | Jurisdiction | Command prefix | Working language | Documentation |
+|---|---|---|---|---|
+| [`ua`](./ua) | Ukraine | `/ua:…` | Ukrainian | [`ua/README.md`](./ua/README.md), [`ua/CLAUDE.md`](./ua/CLAUDE.md) |
+| [`pl`](./pl) | Poland | `/pl:…` | Polish | [`pl/README.md`](./pl/README.md), [`pl/CLAUDE.md`](./pl/CLAUDE.md) |
 
-## Мова спілкування
+Plugins are independent: users install whichever jurisdiction(s) they need. Namespaces (`ua:`, `pl:`) don't collide, so both can be active at once.
 
-- Основна мова проєкту — **українська**. Усі документи, відповіді, шаблони та промпти агентів формулюються українською.
-- Юридична термінологія — за чинним законодавством України (ЦК, ЦПК, КПК, КАС, ГПК, КЗпП, КУпАП тощо).
-- Цитати з нормативних актів наводити дослівно, з посиланням на статтю/частину/пункт і джерело.
+User-facing install instructions live in the root [`README.md`](./README.md). This file is for contributors working on the repo itself.
 
-## Планована архітектура агентів
-
-Кожен напрямок роботи виноситься в окремий субагент (`.claude/agents/*.md`). Агенти мають вузьку спеціалізацію — не змішувати відповідальності.
-
-### 1. `claim-drafter` — складання позовних заяв
-
-- Підготовка позовних заяв (цивільні, господарські, адміністративні) за вимогами ст. 175 ЦПК / ст. 162 ГПК / ст. 160 КАС.
-- Обов'язкові реквізити: найменування суду, сторони, ціна позову, виклад обставин, докази, прохальна частина, перелік додатків.
-- Розрахунок і довідка про сплату судового збору (ЗУ «Про судовий збір»).
-- Перевірка підсудності та строків позовної давності.
-
-### 2. `legislation-analyst` — аналіз законодавства
-
-- Первинне джерело: **zakon.rada.gov.ua** (Офіційний вебпортал парламенту України).
-- Перевірка чинності редакції норми на конкретну дату, відстеження змін, пошук перехідних положень.
-- Додаткові джерела: reyestr.court.gov.ua (ЄДРСР — практика), ccu.gov.ua (КСУ), supreme.court.gov.ua (ВС).
-- Кожне твердження супроводжувати прямим посиланням на первинне джерело і датою звірки.
-
-### 3. `request-drafter` — адвокатські запити та запити на публічну інформацію
-
-- **Адвокатський запит** — ст. 24 ЗУ «Про адвокатуру та адвокатську діяльність»: реквізити, строки відповіді (5 р.д., з продовженням до 20 р.д.), відповідальність за ненадання.
-- **Запит на публічну інформацію** — ЗУ «Про доступ до публічної інформації»: форма, строки (5 р.д., термінові — 48 год.), підстави для відмови.
-- Розмежовувати два режими — плутати не можна (різні закони, різні строки, різні санкції).
-
-### 4. Інші агенти (додаватимуться за потреби)
-
-- Договірна робота, претензійно-позовна робота, виконавче провадження, представництво в судах, складання скарг (касаційних/апеляційних), правові висновки, GDPR/ЗУ «Про захист персональних даних» тощо.
-
-## Ключові ресурси
-
-| Ресурс | URL | Призначення |
-|---|---|---|
-| Законодавство України | zakon.rada.gov.ua | Первинне джерело нормативних актів |
-| ЄДРСР | reyestr.court.gov.ua | Єдиний державний реєстр судових рішень |
-| Верховний Суд | supreme.court.gov.ua | Постанови ВС, правові позиції |
-| Конституційний Суд | ccu.gov.ua | Рішення та висновки КСУ |
-| Судова влада | court.gov.ua | Контакти судів, підсудність |
-| Мін'юст | minjust.gov.ua | Реєстри, роз'яснення |
-
-## Принципи роботи
-
-- **Дослівність цитат.** Норма наводиться в точній редакції, чинній на вказану дату. Переказ — лише після цитати і явно маркований як переказ.
-- **Посилання обов'язкові.** Кожна правова позиція — з посиланням на статтю + джерело + дату звірки. Без «десь читав» і без покладання виключно на пам'ять моделі.
-- **Актуальність.** Українське законодавство змінюється часто (особливо в умовах воєнного стану). Перед посиланням на норму — перевірити чинну редакцію на zakon.rada.gov.ua.
-- **Обережність з порадами.** Матеріали проєкту — робочі чернетки для юриста-користувача, не кінцева юридична консультація клієнту. Фінальну редакцію і відповідальність несе людина.
-- **Не вигадувати судову практику.** Номери справ, дати постанов, цитати з рішень — лише з перевірених джерел (ЄДРСР/сайт ВС). Сумнівне — позначати як неперевірене.
-- **Персональні дані.** У шаблонах використовувати плейсхолдери (`[ПІБ]`, `[РНОКПП]`, `[адреса]`), не зберігати реальні дані клієнтів у файлах проєкту.
-
-## Агенти
-
-Вузькоспеціалізовані субагенти в `agents/` (корінь плагіна):
-
-| Агент | Призначення |
-|---|---|
-| `claim-drafter` | Складання позовних заяв (цивільні / господарські / адміністративні), зустрічні позови, уточнення позовних вимог, розрахунок судового збору |
-| `legislation-analyst` | Аналіз чинного законодавства, пошук і тлумачення норм, перевірка редакції на дату, підбір судової практики, правові висновки |
-| `request-drafter` | Адвокатські запити (ст. 24 ЗУ «Про адвокатуру») та запити на публічну інформацію (ЗУ «Про доступ до публічної інформації») — два різні режими |
-| `response-drafter` | Відзиви на позов, заперечення, пояснення — документи з боку відповідача |
-| `appeal-drafter` | Апеляційні та касаційні скарги (ЦПК/ГПК/КАС); підстави касації; правові позиції ВС |
-| `motion-drafter` | Процесуальні клопотання: забезпечення позову, витребування доказів, експертиза, відводи, поновлення строків, відкладення тощо |
-| `contract-drafter` | Договірна робота: складання і аналіз цивільно-правових та господарських договорів, супровідних документів, перевірка на ризики |
-| `legal-memo` | Правові висновки і меморандуми для клієнта; аналіз перспектив спору; порівняння варіантів дій |
-| `debt-collector` | Стягнення заборгованості: претензія → позов → виконавче провадження; розрахунок ст. 625 ЦК (3% річних + інфляційні) + пеня |
-| `enforcement-agent` | Виконавче провадження: заяви виконавцю, скарги на дії/бездіяльність ДВС/ПВВ (ЗУ 1404-19) |
-| `arbitration-agent` | Арбітражне провадження: МКАС/МАК при ТПП, ICC/LCIA/SCC/SIAC/HKIAC/VIAC, ad hoc UNCITRAL, третейські, інвестарбітраж (ICSID/BIT/ECT); визнання і скасування арбітражних рішень у держсуді (розд. IX ЦПК, ст. 454 ЦПК, NYC 1958) |
-| `docx-exporter` | Конвертація готових .md документів у .docx для друку і подання; зберігає у `.claude/word/` (потребує pandoc) |
-
-**Військовий блок (ЗСУ):**
-
-| Агент | Призначення |
-|---|---|
-| `raport-drafter` | Рапорти військовослужбовця ЗСУ всіх типів: відпустка (ст. 10 ЗУ 2011-XII), ВЛК, переведення, звільнення (ст. 26 ЗУ 2232-XII), матдопомога, УБД, шлюб через відеозв'язок (КМУ № 213) |
-| `vlk-appeal` | Оскарження висновків ВЛК — ієрархічне (вища ВЛК) та судове (адмінпозов у порядку КАС за наказом МО № 402, `z1109-08`) |
-| `military-social-benefits` | Виплати, пільги, пенсії; постанова КМУ № 168 (бойові), № 419 (фронтова надбавка), ЗУ 3995-IX (50/50 для полонених), ст. 16 ЗУ 2011-XII (ОГД); прецедент ВС № 280/8933/24 |
-| `mobilization-defense` | ТЦК, бронювання, відстрочки, оскарження штрафів (ст. 210 КУпАП); ЗУ 3543-XII, КМУ № 560 і № 76 |
-| `szch-defense` | СЗЧ/дезертирство (ст. 407-408 КК); звільнення від відповідальності за ч. 5 ст. 401 КК (Закон № 3902-IX від 20.08.2024) |
-
-## Скіли
-
-Процедурні/довідкові скіли в `skills/` (корінь плагіна) — використовувати при роботі з українськими правовими джерелами:
-
-| Скіл | Коли застосовувати |
-|---|---|
-| `fetching-zakon-rada` | Фетч НПА з zakon.rada; URL для історичних редакцій; таблиця ID ключових кодексів і законів |
-| `searching-edrsr` | Пошук судової практики в ЄДРСР; структура номера справи; перевірка руху справи по інстанціях |
-| `calculating-sudovyi-zbir` | Розрахунок судового збору за ЗУ «Про судовий збір»; ставки в ПМ; пільги |
-| `citing-ukrainian-law` | Формат цитування НПА, рішень ВС/КСУ/ЄСПЛ; скорочення кодексів |
-| `determining-ua-jurisdiction` | Визначення підсудності (предметна, територіальна, інстанційна); цивільна vs господарська vs адміністративна |
-| `checking-pozovna-davnist` | Строки позовної давності; початок перебігу; зупинення/переривання/поновлення |
-| `checking-martial-law-overrides` | Перевірка спецрегулювання періоду воєнного стану для будь-якої норми про строки, реєстрації, трудові чи майнові відносини |
-| `fetching-arbitration-rules` | Фетч актуальних регламентів арбітражних інституцій (МКАС, ICC, LCIA, SCC, SIAC, HKIAC, VIAC, UNCITRAL); таблиця URL і дат редакцій |
-| `applying-new-york-convention` | Робота з NYC 1958 при визнанні/виконанні арбітражних рішень в Україні: підстави відмови ст. V, мапінг на ст. 478 ЦПК, public policy exception |
-| `military-statute-refs` | Таблиця ID військових НПА: статути (551-14, 548-14, 550-14), закони (2232-12, 2011-12, 3551-12, 3543-12), накази МО (z1109-08, z1198-25), постанови КМУ (168, 419, 560, 76) |
-| `calculating-military-payments` | Формули розрахунку виплат: бойові (100 000/міс), фронтова надбавка (70 000/30 діб), ОГД при пораненні/загибелі, матдопомога (ст. 9 ЗУ 2011-XII), пенсії за ЗУ 2262-XII |
-| `vlk-procedure` | Процедура ВЛК: категорії А-Д, кроки (рапорт → направлення → засідання → висновок), оскарження (6 міс. КАС; 3 міс. після досудового); підстави для скасування |
-| `szch-decriminalization` | Чек-лист ч. 5 ст. 401 КК: перший випадок + рапорт командиру + письмова згода + явка у 72 год; шаблон клопотання слідчому про закриття провадження |
-
-## Структура проєкту
-
-Репозиторій зібраний як **Claude Code plugin** (див. [код-доки про плагіни](https://code.claude.com/docs/en/plugins)). Директорії `agents/` і `skills/` — на корені плагіна, `plugin.json` і `marketplace.json` — в `.claude-plugin/`.
+## Repository layout
 
 ```
-lawpowers/                 # репо на GitHub: crankshift/lawpowers
-├── CLAUDE.md              # цей файл — загальний контекст і архітектура
-├── README.md              # user-facing документація, інструкції встановлення
-├── CHANGELOG.md           # історія релізів (Keep a Changelog)
-├── .version-bump.json     # файли, де тримається версія плагіна
+lawpowers/                         # GitHub: crankshift/lawpowers
+├── README.md                       # user-facing — install guide, links to per-plugin docs
+├── CLAUDE.md                       # this file — contributor context
+├── CHANGELOG.md                    # release history (Keep a Changelog, shared across all plugins)
+├── .version-bump.json              # maps versioned fields in plugin/marketplace manifests
+├── LICENSE                         # MIT — covers the whole repo
 ├── .claude-plugin/
-│   ├── plugin.json        # маніфест плагіна (name: "ua", version, author, keywords)
-│   └── marketplace.json   # каталог маркетплейсу (name: "lawpowers")
-├── agents/                # субагенти під конкретні задачі
-│   ├── claim-drafter.md
-│   ├── legislation-analyst.md
-│   └── ...
-├── skills/                # скіли для ефективної роботи з джерелами
-│   ├── fetching-zakon-rada/SKILL.md
-│   ├── searching-edrsr/SKILL.md
-│   └── ...
-├── templates/             # (плановано) шаблони документів — позови, запити, договори
-├── cases/                 # (плановано) робочі матеріали — з урахуванням конфіденційності
-└── references/            # (плановано) вибірки норм, правові позиції, методички
+│   └── marketplace.json            # marketplace catalog ("lawpowers"); lists ua and pl with their source paths
+├── ua/                             # plugin "ua" — Ukrainian law
+│   ├── README.md                   # user-facing, Ukrainian
+│   ├── CLAUDE.md                   # contributor context for the UA plugin
+│   ├── .claude-plugin/plugin.json  # name: "ua"
+│   ├── agents/
+│   └── skills/
+└── pl/                             # plugin "pl" — Polish law
+    ├── README.md                   # user-facing, Polish
+    ├── CLAUDE.md                   # contributor context for the PL plugin
+    ├── .claude-plugin/plugin.json  # name: "pl"
+    ├── agents/
+    └── skills/
 ```
 
-**Важливо:** після встановлення всі агенти і скіли виходять з префіксом `/ua:…` (з неймспейсом плагіна `ua`) — наприклад, `ua:claim-drafter`, `ua:searching-edrsr`. Це запобігає конфліктам з іншими плагінами, зокрема з сусідами в монорепо `lawpowers`.
+## Contribution principles
 
-## Правила найменування
+- **One jurisdiction = one plugin.** Don't mix UA and PL law inside the same agents or skills — each plugin stays self-contained.
+- **Plugin language matches jurisdiction.** Agents, skills, templates, and plugin-level docs for `ua` are in Ukrainian; for `pl` in Polish. This root-level documentation (README/CLAUDE/CHANGELOG) is in English for broad accessibility.
+- **Command prefixes come from plugin names.** `name` in `plugin.json` becomes the namespace — `/ua:…`, `/pl:…`. Agent and skill file names inside the plugin don't need a prefix; Claude Code adds it automatically.
+- **Shared license.** MIT, applied at the repo root.
+- **Independent plugin versions.** Each plugin carries its own `version` in its `plugin.json` (and mirrored in the marketplace entry). The marketplace catalog itself has a separate version in `marketplace.json:metadata.version`.
+- **Release tags.** `vX.Y.Z` at the marketplace level covers the whole repo. If a single plugin ever needs an independent release cycle, use namespaced tags like `ua/vX.Y.Z` — but the current convention is one monorepo-wide tag per release.
 
-- **Файли агентів/скілів** — без префікса (`claim-drafter.md`, `skills/searching-edrsr/SKILL.md`). Префікс `ua:` додається автоматично з `name` у `plugin.json`.
-- **У документації** — посилатися на агентів через виклик (`ua:claim-drafter`), щоб користувач бачив точну команду.
-- **Нові агенти/скіли** — додавати без префікса в імені; вони автоматично отримають `ua:`.
+## Adding a new plugin (new jurisdiction)
+
+Example: adding a plugin for EU law.
+
+1. Create `./eu/` at the repo root. Short ISO-style code; keep it two or three letters where possible.
+2. Lay out the plugin directory:
+   ```
+   eu/
+   ├── README.md                    # user-facing documentation
+   ├── CLAUDE.md                    # contributor context
+   ├── .claude-plugin/plugin.json   # name: "eu", initial version 0.1.0
+   ├── agents/
+   └── skills/
+   ```
+3. Register the plugin in `.claude-plugin/marketplace.json` under `plugins[…]`:
+   ```json
+   { "name": "eu", "source": "./eu", "version": "0.1.0", ... }
+   ```
+4. Update [`.version-bump.json`](./.version-bump.json) so the new plugin's version fields are tracked.
+5. Bump the marketplace version in `.claude-plugin/marketplace.json:metadata.version`.
+6. Add a CHANGELOG entry describing the new plugin.
+7. Open a PR, merge, then tag the release (see [Release flow](#release-flow)).
+
+## Release flow
+
+1. Decide the version bump per semver. For a breaking change in 0.x releases, a minor bump is appropriate.
+2. Update the affected version fields listed in `.version-bump.json` (plugin-level `version` + corresponding marketplace entry + marketplace `metadata.version`).
+3. Add a new section at the top of [`CHANGELOG.md`](./CHANGELOG.md) in Keep-a-Changelog format, noting which plugin(s) changed.
+4. Open a PR and merge.
+5. After merge, check out `main`, pull, and tag the merge commit:
+   ```bash
+   git tag -a vX.Y.Z <merge-sha> -m "vX.Y.Z — <headline>"
+   git push origin vX.Y.Z
+   ```
+6. Create a GitHub Release with body copied from the CHANGELOG section:
+   ```bash
+   gh release create vX.Y.Z --title "vX.Y.Z — <headline>" --notes-file <(awk '/## \[X.Y.Z\]/,/## \[/' CHANGELOG.md | head -n -1) --latest
+   ```
+7. Users update with `/plugin marketplace update lawpowers` + `/reload-plugins`.
+
+## Shared editorial rules (all plugins)
+
+- **Verbatim citations.** Statutes are quoted in the exact wording in force on a given date, with a link to the primary source.
+  - UA primary source: `zakon.rada.gov.ua`.
+  - PL primary source: `isap.sejm.gov.pl`.
+- **No fabricated case law.** Case numbers, dates, and quotations come only from official registries. For UA use ЄДРСР (`reyestr.court.gov.ua`) and the Supreme Court site; for PL use Portal Orzeczeń, SN, NSA, TK. If a citation can't be verified, mark it unverified or omit it.
+- **Placeholders for personal data.** Templates must use placeholders (`[ПІБ]`, `[РНОКПП]` for UA; `[imię i nazwisko]`, `[PESEL]` for PL). Never commit real client data.
+- **Drafts, not final advice.** Everything agents produce is a working draft for a human lawyer to review and sign off on. Make that explicit in agent prompts and output.
+- **Fast-moving law.** Both jurisdictions see frequent amendments (UA especially during martial law; PL around KPC and KC reforms). Agents should re-verify statute wording on each use rather than relying on cached knowledge.
+
+## Key resources per jurisdiction
+
+| Country | Primary statutes | Case-law registry | Top court(s) |
+|---|---|---|---|
+| Ukraine | [zakon.rada.gov.ua](https://zakon.rada.gov.ua) | [reyestr.court.gov.ua](https://reyestr.court.gov.ua) (ЄДРСР) | [supreme.court.gov.ua](https://supreme.court.gov.ua) (Supreme Court), [ccu.gov.ua](https://ccu.gov.ua) (Constitutional Court) |
+| Poland | [isap.sejm.gov.pl](https://isap.sejm.gov.pl), [dziennikustaw.gov.pl](https://dziennikustaw.gov.pl) | [orzeczenia.ms.gov.pl](https://orzeczenia.ms.gov.pl) (Portal Orzeczeń) | [sn.pl](https://www.sn.pl) (Sąd Najwyższy), [nsa.gov.pl](https://orzeczenia.nsa.gov.pl) (NSA), [trybunal.gov.pl](https://trybunal.gov.pl) (TK) |
+
+For plugin-specific context (agent catalogs, jurisdiction-specific procedural rules, architectural notes) see the per-plugin `CLAUDE.md` files linked at the top.

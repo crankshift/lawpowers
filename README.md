@@ -1,165 +1,142 @@
-# lawpowers / ua
+# lawpowers
 
-Плагін Claude Code для роботи з українським законодавством і правничими документами. Містить спеціалізованих субагентів під конкретні юридичні задачі та скіли для ефективної роботи з офіційними джерелами (zakon.rada, ЄДРСР, сайти ВС/КСУ).
+A collection of jurisdiction-specific legal plugins for **Claude Code**. Each plugin wraps a set of subagents and skills tuned to one country's legal system, official sources, and procedural quirks.
 
-Частина монорепо [`lawpowers`](https://github.com/crankshift/lawpowers) — колекції юридичних плагінів для Claude Code. Цей плагін має ідентифікатор `ua`; усі його команди отримують префікс `/ua:…` (наприклад `/ua:claim-drafter`, `/ua:raport-drafter`).
+Monorepo structure — install only the jurisdictions you need.
 
-> Робочий простір для юриста-практика. Усі документи, відповіді та шаблони — українською.
+## Available plugins
 
-## Встановлення
+| Plugin | Jurisdiction | Command prefix | Documentation | Language |
+|---|---|---|---|---|
+| [`ua`](./ua) | Ukraine | `/ua:…` | [`ua/README.md`](./ua/README.md) | Ukrainian |
+| [`pl`](./pl) | Poland | `/pl:…` | [`pl/README.md`](./pl/README.md) | Polish |
 
-Плагін можна встановити двома способами:
-- через **Claude Desktop App** (macOS/Windows) — у UI налаштувань;
-- через **Claude Code CLI** (термінал) — командами `/plugin`.
+Each plugin's README covers the agents and skills it provides. The plugins are independent — installing one doesn't pull in the other.
 
-### Варіант 1. Claude Desktop App (macOS/Windows)
+## Installation
 
-1. Відкрити **Settings → Extensions → Plugins**.
-2. Перейти на вкладку **Personal**.
-3. Натиснути «**+**» поруч із «Local uploads».
-4. У меню обрати **Add marketplace**.
-5. Вказати джерело: `crankshift/lawpowers` (або повний URL `https://github.com/crankshift/lawpowers`).
-6. Після додавання маркетплейсу відкрити плагін `ua` у списку і натиснути «+» для встановлення.
+Installation is a two-step process: add the marketplace once, then install each plugin you want.
 
-### Варіант 2. Claude Code CLI (термінал)
+### Step 1. Add the marketplace
 
-Запустити:
+#### Claude Desktop App (macOS/Windows)
+
+1. **Settings → Extensions → Plugins**.
+2. Switch to the **Personal** tab.
+3. Click the «**+**» next to `Local uploads`.
+4. Select **Add marketplace**.
+5. Enter `crankshift/lawpowers` (or the full URL `https://github.com/crankshift/lawpowers`).
+
+#### Claude Code CLI
 
 ```bash
 claude
 ```
 
-У відкритій сесії ввести по черзі:
+Then in the running session:
 
 ```
 /plugin marketplace add crankshift/lawpowers
+```
+
+### Step 2. Install the plugin(s)
+
+#### Ukraine only
+
+```
 /plugin install ua@lawpowers
 /reload-plugins
 ```
 
-### Варіант 3. Локально для розробки / приватного репозиторію
+Agents and skills become available under the `ua:` namespace — e.g. `ua:claim-drafter`, `ua:raport-drafter`, `ua:calculating-sudovyi-zbir`.
+
+See [`ua/README.md`](./ua/README.md) for the full catalog (includes a dedicated military-law block for service members in ЗСУ and their families).
+
+#### Poland only
+
+```
+/plugin install pl@lawpowers
+/reload-plugins
+```
+
+Agents and skills under the `pl:` namespace — e.g. `pl:claim-drafter`, `pl:searching-orzeczenia`.
+
+See [`pl/README.md`](./pl/README.md) for the full catalog.
+
+#### Both
+
+```
+/plugin install ua@lawpowers
+/plugin install pl@lawpowers
+/reload-plugins
+```
+
+The `ua:` and `pl:` namespaces are isolated — you can have both active at once and they won't conflict.
+
+### Local development
 
 ```bash
 git clone https://github.com/crankshift/lawpowers.git
-claude --plugin-dir ./lawpowers
+cd lawpowers
+claude --plugin-dir ./ua --plugin-dir ./pl
 ```
 
-Для приватного репо через Git URL:
+Or only one plugin:
 
+```bash
+claude --plugin-dir ./ua
 ```
-/plugin marketplace add https://github.com/crankshift/lawpowers.git
-/plugin install ua@lawpowers
-```
 
-### Перевірка встановлення
+### Verification
 
-Незалежно від клієнта:
+- `/plugin` → **Installed** tab — lists the plugins you've added.
+- `/agents` — subagents show up with the `ua:` and/or `pl:` prefix.
+- Skills trigger automatically based on context (for example, mentioning «судовий збір» triggers `ua:calculating-sudovyi-zbir`; «opłata sądowa» triggers `pl:calculating-oplata-sadowa`).
 
-- `/plugin` → вкладка **Installed** — плагін `ua` у списку.
-- `/agents` — субагенти з префіксом `ua:` (наприклад, `ua:claim-drafter`, `ua:raport-drafter`).
-- Скіли активуються автоматично за контекстом: згадка «судовий збір» тригерить `ua:calculating-sudovyi-zbir`; «рапорт на відпустку» — `ua:raport-drafter`.
-
-### Оновлення
+### Updating
 
 ```
 /plugin marketplace update lawpowers
 /reload-plugins
 ```
 
-Або увімкнути auto-update у `/plugin` → **Marketplaces** → `lawpowers` → **Enable auto-update**.
+Or enable auto-update from `/plugin` → **Marketplaces** → `lawpowers` → **Enable auto-update**.
 
-### Міграція з версій ≤ 0.2.x
-
-У 0.3.0 маркетплейс перейменовано `legal-ua` → `lawpowers`, а плагін — `legal-ua` → `ua`. Установки з попереднього імені не оновлюються автоматично. Послідовність:
+### Uninstalling a single plugin
 
 ```
-/plugin uninstall legal-ua@legal-ua
-/plugin marketplace remove legal-ua
-/plugin marketplace add crankshift/lawpowers
-/plugin install ua@lawpowers
-/reload-plugins
+/plugin uninstall ua@lawpowers   # remove only UA
+/plugin uninstall pl@lawpowers   # remove only PL
 ```
 
-## Що всередині
+The marketplace stays registered; reinstall whenever you need.
 
-Усі команди викликаються з префіксом `/ua:…`.
+## Shared principles
 
-### Субагенти (`agents/`)
+All plugins in this monorepo follow the same working principles:
 
-| Виклик | Призначення |
-|---|---|
-| `ua:claim-drafter` | Позовні заяви (ЦПК/ГПК/КАС), зустрічні позови, уточнення вимог, розрахунок судового збору |
-| `ua:response-drafter` | Відзиви, заперечення, пояснення — документи з боку відповідача |
-| `ua:appeal-drafter` | Апеляційні та касаційні скарги; правові позиції ВС |
-| `ua:motion-drafter` | Процесуальні клопотання (забезпечення позову, витребування доказів, експертиза, відводи, строки) |
-| `ua:legislation-analyst` | Аналіз чинного законодавства, тлумачення норм, перевірка редакції на дату |
-| `ua:legal-memo` | Правові висновки, меморандуми, аналіз перспектив спору |
-| `ua:request-drafter` | Адвокатські запити (ст. 24 ЗУ «Про адвокатуру») та запити на публічну інформацію |
-| `ua:contract-drafter` | Складання і аналіз ЦП/господарських договорів, перевірка на ризики |
-| `ua:debt-collector` | Стягнення заборгованості: претензія → позов → виконавче (ст. 625 ЦК + пеня) |
-| `ua:enforcement-agent` | Виконавче провадження: заяви, скарги на дії ДВС/ПВВ |
-| `ua:arbitration-agent` | МКАС/МАК, ICC/LCIA/SCC/SIAC/HKIAC/VIAC, ad hoc UNCITRAL, інвестарбітраж; визнання і скасування рішень у держсуді |
+- **Verbatim citations of statutes.** Articles are quoted in the exact wording in force on a given date, with a direct link to the primary source (`zakon.rada.gov.ua` for UA, `isap.sejm.gov.pl` for PL).
+- **Mandatory source references.** Every legal position carries a link to the article + source + verification date.
+- **No fabricated case law.** Case numbers, dates, and quotes come only from official registries (ЄДРСР for UA, Portal Orzeczeń for PL). Claude should never invent a citation.
+- **Placeholders for personal data.** Templates use placeholders (`[ПІБ]` / `[imię i nazwisko]`, `[РНОКПП]` / `[PESEL]`, `[адреса]` / `[adres]`) — never real client data in source files.
+- **Drafts, not final advice.** Everything the agents produce is a working draft for a human lawyer to review, adapt, and sign off on. Final editorial responsibility is always human.
 
-#### Окремий блок: військовослужбовці ЗСУ
+## Extending the monorepo
 
-| Виклик | Призначення |
-|---|---|
-| `ua:raport-drafter` | Рапорти військовослужбовця ЗСУ — відпустка, ВЛК, переведення, звільнення за ст. 26 ЗУ 2232-XII, виплати, УБД, контракт, шлюб через відеозв'язок |
-| `ua:vlk-appeal` | Оскарження висновків військово-лікарської комісії — ієрархічне (вища ВЛК) і судове (адмінпозов у КАС) |
-| `ua:military-social-benefits` | Виплати і пільги: бойові (КМУ № 168), фронтова надбавка, ОГД при пораненні/загибелі, виплати родинам полонених/зниклих безвісти (ЗУ 3995-IX), статус УБД, пенсії |
-| `ua:mobilization-defense` | ТЦК, бронювання (з 01.01.2026 мін. ЗП 21 617,50 грн), відстрочки, оскарження штрафів за ст. 210 КУпАП, адмінпозови до ТЦК |
-| `ua:szch-defense` | Повернення з СЗЧ і кримзахист за ст. 407-408 КК; звільнення від відповідальності за ч. 5 ст. 401 КК (Закон № 3902-IX) |
+Adding a plugin for a new jurisdiction (e.g. `eu`, `us`, `de`):
 
-### Скіли (`skills/`)
+1. Create a `./xx/` directory at the repo root with a short ISO-style code.
+2. Add `xx/.claude-plugin/plugin.json` with `"name": "xx"`, `xx/agents/`, `xx/skills/`, and `xx/README.md` + `xx/CLAUDE.md` documenting the plugin.
+3. Register it in `.claude-plugin/marketplace.json` under `plugins` with `"source": "./xx"`.
+4. Add a CHANGELOG entry and bump `metadata.version` in the marketplace manifest.
+5. Open a PR, merge, then tag a release as described in the [release flow](./CHANGELOG.md).
 
-| Скіл | Коли застосовується |
-|---|---|
-| `ua:fetching-zakon-rada` | Фетч НПА з zakon.rada, історичні редакції, ID ключових кодексів |
-| `ua:searching-edrsr` | Пошук судової практики в ЄДРСР, структура номера справи |
-| `ua:calculating-sudovyi-zbir` | Розрахунок судового збору, ставки в ПМ, пільги |
-| `ua:citing-ukrainian-law` | Формат цитування НПА, рішень ВС/КСУ/ЄСПЛ |
-| `ua:determining-ua-jurisdiction` | Визначення підсудності (цивільна / господарська / адміністративна) |
-| `ua:checking-pozovna-davnist` | Строки позовної давності, перебіг, зупинення/переривання |
-| `ua:checking-martial-law-overrides` | Перевірка спецрегулювання періоду воєнного стану |
-| `ua:fetching-arbitration-rules` | Актуальні регламенти арбітражних інституцій |
-| `ua:applying-new-york-convention` | NYC 1958 при визнанні/виконанні арбітражних рішень в Україні |
+See [`CLAUDE.md`](./CLAUDE.md) for the project-level guidelines.
 
-#### Військові скіли
+## Release history
 
-| Скіл | Коли застосовується |
-|---|---|
-| `ua:military-statute-refs` | Таблиця ID ключових військових НПА (статути, ЗУ 2232-12, 2011-12, 3551-12, накази МО, постанови КМУ 168/419/560/76) |
-| `ua:calculating-military-payments` | Формули розрахунку бойових, фронтової надбавки, ОГД, матдопомоги, пенсій; прецедент ВС № 280/8933/24 |
-| `ua:vlk-procedure` | Категорії придатності А-Д, процедура ВЛК, строки оскарження, підстави для судового скасування |
-| `ua:szch-decriminalization` | Чек-лист за ч. 5 ст. 401 КК (Закон № 3902-IX): перший випадок + рапорт + згода командира + явка у 72 год |
+Full changelog — [CHANGELOG.md](./CHANGELOG.md). Releases are published on the [Releases page](https://github.com/crankshift/lawpowers/releases).
 
-## Принципи роботи
+## License
 
-- **Дослівність цитат** — норма наводиться в точній редакції, чинній на вказану дату.
-- **Обов'язкові посилання** — кожна правова позиція з посиланням на статтю + джерело + дату звірки.
-- **Актуальність** — українське законодавство змінюється часто (особливо за воєнного стану); перед використанням норми перевіряти чинну редакцію на zakon.rada.gov.ua.
-- **Не вигадувати практику** — номери справ, дати постанов, цитати з рішень — лише з ЄДРСР / сайту ВС.
-- **Персональні дані** — у шаблонах плейсхолдери (`[ПІБ]`, `[РНОКПП]`, `[адреса]`), без реальних даних клієнтів.
-
-## Ключові джерела
-
-| Ресурс | URL |
-|---|---|
-| Законодавство України | https://zakon.rada.gov.ua |
-| ЄДРСР | https://reyestr.court.gov.ua |
-| Верховний Суд | https://supreme.court.gov.ua |
-| Конституційний Суд | https://ccu.gov.ua |
-| Судова влада | https://court.gov.ua |
-| Мін'юст | https://minjust.gov.ua |
-
-## Застереження
-
-Матеріали, створені агентами, — робочі чернетки для юриста-користувача, а не кінцева консультація клієнту. Фінальну редакцію і відповідальність несе людина.
-
-## Історія версій
-
-Повний перелік змін — у [CHANGELOG.md](./CHANGELOG.md). Останні релізи — на [сторінці Releases](https://github.com/crankshift/lawpowers/releases).
-
-## Ліцензія
-
-MIT
+MIT — see [LICENSE](./LICENSE).
