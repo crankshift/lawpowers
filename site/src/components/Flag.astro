@@ -1,0 +1,30 @@
+---
+interface Props {
+  code: 'ua' | 'pl'
+}
+const { code } = Astro.props
+
+const colors: Record<Props['code'], readonly [string, string]> = {
+  ua: ['#0057b7', '#ffd700'],
+  pl: ['#fff', '#dc143c'],
+}
+const [top, bottom] = colors[code]
+---
+
+<span class="flag" aria-hidden="true">
+  <span style={`background:${top}`}></span>
+  <span style={`background:${bottom}`}></span>
+</span>
+
+<style>
+  .flag {
+    width: 44px;
+    height: 30px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid var(--rule);
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+  }
+</style>

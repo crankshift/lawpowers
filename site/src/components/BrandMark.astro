@@ -1,0 +1,35 @@
+---
+// Small § seal used in the nav / footer / warn-mark.
+---
+
+<span class="brand-mark" aria-hidden="true"><span>§</span></span>
+
+<style>
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 400;
+    background: var(--bg);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .brand-mark::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    border: 1px solid var(--ink);
+    opacity: 0.35;
+  }
+  .brand-mark > span {
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Nav from '../../components/Nav.astro'
+import Hero from '../../components/Hero.astro'
+import Plugins from '../../components/Plugins.astro'
+import Install from '../../components/Install.astro'
+import Principles from '../../components/Principles.astro'
+import Sources from '../../components/Sources.astro'
+import Disclaimer from '../../components/Disclaimer.astro'
+import Footer from '../../components/Footer.astro'
+import { getT, LANGS, isLang, type Lang } from '../../i18n'
+
+export function getStaticPaths() {
+  return LANGS.map((locale) => ({ params: { locale } }))
+}
+
+const { locale } = Astro.params
+if (!isLang(locale)) {
+  throw new Error(`Unsupported locale: ${locale}`)
+}
+const lang: Lang = locale
+const t = getT(lang)
+---
+
+<BaseLayout lang={lang} title={t.seo.title} description={t.seo.description}>
+  <Nav lang={lang} t={t} />
+  <main>
+    <Hero t={t} />
+    <Plugins t={t} />
+    <Install t={t} />
+    <Principles t={t} />
+    <Sources t={t} />
+    <Disclaimer t={t} />
+  </main>
+  <Footer t={t} />
+</BaseLayout>

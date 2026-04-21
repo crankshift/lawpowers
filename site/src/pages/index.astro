@@ -1,0 +1,56 @@
+---
+import { LANGS, HREFLANG } from '../i18n'
+
+const site = Astro.site?.href.replace(/\/$/, '') ?? ''
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>lawpowers</title>
+    <meta name="description" content="Jurisdiction-aware legal drafting plugins for Claude Code." />
+    <meta http-equiv="refresh" content="0; url=/en/" />
+    <link rel="canonical" href={`${site}/en/`} />
+    {LANGS.map((code) => (
+      <link rel="alternate" hreflang={HREFLANG[code]} href={`${site}/${code}/`} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${site}/en/`} />
+    <script is:inline>
+      (function () {
+        try {
+          var supported = { en: '/en/', uk: '/ua/', ua: '/ua/', pl: '/pl/' }
+          var candidates = []
+          if (navigator.languages && navigator.languages.length) {
+            for (var j = 0; j < navigator.languages.length; j++) {
+              candidates.push(navigator.languages[j])
+            }
+          }
+          if (navigator.language) candidates.unshift(navigator.language)
+          for (var i = 0; i < candidates.length; i++) {
+            var base = String(candidates[i] || '').toLowerCase().split('-')[0]
+            var target = supported[base]
+            if (target) {
+              window.location.replace(target)
+              return
+            }
+          }
+          window.location.replace('/en/')
+        } catch (e) {
+          window.location.replace('/en/')
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p>Select a language:</p>
+      <ul>
+        <li><a href="/en/">English</a></li>
+        <li><a href="/ua/">Українська</a></li>
+        <li><a href="/pl/">Polski</a></li>
+      </ul>
+    </noscript>
+  </body>
+</html>
