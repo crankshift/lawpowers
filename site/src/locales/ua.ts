@@ -121,6 +121,9 @@ export const ua: Translation = {
     vscode_title: 'Claude Code + VS Code',
     vscode_body:
       'Claude Code запускається прямо у VS Code — вбудований термінал, дерево файлів, порівняння змін поруч, клік по шляху одразу відкриває файл. Найзручніший варіант, якщо ви щодня працюєте в редакторі коду.',
+    vscode_step1: 'Завантажте і встановіть VS Code.',
+    vscode_step2:
+      'У VS Code відкрийте Extensions, знайдіть «Claude Code» і встановіть розширення.',
     vscode_cta: 'Завантажити VS Code',
   },
   principles: {

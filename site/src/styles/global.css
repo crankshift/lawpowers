@@ -66,8 +66,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+html {
+  overflow-x: clip;
+}
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   transition:
     background 0.3s ease,
     color 0.3s ease;

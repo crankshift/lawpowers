@@ -120,6 +120,9 @@ export const pl: Translation = {
     vscode_title: 'Claude Code + VS Code',
     vscode_body:
       'Claude Code uruchamia się wewnątrz VS Code — wbudowany terminal, drzewo plików, różnice obok siebie, klik w ścieżkę od razu otwiera plik. Najwygodniejsza opcja, jeśli na co dzień pracujesz w edytorze kodu.',
+    vscode_step1: 'Pobierz i zainstaluj VS Code.',
+    vscode_step2:
+      'W VS Code otwórz Extensions, wyszukaj „Claude Code" i zainstaluj rozszerzenie.',
     vscode_cta: 'Pobierz VS Code',
   },
   principles: {
