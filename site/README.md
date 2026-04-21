@@ -23,6 +23,7 @@ pnpm dev         # http://localhost:4321
 pnpm check       # astro check (type errors + syntax)
 pnpm build       # astro check + astro build → dist/
 pnpm preview     # local preview of dist/
+pnpm build:og    # regenerate public/og.png from scripts/build-og.mjs
 ```
 
 Requires **Node ≥ 22.12.0** and **pnpm**.
@@ -34,7 +35,7 @@ pnpm exec firebase login     # one-time, per machine
 pnpm deploy                   # → https://lawpowers.web.app/
 ```
 
-`pnpm deploy` runs `astro check`, builds to `dist/`, then `firebase deploy --only hosting:lawpowers`.
+`pnpm deploy` runs `astro check`, builds to `dist/`, then `firebase deploy --only hosting:lawpowers`. `public/og.png` is committed to the repo, so a plain `pnpm deploy` always ships the current social card — you don't need to run `pnpm build:og` unless you've changed the SVG source in `scripts/build-og.mjs`.
 
 ## Project structure
 
@@ -47,7 +48,10 @@ site/
 ├── .env.example              # template for contributors
 ├── tsconfig.json             # extends astro/tsconfigs/strict
 ├── public/
-│   └── robots.txt
+│   ├── robots.txt
+│   └── og.png               # 1200×630 social card, committed; regen via `pnpm build:og`
+├── scripts/
+│   └── build-og.mjs         # SVG → PNG via sharp; source of truth for og.png
 └── src/
     ├── data.ts               # plugin constants (agents, skills, sources)
     ├── i18n/index.ts         # Lang type, HREFLANG map, getT()
@@ -56,7 +60,7 @@ site/
     │   ├── ua.ts             # UA dictionary
     │   └── pl.ts             # PL dictionary
     ├── layouts/
-    │   └── BaseLayout.astro  # <head>: meta, canonical, hreflang, og, theme bootstrap
+    │   └── BaseLayout.astro  # <head>: meta, canonical, hreflang, og/twitter, theme-color, JSON-LD, theme bootstrap
     ├── components/           # Nav, Hero, Plugins, PluginCard, Install, Principles,
     │                         #   Sources, Disclaimer, Footer, BrandMark, Flag, CopyButton
     ├── styles/
@@ -99,8 +103,11 @@ Canonical URLs, hreflang links, Open Graph URLs, and the sitemap are all driven 
 Built in:
 - `<link rel="canonical">` per locale
 - Full `hreflang` set (`en`, `uk` for Ukrainian, `pl`, `x-default`) on every page
-- Open Graph + Twitter card meta per locale (`og:locale`, `og:locale:alternate`)
-- `sitemap-index.xml` + per-URL alternate links via `@astrojs/sitemap`
+- Open Graph + Twitter card meta per locale (`og:locale`, `og:locale:alternate`, `og:site_name`)
+- Social card at `public/og.png` (1200×630), referenced from `og:image` + `twitter:image` with width / height / type / alt. Source is `scripts/build-og.mjs` (SVG authored inline, rasterized with `sharp`); regenerate with `pnpm build:og`
+- `theme-color` meta with `prefers-color-scheme` variants for mobile browser chrome
+- JSON-LD `@graph` (`WebSite` + `Organization`, localized `inLanguage`) inlined in `BaseLayout.astro`
+- `sitemap-index.xml` + per-URL alternate links via `@astrojs/sitemap`. Root `/` is filtered out of the sitemap (it's a redirect shell carrying `noindex, follow`) so only `/en/`, `/ua/`, `/pl/` appear — no competing `hreflang="en"` URLs
 - `robots.txt` → sitemap
 - `<html lang>` pulled from `HREFLANG` map
 - `trailingSlash: 'always'` in Astro + `trailingSlash: true` in Firebase — canonical URLs end in `/`, no duplicate-content risk
