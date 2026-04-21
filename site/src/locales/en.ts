@@ -120,6 +120,9 @@ export const en = {
     vscode_title: 'Claude Code + VS Code',
     vscode_body:
       'Run Claude Code inside VS Code — built-in terminal, file tree, side-by-side diffs, one-click open when Claude references a path. Easiest onboarding if you already spend your day in an editor.',
+    vscode_step1: 'Download and install VS Code.',
+    vscode_step2:
+      'In VS Code, open Extensions, search for "Claude Code", install the extension.',
     vscode_cta: 'Download VS Code',
   },
   principles: {

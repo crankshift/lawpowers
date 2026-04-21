@@ -85,6 +85,10 @@ const DEFAULT_TAB: TabKey = 'both'
           <div class="prereq-badge">{t.install.vscode_badge}</div>
           <h4>{t.install.vscode_title}</h4>
           <p>{t.install.vscode_body}</p>
+          <ol class="prereq-steps">
+            <li>{t.install.vscode_step1}</li>
+            <li>{t.install.vscode_step2}</li>
+          </ol>
           <span class="prereq-cta">
             {t.install.vscode_cta}
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
@@ -353,6 +357,39 @@ const DEFAULT_TAB: TabKey = 'both'
     border-radius: var(--rad-pill);
     padding: 3px 10px;
   }
+  .prereq-steps {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    counter-reset: prereq-step;
+  }
+  .prereq-steps li {
+    counter-increment: prereq-step;
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  .prereq-steps li::before {
+    content: counter(prereq-step);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--rule));
+    border-radius: var(--rad-pill);
+    width: 22px;
+    height: 22px;
+    display: inline-grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+  }
+
   .prereq-cta {
     display: inline-flex;
     align-items: center;
