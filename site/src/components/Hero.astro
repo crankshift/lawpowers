@@ -1,0 +1,338 @@
+---
+import { REPO_URL, UA_AGENTS, PL_AGENTS, UA_SKILLS_COUNT, PL_SKILLS_COUNT } from '../data'
+import type { Translation } from '../locales/en'
+import CopyButton from './CopyButton.astro'
+
+interface Props {
+  t: Translation
+}
+
+const { t } = Astro.props
+
+const INSTALL_LINES = [
+  '/plugin marketplace add crankshift/lawpowers',
+  '/plugin install ua@lawpowers',
+  '/plugin install pl@lawpowers',
+  '/reload-plugins',
+] as const
+
+const agentCount = UA_AGENTS.length + PL_AGENTS.length
+const skillCount = UA_SKILLS_COUNT + PL_SKILLS_COUNT
+---
+
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">{t.hero.eyebrow}</div>
+        <h1 class="hero-title">
+          {t.hero.title_a} <em>{t.hero.title_b}</em><br />
+          {t.hero.title_c}
+        </h1>
+        <p class="hero-sub">{t.hero.sub}</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#jurisdictions">{t.hero.cta_primary} →</a>
+          <a class="btn" href={REPO_URL} target="_blank" rel="noopener noreferrer">
+            {t.hero.cta_secondary} ↗
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="install-block">
+          <div class="install-block-head">
+            <span class="install-label">{t.hero.install_label}</span>
+            <span class="install-label install-label-accent">~/claude-code</span>
+          </div>
+          <div class="install-code">
+            {INSTALL_LINES.map((line) => (
+              <div class="install-code-row">
+                <span class="prompt" aria-hidden="true">›</span>
+                <span class="install-code-text">{line}</span>
+                <CopyButton
+                  text={line}
+                  labelCopy={t.hero.install_copy}
+                  labelDone={t.hero.install_done}
+                  size="sm"
+                />
+              </div>
+            ))}
+          </div>
+          <div class="install-hint">{t.hero.install_hint}</div>
+          <div class="install-getclaude">
+            <span>{t.hero.no_claude_prefix}</span>
+            <a
+              href="https://code.claude.com/docs/en/quickstart"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t.hero.get_claude_code}
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M4 2H2v8h8V8M6 2h4v4M10 2 6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value"><em>2</em></div>
+        <div class="stat-label">{t.hero.stat_plugins}</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">{agentCount}</div>
+        <div class="stat-label">{t.hero.stat_agents}</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">{skillCount}</div>
+        <div class="stat-label">{t.hero.stat_skills}</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value stat-value-mit">MIT</div>
+        <div class="stat-label">{t.hero.stat_license}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 80px 0 60px;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 600px) {
+    .hero {
+      padding: 48px 0 40px;
+    }
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  @media (max-width: 960px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(42px, 6.2vw, 86px);
+    line-height: 1.02;
+    letter-spacing: -0.022em;
+    margin: 22px 0 28px;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: clamp(16px, 1.35vw, 19px);
+    color: var(--ink-2);
+    max-width: 52ch;
+    line-height: 1.55;
+    text-wrap: pretty;
+    margin: 0;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    margin: 32px 0 0;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 600px) {
+    .hero-cta .btn {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: var(--rad-pill);
+    border: 1px solid var(--rule-strong);
+    background: transparent;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .btn:hover {
+    border-color: var(--ink);
+  }
+  .btn.primary {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .btn.primary:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  :root[data-theme='dark'] .btn.primary:hover {
+    color: var(--bg);
+  }
+
+  .install-block {
+    background: var(--bg-2);
+    border: 1px solid var(--rule);
+    border-radius: var(--rad-lg);
+    padding: 18px;
+    position: relative;
+  }
+  .install-block-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .install-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .install-label-accent {
+    color: var(--accent);
+  }
+
+  .install-code {
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    border-radius: var(--rad-md);
+    overflow: hidden;
+    padding: 4px 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  @media (max-width: 600px) {
+    .install-code {
+      font-size: 12px;
+    }
+  }
+
+  .install-code-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 36px;
+    padding: 0 12px;
+  }
+  .prompt {
+    color: var(--accent);
+    user-select: none;
+    flex-shrink: 0;
+  }
+  .install-code-text {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow-x: auto;
+    color: var(--ink);
+  }
+
+  .install-hint {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--ink-3);
+    font-family: var(--font-mono);
+  }
+
+  .install-getclaude {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--ink-2);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .install-getclaude a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--accent);
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    padding-bottom: 1px;
+    transition: border-color 0.15s;
+  }
+  .install-getclaude a:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 56px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 960px) {
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .stats .stat:nth-of-type(2) {
+      border-right: none;
+    }
+    .stats .stat:nth-of-type(1),
+    .stats .stat:nth-of-type(2) {
+      border-bottom: 1px solid var(--rule);
+    }
+  }
+
+  .stat {
+    padding: 22px 20px;
+    border-right: 1px solid var(--rule);
+  }
+  .stat:last-child {
+    border-right: none;
+  }
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 40px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  @media (max-width: 600px) {
+    .stat-value {
+      font-size: 30px;
+    }
+  }
+  .stat-value em {
+    font-style: italic;
+    color: var(--accent);
+    font-family: inherit;
+  }
+  .stat-value-mit {
+    font-size: 32px;
+    padding-top: 6px;
+  }
+  .stat-label {
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+</style>

@@ -9,6 +9,8 @@ Monorepo of jurisdiction-specific legal plugins for **Claude Code**. One marketp
 
 Plugins are independent: users install whichever jurisdiction(s) they need. Namespaces (`ua:`, `pl:`) don't collide, so both can be active at once.
 
+Alongside the plugins, the repo also hosts the public landing page under [`site/`](./site/) — a static Astro build deployed to Firebase Hosting. It is a separate sub-project (its own `package.json`, its own deploy flow, its own docs [`site/README.md`](./site/README.md) + [`site/CLAUDE.md`](./site/CLAUDE.md)) and is **not** a Claude Code plugin.
+
 User-facing install instructions live in the root [`README.md`](./README.md). This file is for contributors working on the repo itself.
 
 ## Repository layout
@@ -33,21 +35,37 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 │   └── RELEASING.md                # full release procedure
 ├── scripts/
 │   └── release.sh                  # bump + PR + tag + GitHub Release helper
-└── plugins/                        # all jurisdiction plugins live here
-    ├── ua/                         # plugin "ua" — Ukrainian law
-    │   ├── README.md               # user-facing, Ukrainian
-    │   ├── CLAUDE.md               # contributor context for the UA plugin
-    │   ├── CHANGELOG.md            # plugin-level change log, Ukrainian
-    │   ├── .claude-plugin/plugin.json  # name: "ua"
-    │   ├── agents/
-    │   └── skills/
-    └── pl/                         # plugin "pl" — Polish law
-        ├── README.md               # user-facing, Polish
-        ├── CLAUDE.md               # contributor context for the PL plugin
-        ├── CHANGELOG.md            # plugin-level change log, Polish
-        ├── .claude-plugin/plugin.json  # name: "pl"
-        ├── agents/
-        └── skills/
+├── plugins/                        # all jurisdiction plugins live here
+│   ├── ua/                         # plugin "ua" — Ukrainian law
+│   │   ├── README.md               # user-facing, Ukrainian
+│   │   ├── CLAUDE.md               # contributor context for the UA plugin
+│   │   ├── CHANGELOG.md            # plugin-level change log, Ukrainian
+│   │   ├── .claude-plugin/plugin.json  # name: "ua"
+│   │   ├── agents/
+│   │   └── skills/
+│   └── pl/                         # plugin "pl" — Polish law
+│       ├── README.md               # user-facing, Polish
+│       ├── CLAUDE.md               # contributor context for the PL plugin
+│       ├── CHANGELOG.md            # plugin-level change log, Polish
+│       ├── .claude-plugin/plugin.json  # name: "pl"
+│       ├── agents/
+│       └── skills/
+└── site/                           # public landing page (static Astro site, not a plugin)
+    ├── README.md                   # site quick-start, deploy flow
+    ├── CLAUDE.md                   # site contributor context
+    ├── astro.config.mjs            # Astro + i18n + sitemap config
+    ├── firebase.json               # Firebase Hosting config (multi-site "lawpowers")
+    ├── package.json                # separate deps: astro, @astrojs/sitemap, firebase-tools
+    └── src/
+        ├── data.ts                 # must mirror plugin counts / agent lists
+        ├── i18n/index.ts
+        ├── locales/{en,ua,pl}.ts
+        ├── layouts/BaseLayout.astro
+        ├── components/
+        ├── styles/global.css
+        └── pages/
+            ├── index.astro         # root: browser-lang redirect
+            └── [locale]/index.astro # /en/, /ua/, /pl/
 ```
 
 ## Issue and PR templates
@@ -92,6 +110,18 @@ Example: adding a plugin for EU law.
 5. Bump the marketplace version in `.claude-plugin/marketplace.json:metadata.version`.
 6. Add a CHANGELOG entry describing the new plugin.
 7. Open a PR, merge, then tag the release (see [Release flow](#release-flow)).
+
+## Landing site (`site/`)
+
+The repo ships a static marketing landing alongside the plugins. It lives in [`site/`](./site/), is deployed to Firebase Hosting at `https://lawpowers.web.app/`, and is maintained independently of plugin releases.
+
+- **Stack:** Astro 6 + plain CSS/JS, no runtime framework. Static output (`output: 'static'`) so crawlers index real HTML.
+- **Languages:** EN, UA, PL — path-based routing (`/en/`, `/ua/`, `/pl/`). Dictionaries in `site/src/locales/`, structurally type-checked against the EN shape.
+- **Deploy:** `cd site && pnpm deploy` (requires `pnpm exec firebase login` once per machine).
+- **Release coupling:** **none.** The site isn't versioned with the marketplace — push it whenever a user-facing change lands. There's no `site/CHANGELOG.md` and no `site/` entry in `.version-bump.json`. The site *does* reflect plugin content (agent counts, skill counts, catalog labels), so after a plugin bump update `site/src/data.ts` and the `agents_ua` / `agents_pl` maps in `site/src/locales/*.ts`, then redeploy.
+- **Editorial rules the site inherits:** same disclaimer discipline as the plugins (not legal advice, human review mandatory), same jurisdiction separation (no UA/PL mixing in one component), same no-fabrication rule (if it's not in `plugins/`, it's not on the landing).
+
+Full contributor rules in [`site/CLAUDE.md`](./site/CLAUDE.md).
 
 ## Release flow
 

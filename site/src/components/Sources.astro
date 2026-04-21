@@ -1,0 +1,108 @@
+---
+import { UA_SOURCES, PL_SOURCES } from '../data'
+import type { Translation } from '../locales/en'
+
+interface Props {
+  t: Translation
+}
+
+const { t } = Astro.props
+---
+
+<section class="section" id="sources">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">{t.sources.eyebrow}</div>
+        <h2>{t.sources.title}</h2>
+      </div>
+      <p>{t.sources.sub}</p>
+    </div>
+    <div class="grid">
+      <div class="col">
+        <h3><em>UA</em> · {t.sources.ua_heading}</h3>
+        <div class="col-sub">zakon.rada · ЄДРСР · ВС · КСУ</div>
+        <ul>
+          {UA_SOURCES.map((s) => (
+            <li>
+              <span class="s-name">{s.name}</span>
+              <span class="s-url">{s.url}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="col">
+        <h3><em>PL</em> · {t.sources.pl_heading}</h3>
+        <div class="col-sub">ISAP · Orzeczenia · SN · NSA · TK</div>
+        <ul>
+          {PL_SOURCES.map((s) => (
+            <li>
+              <span class="s-name">{s.name}</span>
+              <span class="s-url">{s.url}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  @media (max-width: 960px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+  .col h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 28px;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .col h3 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+  .col-sub {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 16px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--rule);
+  }
+  li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+  }
+  .s-name {
+    color: var(--ink);
+  }
+  .s-url {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+  }
+</style>

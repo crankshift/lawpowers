@@ -1,0 +1,182 @@
+import type { UaAgent, PlAgent } from '../data'
+
+export const en = {
+  locale: 'EN',
+  seo: {
+    title: 'lawpowers — Jurisdiction-aware legal drafting for Claude Code',
+    description:
+      'Open-source marketplace of jurisdiction-specific legal plugins for Claude Code. Ukraine (ua) and Poland (pl) — subagents and skills that quote real statute text and cite real case law.',
+  },
+  nav: {
+    jurisdictions: 'Jurisdictions',
+    install: 'Install',
+    principles: 'Principles',
+    sources: 'Sources',
+    repo: 'GitHub',
+  },
+  hero: {
+    eyebrow: 'Open-source · MIT · For Claude Code',
+    title_a: 'Jurisdiction-aware',
+    title_b: 'legal drafting,',
+    title_c: 'inside Claude Code.',
+    sub: 'A marketplace of subagents and skills tuned to one legal system at a time. Quote statutes verbatim, cite real case law, draft in the working language of the court.',
+    install_label: 'Quick install (UA + PL)',
+    install_hint: 'Paste all four lines into a running Claude Code session',
+    install_done: 'Copied',
+    install_copy: 'Copy',
+    no_claude_prefix: "Don't have Claude Code yet?",
+    get_claude_code: 'Install it here',
+    cta_primary: 'Browse jurisdictions',
+    cta_secondary: 'View on GitHub',
+    stat_plugins: 'Plugins',
+    stat_agents: 'Subagents',
+    stat_skills: 'Skills',
+    stat_license: 'License',
+  },
+  plugins: {
+    section_eyebrow: 'Plugins',
+    section_title: 'Pick the jurisdiction you practice in.',
+    section_sub:
+      "Namespaces don't collide — run one, run both. Each plugin ships its own agents, skills, templates, and working language.",
+    install_in: 'Install',
+    docs: 'Read the docs',
+    agents: 'Subagents',
+    skills: 'Skills',
+    lang: 'Working language',
+    commands: 'Command prefix',
+    ua: {
+      name: 'Ukraine',
+      tag: 'Ukrainian law · Civil · Commercial · Administrative · Military',
+      blurb:
+        'End-to-end drafting across civil, commercial, and administrative procedure — claims, responses, appeals, motions, contracts, debt collection, and enforcement — with international arbitration (ICC/LCIA/SCC/SIAC/HKIAC/VIAC, UNCITRAL) and a parallel track for service members and their families: chain-of-command reports, VLK appeals, mobilization and reservation, combat pay and family benefits, СЗЧ defense. Backed by statute fetching from zakon.rada, ЄДРСР practice search, court-fee and limitations calculators, and martial-law overrides.',
+      lang_value: 'Ukrainian',
+    },
+    pl: {
+      name: 'Poland',
+      tag: 'Polish law · Civil · Commercial · Consumer · Criminal · Family · Labor · RODO',
+      blurb:
+        'Drafting against current KPC and KC with reforms tracked (przedawnienie 2018, KPC 2019/2023) — pozwy, odpowiedzi, apelacje, wnioski — plus consumer disputes (frankowicze, UOKiK), criminal complaints, family (rozwód, alimenty), inheritance, labor, RODO compliance audits, and international arbitration (ICC/LCIA/SCC/SIAC, UNCITRAL). Backed by ISAP statute fetching, Portal Orzeczeń and KRS search, court-fee and limitations calculators.',
+      lang_value: 'Polish',
+    },
+  },
+  agents_ua: {
+    'claim-drafter': 'Claim drafter',
+    'response-drafter': 'Response drafter',
+    'appeal-drafter': 'Appeal drafter',
+    'motion-drafter': 'Motion drafter',
+    'legal-memo': 'Legal memo',
+    'legislation-analyst': 'Legislation analyst',
+    'request-drafter': 'Advocate requests',
+    'contract-drafter': 'Contract drafter',
+    'debt-collector': 'Debt collection',
+    'enforcement-agent': 'Enforcement',
+    'arbitration-agent': 'Arbitration',
+    'raport-drafter': 'Military reports',
+    'vlk-appeal': 'VLK appeals',
+    'military-social-benefits': 'Military benefits',
+    'mobilization-defense': 'Mobilization',
+    'szch-defense': 'СЗЧ defense',
+  } satisfies Record<UaAgent, string>,
+  agents_pl: {
+    'claim-drafter': 'Claim drafter',
+    'response-drafter': 'Response drafter',
+    'appeal-drafter': 'Appeal drafter',
+    'motion-drafter': 'Motion drafter',
+    'legal-memo': 'Legal memo',
+    'legislation-analyst': 'Legislation analyst',
+    'request-drafter': 'Request drafter',
+    'contract-drafter': 'Contract drafter',
+    'debt-collector': 'Debt collection',
+    'enforcement-agent': 'Enforcement',
+    'arbitration-agent': 'Arbitration',
+    'consumer-drafter': 'Consumer claims',
+    'criminal-complaint-drafter': 'Criminal complaints',
+    'family-drafter': 'Family law',
+    'inheritance-drafter': 'Inheritance',
+    'labor-drafter': 'Labor law',
+    'rodo-compliance': 'RODO compliance',
+  } satisfies Record<PlAgent, string>,
+  install: {
+    eyebrow: 'Install',
+    title: 'Two steps. Paste and go.',
+    sub: 'Add the marketplace once, then install the plugins you want. Namespaces stay isolated.',
+    step1: 'Step 1 — add the marketplace',
+    step2: 'Step 2 — install plugins',
+    pick: 'Pick a jurisdiction',
+    prereq_heading: 'Before you install',
+    prereq_sub:
+      'lawpowers runs inside Claude. Pick how you want to run Claude itself first.',
+    verify_line:
+      'After install, /plugin lists your connected marketplaces and /agents shows the subagents with their prefix.',
+    cli_title: 'Claude Code (CLI)',
+    cli_body:
+      'Claude agent in the terminal — the commands below are written for it. Free to install; requires an Anthropic subscription or API key.',
+    cli_cta: 'Install Claude Code',
+    desktop_title: 'Claude Desktop App',
+    desktop_body:
+      'Mac / Windows app with a chat UI. Add the marketplace via Settings → Extensions → Plugins → Personal → Add marketplace → paste crankshift/lawpowers. No terminal required.',
+    desktop_cta: 'Download Claude',
+    vscode_badge: 'Recommended for developers',
+    vscode_title: 'Claude Code + VS Code',
+    vscode_body:
+      'Run Claude Code inside VS Code — built-in terminal, file tree, side-by-side diffs, one-click open when Claude references a path. Easiest onboarding if you already spend your day in an editor.',
+    vscode_cta: 'Download VS Code',
+  },
+  principles: {
+    eyebrow: 'How it works',
+    title: 'Five rules every plugin obeys.',
+    items: [
+      {
+        k: 'Verbatim citations',
+        v: 'Statutes quoted in the exact wording in force on the day referenced, with a direct primary-source link.',
+      },
+      {
+        k: 'Mandatory sources',
+        v: 'Every legal position carries article + source + verification date. No dangling assertions.',
+      },
+      {
+        k: 'No fabricated case law',
+        v: 'Case numbers, dates, quotations — only from ЄДРСР, Portal Orzeczeń, SN, NSA, TK. Never invented.',
+      },
+      {
+        k: 'Placeholder personal data',
+        v: 'Templates use [ПІБ] / [imię i nazwisko], [РНОКПП] / [PESEL] — never real client data.',
+      },
+      {
+        k: 'Drafts, not advice',
+        v: 'Output is a working draft for a qualified human to review, adapt, and sign. Human owns the final copy.',
+      },
+    ],
+  },
+  sources: {
+    eyebrow: 'Primary sources',
+    title: 'Where citations come from.',
+    sub: 'Agents pull and cite from the primary registry of each jurisdiction — not aggregators, not training cache.',
+    ua_heading: 'Ukraine',
+    pl_heading: 'Poland',
+  },
+  disclaimer: {
+    tag: 'Read this before installing',
+    title: 'This is a drafting aid. It is not legal advice.',
+    body: 'lawpowers does not establish an attorney–client relationship. All output is AI-generated against statute text and must be reviewed and verified by a qualified human before being signed, filed, or acted on. Neither Anthropic, nor the authors of this repository, warrant the accuracy, completeness, or timeliness of any output. Use at your own risk.',
+  },
+  footer: {
+    tagline: 'Jurisdiction-specific legal plugins for Claude Code.',
+    links_title: 'Links',
+    repo: 'Repository',
+    releases: 'Releases',
+    changelog: 'Changelog',
+    license: 'MIT License',
+    plugins_title: 'Plugins',
+    legal_title: 'Legal',
+    rights: 'MIT licensed. Use at your own risk.',
+  },
+  a11y: {
+    switch_lang: 'Switch language',
+    toggle_theme_to_light: 'Switch to light theme',
+    toggle_theme_to_dark: 'Switch to dark theme',
+    brand_home: 'lawpowers — home',
+  },
+}
+
+export type Translation = typeof en

@@ -1,0 +1,191 @@
+---
+import BrandMark from './BrandMark.astro'
+import { REPO_URL } from '../data'
+import type { Translation } from '../locales/en'
+
+interface Props {
+  t: Translation
+}
+
+const { t } = Astro.props
+const YEAR = new Date().getFullYear()
+
+const extIcon = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M4 2H2v8h8V8M6 2h4v4M10 2 6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <BrandMark />
+          <span>law<em>·</em>powers</span>
+        </div>
+        <p class="tagline">{t.footer.tagline}</p>
+      </div>
+
+      <div class="foot-col">
+        <h5>{t.footer.links_title}</h5>
+        <ul>
+          <li>
+            <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
+              {t.footer.repo}
+              <Fragment set:html={extIcon} />
+            </a>
+          </li>
+          <li>
+            <a href={`${REPO_URL}/releases`} target="_blank" rel="noopener noreferrer">
+              {t.footer.releases}
+              <Fragment set:html={extIcon} />
+            </a>
+          </li>
+          <li>
+            <a href={`${REPO_URL}/blob/main/CHANGELOG.md`} target="_blank" rel="noopener noreferrer">
+              {t.footer.changelog}
+              <Fragment set:html={extIcon} />
+            </a>
+          </li>
+          <li>
+            <a href={`${REPO_URL}/blob/main/LICENSE`} target="_blank" rel="noopener noreferrer">
+              {t.footer.license}
+              <Fragment set:html={extIcon} />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h5>{t.footer.plugins_title}</h5>
+        <ul>
+          <li>
+            <a href={`${REPO_URL}/tree/main/plugins/ua`} target="_blank" rel="noopener noreferrer">
+              ua — {t.plugins.ua.name}
+            </a>
+          </li>
+          <li>
+            <a href={`${REPO_URL}/tree/main/plugins/pl`} target="_blank" rel="noopener noreferrer">
+              pl — {t.plugins.pl.name}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h5>{t.footer.legal_title}</h5>
+        <ul>
+          <li><a href="#disclaimer">{t.disclaimer.tag}</a></li>
+          <li>
+            <a href={`${REPO_URL}/issues`} target="_blank" rel="noopener noreferrer">
+              Issues
+              <Fragment set:html={extIcon} />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© {YEAR} · {t.footer.rights}</span>
+      <span>crankshift/lawpowers</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 100px 0 80px;
+    background: var(--bg);
+  }
+  @media (max-width: 600px) {
+    .footer {
+      padding: 72px 0 56px;
+    }
+  }
+
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 960px) {
+    .foot-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 600px) {
+    .foot-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .foot-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+  .foot-brand em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .tagline {
+    font-family: var(--font-display);
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--ink-2);
+    max-width: 30ch;
+    text-wrap: balance;
+    margin: 4px 0 0;
+  }
+
+  .foot-col h5 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 14px;
+  }
+  .foot-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .foot-col li {
+    padding: 5px 0;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .foot-col a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .foot-col a:hover {
+    color: var(--accent);
+  }
+
+  .foot-bottom {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  @media (max-width: 600px) {
+    .foot-bottom {
+      margin-top: 56px;
+    }
+  }
+</style>

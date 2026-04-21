@@ -1,0 +1,234 @@
+---
+import BrandMark from './BrandMark.astro'
+import { LANGS, type Lang } from '../i18n'
+import type { Translation } from '../locales/en'
+import { REPO_URL } from '../data'
+
+interface Props {
+  lang: Lang
+  t: Translation
+}
+
+const { lang, t } = Astro.props
+---
+
+<nav class="nav">
+  <div class="container nav-row">
+    <a href={`/${lang}/`} class="brand" aria-label={t.a11y.brand_home}>
+      <BrandMark />
+      <span class="brand-name">law<em>·</em>powers</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#jurisdictions">{t.nav.jurisdictions}</a>
+      <a href="#install">{t.nav.install}</a>
+      <a href="#principles">{t.nav.principles}</a>
+      <a href="#sources">{t.nav.sources}</a>
+      <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
+        {t.nav.repo}
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M4 2H2v8h8V8M6 2h4v4M10 2 6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+
+    <div class="nav-tools">
+      <div class="lang-group" role="tablist" aria-label={t.a11y.switch_lang}>
+        {LANGS.map((code) => {
+          const isOn = code === lang
+          return (
+            <a
+              href={`/${code}/`}
+              class:list={['pill', { on: isOn }]}
+              role="tab"
+              aria-selected={isOn ? 'true' : 'false'}
+            >
+              {code.toUpperCase()}
+            </a>
+          )
+        })}
+      </div>
+      <button
+        type="button"
+        class="theme-toggle"
+        data-label-light={t.a11y.toggle_theme_to_light}
+        data-label-dark={t.a11y.toggle_theme_to_dark}
+        aria-label={t.a11y.toggle_theme_to_dark}
+      >
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.4"></circle>
+          <line x1="8" y1="2.5" x2="8" y2="1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></line>
+          <line x1="8" y1="15" x2="8" y2="13.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></line>
+          <line x1="2.5" y1="8" x2="1" y2="8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></line>
+          <line x1="15" y1="8" x2="13.5" y2="8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></line>
+          <line x1="3.76" y1="3.76" x2="2.7" y2="2.7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></line>
+          <line x1="13.3" y1="13.3" x2="12.24" y2="12.24" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></line>
+          <line x1="12.24" y1="3.76" x2="13.3" y2="2.7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></line>
+          <line x1="2.7" y1="13.3" x2="3.76" y2="12.24" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></line>
+        </svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M13 9.5A5.5 5.5 0 016.5 3a5.5 5.5 0 106.5 6.5z" fill="currentColor"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const STORAGE_KEY = 'lp-theme'
+
+  function apply(theme: 'light' | 'dark') {
+    document.documentElement.setAttribute('data-theme', theme)
+    const btn = document.querySelector<HTMLButtonElement>('.theme-toggle')
+    if (!btn) return
+    const next = theme === 'dark' ? 'light' : 'dark'
+    const label =
+      next === 'light' ? btn.dataset.labelLight : btn.dataset.labelDark
+    if (label) btn.setAttribute('aria-label', label)
+  }
+
+  function initialTheme(): 'light' | 'dark' {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY)
+      if (saved === 'light' || saved === 'dark') return saved
+    } catch {
+      /* no-op */
+    }
+    return (document.documentElement.getAttribute('data-theme') as
+      | 'light'
+      | 'dark'
+      | null) ?? 'light'
+  }
+
+  apply(initialTheme())
+
+  document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') ?? 'light'
+    const next: 'light' | 'dark' = current === 'dark' ? 'light' : 'dark'
+    apply(next)
+    try {
+      localStorage.setItem(STORAGE_KEY, next)
+    } catch {
+      /* no-op */
+    }
+  })
+</script>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: 16px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .brand-name {
+    font-weight: 400;
+  }
+  .brand-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  @media (max-width: 600px) {
+    .brand-name {
+      display: none;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-links a:hover {
+    color: var(--ink);
+  }
+  @media (max-width: 960px) {
+    .nav-links {
+      display: none;
+    }
+  }
+
+  .nav-tools {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .lang-group {
+    display: flex;
+    gap: 2px;
+    border: 1px solid var(--rule);
+    border-radius: var(--rad-pill);
+    padding: 2px;
+  }
+  .pill {
+    height: 26px;
+    padding: 0 10px;
+    border-radius: var(--rad-pill);
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    transition: all 0.15s;
+  }
+  .pill:hover {
+    color: var(--ink);
+  }
+  .pill.on {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--rad-pill);
+    border: 1px solid var(--rule);
+    background: transparent;
+    display: grid;
+    place-items: center;
+    color: var(--ink-2);
+    transition: all 0.15s;
+  }
+  .theme-toggle:hover {
+    color: var(--ink);
+    border-color: var(--rule-strong);
+  }
+  .theme-toggle .icon-sun {
+    display: none;
+  }
+  :root[data-theme='dark'] .theme-toggle .icon-sun {
+    display: block;
+  }
+  :root[data-theme='dark'] .theme-toggle .icon-moon {
+    display: none;
+  }
+</style>
