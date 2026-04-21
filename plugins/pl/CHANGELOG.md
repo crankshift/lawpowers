@@ -2,7 +2,7 @@
 
 Historia zmian plagina `pl` (polskie prawo) w ramach monorepo [`lawpowers`](../../CHANGELOG.md).
 
-Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Wersje plagina są wyrównane z tagami marketplace'u `vX.Y.Z`.
+Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Od wydań po v0.6.0 plagin jest tagowany osobno jako `pl/vX.Y.Z` (gdzie `X.Y.Z` odpowiada polu `version` w `plugin.json`). Wpisy historyczne poniżej (do 0.2.0 włącznie) były wydawane w ramach wspólnych tagów marketplace'u `vX.Y.Z` i zachowują linki do nich.
 
 ## [0.2.0] — 2026-04-21
 
