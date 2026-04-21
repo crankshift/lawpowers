@@ -14,6 +14,49 @@ For the release procedure see [`docs/RELEASING.md`](./docs/RELEASING.md).
 
 Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning — [SemVer](https://semver.org/spec/v2.0.0.html). Marketplace and individual plugin versions are tracked independently.
 
+## [0.6.0] — 2026-04-21
+
+### Added — plugin `pl` v0.2.0 (substantial extension)
+
+Plugin `pl` (Polish law) extended from 10 to 17 agents and from 6 to 14 skills, mirroring the `ua` plugin's scope where universal (arbitration, NYC) and adding Poland-specific practice areas most demanded by Polish lawyers.
+
+**New agents (7):**
+
+- `pl:arbitration-agent` — international and domestic arbitration (SAKIG, Lewiatan, ICC, LCIA, SCC, SIAC, HKIAC, VIAC, UNCITRAL ad hoc, ICSID), drafting Request for Arbitration, clause audits, recognition / setting aside of arbitral awards under art. 1205–1217 KPC + NYC 1958. Accounts for intra-EU BIT/ECT *Achmea* / *Komstroy* / *PL Holdings* line.
+- `pl:family-drafter` — divorce, separation, alimony (KRO art. 133 / 60), parental authority, contacts, paternity establishment / denial, division of marital property; security for alimony under art. 754¹ KPC.
+- `pl:labor-drafter` — employment disputes: reinstatement, damages for unlawful termination, art. 52 KP disciplinary dismissal, mobbing (art. 94³ KP), discrimination (art. 18³ᵃ KP), recognition of employment relationship (art. 22 § 1¹ KP — hidden employment).
+- `pl:inheritance-drafter` — KC Book IV: statement of inheritance, partition, reserved share (zachowek), wills, acceptance / rejection of inheritance within 6 months (art. 1015 KC), unworthiness of inheritance.
+- `pl:criminal-complaint-drafter` — victim-side criminal proceedings: report of crime (art. 304 KPK), private indictment (art. 487 KPK), subsidiary indictment (art. 55 KPK), complaints against discontinuation (art. 306 KPK), motion for damages (art. 46 KK).
+- `pl:consumer-drafter` — consumer disputes: abusive clauses (art. 385¹ KC), CHF mortgage cases (frankowicze), UOKiK / Financial Ombudsman complaints, 14-day withdrawal from distance contracts.
+- `pl:rodo-compliance` — full GDPR/UODO compliance program: privacy policies, processing agreements (art. 28 GDPR), DPIA (art. 35), breach notifications (art. 33/34), rights requests (art. 15–22), PUODO complaints, third-country transfers after *Schrems II*.
+
+**New skills (8):**
+
+- `pl:determining-wps` — value of the subject of dispute under KPC art. 19–26, impact on jurisdiction and court fee.
+- `pl:searching-krs` — KRS, CEIDG, VAT white list, debt registries, MSiG — identifying legal entities and verifying representation.
+- `pl:calculating-odsetki` — Polish statutory interest (art. 359, 481 KC) vs. B2B commercial transactions (ustawa 08.03.2013) vs. maximum rates; 40/70/100 EUR flat recovery fee.
+- `pl:calculating-alimenty` — alimony amount under art. 135 KRO (needs vs. capacity), interim security (art. 754¹ KPC), Fundusz Alimentacyjny, art. 209 KK.
+- `pl:fetching-arbitration-rules` — URL table with current versions for SAKIG, Lewiatan, ICC, LCIA, SCC, SIAC, HKIAC, VIAC, UNCITRAL, ICSID.
+- `pl:applying-new-york-convention` — NYC 1958 mapped to art. 1215 § 2 KPC; public policy narrow interpretation per SN case law.
+- `pl:applying-frankowicze-case-law` — full CHF case law map: TSUE C-260/18 *Dziubak*, C-520/21 *Bank M.*, C-287/22 *Getin*, C-140/22 *mBank*, C-776/19 *BNP Paribas*; SN III CZP 6/21 (two-kondykcja theory), III CZP 11/21.
+- `pl:applying-rodo` — quick mapping of GDPR articles to controller obligations, legal basis selection (art. 6/9), information clauses (art. 13/14), processing agreements (art. 28), DPIA (art. 35), breach handling, third-country transfers.
+
+See [`pl/CHANGELOG.md`](./plugins/pl/CHANGELOG.md) for the full catalog.
+
+### Bumped
+
+- Marketplace `metadata.version`: `0.5.0` → `0.6.0`.
+- Plugin `pl`: `0.1.0` → `0.2.0`. Plugin `ua` stays at `0.4.0` (unchanged).
+
+### Migration
+
+Non-breaking. Existing agents and skills unchanged; new ones available after update:
+
+```
+/plugin marketplace update lawpowers
+/reload-plugins
+```
+
 ## [0.5.0] — 2026-04-20
 
 ### Changed — BREAKING (marketplace layout)
@@ -163,6 +206,7 @@ Military block for service members in ЗСУ — 5 new agents and 4 new skills. 
 
 Repo converted to an installable Claude Code plugin with `plugin.json` and `marketplace.json`. Plugin-level details in [`ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) under 0.1.0.
 
+[0.6.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.6.0
 [0.5.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.5.0
 [0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.2
 [0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.1

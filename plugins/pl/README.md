@@ -45,6 +45,8 @@ Wszystkie komendy wywoływane z prefiksem `/pl:…`.
 
 ### Subagenci (`agents/`)
 
+**Postępowania sądowe — ogólne:**
+
 | Wywołanie | Przeznaczenie |
 |---|---|
 | `pl:claim-drafter` | Pozwy (cywilne / gospodarcze / administracyjne), powództwa wzajemne, modyfikacje, opłata sądowa |
@@ -55,19 +57,71 @@ Wszystkie komendy wywoływane z prefiksem `/pl:…`.
 | `pl:legal-memo` | Opinie prawne, memoranda, ocena perspektyw sporu |
 | `pl:request-drafter` | Wnioski o udostępnienie informacji publicznej (UDIP), pisma adwokata / radcy prawnego, KPA |
 | `pl:contract-drafter` | Sporządzanie i analiza umów cywilnoprawnych i gospodarczych, audyt ryzyk, RODO |
+
+**Windykacja i egzekucja:**
+
+| Wywołanie | Przeznaczenie |
+|---|---|
 | `pl:debt-collector` | Windykacja: wezwanie → pozew (nakazowe / upominawcze / EPU) → egzekucja; odsetki (art. 481 KC, PNOTH) |
 | `pl:enforcement-agent` | Postępowanie egzekucyjne: wnioski do komornika, skargi na czynności (art. 767 KPC), klauzula wykonalności |
 
+**Arbitraż:**
+
+| Wywołanie | Przeznaczenie |
+|---|---|
+| `pl:arbitration-agent` | Arbitraż międzynarodowy i krajowy (SAKIG, Lewiatan, ICC, LCIA, SCC, SIAC, HKIAC, VIAC, UNCITRAL ad hoc, ICSID), Request for Arbitration, klauzule arbitrażowe, uznanie / uchylenie wyroku (art. 1205–1217 KPC + NYC 1958) |
+
+**Specjalistyczne obszary:**
+
+| Wywołanie | Przeznaczenie |
+|---|---|
+| `pl:family-drafter` | Sprawy rodzinne: rozwód, separacja, alimenty, władza rodzicielska, kontakty, ustalenie / zaprzeczenie ojcostwa, dział majątku wspólnego (KRO + KPC) |
+| `pl:labor-drafter` | Sprawy pracownicze: pozwy o przywrócenie / odszkodowanie, wypowiedzenie umowy, art. 52 KP, mobbing, dyskryminacja, ustalenie istnienia stosunku pracy |
+| `pl:inheritance-drafter` | Sprawy spadkowe: stwierdzenie nabycia spadku, dział spadku, zachowek, testamenty, odrzucenie spadku (KC Ks. IV + KPC Ks. IV) |
+| `pl:criminal-complaint-drafter` | Zawiadomienie o popełnieniu przestępstwa, prywatny akt oskarżenia, subsydiarny akt oskarżenia, zażalenia na postanowienia o umorzeniu (KPK) |
+| `pl:consumer-drafter` | Sprawy konsumenckie: reklamacje, odstąpienie, klauzule abuzywne, kredyty frankowe (CHF), skargi do UOKiK i Rzecznika Finansowego |
+| `pl:rodo-compliance` | Ochrona danych osobowych: polityki, klauzule informacyjne, umowy powierzenia, DPIA, zgłoszenia naruszeń, skargi do PUODO (RODO + UODO) |
+
 ### Skille (`skills/`)
+
+**Narzędzia bazowe:**
 
 | Wywołanie | Kiedy stosować |
 |---|---|
 | `pl:fetching-isap-sejm` | Pobieranie aktów z ISAP / Dziennika Ustaw, brzmienia historyczne, ID kluczowych kodeksów |
 | `pl:searching-orzeczenia` | Wyszukiwanie orzecznictwa (Portal Orzeczeń SP, SN, NSA, TK), struktura sygnatury akt |
-| `pl:calculating-oplata-sadowa` | Obliczanie opłat sądowych wg UKSC (skala po reformie 2019), zwolnienia |
 | `pl:citing-polish-law` | Format cytowania aktów prawnych, orzeczeń SN/TK/TSUE/ETPCz, skróty kodeksów |
 | `pl:determining-pl-jurisdiction` | Właściwość sądu (rzeczowa, miejscowa, funkcjonalna), cywilna vs gospodarcza vs administracyjna |
+| `pl:determining-wps` | Wartość przedmiotu sporu (art. 19–26 KPC), sumowanie żądań, wpływ na właściwość i opłatę |
+| `pl:searching-krs` | KRS, CEIDG, biała lista VAT, KRD / BIG, MSiG — identyfikacja osób prawnych i wierzytelności |
+
+**Przedawnienie i odsetki:**
+
+| Wywołanie | Kiedy stosować |
+|---|---|
 | `pl:checking-przedawnienie` | Terminy przedawnienia (art. 117–125 KC), reforma 2018, ex officio dla konsumentów |
+| `pl:calculating-odsetki` | Odsetki ustawowe (art. 359 KC), za opóźnienie (art. 481 KC), w transakcjach handlowych (ustawa 2013), rekompensata 40/70/100 euro |
+
+**Opłaty i koszty:**
+
+| Wywołanie | Kiedy stosować |
+|---|---|
+| `pl:calculating-oplata-sadowa` | Obliczanie opłat sądowych wg UKSC (skala po reformie 2019), zwolnienia |
+| `pl:calculating-alimenty` | Wysokość alimentów (art. 135 KRO), usprawiedliwione potrzeby vs. możliwości zobowiązanego, zabezpieczenie (art. 754¹ KPC), Fundusz Alimentacyjny |
+
+**Arbitraż i sprawy międzynarodowe:**
+
+| Wywołanie | Kiedy stosować |
+|---|---|
+| `pl:fetching-arbitration-rules` | Aktualne regulaminy sądów arbitrażowych (SAKIG, Lewiatan, ICC, LCIA, SCC, SIAC, HKIAC, VIAC, UNCITRAL, ICSID); brzmienia wg daty arbitrażu |
+| `pl:applying-new-york-convention` | Uznanie / stwierdzenie wykonalności zagranicznego wyroku arbitrażowego w Polsce; mapowanie art. V NYC na art. 1215 § 2 KPC; klauzula porządku publicznego |
+
+**Sprawy konsumenckie i RODO:**
+
+| Wywołanie | Kiedy stosować |
+|---|---|
+| `pl:applying-frankowicze-case-law` | Kredyty CHF: TSUE C-260/18 Dziubak, C-520/21 Bank M., C-287/22 Getin, C-140/22 mBank; uchwały SN III CZP 6/21, III CZP 11/21; teoria dwóch kondykcji, zabezpieczenie powództwa |
+| `pl:applying-rodo` | RODO 2016/679 + UODO 10.05.2018: podstawy prawne art. 6/9, obowiązki informacyjne art. 13/14, umowa powierzenia art. 28, DPIA art. 35, naruszenia art. 33/34, transfery po *Schrems II* |
 
 ## Zasady pracy
 

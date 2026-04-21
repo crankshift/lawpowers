@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Lawpowers — колекція юридичних плагінів для Claude Code. Зараз: ua (Україна) і pl (Польща).",
-    "version": "0.5.0"
+    "version": "0.6.0"
   },
   "plugins": [
     {
@@ -44,8 +44,8 @@
     {
       "name": "pl",
       "source": "./plugins/pl",
-      "description": "Lawpowers Poland — wyspecjalizowani subagenci i skille do pracy z polskim ustawodawstwem oraz dokumentami prawniczymi (ISAP, orzeczenia, KC/KPC/KK). Komendy otrzymują prefiks /pl:…",
-      "version": "0.1.0",
+      "description": "Lawpowers Poland — wyspecjalizowani subagenci i skille do pracy z polskim ustawodawstwem oraz dokumentami prawniczymi (ISAP, orzeczenia, KC/KPC/KRO/KP/KK/KSH, arbitraż, frankowicze, RODO). Komendy otrzymują prefiks /pl:…",
+      "version": "0.2.0",
       "author": {
         "name": "crankshift"
       },
@@ -56,6 +56,12 @@
         "legal",
         "law",
         "litigation",
+        "arbitration",
+        "frankowicze",
+        "family-law",
+        "labor-law",
+        "rodo",
+        "gdpr",
         "isap",
         "sejm"
       ],
@@ -65,7 +71,11 @@
         "law",
         "lawpowers",
         "isap",
-        "orzeczenia"
+        "orzeczenia",
+        "arbitration",
+        "family",
+        "consumer",
+        "gdpr"
       ]
     }
   ]
