@@ -66,7 +66,7 @@ Edit the CHANGELOG of the plugin you're releasing:
 |---|---|---|
 | [`plugins/ua/CHANGELOG.md`](../plugins/ua/CHANGELOG.md) | Ukrainian | Every `ua` release. |
 | [`plugins/pl/CHANGELOG.md`](../plugins/pl/CHANGELOG.md) | Polish | Every `pl` release. |
-| [root `CHANGELOG.md`](../CHANGELOG.md) | English | **Only** for cross-cutting monorepo changes (tooling, structural reshuffle touching both plugins). Ordinary plugin releases do not touch this file. |
+| [root `CHANGELOG.md`](../CHANGELOG.md) | English | **Only** for cross-cutting monorepo changes (tooling, structural reshuffle touching both plugins). Add a new dated `### YYYY-MM-DD — …` entry to the monorepo-level log — the root file has no versioned sections anymore. Ordinary plugin releases do not touch this file. |
 
 Every changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Insert a new section at the top (right below the heading) and add a matching link reference at the bottom — pointing to the **per-plugin tag URL**.
 
@@ -197,6 +197,6 @@ If a release has a critical issue:
 - [`scripts/release.sh`](../scripts/release.sh) — automates `bump`, `prepare` (bump + branch + PR), and `publish` (tag + GitHub Release) per plugin.
 - [`plugins/ua/CHANGELOG.md`](../plugins/ua/CHANGELOG.md) — plugin `ua` history (Ukrainian).
 - [`plugins/pl/CHANGELOG.md`](../plugins/pl/CHANGELOG.md) — plugin `pl` history (Polish).
-- [`CHANGELOG.md`](../CHANGELOG.md) — historical umbrella log + monorepo-level notes (English).
+- [`CHANGELOG.md`](../CHANGELOG.md) — index of per-plugin CHANGELOGs + monorepo-level dated log (English).
 - [`.version-bump.json`](../.version-bump.json) — inventory of versioned fields.
 - [`CLAUDE.md`](../CLAUDE.md) — contributor guide with the abbreviated release section.
