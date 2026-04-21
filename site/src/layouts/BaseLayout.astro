@@ -12,6 +12,37 @@ const { lang, title, description } = Astro.props
 const site = Astro.site?.href.replace(/\/$/, '') ?? ''
 const canonical = `${site}/${lang}/`
 const htmlLang = HREFLANG[lang]
+const ogImage = `${site}/og.png`
+
+// Rendered in JSON-LD. WebSite + Organization give us sitelinks eligibility
+// and a knowledge-panel handle. Localized name/description match what's in
+// <title> and <meta description>.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${site}/#website`,
+      url: `${site}/`,
+      name: 'lawpowers',
+      description,
+      inLanguage: htmlLang,
+      publisher: { '@id': `${site}/#org` },
+      potentialAction: {
+        '@type': 'ViewAction',
+        target: `${site}/${lang}/`,
+      },
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${site}/#org`,
+      name: 'lawpowers',
+      url: `${site}/`,
+      logo: ogImage,
+      sameAs: ['https://github.com/crankshift/lawpowers'],
+    },
+  ],
+}
 ---
 
 <!doctype html>
@@ -35,10 +66,16 @@ const htmlLang = HREFLANG[lang]
     <link rel="alternate" hreflang="x-default" href={`${site}/en/`} />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="lawpowers" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={OG_LOCALE[lang]} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content={title} />
     {
       LANGS.filter((l) => l !== lang).map((l) => (
         <meta property="og:locale:alternate" content={OG_LOCALE[l]} />
@@ -48,6 +85,11 @@ const htmlLang = HREFLANG[lang]
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={title} />
+
+    <meta name="theme-color" content="#fbf9f3" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#272320" media="(prefers-color-scheme: dark)" />
 
     <link
       rel="icon"
@@ -62,6 +104,12 @@ const htmlLang = HREFLANG[lang]
     />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(jsonLd)}
+    />
 
     {/* Theme bootstrap — runs before paint to prevent FOUC */}
     <script is:inline>

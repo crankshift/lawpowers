@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
+    "build:og": "node scripts/build-og.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
     "firebase-tools": "^15.15.0",
+    "sharp": "^0.34.5",
     "typescript": "~6.0.2"
   },
   "pnpm": {
