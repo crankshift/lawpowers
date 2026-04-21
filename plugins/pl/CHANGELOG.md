@@ -78,8 +78,6 @@ Bez zmian breaking — instalacja i wywołania istniejących agentów / skilli n
 
 W katalogu `/agents` i `/skills` widoczne 17 agentów i 14 skilli pod prefiksem `pl:`.
 
-[0.2.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.6.0
-
 ## [0.1.0] — 2026-04-20
 
 ### Added — pierwsza wersja plagina
@@ -118,4 +116,5 @@ Plagin `pl` dla polskiego prawa dodany do monorepo `lawpowers` (tag marketplace:
 
 Dostępny w tagu marketplace'u [v0.4.0](https://github.com/crankshift/lawpowers/releases/tag/v0.4.0).
 
+[0.2.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.2.0
 [0.1.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.0

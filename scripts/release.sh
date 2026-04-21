@@ -82,11 +82,16 @@ set_json_field() {
 
 # Extract the CHANGELOG section for a given version.
 # Reads from "## [VERSION]" up to (but not including) the next "## [".
+# Strips markdown link-reference lines ("[x.y.z]: http…") from the output —
+# if one slips inside a version section, GitHub turns the [x.y.z] in the
+# heading into a clickable link to whatever URL was declared, which is
+# almost never what you want in release notes.
 extract_section() {
   local file="$1" version="$2"
   awk -v v="$version" '
     $0 ~ "^## \\[" v "\\]" { inside=1; print; next }
     inside && /^## \[/ { exit }
+    inside && /^\[[^]]+\]:[[:space:]]+https?:\/\// { next }
     inside { print }
     END { if (!inside) exit 1 }
   ' "$file"

@@ -208,7 +208,7 @@ Military block for service members in ЗСУ — 5 new agents and 4 new skills. 
 
 Repo converted to an installable Claude Code plugin with `plugin.json` and `marketplace.json`. Plugin-level details in [`ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) under 0.1.0.
 
-[0.6.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.6.0
+[0.6.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.2.0
 [0.5.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.5.0
 [0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.2
 [0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.1
