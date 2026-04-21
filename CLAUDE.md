@@ -19,7 +19,7 @@ User-facing install instructions live in the root [`README.md`](./README.md). Th
 lawpowers/                         # GitHub: crankshift/lawpowers
 ├── README.md                       # user-facing — install guide, links to per-plugin docs
 ├── CLAUDE.md                       # this file — contributor context
-├── CHANGELOG.md                    # marketplace-level release history in English; references per-plugin CHANGELOGs
+├── CHANGELOG.md                    # index of per-plugin CHANGELOGs + monorepo-level structural log (English, dated entries, no monorepo version)
 ├── .version-bump.json              # maps versioned fields in plugin/marketplace manifests
 ├── LICENSE                         # MIT — covers the whole repo
 ├── .claude-plugin/
@@ -81,7 +81,8 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 ## Contribution principles
 
 - **One jurisdiction = one plugin.** Don't mix UA and PL law inside the same agents or skills — each plugin stays self-contained.
-- **Plugin language matches jurisdiction.** Agents, skills, templates, and plugin-level docs (`README.md`, `CLAUDE.md`, `CHANGELOG.md`) for `ua` are in Ukrainian; for `pl` in Polish. Root-level documentation (README/CLAUDE/CHANGELOG at the repo root) is in English for broad accessibility.
+- **Plugin language matches jurisdiction.** Agents, skills, templates, and plugin-level docs (`README.md`, `CLAUDE.md`, `CHANGELOG.md`) for `ua` are in Ukrainian; for `pl` in Polish. Root-level documentation (`README.md`, `CLAUDE.md`, `CHANGELOG.md` at the repo root) is in English for broad accessibility.
+- **Root `CHANGELOG.md` is an index + monorepo-level log, not an aggregate.** Plugin content changes (new agents, new skills, updated statute refs) go in the plugin CHANGELOG only. The root file tracks cross-cutting structural moves, release tooling, and repo renames as dated entries — no monorepo version.
 - **Command prefixes come from plugin names.** `name` in `plugin.json` becomes the namespace — `/ua:…`, `/pl:…`. Agent and skill file names inside the plugin don't need a prefix; Claude Code adds it automatically.
 - **Shared license.** MIT, applied at the repo root.
 - **Independent plugin versions.** Each plugin carries its own `version` in its `plugin.json` (and mirrored in the marketplace entry). The marketplace catalog itself has a separate version in `marketplace.json:metadata.version`.
@@ -132,7 +133,7 @@ Full step-by-step reference with commands, common pitfalls, and rollback guidanc
 3. Add a new section at the top of that plugin's CHANGELOG in Keep-a-Changelog format:
    - [`plugins/ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) (Ukrainian) — for `ua` releases.
    - [`plugins/pl/CHANGELOG.md`](./plugins/pl/CHANGELOG.md) (Polish) — for `pl` releases.
-   - Root [`CHANGELOG.md`](./CHANGELOG.md) (English) — only for cross-cutting monorepo changes, not ordinary plugin releases.
+   - Root [`CHANGELOG.md`](./CHANGELOG.md) (English) — **only** for cross-cutting monorepo changes (add a new dated `### YYYY-MM-DD — …` entry to the monorepo-level log, not a versioned section). Ordinary plugin releases do not touch this file.
 4. Open a PR (`release-<plugin>-vX.Y.Z`) and merge.
 5. After merge, tag the merge commit as `<plugin>/vX.Y.Z` and push: `git tag -a <plugin>/vX.Y.Z <merge-sha> -m "..."` + `git push origin <plugin>/vX.Y.Z`.
 6. Publish a GitHub Release titled `<plugin> vX.Y.Z` with body extracted from that plugin's CHANGELOG section.
