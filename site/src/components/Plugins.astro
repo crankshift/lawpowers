@@ -40,13 +40,13 @@ const { t } = Astro.props
   .plugin-grid {
     display: grid;
     gap: 24px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: auto auto auto auto auto 1fr;
     align-items: stretch;
   }
   @media (max-width: 960px) {
     .plugin-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       grid-template-rows: auto;
     }
   }
