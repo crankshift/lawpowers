@@ -67,6 +67,8 @@ Każdy obszar pracy wynoszony jest do osobnego subagenta (`agents/*.md` w katalo
 
 Wąsko wyspecjalizowani subagenci w `agents/` (korzeń plagina):
 
+**Postępowania sądowe — ogólne:**
+
 | Agent | Przeznaczenie |
 |---|---|
 | `claim-drafter` | Sporządzanie pozwów (cywilne / gospodarcze / administracyjne), powództw wzajemnych, modyfikacji powództwa, obliczanie opłaty sądowej |
@@ -77,21 +79,73 @@ Wąsko wyspecjalizowani subagenci w `agents/` (korzeń plagina):
 | `motion-drafter` | Wnioski procesowe: zabezpieczenie powództwa/dowodów, dopuszczenie dowodu, biegli, świadkowie, wyłączenie sędziego, przywrócenie terminu, odroczenie itd. |
 | `contract-drafter` | Praca umowna: sporządzanie i analiza umów cywilnoprawnych i gospodarczych (sprzedaż, najem, dzieło, zlecenie, dystrybucja, NDA), audyt ryzyk |
 | `legal-memo` | Opinie prawne i memoranda dla klienta; analiza perspektyw sporu; porównanie wariantów działania |
+
+**Windykacja i egzekucja:**
+
+| Agent | Przeznaczenie |
+|---|---|
 | `debt-collector` | Windykacja należności: wezwanie do zapłaty → pozew (postępowanie nakazowe / upominawcze / zwykłe) → egzekucja; obliczanie odsetek (art. 481 KC) |
 | `enforcement-agent` | Postępowanie egzekucyjne: wnioski egzekucyjne do komornika, skargi na czynności komornika (art. 767 KPC), klauzula wykonalności |
+
+**Arbitraż:**
+
+| Agent | Przeznaczenie |
+|---|---|
+| `arbitration-agent` | Arbitraż międzynarodowy i krajowy: SAKIG przy KIG, Sąd Arbitrażowy Lewiatan, ICC / LCIA / SCC / SIAC / HKIAC / VIAC, ad hoc UNCITRAL, arbitraż inwestycyjny (ICSID/BIT/ECT); uznanie i uchylenie wyroku sądu polubownego w polskim sądzie apelacyjnym (art. 1205–1217 KPC + NYC 1958) |
+
+**Specjalistyczne obszary:**
+
+| Agent | Przeznaczenie |
+|---|---|
+| `family-drafter` | Sprawy rodzinne: pozwy o rozwód / separację, alimenty (art. 133 KRO), władzę rodzicielską (art. 109–111 KRO), kontakty (art. 113 KRO), ustalenie / zaprzeczenie ojcostwa, podział majątku wspólnego; zabezpieczenie art. 754¹ KPC |
+| `labor-drafter` | Sprawy pracownicze: pozwy o przywrócenie / odszkodowanie (art. 45, 56 KP), ustalenie istnienia stosunku pracy (art. 22 § 1¹ KP), wypowiedzenia, dyscyplinarki (art. 52 KP), mobbing i dyskryminacja, sprostowanie świadectwa pracy |
+| `inheritance-drafter` | Sprawy spadkowe: stwierdzenie nabycia spadku, dział spadku, zachowek (art. 991–1011 KC), testamenty, odrzucenie / przyjęcie spadku (termin 6 miesięcy — art. 1015 KC) |
+| `criminal-complaint-drafter` | Postępowanie karne po stronie pokrzywdzonego: zawiadomienie o popełnieniu przestępstwa (art. 304 KPK), prywatny akt oskarżenia (art. 487 KPK), subsydiarny akt oskarżenia (art. 55 KPK), zażalenia (art. 306 KPK) |
+| `consumer-drafter` | Sprawy konsumenckie: klauzule abuzywne (art. 385¹ KC), rękojmia, odstąpienie w 14 dni, kredyty CHF (frankowicze), skargi do UOKiK i Rzecznika Finansowego |
+| `rodo-compliance` | Ochrona danych osobowych: dokumentacja administratora, klauzule informacyjne, umowy powierzenia (art. 28 RODO), DPIA (art. 35 RODO), zgłoszenia naruszeń (art. 33/34 RODO), obsługa wniosków z art. 15–22 RODO, skargi do PUODO |
 
 ## Skille
 
 Proceduralne / referencyjne skille w `skills/` (korzeń plagina) — używać przy pracy z polskimi źródłami prawa:
 
+**Narzędzia bazowe:**
+
 | Skill | Kiedy stosować |
 |---|---|
 | `fetching-isap-sejm` | Pobieranie aktów z ISAP / Dziennika Ustaw; URL dla brzmień historycznych; tabela ID kluczowych kodeksów i ustaw |
 | `searching-orzeczenia` | Wyszukiwanie orzecznictwa: Portal Orzeczeń SP, SN, NSA; struktura sygnatury akt; weryfikacja prawomocności |
-| `calculating-oplata-sadowa` | Obliczanie opłat sądowych wg ustawy o kosztach sądowych w sprawach cywilnych (UKSC); opłata stosunkowa, stała, podstawowa; zwolnienia |
 | `citing-polish-law` | Format cytowania aktów prawnych, orzeczeń SN/TK/TSUE/ETPCz; skróty kodeksów i ustaw |
 | `determining-pl-jurisdiction` | Właściwość sądu (rzeczowa, miejscowa, funkcjonalna); cywilna vs gospodarcza vs administracyjna; sąd rejonowy vs okręgowy |
+| `determining-wps` | Wartość przedmiotu sporu (art. 19–26 KPC); sumowanie żądań; wyłączenia (odsetki, koszty); wpływ na właściwość i opłatę |
+| `searching-krs` | KRS, CEIDG, biała lista VAT, KRD / BIG / ERIF, MSiG — identyfikacja osób prawnych, sposób reprezentacji, postępowania upadłościowe |
+
+**Przedawnienie i odsetki:**
+
+| Skill | Kiedy stosować |
+|---|---|
 | `checking-przedawnienie` | Terminy przedawnienia (art. 117–125 KC); reforma 2018 (6 lat / koniec roku kalendarzowego); uwzględnienie z urzędu wobec konsumenta |
+| `calculating-odsetki` | Odsetki ustawowe (art. 359 KC), za opóźnienie (art. 481 KC), w transakcjach handlowych (ustawa z 08.03.2013); rekompensata 40/70/100 euro; odsetki maksymalne |
+
+**Opłaty i koszty:**
+
+| Skill | Kiedy stosować |
+|---|---|
+| `calculating-oplata-sadowa` | Obliczanie opłat sądowych wg UKSC; opłata stosunkowa, stała, podstawowa; zwolnienia ustawowe i na wniosek |
+| `calculating-alimenty` | Wysokość alimentów (art. 135 KRO) — usprawiedliwione potrzeby vs. możliwości zobowiązanego; zasada równej stopy życiowej; zabezpieczenie art. 754¹ KPC; Fundusz Alimentacyjny |
+
+**Arbitraż i sprawy międzynarodowe:**
+
+| Skill | Kiedy stosować |
+|---|---|
+| `fetching-arbitration-rules` | Aktualne regulaminy sądów arbitrażowych (SAKIG, Lewiatan, ICC, LCIA, SCC, SIAC, HKIAC, VIAC, UNCITRAL, ICSID); brzmienia historyczne wg daty Request for Arbitration |
+| `applying-new-york-convention` | Uznanie i stwierdzenie wykonalności zagranicznego wyroku arbitrażowego w Polsce; mapowanie art. V NYC 1958 na art. 1215 § 2 KPC; klauzula porządku publicznego (wąskie tłumaczenie wg SN) |
+
+**Sprawy konsumenckie i RODO:**
+
+| Skill | Kiedy stosować |
+|---|---|
+| `applying-frankowicze-case-law` | Kredyty CHF: TSUE C-260/18 *Dziubak*, C-520/21 *Bank M.*, C-287/22 *Getin*, C-140/22 *mBank*; uchwały SN III CZP 6/21 (teoria dwóch kondykcji), III CZP 11/21; zabezpieczenie powództwa; argumentacja nieważności klauzul indeksacyjnych |
+| `applying-rodo` | Mapowanie artykułów RODO do obowiązków administratora; podstawy prawne art. 6 / 9; klauzule informacyjne art. 13–14; umowa powierzenia art. 28; DPIA art. 35; naruszenia art. 33–34; transfery po *Schrems II* (C-311/18) |
 
 ## Struktura projektu
 
