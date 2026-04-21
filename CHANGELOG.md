@@ -1,18 +1,20 @@
 # lawpowers — Changelog
 
-Marketplace-level change log. Plugin-specific entries live alongside each plugin:
+Historical umbrella changelog. **Plugin releases are now tracked per plugin**, not here:
 
-- [`ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) — Ukrainian law plugin (written in Ukrainian).
-- [`pl/CHANGELOG.md`](./plugins/pl/CHANGELOG.md) — Polish law plugin (written in Polish).
+- [`plugins/ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) — Ukrainian law plugin (written in Ukrainian). Tagged `ua/vX.Y.Z`.
+- [`plugins/pl/CHANGELOG.md`](./plugins/pl/CHANGELOG.md) — Polish law plugin (written in Polish). Tagged `pl/vX.Y.Z`.
 
-This root file covers:
-- Marketplace version bumps (`.claude-plugin/marketplace.json:metadata.version`).
-- Monorepo-level structural changes.
-- Cross-cutting documentation and tooling.
+> **Release format change — 2026-04-21.** Releases up to and including `v0.6.0` used a monorepo-wide umbrella tag (`vX.Y.Z`) covering both plugins together. This caused confusion because users install plugins individually — `/plugin install ua@lawpowers` gives whatever version is declared in `plugin.json`, not the umbrella tag. From this point forward:
+>
+> - Each plugin is released separately under its own tag: `ua/vX.Y.Z`, `pl/vX.Y.Z`.
+> - Marketplace `metadata.version` stays as an internal field (bumped on catalog-shape changes — plugin added/removed). It is not publicly tagged.
+> - Historical umbrella tags (`v0.1.0`…`v0.6.0`) remain unchanged on the repo; entries below document that history.
+> - This root file no longer receives version-tagged entries. New monorepo-level tooling or structural notes may land here as dated (unversioned) entries.
+>
+> See [`docs/RELEASING.md`](./docs/RELEASING.md) for the per-plugin release procedure.
 
-For the release procedure see [`docs/RELEASING.md`](./docs/RELEASING.md).
-
-Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning — [SemVer](https://semver.org/spec/v2.0.0.html). Marketplace and individual plugin versions are tracked independently.
+Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning — [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ## [0.6.0] — 2026-04-21
 

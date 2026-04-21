@@ -85,7 +85,7 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 - **Command prefixes come from plugin names.** `name` in `plugin.json` becomes the namespace — `/ua:…`, `/pl:…`. Agent and skill file names inside the plugin don't need a prefix; Claude Code adds it automatically.
 - **Shared license.** MIT, applied at the repo root.
 - **Independent plugin versions.** Each plugin carries its own `version` in its `plugin.json` (and mirrored in the marketplace entry). The marketplace catalog itself has a separate version in `marketplace.json:metadata.version`.
-- **Release tags.** `vX.Y.Z` at the marketplace level covers the whole repo. If a single plugin ever needs an independent release cycle, use namespaced tags like `ua/vX.Y.Z` — but the current convention is one monorepo-wide tag per release.
+- **Release tags — per plugin.** Tags are namespaced: `ua/vX.Y.Z`, `pl/vX.Y.Z`. The tag version always matches the plugin's `version` field exactly. Historical umbrella tags (`v0.1.0`…`v0.6.0`) remain on the repo but no new umbrella tags are created — they confused users who install plugins individually. Marketplace `metadata.version` is an internal field bumped on catalog-shape changes; it is **not** tagged publicly.
 
 ## Adding a new plugin (new jurisdiction)
 
@@ -127,16 +127,18 @@ Full contributor rules in [`site/CLAUDE.md`](./site/CLAUDE.md).
 
 Full step-by-step reference with commands, common pitfalls, and rollback guidance — see [`docs/RELEASING.md`](./docs/RELEASING.md). Summary:
 
-1. Decide the version bump per semver. For a breaking change in 0.x releases, a minor bump is appropriate.
-2. Update the affected version fields listed in [`.version-bump.json`](./.version-bump.json) (plugin-level `version` + corresponding marketplace entry + marketplace `metadata.version`). Validate with `claude plugin validate .`.
-3. Add a new section at the top of the relevant CHANGELOG(s) in Keep-a-Changelog format:
-   - Root [`CHANGELOG.md`](./CHANGELOG.md) (English) — always, with a short summary and migration notes if any.
-   - [`ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) (Ukrainian) — only if plugin `ua` changed.
-   - [`pl/CHANGELOG.md`](./plugins/pl/CHANGELOG.md) (Polish) — only if plugin `pl` changed.
-4. Open a PR and merge.
-5. After merge, tag the merge commit and push: `git tag -a vX.Y.Z <merge-sha> -m "..."` + `git push origin vX.Y.Z`.
-6. Publish a GitHub Release with body extracted from the CHANGELOG section.
+1. Pick the plugin (`ua` or `pl`) and the version per semver. For a breaking change in 0.x releases, a minor bump is appropriate.
+2. Update the two version fields listed in [`.version-bump.json`](./.version-bump.json) for that plugin: `plugins/<P>/.claude-plugin/plugin.json:version` and `.claude-plugin/marketplace.json:plugins[N].version`. Validate with `claude plugin validate .`.
+3. Add a new section at the top of that plugin's CHANGELOG in Keep-a-Changelog format:
+   - [`plugins/ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) (Ukrainian) — for `ua` releases.
+   - [`plugins/pl/CHANGELOG.md`](./plugins/pl/CHANGELOG.md) (Polish) — for `pl` releases.
+   - Root [`CHANGELOG.md`](./CHANGELOG.md) (English) — only for cross-cutting monorepo changes, not ordinary plugin releases.
+4. Open a PR (`release-<plugin>-vX.Y.Z`) and merge.
+5. After merge, tag the merge commit as `<plugin>/vX.Y.Z` and push: `git tag -a <plugin>/vX.Y.Z <merge-sha> -m "..."` + `git push origin <plugin>/vX.Y.Z`.
+6. Publish a GitHub Release titled `<plugin> vX.Y.Z` with body extracted from that plugin's CHANGELOG section.
 7. Users update with `/plugin marketplace update lawpowers` + `/reload-plugins`.
+
+Bumping marketplace `metadata.version` is separate — only needed when catalog shape changes (plugin added/removed). Use `./scripts/release.sh bump-marketplace X.Y.Z` and commit it like any other change; no tag, no GitHub Release.
 
 ## Shared editorial rules (all plugins)
 

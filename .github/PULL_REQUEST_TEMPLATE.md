@@ -1,10 +1,12 @@
 <!--
 Thanks for contributing to lawpowers! Before you submit, check:
   - Run `claude plugin validate .` locally. It must pass.
-  - If you changed plugin content, update the matching CHANGELOG
-    (plugins/ua/CHANGELOG.md in Ukrainian or plugins/pl/CHANGELOG.md in Polish) AND
-    the root CHANGELOG.md in English.
-  - If you bumped versions, follow docs/RELEASING.md.
+  - If you changed plugin content, update that plugin's CHANGELOG
+    (plugins/ua/CHANGELOG.md in Ukrainian or plugins/pl/CHANGELOG.md in Polish).
+    The root CHANGELOG.md is historical — only touch it for cross-cutting
+    monorepo changes (tooling, structural reshuffle).
+  - Plugin releases are tagged per plugin: ua/vX.Y.Z, pl/vX.Y.Z.
+    If you're cutting a release, follow docs/RELEASING.md.
 -->
 
 ## Summary
@@ -39,9 +41,9 @@ If this is a fix for an outdated norm: link the current redaction on zakon.rada.
 
 ## CHANGELOG
 
-- [ ] Root `CHANGELOG.md` has an entry under the appropriate version section (or a new version section).
 - [ ] `plugins/ua/CHANGELOG.md` updated (Ukrainian) if plugin `ua` changed.
 - [ ] `plugins/pl/CHANGELOG.md` updated (Polish) if plugin `pl` changed.
+- [ ] Root `CHANGELOG.md` updated — only for cross-cutting monorepo changes (tooling, structural reshuffle).
 - [ ] N/A — purely tooling/infra change.
 
 ## Migration
