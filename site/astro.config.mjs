@@ -24,6 +24,10 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      // `/` is a JS + meta-refresh redirect shell (see src/pages/index.astro).
+      // It carries noindex and canonicalizes to /en/, so keeping it out of
+      // the sitemap prevents two URLs from claiming hreflang="en".
+      filter: (page) => page !== `${SITE}/`,
       i18n: {
         defaultLocale: 'en',
         locales: {

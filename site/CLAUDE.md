@@ -39,6 +39,14 @@ See [README.md](./README.md) for the user-facing quick start. This file is contr
 - Don't invent features. The landing reflects what the plugins actually do; if a claim isn't backed by an existing agent or skill in `../plugins/`, don't put it on the landing.
 - Disclaimer copy (`t.disclaimer.*`) must say "not legal advice" and make clear that a qualified human lawyer owns the final document. This is non-negotiable — same rule as the plugins.
 
+### SEO
+
+- Per-page `<title>` and `<meta description>` come from `t.seo` in each locale — keep them unique per locale and under ~160 chars where possible.
+- `BaseLayout.astro` renders Open Graph + Twitter tags, `theme-color`, and JSON-LD (`WebSite` + `Organization`). Don't dump new schema into components — extend the graph in `BaseLayout.astro`.
+- Social-card image is `public/og.png` (1200×630), referenced as `/og.png` from OG / Twitter tags. The source is `scripts/build-og.mjs` (SVG authored in-script, rasterized with `sharp`); the generated PNG is committed. Regenerate with `pnpm build:og` whenever the source SVG changes.
+- `src/pages/index.astro` is a redirect shell — it carries `noindex, follow` and is filtered out of the sitemap in `astro.config.mjs`. Don't let it drift back in or it'll duplicate the `/en/` canonical.
+- Hreflang alternates must use ISO 639-1 (`en`, `uk`, `pl`) — see the i18n section. `x-default` points to `/en/`.
+
 ## Tech stack pin
 
 | Thing | Version |
