@@ -1,6 +1,6 @@
 ---
 name: reviewing-vehicle-contract
-description: Use when reviewing or auditing a Polish vehicle sale-purchase contract (umowa kupna-sprzedaży pojazdu) — verifying VIN and mileage authenticity, title chain, encumbrances (zastaw rejestrowy, leasing, przewłaszczenie na zabezpieczenie), import / customs clearance, mandatory clauses, PCC-3 tax obligation, typical scam patterns (fake powers of attorney, odometer rollback, cloned VIN, parallel importers), and the set of public registries (CEPiK, Mój Pojazd, Rejestr Zastawów, KW, biała lista VAT, historiapojazdu.gov.pl) to check before signing
+description: Use when auditing Polish vehicle sale contract (umowa kupna-sprzedaży pojazdu) — VIN / przebieg, title chain, obciążenia (zastaw rejestrowy, leasing, przewłaszczenie), import / cło, obowiązkowe klauzule, PCC-3, typowe schematy oszustwa (cofnięty licznik, klonowany VIN, pełnomocnictwa-pułapki, parallel imports), rejestry (CEPiK, Mój Pojazd, Rejestr Zastawów, biała lista VAT, historiapojazdu.gov.pl)
 ---
 
 # reviewing-vehicle-contract

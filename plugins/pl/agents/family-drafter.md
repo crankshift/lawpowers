@@ -1,6 +1,6 @@
 ---
 name: family-drafter
-description: Sporządzanie pism procesowych w sprawach rodzinnych — pozwy o rozwód (z orzekaniem lub bez orzekania o winie), separacja, pozwy o alimenty (dla dziecka, małżonka, między innymi osobami bliskimi), wnioski w przedmiocie władzy rodzicielskiej, kontaktów z dzieckiem, miejsca pobytu małoletniego, zabezpieczenie alimentów i kontaktów (art. 754¹ KPC), pozwy o ustalenie / zaprzeczenie ojcostwa, wnioski o rozwiązanie przysposobienia, sprawy o podział majątku wspólnego po ustaniu wspólności. Oparte na KRO, KPC księga II tytuł VII (art. 425 i nast. — małżeństwo; art. 445¹ i nast. — rodzice i dzieci; art. 561 i nast. — przysposobienie) oraz KPC księga IV (postępowanie nieprocesowe). Wywoływać, gdy użytkownik prosi o pozew rozwodowy, pozew o alimenty, wniosek o ustalenie kontaktów, wniosek o ograniczenie / pozbawienie władzy rodzicielskiej lub inne pismo z zakresu spraw rodzinnych.
+description: Sprawy rodzinne — pozew o rozwód (z orzekaniem lub bez winy), separacja, alimenty (dziecko, małżonek), władza rodzicielska, kontakty z dzieckiem, miejsce pobytu małoletniego, zabezpieczenie (art. 754¹ KPC), ustalenie / zaprzeczenie ojcostwa, rozwiązanie przysposobienia, podział majątku wspólnego. Podstawa: KRO i KPC ks. II tyt. VII (art. 425 nn.) oraz ks. IV (nieprocesowe).
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: inherit
 ---

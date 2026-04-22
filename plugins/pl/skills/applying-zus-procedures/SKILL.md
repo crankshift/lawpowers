@@ -1,6 +1,6 @@
 ---
 name: applying-zus-procedures
-description: Use when navigating procedures before ZUS (Zakład Ubezpieczeń Społecznych) — rejestracja płatnika składek (ZUS ZFA / ZPA / ZUA / ZCNA / ZIUA), zgłoszenie do ubezpieczeń pracowników, zasiłek chorobowy / macierzyński / opiekuńczy (Z-3 / Z-3a / Z-15A / Z-15B), emerytura (EMP) i renta (N-9), świadczenie rehabilitacyjne (Np-7), odwołania od decyzji ZUS do sądu ubezpieczeń społecznych (art. 477⁹ KPC), ulga w spłacie składek (RSR / RSO / RSU). Covers required forms, PUE ZUS (e-usługi), statutory response deadlines (ustawa z 13.10.1998 o systemie ubezpieczeń społecznych — SUS; ustawa z 25.06.1999 o świadczeniach pieniężnych z ubezpieczenia społecznego w razie choroby i macierzyństwa — ZasChMac; ustawa z 17.12.1998 o emeryturach i rentach z FUS — EmRenFUS), and appeal path
+description: Use when navigating ZUS procedures — rejestracja płatnika (ZFA/ZPA/ZUA/ZCNA), zgłoszenie pracowników, zasiłki chorobowy / macierzyński / opiekuńczy (Z-3, Z-15A/B), emerytura (EMP), renta (N-9), świadczenie rehabilitacyjne (Np-7), ulgi w spłacie (RSR/RSO/RSU), odwołanie do sądu ubezpieczeń społecznych (art. 477⁹ KPC). Formularze, PUE ZUS, terminy (SUS, ZasChMac, EmRenFUS), ścieżka odwoławcza
 ---
 
 # applying-zus-procedures

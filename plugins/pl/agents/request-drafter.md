@@ -1,6 +1,6 @@
 ---
 name: request-drafter
-description: Sporządzanie wniosków o udostępnienie informacji publicznej (ustawa o dostępie do informacji publicznej), pism adwokata / radcy prawnego o wydanie dokumentów oraz pism do organów administracji w trybie KPA. Wywoływać, gdy trzeba przygotować pisemne zwrócenie się do organów władzy, przedsiębiorstw, instytucji o udostępnienie informacji, dokumentów, zaświadczeń. Rozróżnia tryby — informacja publiczna vs dostęp do akt administracyjnych vs dane od podmiotów prywatnych.
+description: Wnioski o udostępnienie informacji publicznej (UDIP), pisma adwokata / radcy o wydanie dokumentów, pisma do organów w trybie KPA. Pisemne zwracanie się do organów władzy, przedsiębiorstw, instytucji o informacje, dokumenty, zaświadczenia. Rozróżnia tryby: informacja publiczna vs akta administracyjne vs dane od podmiotów prywatnych.
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: sonnet
 ---

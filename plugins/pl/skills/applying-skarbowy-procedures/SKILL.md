@@ -1,6 +1,6 @@
 ---
 name: applying-skarbowy-procedures
-description: Use when navigating procedures before Polish urząd skarbowy (US) and Krajowa Administracja Skarbowa (KAS) — NIP registration (NIP-2, NIP-7, NIP-8 for corporates; dla JDG — via CEIDG), VAT registration (VAT-R), czynny żal (art. 16 KKS), korekta deklaracji (art. 81 OP), wnioski w trybie Ordynacji podatkowej (art. 48 — przedłużenie terminu; art. 67a — odroczenie, rozłożenie na raty, umorzenie; art. 72 — nadpłata), indywidualna interpretacja podatkowa (Dyrektor KIS, art. 14b OP), postępowania kontrolne i podatkowe (OP dział IV), odwołania do Dyrektora Izby Administracji Skarbowej (DIAS), skargi do WSA / NSA. Covers required forms, e-Urząd Skarbowy (e-US) access, e-faktury / KSeF obligations, statutory deadlines, and defensive tactics in tax disputes
+description: Use when navigating urząd skarbowy / KAS — NIP (NIP-2/7/8, CEIDG), VAT-R, czynny żal (art. 16 KKS), korekta deklaracji (art. 81 OP), ulgi (art. 67a OP — odroczenie, raty, umorzenie), nadpłata (art. 72), interpretacja indywidualna (Dyrektor KIS, art. 14b), kontrola i postępowanie podatkowe (OP dz. IV), odwołanie do DIAS, skargi do WSA / NSA. e-Urząd Skarbowy, KSeF, terminy, taktyki obronne
 ---
 
 # applying-skarbowy-procedures

@@ -1,6 +1,6 @@
 ---
 name: calculating-odsetki
-description: Use when calculating interest on monetary claims under Polish law — distinguishing between odsetki ustawowe (art. 359 KC), odsetki ustawowe za opóźnienie (art. 481 KC), odsetki w transakcjach handlowych (ustawa z 08.03.2013), odsetki maksymalne (art. 359 § 2¹ KC), identifying the correct rate for the relevant period, and applying the statutory recovery fee (40/70/100 euro) in B2B transactions
+description: Use when calculating Polish odsetki — ustawowe (art. 359 KC), za opóźnienie (art. 481 KC), w transakcjach handlowych (ustawa z 08.03.2013), maksymalne (art. 359 § 2¹). Stawka na dany okres, rekompensata 40/70/100 euro w B2B
 ---
 
 # calculating-odsetki

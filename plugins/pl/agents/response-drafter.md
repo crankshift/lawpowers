@@ -1,6 +1,6 @@
 ---
 name: response-drafter
-description: Sporządzanie pism procesowych po stronie pozwanego — odpowiedź na pozew, sprzeciw od wyroku zaocznego, sprzeciw od nakazu zapłaty (postępowanie upominawcze), zarzuty od nakazu zapłaty (postępowanie nakazowe), pisma przygotowawcze, pisma interwenientów. Wywoływać, gdy trzeba przygotować obronę strony w już otwartym postępowaniu (cywilnym, gospodarczym, administracyjnym). Lustrzane odbicie claim-drafter z drugiej strony procesu.
+description: Pisma pozwanego — odpowiedź na pozew, sprzeciw od wyroku zaocznego, sprzeciw od nakazu zapłaty (upominawcze), zarzuty od nakazu (nakazowe), pisma przygotowawcze, pisma interwenientów. Obrona strony w otwartym postępowaniu (cywilne, gospodarcze, administracyjne). Lustro claim-drafter.
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: sonnet
 ---

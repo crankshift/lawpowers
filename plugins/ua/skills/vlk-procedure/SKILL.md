@@ -1,6 +1,6 @@
 ---
 name: vlk-procedure
-description: Use when working with military medical commission (ВЛК) procedures in Ukraine — categories of fitness А/Б/В/Г/Д from наказ МО № 402 (Положення про військово-лікарську експертизу), procedure steps (ініціювання → направлення → засідання → висновок → оскарження), appeal timelines (hierarchical to higher VLK + judicial under KAS), common grounds for judicial overturn (incomplete panel, unreasoned conclusions, failure to consider documents, misapplication of Розклад хвороб). Includes rapport templates and checklist of documents.
+description: Use when working with ВЛК procedures — категорії придатності А/Б/В/Г/Д (наказ МО № 402), кроки (ініціювання → направлення → засідання → висновок → оскарження), строки (ієрархічно до вищої ВЛК + судове в КАС), типові підстави для скасування (неповний склад, немотивовані висновки, нерозгляд документів, неправильне застосування Розкладу хвороб). Шаблони рапортів і чек-листи.
 ---
 
 # vlk-procedure

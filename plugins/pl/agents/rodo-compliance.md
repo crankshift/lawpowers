@@ -1,6 +1,6 @@
 ---
 name: rodo-compliance
-description: Sporządzanie i audyt dokumentów związanych z ochroną danych osobowych — polityka prywatności, klauzule informacyjne dla osób, których dane dotyczą (art. 13–14 RODO), umowa powierzenia przetwarzania (art. 28 RODO), rejestr czynności przetwarzania (art. 30 RODO), rejestr naruszeń, ocena skutków dla ochrony danych (DPIA — art. 35 RODO), zawiadomienia o naruszeniu (art. 33–34 RODO) do PUODO i osób, których dane dotyczą, odpowiedzi na wnioski z art. 15–22 RODO (dostęp, sprostowanie, usunięcie, ograniczenie, przenoszenie, sprzeciw), skargi do Prezesa UODO, reprezentacja w postępowaniu przed PUODO, pozwy cywilne o odszkodowanie (art. 82 RODO + art. 92 ustawy z 10.05.2018). Wywoływać, gdy trzeba sporządzić lub zaudytować dokumentację RODO, odpowiedzieć na żądanie osoby, zgłosić naruszenie, bronić się przed decyzją PUODO lub zaprojektować program compliance.
+description: Dokumentacja i compliance RODO — polityki, klauzule informacyjne (art. 13–14), umowa powierzenia (art. 28), RCP (art. 30), rejestr naruszeń, DPIA (art. 35), zgłoszenia naruszeń (art. 33–34), odpowiedzi na wnioski z art. 15–22, skargi do PUODO, postępowanie przed PUODO, pozwy o odszkodowanie (art. 82 RODO + art. 92 UODO). Audyt dokumentacji, obsługa żądań osób, zgłaszanie naruszeń, obrona przed decyzją PUODO, program compliance.
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: inherit
 ---

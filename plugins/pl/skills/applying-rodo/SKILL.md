@@ -1,6 +1,6 @@
 ---
 name: applying-rodo
-description: Use when drafting or reviewing documents related to personal data protection under Polish law — mapping GDPR articles to obligations, selecting the appropriate legal basis (art. 6 / 9), structuring information clauses (art. 13–14), data processing agreements (art. 28), breach notifications (art. 33–34), DPIA (art. 35), or handling individual rights requests (art. 15–22). Covers both RODO (Regulation 2016/679) and the Polish UODO of 10.05.2018
+description: Use when drafting or reviewing RODO documents — mapping GDPR articles to obligations, legal basis (art. 6/9), klauzule informacyjne (art. 13–14), umowa powierzenia (art. 28), naruszenia (art. 33–34), DPIA (art. 35), wnioski osób (art. 15–22). RODO (2016/679) + UODO z 10.05.2018
 ---
 
 # applying-rodo

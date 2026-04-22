@@ -1,6 +1,6 @@
 ---
 name: appeal-drafter
-description: Sporządzanie środków zaskarżenia w polskim postępowaniu — apelacji, skargi kasacyjnej do SN, zażaleń, skargi o stwierdzenie niezgodności z prawem prawomocnego orzeczenia, skargi kasacyjnej do NSA. Wywoływać, gdy trzeba zaskarżyć orzeczenie sądu, sprawdzić podstawy kasacji (uchwały SN), obliczyć terminy zaskarżenia, uzasadnić naruszenie prawa materialnego lub procesowego. W tym wnioski o przywrócenie terminu.
+description: Środki zaskarżenia — apelacja, skarga kasacyjna do SN, zażalenia, skarga o stwierdzenie niezgodności z prawem prawomocnego orzeczenia, skarga kasacyjna do NSA. Zaskarżanie orzeczeń, podstawy kasacji (uchwały SN), terminy, naruszenie prawa materialnego / procesowego, przywrócenie terminu.
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: sonnet
 ---

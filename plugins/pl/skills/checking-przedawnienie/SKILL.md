@@ -1,6 +1,6 @@
 ---
 name: checking-przedawnienie
-description: Use when checking Polish statute of limitations (przedawnienie) for a civil claim under art. 117–125 KC — determining applicable general (6 years) vs special (3 years for periodic / business) period, calculating end of term (last day of calendar year rule from 2018 reform), identifying grounds for suspension / interruption, ex officio application against consumers, or evaluating whether expired limitation can be overridden
+description: Use when checking Polish przedawnienie (art. 117–125 KC) — termin ogólny 6 lat vs szczególny 3 lata (okresowe / działalność), koniec roku kalendarzowego (reforma 2018), zawieszenie / przerwanie biegu, z urzędu wobec konsumenta, możliwość obejścia przedawnienia
 ---
 
 # checking-przedawnienie

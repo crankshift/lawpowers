@@ -1,6 +1,6 @@
 ---
 name: contract-drafter
-description: Praca umowna — sporządzanie, analiza i audyt ryzyk umów cywilnoprawnych i gospodarczych (sprzedaż, najem, dzieło, zlecenie, dostawa, dystrybucja, licencja, NDA, franczyza). W tym aneksy, protokoły odbioru, specyfikacje, rozwiązanie umowy. Określa elementy istotne (essentialia negotii), sprawdza zgodność z KC / KSH, ujawnia ryzyka dla strony reprezentowanej.
+description: Praca umowna — sporządzanie i audyt umów cywilnoprawnych i gospodarczych (sprzedaż, najem, dzieło, zlecenie, dostawa, dystrybucja, licencja, NDA), aneksy, protokoły, rozwiązanie. Tryb audytu ryzyk (review-only) z raportem KRYTYCZNE / ISTOTNE / POŻĄDANE. Essentialia negotii, zgodność KC/KSH.
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: sonnet
 ---

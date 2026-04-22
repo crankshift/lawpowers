@@ -1,6 +1,6 @@
 ---
 name: searching-krs
-description: Use when identifying Polish legal entities, verifying their representation (management board, powers), establishing addresses for service of process, checking for insolvency / restructuring proceedings, or retrieving their financial filings — covers KRS (Krajowy Rejestr Sądowy) for companies and associations, CEIDG for sole proprietorships, KRD / BIG InfoMonitor for debt records, Monitor Sądowy i Gospodarczy for insolvency notices
+description: Use when identifying Polish legal entities, verifying reprezentację (zarząd, pełnomocnictwa), adresy do doręczeń, postępowania upadłościowe / restrukturyzacyjne, sprawozdania finansowe — KRS dla spółek i stowarzyszeń, CEIDG dla JDG, KRD / BIG InfoMonitor, MSiG
 ---
 
 # searching-krs

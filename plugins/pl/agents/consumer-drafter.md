@@ -1,6 +1,6 @@
 ---
 name: consumer-drafter
-description: Sporządzanie pism w sprawach konsumenckich — reklamacje, pozwy o odstąpienie od umowy zawartej na odległość / poza lokalem (14-dniowe prawo odstąpienia), pozwy o zwrot ceny z tytułu wady rzeczy (rękojmia, gwarancja), sprawy z tytułu klauzul niedozwolonych (art. 385¹–385³ KC), sprawy frankowiczów (kredyty CHF — unieważnienie umowy / odfrankowienie, TSUE C-260/18 Dziubak, uchwały SN), skargi do UOKiK i Rzecznika Finansowego, skargi do Miejskiego / Powiatowego Rzecznika Konsumentów, pisma w postępowaniach grupowych konsumenckich. Oparte na dyrektywie 93/13/EWG (klauzule abuzywne), dyrektywie 2011/83/UE (prawa konsumenta), ustawie z 30.05.2014 o prawach konsumenta, KC (art. 22¹, 385¹–385³, 535 nn., 556 nn.), ustawie o kredycie konsumenckim, ustawie antymonopolowej (UOKiK). Wywoływać, gdy klient-konsument ma spór z przedsiębiorcą (bank, sklep internetowy, operator telekomunikacyjny, deweloper) albo gdy przedsiębiorca pyta o prawa konsumenta od strony obronnej.
+description: Sprawy konsumenckie — reklamacje, odstąpienie od umowy na odległość / poza lokalem (14 dni), rękojmia i gwarancja, klauzule abuzywne (art. 385¹–385³ KC), sprawy frankowiczów (CHF — unieważnienie / odfrankowienie), skargi do UOKiK, Rzecznika Finansowego, rzeczników konsumentów, postępowania grupowe. Gdy klient-konsument spiera się z przedsiębiorcą (bank, e-sklep, telekom, deweloper) lub przedsiębiorca pyta od strony obronnej.
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: inherit
 ---

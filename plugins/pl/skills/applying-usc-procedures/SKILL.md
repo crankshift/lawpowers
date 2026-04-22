@@ -1,6 +1,6 @@
 ---
 name: applying-usc-procedures
-description: Use when navigating Polish Urząd Stanu Cywilnego (USC) procedures — rejestracja urodzenia dziecka (art. 60–69 ASC), zawarcie małżeństwa (cywilne i konkordatowe — art. 76–85 ASC), zmiana imienia / nazwiska (ustawa z 17.10.2008), transkrypcja zagranicznych aktów stanu cywilnego (art. 104–108 ASC), sprostowanie / unieważnienie aktu, wydawanie odpisów aktów stanu cywilnego (zupełnych, skróconych, wielojęzycznych CIEC). Includes required documents, statutory fees (opłata skarbowa + opłaty za odpisy), KPA response deadlines, and appeal paths. Primary statute: ustawa z 28.11.2014 o aktach stanu cywilnego
+description: Use when navigating Polish USC procedures — rejestracja urodzenia (art. 60–69 ASC), małżeństwo cywilne / konkordatowe (art. 76–85), zmiana imienia / nazwiska (ustawa z 17.10.2008), transkrypcja aktów zagranicznych (art. 104–108), sprostowanie / unieważnienie aktu, odpisy (zupełne, skrócone, wielojęzyczne CIEC). Dokumenty, opłata skarbowa, terminy KPA, odwołania. Ustawa z 28.11.2014 o aktach stanu cywilnego
 ---
 
 # applying-usc-procedures

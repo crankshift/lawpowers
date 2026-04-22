@@ -1,6 +1,6 @@
 ---
 name: calculating-military-payments
-description: Use when calculating payments for Ukrainian service members — combat bonuses (постанова КМУ № 168, 100 000 грн/міс), front-line allowance (постанова КМУ № 419, 70 000 грн за 30 діб), one-time financial aid at injury/death (ст. 16 ЗУ 2011-XII), family distribution for POW/missing (ЗУ 3995-IX, 50/50), material aid (ст. 9 ЗУ 2011-XII, 1 posadovyi oklad/рік), UBD benefits, military pensions. Covers formulas, proportional computation for partial months, required documents, and the typical errors that lead to refusal.
+description: Use when calculating payments for Ukrainian service members — бойові (КМУ № 168, 100 000 грн/міс), фронтова надбавка (КМУ № 419, 70 000 грн/30 діб), ОГД при пораненні/загибелі (ст. 16 ЗУ 2011-XII), родини полонених/зниклих (ЗУ 3995-IX, 50/50), матдопомога (ст. 9 ЗУ 2011-XII), УБД, військові пенсії. Формули, пропорційний розрахунок неповних місяців, документи, типові причини відмов.
 ---
 
 # calculating-military-payments

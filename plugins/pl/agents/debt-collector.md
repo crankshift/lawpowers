@@ -1,6 +1,6 @@
 ---
 name: debt-collector
-description: Pełny cykl windykacji należności w Polsce — wezwanie do zapłaty, obliczanie odsetek ustawowych za opóźnienie (art. 481 KC) oraz odsetek w transakcjach handlowych, pozew o zapłatę (postępowanie nakazowe / upominawcze / zwykłe), elektroniczne postępowanie upominawcze (EPU), koordynacja z postępowaniem egzekucyjnym. Wywoływać dla zadań o zasądzenie kwoty pieniężnej z umów, pożyczek, niezapłaconych faktur, bezpodstawnego wzbogacenia.
+description: Windykacja należności — wezwanie do zapłaty, odsetki (art. 481 KC, transakcje handlowe), pozew (nakazowe / upominawcze / zwykłe), EPU, koordynacja z egzekucją. Dla zasądzenia kwoty pieniężnej z umów, pożyczek, niezapłaconych faktur, bezpodstawnego wzbogacenia.
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: sonnet
 ---

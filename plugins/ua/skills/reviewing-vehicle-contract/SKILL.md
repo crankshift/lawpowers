@@ -1,6 +1,6 @@
 ---
 name: reviewing-vehicle-contract
-description: Use when reviewing or auditing a Ukrainian vehicle sale-purchase contract (договір купівлі-продажу ТЗ) — verifying VIN and mileage authenticity, title chain, encumbrances (ЄДР обтяжень рухомого майна, застави, арешти), notarial form requirements, military restrictions under martial law (заборона переміщення ТЗ військовозобов'язаних, мобілізаційний облік), customs clearance status (розмитнене vs пільгове), typical scam patterns (підроблений VIN, крутий пробіг, відновлений після тотальної шкоди, кримінально конфіскований), and public registries to check before signing (МВС hsc.gov.ua, ЄДРО, реєстри ВС, єПослуга)
+description: Use when auditing a Ukrainian vehicle sale contract (ДКП ТЗ) — VIN / пробіг, title chain, обтяження (ЄДР обтяжень, застави, арешти), нотаріальна форма, воєнні обмеження (військовозобов'язані, мобілізаційний облік), митний статус (розмитнене vs пільгове), типові схеми шахрайства (підроблений VIN, крутий пробіг, тотальна шкода, конфіскат), реєстри (hsc.gov.ua, ЄДРО, єПослуга)
 ---
 
 # reviewing-vehicle-contract
