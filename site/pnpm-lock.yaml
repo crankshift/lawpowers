@@ -14,6 +14,9 @@ importers:
       astro:
         specifier: ^6.1.8
         version: 6.1.8(@types/node@24.12.2)(rollup@4.60.2)(typescript@6.0.3)(yaml@2.8.3)
+      powers-landing-shell:
+        specifier: github:crankshift/powers-landing-shell
+        version: https://codeload.github.com/crankshift/powers-landing-shell/tar.gz/8f819c0fc16524a0d77ed31c815adaa9abfa4c2d(astro@6.1.8(@types/node@24.12.2)(rollup@4.60.2)(typescript@6.0.3)(yaml@2.8.3))
     devDependencies:
       '@astrojs/check':
         specifier: ^0.9.8
@@ -3112,6 +3115,13 @@ packages:
   postgres-interval@1.2.0:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
+
+  powers-landing-shell@https://codeload.github.com/crankshift/powers-landing-shell/tar.gz/8f819c0fc16524a0d77ed31c815adaa9abfa4c2d:
+    resolution: {tarball: https://codeload.github.com/crankshift/powers-landing-shell/tar.gz/8f819c0fc16524a0d77ed31c815adaa9abfa4c2d}
+    version: 0.1.0
+    engines: {node: '>=22.12.0'}
+    peerDependencies:
+      astro: ^6.1.8
 
   prettier@3.8.3:
     resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
@@ -7661,6 +7671,10 @@ snapshots:
   postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
+
+  powers-landing-shell@https://codeload.github.com/crankshift/powers-landing-shell/tar.gz/8f819c0fc16524a0d77ed31c815adaa9abfa4c2d(astro@6.1.8(@types/node@24.12.2)(rollup@4.60.2)(typescript@6.0.3)(yaml@2.8.3)):
+    dependencies:
+      astro: 6.1.8(@types/node@24.12.2)(rollup@4.60.2)(typescript@6.0.3)(yaml@2.8.3)
 
   prettier@3.8.3: {}
 
