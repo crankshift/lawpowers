@@ -7,8 +7,8 @@ This is a separate sub-project inside the [lawpowers](../) monorepo. It is **not
 ## Stack
 
 - **[Astro](https://astro.build) 6.1.8** — static site generator, output: `static`
-- **No JS framework** — interactivity (copy buttons, theme toggle, install-tab switcher) is plain `<script>` inside `.astro` components
-- **Design tokens** — CSS custom properties in `src/styles/global.css`, `[data-theme="dark"]` swap
+- **[`powers-landing-shell`](https://github.com/crankshift/powers-landing-shell)** — shared package providing all components, layouts, styles, and i18n helpers. This site is a thin consumer: it supplies config, locales, and pages
+- **No JS framework** — interactivity (copy buttons, theme toggle, install-tab switcher) is plain `<script>` inside shell components
 - **Native Astro i18n** — `/en/`, `/ua/`, `/pl/` routes; root `/` detects browser language and redirects
 - **[`@astrojs/sitemap`](https://docs.astro.build/en/guides/integrations-guide/sitemap/)** — generates `sitemap-index.xml` with hreflang alternates
 - **Firebase Hosting** — multi-site target `lawpowers` in project `landings-d3578`
@@ -47,35 +47,32 @@ site/
 ├── .env                      # PUBLIC_FIREBASE_* (public identifiers, git-ignored)
 ├── .env.example              # template for contributors
 ├── tsconfig.json             # extends astro/tsconfigs/strict
+├── package.json              # depends on powers-landing-shell (github:crankshift/powers-landing-shell)
 ├── public/
 │   ├── robots.txt
 │   └── og.png               # 1200×630 social card, committed; regen via `pnpm build:og`
 ├── scripts/
 │   └── build-og.mjs         # SVG → PNG via sharp; source of truth for og.png
 └── src/
-    ├── data.ts               # plugin constants (agents, skills, sources)
-    ├── i18n/index.ts         # Lang type, HREFLANG map, getT()
+    ├── config.ts             # SiteConfig: plugin catalogs (agents, skills, sources, flags)
     ├── locales/
-    │   ├── en.ts             # EN dictionary (shape source of truth)
+    │   ├── index.ts          # re-exports dicts record keyed by LocaleCode
+    │   ├── en.ts             # EN dictionary (shape source of truth via ShellTranslation)
     │   ├── ua.ts             # UA dictionary
     │   └── pl.ts             # PL dictionary
-    ├── layouts/
-    │   └── BaseLayout.astro  # <head>: meta, canonical, hreflang, og/twitter, theme-color, JSON-LD, theme bootstrap
-    ├── components/           # Nav, Hero, Plugins, PluginCard, Install, Principles,
-    │                         #   Sources, Disclaimer, Footer, BrandMark, Flag, CopyButton
-    ├── styles/
-    │   └── global.css        # oklch tokens, reset, typography, .container, .section, .eyebrow
     └── pages/
-        ├── index.astro       # root: <meta refresh> + JS Accept-Language redirect
+        ├── index.astro       # one-liner: <RedirectShell site={site} />
         └── [locale]/
-            └── index.astro   # dynamic route → /en/, /ua/, /pl/
+            └── index.astro   # one-liner: <PageShell lang={locale} t={t} site={site} />
 ```
+
+All components (`Nav`, `Hero`, `Plugins`, `PluginCard`, `Install`, `Principles`, `Sources`, `Disclaimer`, `Footer`, `BrandMark`, `Flag`, `CopyButton`), layouts (`BaseLayout`), styles (`global.css`), and i18n helpers (`getT`, `isLang`, hreflang mapping) live in the [`powers-landing-shell`](https://github.com/crankshift/powers-landing-shell) package. This site only supplies configuration, locale dictionaries, and thin page entry points.
 
 ## Content changes
 
-Translations live in **`src/locales/{en,ua,pl}.ts`** as typed objects. `en.ts` defines the `Translation` shape; `ua.ts` and `pl.ts` declare `export const ua: Translation = { … }` — missing or extra keys fail `astro check` at build time. Update all three in lockstep.
+Translations live in **`src/locales/{en,ua,pl}.ts`** as typed objects. `en.ts` defines the `Translation` shape (satisfying `ShellTranslation` from `powers-landing-shell`); `ua.ts` and `pl.ts` declare `export const ua: Translation = { … }` — missing or extra keys fail `astro check` at build time. Update all three in lockstep.
 
-Plugin catalogs surface twice on the landing: the hero's stats strip (totals) and the plugin cards (per-item lists of agents and skills). Source of truth: **`src/data.ts`** — `UA_AGENTS`, `PL_AGENTS`, `UA_SKILLS`, `PL_SKILLS` arrays; `UA_SKILLS_COUNT` / `PL_SKILLS_COUNT` are derived from `.length`. These arrays must mirror the actual contents of `../plugins/ua/agents/`, `../plugins/pl/agents/`, `../plugins/ua/skills/`, `../plugins/pl/skills/`. When you add or remove an agent / skill, update the array **and** the corresponding label map in every locale (`agents_ua` / `agents_pl` / `skills_ua` / `skills_pl` in `src/locales/{en,ua,pl}.ts`) — the `satisfies Record<…, string>` constraint makes missing keys a type error at `astro check` time.
+Plugin catalogs surface twice on the landing: the hero's stats strip (totals) and the plugin cards (per-item lists of agents and skills). Source of truth: **`src/config.ts`** — `UA_AGENTS`, `PL_AGENTS`, `UA_SKILLS`, `PL_SKILLS` arrays and the `SiteConfig` exported as `site`. These arrays must mirror the actual contents of `../plugins/ua/agents/`, `../plugins/pl/agents/`, `../plugins/ua/skills/`, `../plugins/pl/skills/`. When you add or remove an agent / skill, update the array in `config.ts` **and** the corresponding label map in every locale (`agents_ua` / `agents_pl` / `skills_ua` / `skills_pl` in `src/locales/{en,ua,pl}.ts`) — the `satisfies Record<…, string>` constraint makes missing keys a type error at `astro check` time.
 
 ## Firebase config
 
@@ -106,10 +103,10 @@ Built in:
 - Open Graph + Twitter card meta per locale (`og:locale`, `og:locale:alternate`, `og:site_name`)
 - Social card at `public/og.png` (1200×630), referenced from `og:image` + `twitter:image` with width / height / type / alt. Source is `scripts/build-og.mjs` (SVG authored inline, rasterized with `sharp`); regenerate with `pnpm build:og`
 - `theme-color` meta with `prefers-color-scheme` variants for mobile browser chrome
-- JSON-LD `@graph` (`WebSite` + `Organization`, localized `inLanguage`) inlined in `BaseLayout.astro`
+- JSON-LD `@graph` (`WebSite` + `Organization`, localized `inLanguage`) inlined in the shell's `BaseLayout`
 - `sitemap-index.xml` + per-URL alternate links via `@astrojs/sitemap`. Root `/` is filtered out of the sitemap (it's a redirect shell carrying `noindex, follow`) so only `/en/`, `/ua/`, `/pl/` appear — no competing `hreflang="en"` URLs
 - `robots.txt` → sitemap
-- `<html lang>` pulled from `HREFLANG` map
+- `<html lang>` pulled from the shell's hreflang mapping
 - `trailingSlash: 'always'` in Astro + `trailingSlash: true` in Firebase — canonical URLs end in `/`, no duplicate-content risk
 
 Content (headings, paragraphs, agent lists) is rendered into HTML at build — no client-side hydration for crawlers.
