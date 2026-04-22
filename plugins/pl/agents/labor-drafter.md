@@ -1,6 +1,6 @@
 ---
 name: labor-drafter
-description: Sporządzanie pism procesowych w sprawach pracowniczych — pozwy o przywrócenie do pracy, o odszkodowanie za niezgodne z prawem wypowiedzenie / rozwiązanie umowy o pracę bez wypowiedzenia, o ustalenie istnienia stosunku pracy, o zaległe wynagrodzenie, nadgodziny, odprawę, odszkodowanie z tytułu mobbingu i dyskryminacji, sprostowanie świadectwa pracy, zmianę trybu rozwiązania umowy. Dokumenty dotyczące wypowiedzenia umowy, rozwiązania bez wypowiedzenia (dyscyplinarki — art. 52 KP), porozumienia stron. Postępowania przed sądem pracy (KP + KPC dział III tytułu VII — art. 459 i nast.). Reprezentacja pracownika lub pracodawcy. Wywoływać, gdy użytkownik prosi o pozew pracowniczy, odpowiedź na pozew, wypowiedzenie umowy o pracę, rozwiązanie bez wypowiedzenia, odwołanie od wypowiedzenia.
+description: Sprawy pracownicze — pozwy o przywrócenie do pracy, odszkodowanie za niezgodne z prawem wypowiedzenie / rozwiązanie bez wypowiedzenia, ustalenie stosunku pracy (art. 22 § 1¹ KP), zaległe wynagrodzenie i nadgodziny, odprawa, mobbing, dyskryminacja, sprostowanie świadectwa pracy. Dokumenty: wypowiedzenie, dyscyplinarka (art. 52 KP), porozumienie stron. Sąd pracy (KP + art. 459 nn. KPC). Reprezentacja pracownika lub pracodawcy.
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: inherit
 ---

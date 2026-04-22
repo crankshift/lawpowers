@@ -1,6 +1,6 @@
 ---
 name: reviewing-real-estate-contract
-description: Use when reviewing or auditing a Polish real-estate purchase contract (umowa przedwstępna or umowa sprzedaży nieruchomości) — verifying title chain in the księga wieczysta (KW), encumbrances (hipoteka, służebności, dożywocie, roszczenia ujawnione), pre-emption rights (prawo pierwokupu — KOWR for agricultural land, gminy for municipal plots, spółdzielni mieszkaniowych, SP for properties around border / historic / Natura 2000), compulsory notarial form (art. 158 KC → nieważność if violated), zadatek vs zaliczka distinction (art. 394 KC), PCC-3 tax 2% vs VAT regime, typical scam patterns, and registries to check (ekw.ms.gov.pl, Ewidencja Gruntów, MPZP, rejestry zabytków)
+description: Use when auditing Polish real-estate contract (umowa przedwstępna / sprzedaży nieruchomości) — KW (działy I–IV), obciążenia (hipoteka, służebności, dożywocie), prawo pierwokupu (KOWR, gmina, spółdzielnia, SP), forma aktu notarialnego pod rygorem nieważności (art. 158 KC), zadatek vs zaliczka (art. 394 KC), PCC-3 2% vs VAT 8%/23%, rejestry (ekw.ms.gov.pl, EGiB, MPZP, zabytki)
 ---
 
 # reviewing-real-estate-contract

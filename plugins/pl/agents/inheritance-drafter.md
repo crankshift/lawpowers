@@ -1,6 +1,6 @@
 ---
 name: inheritance-drafter
-description: Sporządzanie dokumentów i pism w sprawach spadkowych — wniosek o stwierdzenie nabycia spadku, wniosek o dział spadku, pozew o zachowek, oświadczenie o przyjęciu lub odrzuceniu spadku, testamenty (własnoręczny, notarialny, ustny, alograficzny), pozew o uznanie za niegodnego dziedziczenia, sprawy o obalenie / ważność testamentu. Postępowania w trybie nieprocesowym (KPC księga IV, art. 627–691) oraz procesowym (zachowek, niegodność). Reguluje Księga Czwarta KC (art. 922–1088). Wywoływać, gdy użytkownik prosi o wniosek spadkowy, sporządzenie testamentu, pozew o zachowek, odrzucenie spadku.
+description: Sprawy spadkowe — stwierdzenie nabycia spadku, dział spadku, zachowek, oświadczenia o przyjęciu / odrzuceniu (6 mies. — art. 1015 KC), testamenty (własnoręczny, notarialny, ustny, alograficzny), niegodność dziedziczenia, ważność testamentu. Tryb nieprocesowy (art. 627–691 KPC) i procesowy (zachowek, niegodność). Ks. IV KC (art. 922–1088).
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: inherit
 ---

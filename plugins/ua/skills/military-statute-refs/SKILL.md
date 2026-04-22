@@ -1,6 +1,6 @@
 ---
 name: military-statute-refs
-description: Use when working with Ukrainian military law — fetching statutes, orders of the Ministry of Defense, or CMU resolutions applicable to service members in ЗСУ. Contains verified zakon.rada ID table for Дисциплінарний статут ЗС, статути внутрішньої/гарнізонної/караульної служби, ЗУ про військовий обов'язок, про соцзахист військовослужбовців, про статус ветеранів, наказ МО про ВЛК, постанови КМУ про виплати. Saves time on constructing URLs and verifying which exact redaction is relevant to a service member's legal situation.
+description: Use when fetching Ukrainian military statutes, orders MO, or CMU resolutions for service members. Verified zakon.rada ID table: Дисциплінарний статут ЗС, статути внутрішньої / гарнізонної / караульної служби, ЗУ про військовий обов'язок і соцзахист військовослужбовців, наказ МО про ВЛК, постанови КМУ про виплати.
 ---
 
 # military-statute-refs

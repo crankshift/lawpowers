@@ -1,6 +1,6 @@
 ---
 name: criminal-complaint-drafter
-description: Sporządzanie pism w postępowaniu karnym po stronie pokrzywdzonego lub oskarżyciela posiłkowego / prywatnego — zawiadomienie o popełnieniu przestępstwa (art. 304 KPK), wniosek o wszczęcie ścigania (w trybie wnioskowym), subsydiarny akt oskarżenia (art. 55 KPK), prywatny akt oskarżenia (art. 487 KPK), zażalenia na postanowienia o umorzeniu / odmowie wszczęcia postępowania (art. 306 KPK), wnioski o uzupełnienie postępowania przygotowawczego (art. 330 KPK), wnioski o naprawienie szkody (art. 46 KK) i środki kompensacyjne. Pisma do prokuratury rejonowej / okręgowej, Policji, CBŚP, CBA, w uzasadnionych sytuacjach — do prokuratury regionalnej lub ABW. Wywoływać, gdy użytkownik jest pokrzywdzonym i chce zgłosić przestępstwo albo zaskarżyć umorzenie; gdy chce rozpocząć ściganie prywatne (zniewaga, zniesławienie, naruszenie nietykalności); gdy chce działać jako oskarżyciel posiłkowy subsydiarny po odmowie ścigania przez prokuratora.
+description: Pisma karne po stronie pokrzywdzonego / oskarżyciela posiłkowego / prywatnego — zawiadomienie o przestępstwie (art. 304 KPK), subsydiarny akt oskarżenia (art. 55), prywatny akt oskarżenia (art. 487), zażalenia na umorzenie (art. 306), wnioski z art. 330 KPK, naprawienie szkody (art. 46 KK). Gdy pokrzywdzony chce zgłosić przestępstwo, zaskarżyć umorzenie, wszcząć ściganie prywatne (zniesławienie, zniewaga, naruszenie nietykalności) lub działać subsydiarnie.
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: inherit
 ---

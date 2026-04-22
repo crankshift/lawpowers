@@ -1,6 +1,6 @@
 ---
 name: applying-cudzoziemcy-procedures
-description: Use when navigating Polish immigration / residence / work procedures before urząd wojewódzki — zezwolenie na pobyt czasowy (work, studies, family reunification — art. 98, 114, 127, 144, 159, 187 ustawy o cudzoziemcach), zezwolenie na pobyt stały (art. 195), zezwolenie rezydenta długoterminowego UE (art. 211), zezwolenie na pracę (typy A-E, ustawa z 20.04.2004 o promocji zatrudnienia), oświadczenie o powierzeniu wykonywania pracy (12 months for specific states), obywatelstwo polskie (ustawa z 02.04.2009) — both nadanie przez Prezydenta RP and uznanie za obywatela Polskiego (voivodship-level). Covers required documents, biometrics appointments, inforpl / MOS module, statutory deadlines (KPA + special UC deadlines), and appeal path (Szef UdSC → WSA / NSA)
+description: Use when navigating Polish immigration / residence / work procedures — pobyt czasowy (art. 98, 114, 127, 144, 159, 187 UC), pobyt stały (art. 195), rezydent długoterminowy UE (art. 211), zezwolenie na pracę (typy A-E), oświadczenie o powierzeniu pracy, obywatelstwo (ustawa z 02.04.2009 — nadanie przez Prezydenta / uznanie wojewody). Dokumenty, biometria, MOS, terminy, odwołanie (Szef UdSC → WSA / NSA)
 ---
 
 # applying-cudzoziemcy-procedures

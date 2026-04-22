@@ -1,6 +1,6 @@
 ---
 name: legislation-analyst
-description: Analiza obowiązującego prawa polskiego — wyszukiwanie i wykładnia norm, sprawdzanie brzmienia na konkretną datę, śledzenie zmian, dobór orzecznictwa, przygotowanie opinii prawnych. Wywoływać, gdy trzeba ustalić treść normy prawnej, sprawdzić jej obowiązywanie, prześledzić zmiany, znaleźć właściwe orzeczenia Sądu Najwyższego, NSA lub Trybunału Konstytucyjnego. Źródło pierwotne — isap.sejm.gov.pl.
+description: Analiza prawa polskiego — wyszukiwanie i wykładnia norm, brzmienie na datę, śledzenie zmian, orzecznictwo SN/NSA/TK, opinie prawne. Źródło pierwotne — isap.sejm.gov.pl.
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: sonnet
 ---

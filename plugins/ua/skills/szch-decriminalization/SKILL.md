@@ -1,6 +1,6 @@
 ---
 name: szch-decriminalization
-description: Use when analyzing a case for applicability of Ч. 5 ст. 401 КК України (Law № 3902-IX from 20.08.2024, effective 07.09.2024) — release from criminal liability for first-time самовільне залишення частини (СЗЧ, Art. 407) or дезертирство (Art. 408) upon voluntary return. Contains eligibility checklist, step-by-step procedure (рапорт командиру → письмова згода → клопотання слідчому → явка у 72 год), required documents, pitfalls, and contacts for parallel support (Військовий омбудсман, Юридична сотня, БПД).
+description: Use when applying ч. 5 ст. 401 КК (Закон № 3902-IX від 20.08.2024, чинний з 07.09.2024) — звільнення від кримінальної відповідальності за СЗЧ (ст. 407) або дезертирство (ст. 408) при добровільному поверненні вперше. Чек-лист придатності, процедура (рапорт → письмова згода → клопотання слідчому → явка у 72 год), документи, пастки, контакти підтримки.
 ---
 
 # szch-decriminalization

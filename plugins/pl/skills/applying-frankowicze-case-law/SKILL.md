@@ -1,6 +1,6 @@
 ---
 name: applying-frankowicze-case-law
-description: Use when working on Polish CHF mortgage cases (kredyty frankowe) — mapping key TSUE rulings (C-260/18 Dziubak, C-520/21 Bank M., C-287/22 Getin, C-140/22 mBank, C-776/19 BNP Paribas) to Polish SN resolutions (III CZP 6/21, III CZP 11/21, III CZP 25/22), building arguments for invalidity of abusive indexation clauses, applying the two-kondykcja theory, motion for interim security, and calculating the claim
+description: Use when working on Polish CHF mortgage cases (frankowicze) — TSUE (C-260/18 Dziubak, C-520/21 Bank M., C-287/22 Getin, C-140/22 mBank, C-776/19 BNP), uchwały SN (III CZP 6/21, 11/21, 25/22), nieważność klauzul indeksacyjnych, teoria dwóch kondykcji, zabezpieczenie powództwa, obliczenie roszczenia
 ---
 
 # applying-frankowicze-case-law

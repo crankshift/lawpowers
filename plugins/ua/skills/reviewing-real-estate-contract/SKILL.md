@@ -1,6 +1,6 @@
 ---
 name: reviewing-real-estate-contract
-description: Use when reviewing or auditing a Ukrainian real-estate sale-purchase contract (договір купівлі-продажу нерухомості) — verifying title chain in the ДРРП (Державний реєстр речових прав на нерухоме майно), encumbrances (іпотека, сервітути, арешт), mandatory notarial form under art. 657 ЦК (nullity if violated), pre-emption rights (співвласники — art. 362 ЦК, держава — для земель, що межують із держкордоном, деяких категорій земель), martial-law restrictions (заборона відчуження для окремих категорій, посвідчення тільки в межах нотаріального округу, обмеження для окупованих територій), завдаток vs аванс distinction (ст. 570 ЦК), taxes (ПДФО 5%, військовий збір 5%, збір до Пенсійного фонду 1%, держмито), and registries to check (nais.gov.ua / online.minjust.gov.ua, реєстр іпотек, ЄРБ, АСВП)
+description: Use when auditing a Ukrainian real-estate sale contract (договір купівлі-продажу нерухомості) — ДРРП title chain, обтяження (іпотека, сервітути, арешти), обов'язкова нотаріальна форма (ст. 657 ЦК — нікчемність), переважне право (ст. 362 ЦК), воєнні обмеження, завдаток vs аванс (ст. 570 ЦК), податки (ПДФО 5% + військовий збір 5% + ПФ 1%), реєстри (nais.gov.ua, online.minjust.gov.ua, іпотеки, ЄРБ, АСВП)
 ---
 
 # reviewing-real-estate-contract
