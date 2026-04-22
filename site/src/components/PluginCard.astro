@@ -7,13 +7,15 @@ interface Props {
   code: 'ua' | 'pl'
   t: Translation
   agents: readonly string[]
-  skillsCount: number
+  skills: readonly string[]
 }
 
-const { code, t, agents, skillsCount } = Astro.props
+const { code, t, agents, skills } = Astro.props
 const data = t.plugins[code]
 const agentDict: Record<string, string> =
   code === 'ua' ? t.agents_ua : t.agents_pl
+const skillDict: Record<string, string> =
+  code === 'ua' ? t.skills_ua : t.skills_pl
 const installCmd = `/plugin install ${code}@lawpowers`
 ---
 
@@ -26,8 +28,6 @@ const installCmd = `/plugin install ${code}@lawpowers`
     </div>
     <Flag code={code} />
   </div>
-
-  <p class="blurb">{data.blurb}</p>
 
   <div class="meta">
     <div class="meta-cell">
@@ -52,7 +52,12 @@ const installCmd = `/plugin install ${code}@lawpowers`
 
   <div class="list-head skills-head">
     <span>{t.plugins.skills}</span>
-    <span class="count">{skillsCount}</span>
+    <span class="count">{skills.length}</span>
+  </div>
+  <div class="agent-list skill-list">
+    {skills.map((k) => (
+      <div class="agent-item">{skillDict[k] ?? k}</div>
+    ))}
   </div>
 
   <div class="install-row">
@@ -130,14 +135,6 @@ const installCmd = `/plugin install ${code}@lawpowers`
     font-size: 13px;
     color: var(--accent);
     margin-top: 6px;
-  }
-
-  .blurb {
-    color: var(--ink-2);
-    font-size: 15px;
-    line-height: 1.55;
-    margin: 0 0 20px;
-    text-wrap: pretty;
   }
 
   .meta {

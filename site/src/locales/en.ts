@@ -1,4 +1,4 @@
-import type { UaAgent, PlAgent } from '../data'
+import type { UaAgent, PlAgent, UaSkill, PlSkill } from '../data'
 
 export const en = {
   locale: 'EN',
@@ -47,15 +47,11 @@ export const en = {
     ua: {
       name: 'Ukraine',
       tag: 'Ukrainian law · Civil · Commercial · Administrative · Military',
-      blurb:
-        'End-to-end drafting across civil, commercial, and administrative procedure — claims, responses, appeals, motions, contracts (with review-only audit mode), debt collection, and enforcement — with international arbitration (ICC/LCIA/SCC/SIAC/HKIAC/VIAC, UNCITRAL) and a parallel track for service members and their families: chain-of-command reports, VLK appeals, mobilization and reservation, combat pay and family benefits, СЗЧ defense. Backed by statute fetching from zakon.rada, ЄДРСР practice search, court-fee and limitations calculators, martial-law overrides, contract-review checklists (vehicle, real estate), and procedural walkthroughs for ЦНАП passports, МВС service centres, and consulates abroad.',
       lang_value: 'Ukrainian',
     },
     pl: {
       name: 'Poland',
       tag: 'Polish law · Civil · Commercial · Consumer · Criminal · Family · Labor · RODO',
-      blurb:
-        'Drafting against current KPC and KC with reforms tracked (przedawnienie 2018, KPC 2019/2023) — pozwy, odpowiedzi, apelacje, wnioski, umowy (with review-only audit mode) — plus consumer disputes (frankowicze, UOKiK), criminal complaints, family (rozwód, alimenty), inheritance, labor, RODO compliance audits, and international arbitration (ICC/LCIA/SCC/SIAC, UNCITRAL). Backed by ISAP statute fetching, Portal Orzeczeń and KRS search, court-fee and limitations calculators, contract-review checklists (vehicle, real estate), and procedural walkthroughs for USC, ZUS, urząd skarbowy, and urząd wojewódzki (cudzoziemcy).',
       lang_value: 'Polish',
     },
   },
@@ -96,6 +92,48 @@ export const en = {
     'labor-drafter': 'Labor law',
     'rodo-compliance': 'RODO compliance',
   } satisfies Record<PlAgent, string>,
+  skills_ua: {
+    'fetching-zakon-rada': 'zakon.rada fetch',
+    'searching-edrsr': 'ЄДРСР case-law search',
+    'citing-ukrainian-law': 'Citation format',
+    'determining-ua-jurisdiction': 'Jurisdiction',
+    'calculating-sudovyi-zbir': 'Court fee',
+    'checking-pozovna-davnist': 'Limitations (позовна давність)',
+    'checking-martial-law-overrides': 'Martial-law overrides',
+    'fetching-arbitration-rules': 'Arbitration rules',
+    'applying-new-york-convention': 'NY Convention 1958',
+    'military-statute-refs': 'Military statute refs',
+    'calculating-military-payments': 'Military payments',
+    'vlk-procedure': 'ВЛК procedure',
+    'szch-decriminalization': 'СЗЧ decriminalization',
+    'reviewing-vehicle-contract': 'Vehicle contract audit',
+    'reviewing-real-estate-contract': 'Real-estate contract audit',
+    'applying-cnap-passport': 'ЦНАП passports',
+    'applying-servisnyi-centr-mvs': 'МВС service centres',
+    'applying-consular-procedures': 'Consular procedures',
+  } satisfies Record<UaSkill, string>,
+  skills_pl: {
+    'fetching-isap-sejm': 'ISAP statute fetch',
+    'searching-orzeczenia': 'Case-law search',
+    'searching-krs': 'KRS / CEIDG lookup',
+    'citing-polish-law': 'Citation format',
+    'determining-pl-jurisdiction': 'Jurisdiction',
+    'determining-wps': 'Value of claim (WPS)',
+    'calculating-oplata-sadowa': 'Court fee',
+    'calculating-odsetki': 'Interest calculation',
+    'calculating-alimenty': 'Alimony calculation',
+    'checking-przedawnienie': 'Limitations (przedawnienie)',
+    'fetching-arbitration-rules': 'Arbitration rules',
+    'applying-new-york-convention': 'NY Convention 1958',
+    'applying-frankowicze-case-law': 'Frankowicze case law',
+    'applying-rodo': 'RODO mapping',
+    'reviewing-vehicle-contract': 'Vehicle contract audit',
+    'reviewing-real-estate-contract': 'Real-estate contract audit',
+    'applying-usc-procedures': 'USC (civil registry)',
+    'applying-zus-procedures': 'ZUS procedures',
+    'applying-skarbowy-procedures': 'Tax office',
+    'applying-cudzoziemcy-procedures': 'Foreigners (pobyt / praca)',
+  } satisfies Record<PlSkill, string>,
   install: {
     eyebrow: 'Install',
     title: 'Two steps. Paste and go.',

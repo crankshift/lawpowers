@@ -27,7 +27,28 @@ export const UA_AGENTS = [
   'szch-defense',
 ] as const
 
-export const UA_SKILLS_COUNT = 18
+export const UA_SKILLS = [
+  'fetching-zakon-rada',
+  'searching-edrsr',
+  'citing-ukrainian-law',
+  'determining-ua-jurisdiction',
+  'calculating-sudovyi-zbir',
+  'checking-pozovna-davnist',
+  'checking-martial-law-overrides',
+  'fetching-arbitration-rules',
+  'applying-new-york-convention',
+  'military-statute-refs',
+  'calculating-military-payments',
+  'vlk-procedure',
+  'szch-decriminalization',
+  'reviewing-vehicle-contract',
+  'reviewing-real-estate-contract',
+  'applying-cnap-passport',
+  'applying-servisnyi-centr-mvs',
+  'applying-consular-procedures',
+] as const
+
+export const UA_SKILLS_COUNT = UA_SKILLS.length
 
 export const PL_AGENTS = [
   'claim-drafter',
@@ -49,10 +70,35 @@ export const PL_AGENTS = [
   'rodo-compliance',
 ] as const
 
-export const PL_SKILLS_COUNT = 20
+export const PL_SKILLS = [
+  'fetching-isap-sejm',
+  'searching-orzeczenia',
+  'searching-krs',
+  'citing-polish-law',
+  'determining-pl-jurisdiction',
+  'determining-wps',
+  'calculating-oplata-sadowa',
+  'calculating-odsetki',
+  'calculating-alimenty',
+  'checking-przedawnienie',
+  'fetching-arbitration-rules',
+  'applying-new-york-convention',
+  'applying-frankowicze-case-law',
+  'applying-rodo',
+  'reviewing-vehicle-contract',
+  'reviewing-real-estate-contract',
+  'applying-usc-procedures',
+  'applying-zus-procedures',
+  'applying-skarbowy-procedures',
+  'applying-cudzoziemcy-procedures',
+] as const
+
+export const PL_SKILLS_COUNT = PL_SKILLS.length
 
 export type UaAgent = (typeof UA_AGENTS)[number]
 export type PlAgent = (typeof PL_AGENTS)[number]
+export type UaSkill = (typeof UA_SKILLS)[number]
+export type PlSkill = (typeof PL_SKILLS)[number]
 
 export interface Source {
   name: string
