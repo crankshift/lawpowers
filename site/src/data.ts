@@ -27,7 +27,7 @@ export const UA_AGENTS = [
   'szch-defense',
 ] as const
 
-export const UA_SKILLS_COUNT = 13
+export const UA_SKILLS_COUNT = 18
 
 export const PL_AGENTS = [
   'claim-drafter',
@@ -49,7 +49,7 @@ export const PL_AGENTS = [
   'rodo-compliance',
 ] as const
 
-export const PL_SKILLS_COUNT = 14
+export const PL_SKILLS_COUNT = 20
 
 export type UaAgent = (typeof UA_AGENTS)[number]
 export type PlAgent = (typeof PL_AGENTS)[number]
