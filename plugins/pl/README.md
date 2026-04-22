@@ -56,7 +56,7 @@ Wszystkie komendy wywoływane z prefiksem `/pl:…`.
 | `pl:legislation-analyst` | Analiza obowiązującego prawa, wykładnia norm, brzmienie na datę, dobór orzecznictwa |
 | `pl:legal-memo` | Opinie prawne, memoranda, ocena perspektyw sporu |
 | `pl:request-drafter` | Wnioski o udostępnienie informacji publicznej (UDIP), pisma adwokata / radcy prawnego, KPA |
-| `pl:contract-drafter` | Sporządzanie i analiza umów cywilnoprawnych i gospodarczych, audyt ryzyk, RODO |
+| `pl:contract-drafter` | Sporządzanie i analiza umów cywilnoprawnych i gospodarczych, RODO; **tryb audytu ryzyk** (review-only) z ustrukturyzowanym raportem (KRYTYCZNE / ISTOTNE / POŻĄDANE) |
 
 **Windykacja i egzekucja:**
 
@@ -122,6 +122,22 @@ Wszystkie komendy wywoływane z prefiksem `/pl:…`.
 |---|---|
 | `pl:applying-frankowicze-case-law` | Kredyty CHF: TSUE C-260/18 Dziubak, C-520/21 Bank M., C-287/22 Getin, C-140/22 mBank; uchwały SN III CZP 6/21, III CZP 11/21; teoria dwóch kondykcji, zabezpieczenie powództwa |
 | `pl:applying-rodo` | RODO 2016/679 + UODO 10.05.2018: podstawy prawne art. 6/9, obowiązki informacyjne art. 13/14, umowa powierzenia art. 28, DPIA art. 35, naruszenia art. 33/34, transfery po *Schrems II* |
+
+**Audyt umów (checklist + red flags dla `pl:contract-drafter` w trybie audytu):**
+
+| Wywołanie | Kiedy stosować |
+|---|---|
+| `pl:reviewing-vehicle-contract` | Audyt umowy kupna-sprzedaży pojazdu: VIN / przebieg / obciążenia (CEPiK, Rejestr Zastawów, biała lista VAT); typowe schematy (cofnięty licznik, klonowany VIN, pełnomocnictwa-pułapki, niezakończony leasing); obowiązki po zakupie (30 dni CEPiK, PCC-3 14 dni) |
+| `pl:reviewing-real-estate-contract` | Audyt umowy sprzedaży nieruchomości: KW (działy I–IV), hipoteki, służebności, dożywocie, prawa pierwokupu (gmina, KOWR, spółdzielnia, konserwator); zadatek vs. zaliczka (art. 394 KC); forma aktu notarialnego (art. 158 KC); PCC-3 2% vs VAT 8% / 23%; depozyt notarialny |
+
+**Procedury administracyjne (urzędy publiczne):**
+
+| Wywołanie | Kiedy stosować |
+|---|---|
+| `pl:applying-usc-procedures` | Urząd Stanu Cywilnego: rejestracja urodzenia, małżeństwo cywilne i konkordatowe, zmiana imienia / nazwiska, transkrypcja zagranicznych aktów, odpisy; ustawa z 28.11.2014 o ASC; opłaty skarbowe; e-usługi gov.pl |
+| `pl:applying-zus-procedures` | ZUS: rejestracja płatnika (ZFA / ZPA) i ubezpieczonych (ZUA), zasiłki (Z-3 / Z-15 / Np-7), emerytury i renty (Rp-1E / Rp-1R / Rp-2), ulgi w spłacie (RSR / RSO / RSU); odwołanie do sądu ubezpieczeń społecznych (art. 477⁹ KPC); PUE ZUS |
+| `pl:applying-skarbowy-procedures` | US / KAS: rejestracja NIP i VAT (VAT-R), czynny żal (art. 16 KKS), korekta deklaracji (art. 81 OP), ulgi (art. 67a OP), interpretacja indywidualna KIS (art. 14b OP), odwołanie DIAS, skarga do WSA / NSA, KSeF |
+| `pl:applying-cudzoziemcy-procedures` | Urząd wojewódzki: pobyt czasowy (art. 114 praca / art. 127 Blue Card / art. 144 studia / art. 158 rodzina), stały (art. 195), rezydent UE (art. 211), zezwolenia na pracę A–E, obywatelstwo (UOb); MOS; odwołanie do Szefa UdSC |
 
 ## Zasady pracy
 

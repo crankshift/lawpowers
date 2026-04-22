@@ -75,7 +75,7 @@ site/
 
 Translations live in **`src/locales/{en,ua,pl}.ts`** as typed objects. `en.ts` defines the `Translation` shape; `ua.ts` and `pl.ts` declare `export const ua: Translation = { … }` — missing or extra keys fail `astro check` at build time. Update all three in lockstep.
 
-Plugin counts surface in the hero's stats strip. Source of truth: **`src/data.ts`** — `UA_AGENTS`, `PL_AGENTS`, `UA_SKILLS_COUNT`, `PL_SKILLS_COUNT`. These must mirror the actual contents of `../plugins/ua/agents/`, `../plugins/pl/agents/`, `../plugins/ua/skills/`, `../plugins/pl/skills/`. Bump them when plugin contents change.
+Plugin catalogs surface twice on the landing: the hero's stats strip (totals) and the plugin cards (per-item lists of agents and skills). Source of truth: **`src/data.ts`** — `UA_AGENTS`, `PL_AGENTS`, `UA_SKILLS`, `PL_SKILLS` arrays; `UA_SKILLS_COUNT` / `PL_SKILLS_COUNT` are derived from `.length`. These arrays must mirror the actual contents of `../plugins/ua/agents/`, `../plugins/pl/agents/`, `../plugins/ua/skills/`, `../plugins/pl/skills/`. When you add or remove an agent / skill, update the array **and** the corresponding label map in every locale (`agents_ua` / `agents_pl` / `skills_ua` / `skills_pl` in `src/locales/{en,ua,pl}.ts`) — the `satisfies Record<…, string>` constraint makes missing keys a type error at `astro check` time.
 
 ## Firebase config
 
