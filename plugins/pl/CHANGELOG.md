@@ -4,6 +4,38 @@ Historia zmian plagina `pl` (polskie prawo) w ramach monorepo [`lawpowers`](../.
 
 Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Od wydań po v0.6.0 plagin jest tagowany osobno jako `pl/vX.Y.Z` (gdzie `X.Y.Z` odpowiada polu `version` w `plugin.json`). Wpisy historyczne poniżej (do 0.2.0 włącznie) były wydawane w ramach wspólnych tagów marketplace'u `vX.Y.Z` i zachowują linki do nich.
 
+## [0.3.1] — 2026-04-22
+
+### Changed — optymalizacja tokenów (~55% stałego overheadu)
+
+Bez zmian funkcjonalnych. Zmniejszono rozmiar metadanych, które Claude Code ładuje do głównego kontekstu na **każdym obrocie** — zanim jeszcze zacznie się rzeczywista praca. Ciała agentów i skilli (cała procedura i zawartość merytoryczna) pozostają bez zmian.
+
+- **Opisy agentów** (`description:` we frontmatter, 17 agentów) — skrócono najdłuższe (najbardziej: `pl:arbitration-agent` 1220 → ~500 znaków, `pl:consumer-drafter` 1015 → ~420). Zachowano słowa kluczowe routingu, nazwy instytucji, numery artykułów. Usunięto listy wyłączeń („NIE wywoływać dla…") i wyliczenia podstaw prawnych, które i tak są w ciele agenta.
+- **Opisy skilli** (20 skilli) — analogicznie. Największe (`applying-zus-procedures` 823, `applying-skarbowy-procedures` 789, `applying-cudzoziemcy-procedures` 789, `reviewing-real-estate-contract` 710) skrócono; zachowano wszystkie słowa-triggery i zakotwiczenia w artykułach.
+- **`plugins/pl/CLAUDE.md`** — przepisany. Było 208 linii, jest 28. Usunięto zduplikowane katalogi agentów/skilli (dostępne dla Claude przez listing), sekcję planowanej architektury, drzewo katalogów, zasady nazewnictwa — wszystko to jest w `README.md` albo dotyczy wyłącznie kontrybutorów. Pozostawiono reguły runtime: język, dosłowność cytatów, źródło pierwotne (ISAP), zakaz wymyślania orzecznictwa, placeholdery dla danych osobowych, disclaimer „projekt, nie porada", zasada aktualności (KPC / KSH / ustawy podatkowe).
+
+**Zmierzone oszczędności na obrót** (szacunkowo, 4 znaki/token):
+
+| Blok | Przed | Po | Oszczędność |
+|---|---:|---:|---:|
+| `CLAUDE.md` | ~4 300 tok. | ~480 tok. | ~3 820 |
+| Opisy agentów | ~2 780 tok. | ~1 720 tok. | ~1 060 |
+| Opisy skilli | ~2 340 tok. | ~1 880 tok. | ~460 |
+| **Razem** | **~9 420** | **~4 080** | **~5 340** |
+
+### Bumped
+
+- Plagin `pl`: `0.3.0` → `0.3.1`.
+
+### Migracja
+
+Bez zmian breaking. Routing między agentami i triggery skilli zweryfikowane — słowa kluczowe zachowane. Aktualizacja:
+
+```
+/plugin marketplace update lawpowers
+/reload-plugins
+```
+
 ## [0.3.0] — 2026-04-22
 
 ### Added — tryb audytu ryzyk w `contract-drafter`
@@ -151,6 +183,7 @@ Plagin `pl` dla polskiego prawa dodany do monorepo `lawpowers` (tag marketplace:
 
 Dostępny w tagu marketplace'u [v0.4.0](https://github.com/crankshift/lawpowers/releases/tag/v0.4.0).
 
+[0.3.1]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.3.1
 [0.3.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.3.0
 [0.2.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.2.0
 [0.1.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.0

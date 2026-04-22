@@ -12,7 +12,7 @@
       "name": "ua",
       "source": "./plugins/ua",
       "description": "Lawpowers Ukraine — субагенти та скіли для роботи з українським законодавством і правничими документами, включно з окремим блоком для військовослужбовців ЗСУ (рапорти, ВЛК, ТЦК, виплати, СЗЧ). Команди отримують префікс /ua:…",
-      "version": "0.5.0",
+      "version": "0.5.1",
       "author": {
         "name": "crankshift"
       },
@@ -45,7 +45,7 @@
       "name": "pl",
       "source": "./plugins/pl",
       "description": "Lawpowers Poland — wyspecjalizowani subagenci i skille do pracy z polskim ustawodawstwem oraz dokumentami prawniczymi (ISAP, orzeczenia, KC/KPC/KRO/KP/KK/KSH, arbitraż, frankowicze, RODO). Komendy otrzymują prefiks /pl:…",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "author": {
         "name": "crankshift"
       },
