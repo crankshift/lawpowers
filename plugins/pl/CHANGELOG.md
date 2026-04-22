@@ -4,6 +4,41 @@ Historia zmian plagina `pl` (polskie prawo) w ramach monorepo [`lawpowers`](../.
 
 Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Od wydań po v0.6.0 plagin jest tagowany osobno jako `pl/vX.Y.Z` (gdzie `X.Y.Z` odpowiada polu `version` w `plugin.json`). Wpisy historyczne poniżej (do 0.2.0 włącznie) były wydawane w ramach wspólnych tagów marketplace'u `vX.Y.Z` i zachowują linki do nich.
 
+## [0.3.0] — 2026-04-22
+
+### Added — tryb audytu ryzyk w `contract-drafter`
+
+- **`pl:contract-drafter`** — uzupełniono o osobny **tryb audytu ryzyk** (review-only). Uruchamiany, gdy klient prosi o „audyt / review / red flags", bez prośby o pełną redakcję. Wynik: ustrukturyzowany raport (I. Podsumowanie → II. Ustalenia po klauzulach z cytatem i podstawą prawną → III. Braki → IV. Lista kontrolna poprawek → V. Zalecenia negocjacyjne). Klasyfikacja ryzyk: **KRYTYCZNE / ISTOTNE / POŻĄDANE**. Zasada „bez przepisywania" — raport listuje poprawki do istniejącego projektu, nie generuje nowej umowy.
+
+### Added — 6 nowych skilli
+
+**Audyt umów (checklist + red flags dla trybu audytu ryzyk):**
+
+- **`pl:reviewing-vehicle-contract`** — umowa kupna-sprzedaży pojazdu. Rejestry do weryfikacji (CEPiK / historiapojazdu.gov.pl, Rejestr Zastawów Skarbowych, biała lista VAT, KRS / CEIDG), katalog red flags (klonowany VIN, cofnięty licznik — art. 306a KK, leasing niezakończony, sprzedaż „na pełnomocnictwo", pojazd sprowadzony bez cła / akcyzy, sprzedaż ze szkodą całkowitą, komisy-krzak spoza białej listy VAT). Obowiązki po zakupie: 30 dni na zgłoszenie zbycia / przerejestrowanie w CEPiK (art. 78 ust. 2 pkt 1, art. 73 PoRD), PCC-3 14 dni 2% lub VAT, zmiana OC (art. 31 ustawy o ubezpieczeniach obowiązkowych).
+- **`pl:reviewing-real-estate-contract`** — umowa sprzedaży nieruchomości (akt notarialny — art. 158 KC pod rygorem nieważności). Weryfikacja KW (działy I–IV) z EKW (ekw.ms.gov.pl), EGiB, MPZP / studium / WZ, PINB, KOWR dla gruntów rolnych, rejestr zabytków / Natura 2000. Red flags: hipoteki, ostrzeżenia o niezgodności, prawa pierwokupu (gmina — art. 109 UoGN, KOWR — art. 2a ustawy o kształtowaniu ustroju rolnego, spółdzielnia — art. 18 ustawy o spółdz. mieszk., konserwator — art. 10 ustawy o ochronie zabytków), dożywocie (art. 908 KC), podwójna sprzedaż. **Zadatek vs. zaliczka** (art. 394 KC) — krytyczne rozróżnienie. PCC-3 2% vs VAT (8% / 23%). Umowa przedwstępna w formie aktu notarialnego (art. 390 § 2 KC) — zalecana dla kupującego z finansowaniem. Depozyt notarialny (art. 108 PrNot) jako bezpieczny mechanizm rozliczeń.
+
+**Procedury administracyjne (urzędy publiczne):**
+
+- **`pl:applying-usc-procedures`** — Urząd Stanu Cywilnego. Ustawa z 28.11.2014 o aktach stanu cywilnego (ASC). Rejestracja urodzenia (art. 60–69 ASC — 21 dni), zawarcie małżeństwa cywilnego (art. 76–85 — zgłoszenie ≥ 31 dni wcześniej; opłata 84 zł) i konkordatowego (art. 86–87; zaświadczenie ważne 6 miesięcy), zmiana imienia / nazwiska (ustawa z 17.10.2008; opłata 37 zł), transkrypcja zagranicznych aktów (art. 104–108 ASC; apostille dla państw haskiej konw. 1961; opłata 50 zł), sprostowanie / unieważnienie aktu (art. 35–39), odpisy (skrócone, zupełne, wielojęzyczne CIEC). E-usługi gov.pl / moj.gov.pl. Odwołanie do wojewody (art. 127 § 2 KPA, 14 dni); WSA / NSA.
+- **`pl:applying-zus-procedures`** — Zakład Ubezpieczeń Społecznych. Ustawa z 13.10.1998 o systemie ubezpieczeń społecznych (SUS); ustawa z 25.06.1999 o świadczeniach pieniężnych z ubezp. społecznego w razie choroby i macierzyństwa; ustawa z 17.12.1998 o emeryturach i rentach z FUS. Rejestracja płatnika (ZUS ZFA / ZPA) i ubezpieczonych (ZUA / ZCNA) — 7 dni od powstania tytułu. Zasiłki chorobowy / macierzyński / opiekuńczy / rehabilitacyjny (formularze Z-3, Z-3a, Z-15A, Z-15B, Np-7) z okresami wyczekiwania 30 / 90 dni. Emerytury (Rp-1E) i renty (Rp-1R / Rp-2), renta socjalna. Ulgi w spłacie (RSR / RSO / RSU, art. 29–33 SUS). PUE ZUS i e-ZLA jako standardowy kanał. Specyfika odwołania: **brak odwołania KPA** — **sprawa trafia bezpośrednio do sądu** (art. 477⁸ i nast. KPC) — 1 miesiąc; zwolnienie z opłat sądowych (art. 96 ust. 1 pkt 4 UKSC).
+- **`pl:applying-skarbowy-procedures`** — urząd skarbowy / KAS. Ordynacja podatkowa (art. 48 przedłużenie terminu, art. 67a ulgi, art. 72 nadpłata, art. 81 korekta deklaracji, art. 14b interpretacja indywidualna Dyrektora KIS w 3 mies. za 40 zł, art. 70 przedawnienie 5 lat). Rejestracja NIP (NIP-2 / NIP-7 / NIP-8) i VAT (VAT-R); biała lista VAT; **KSeF** (obowiązkowy od 01.02.2026 — harmonogram po poślizgu). **Czynny żal** (art. 16 KKS) — warunki wyłączenia odpowiedzialności karno-skarbowej; szablon pisma. Kontrola podatkowa i postępowanie podatkowe (dział IV OP), prawo do wypowiedzenia się w 7 dni przed decyzją (art. 200 OP). Odwołanie do DIAS w 14 dni (art. 220 OP); skarga do WSA w 30 dni (wpis 500 zł); skarga kasacyjna do NSA w 30 dni z przymusem pełnomocnika.
+- **`pl:applying-cudzoziemcy-procedures`** — urząd wojewódzki / Szef UdSC / Prezydent RP. Ustawa z 12.12.2013 o cudzoziemcach (UC): zezwolenie na pobyt czasowy (art. 114 praca, art. 127 Blue Card, art. 144 studia, art. 158–166 rodzina, art. 142 działalność gospodarcza) — 440 zł; stały (art. 195) — 640 zł; rezydent UE (art. 211) — 640 zł po 5 latach pobytu + B1. Ustawa z 20.04.2004 o promocji zatrudnienia: zezwolenie na pracę typy A–E + oświadczenie o powierzeniu pracy dla AM/BY/GE/MD/UA — 24 miesiące od 11.2023. Ustawa z 02.04.2009 o obywatelstwie polskim: nadanie przez Prezydenta RP (art. 18 i nast. — brak odwołania) vs. uznanie za obywatela polskiego (art. 30 — decyzja wojewody, odwołanie do MSWiA, WSA). Karta Polaka. MOS (Moduł Obsługi Spraw). Stempel w paszporcie (art. 108 UC) legalizujący pobyt w trakcie postępowania.
+
+### Bumped
+
+- Plagin `pl`: `0.2.0` → `0.3.0`.
+
+### Migracja
+
+Bez zmian breaking. Nowy tryb audytu w `pl:contract-drafter` nie zmienia dotychczasowych wywołań — aktywuje się przy żądaniu „audytu / review / red flags". Nowe skille dostępne automatycznie:
+
+```
+/plugin marketplace update lawpowers
+/reload-plugins
+```
+
+W katalogu `/agents` i `/skills` widoczne 17 agentów i 20 skilli pod prefiksem `pl:`.
+
 ## [0.2.0] — 2026-04-21
 
 ### Added — 7 nowych subagentów
@@ -116,5 +151,6 @@ Plagin `pl` dla polskiego prawa dodany do monorepo `lawpowers` (tag marketplace:
 
 Dostępny w tagu marketplace'u [v0.4.0](https://github.com/crankshift/lawpowers/releases/tag/v0.4.0).
 
+[0.3.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.3.0
 [0.2.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.2.0
 [0.1.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.0

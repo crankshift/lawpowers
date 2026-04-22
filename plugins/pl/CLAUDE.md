@@ -77,7 +77,7 @@ Wąsko wyspecjalizowani subagenci w `agents/` (korzeń plagina):
 | `response-drafter` | Odpowiedź na pozew, sprzeciwy (od wyroku zaocznego, nakazu zapłaty), zarzuty od nakazu zapłaty, pisma procesowe pozwanego |
 | `appeal-drafter` | Apelacja, skarga kasacyjna do SN, zażalenia, skarga o stwierdzenie niezgodności z prawem prawomocnego orzeczenia, skarga kasacyjna do NSA |
 | `motion-drafter` | Wnioski procesowe: zabezpieczenie powództwa/dowodów, dopuszczenie dowodu, biegli, świadkowie, wyłączenie sędziego, przywrócenie terminu, odroczenie itd. |
-| `contract-drafter` | Praca umowna: sporządzanie i analiza umów cywilnoprawnych i gospodarczych (sprzedaż, najem, dzieło, zlecenie, dystrybucja, NDA), audyt ryzyk |
+| `contract-drafter` | Praca umowna: sporządzanie i analiza umów cywilnoprawnych i gospodarczych (sprzedaż, najem, dzieło, zlecenie, dystrybucja, NDA); **tryb audytu ryzyk** (review-only) z ustrukturyzowanym raportem ustaleń klasyfikowanych jako KRYTYCZNE / ISTOTNE / POŻĄDANE |
 | `legal-memo` | Opinie prawne i memoranda dla klienta; analiza perspektyw sporu; porównanie wariantów działania |
 
 **Windykacja i egzekucja:**
@@ -146,6 +146,22 @@ Proceduralne / referencyjne skille w `skills/` (korzeń plagina) — używać pr
 |---|---|
 | `applying-frankowicze-case-law` | Kredyty CHF: TSUE C-260/18 *Dziubak*, C-520/21 *Bank M.*, C-287/22 *Getin*, C-140/22 *mBank*; uchwały SN III CZP 6/21 (teoria dwóch kondykcji), III CZP 11/21; zabezpieczenie powództwa; argumentacja nieważności klauzul indeksacyjnych |
 | `applying-rodo` | Mapowanie artykułów RODO do obowiązków administratora; podstawy prawne art. 6 / 9; klauzule informacyjne art. 13–14; umowa powierzenia art. 28; DPIA art. 35; naruszenia art. 33–34; transfery po *Schrems II* (C-311/18) |
+
+**Audyt umów (checklist + red flags dla `contract-drafter` w trybie audytu ryzyk):**
+
+| Skill | Kiedy stosować |
+|---|---|
+| `reviewing-vehicle-contract` | Audyt umowy kupna-sprzedaży pojazdu: weryfikacja VIN / przebiegu / obciążeń (CEPiK, Rejestr Zastawów, biała lista VAT); typowe schematy oszustwa (cofnięty licznik, klonowany VIN, pełnomocnictwa-pułapki, niezakończony leasing); obowiązki po zakupie (30 dni CEPiK, PCC-3 14 dni) |
+| `reviewing-real-estate-contract` | Audyt umowy sprzedaży nieruchomości: KW (działy I–IV), hipoteki, służebności, dożywocie, prawa pierwokupu (gmina, KOWR, spółdzielnia, konserwator); zadatek vs. zaliczka (art. 394 KC); forma aktu notarialnego pod rygorem nieważności (art. 158 KC); PCC-3 2% vs VAT 8% / 23%; depozyt notarialny (art. 108 PrNot) |
+
+**Procedury administracyjne (urzędy publiczne):**
+
+| Skill | Kiedy stosować |
+|---|---|
+| `applying-usc-procedures` | Urząd Stanu Cywilnego: rejestracja urodzenia (art. 60–69 ASC), zawarcie małżeństwa cywilnego / konkordatowego (art. 76–87 ASC), zmiana imienia / nazwiska (ustawa z 17.10.2008), transkrypcja zagranicznych aktów (art. 104–108 ASC), odpisy / zaświadczenia; opłaty skarbowe i e-usługi gov.pl |
+| `applying-zus-procedures` | ZUS: rejestracja płatnika (ZUS ZFA / ZPA) i ubezpieczonych (ZUA / ZCNA), zasiłki chorobowy / macierzyński / opiekuńczy / rehabilitacyjny (Z-3 / Z-15A-B / Np-7), emerytury i renty (Rp-1E / Rp-1R / Rp-2), ulgi w spłacie (RSR / RSO / RSU), odwołanie do sądu ubezpieczeń społecznych (art. 477⁹ KPC) |
+| `applying-skarbowy-procedures` | US / KAS: rejestracja NIP (NIP-2 / NIP-7 / NIP-8) i VAT (VAT-R), czynny żal (art. 16 KKS), korekta deklaracji (art. 81 OP), ulgi (art. 67a OP — odroczenie, raty, umorzenie), interpretacja indywidualna (Dyrektor KIS, art. 14b OP), postępowania kontrolne / podatkowe, odwołania do DIAS, skargi do WSA / NSA, KSeF |
+| `applying-cudzoziemcy-procedures` | Urząd wojewódzki: zezwolenie na pobyt czasowy (art. 114 i nast. UC — praca, studia, rodzina, Blue Card, działalność gospodarcza), stały (art. 195), rezydent UE (art. 211), zezwolenie na pracę (typy A–E, PrZa), oświadczenie o powierzeniu pracy, obywatelstwo (UOb — nadanie przez Prezydenta / uznanie wojewody); MOS, odwołanie do Szefa UdSC |
 
 ## Struktura projektu
 

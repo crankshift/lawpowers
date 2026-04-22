@@ -30,8 +30,8 @@ See [README.md](./README.md) for the user-facing quick start. This file is contr
 
 ### Data source of truth
 
-- Plugin counts (`UA_AGENTS`, `PL_AGENTS`, `UA_SKILLS_COUNT`, `PL_SKILLS_COUNT`) in `src/data.ts` must match the actual contents of `../plugins/ua/agents/`, `../plugins/pl/agents/`, etc. When the monorepo bumps plugin contents, update this file **and** the `agents_ua` / `agents_pl` label maps in every locale dictionary. Mismatches mislead users.
-- The hero's "Subagents" / "Skills" stat is computed from these arrays — don't hardcode numbers in JSX.
+- Plugin catalogs (`UA_AGENTS`, `PL_AGENTS`, `UA_SKILLS`, `PL_SKILLS`) in `src/data.ts` must match the actual contents of `../plugins/ua/agents/`, `../plugins/pl/agents/`, `../plugins/ua/skills/`, `../plugins/pl/skills/`. When the monorepo bumps plugin contents, update the arrays **and** the `agents_ua` / `agents_pl` / `skills_ua` / `skills_pl` label maps in every locale dictionary. The `satisfies Record<…, string>` constraint makes missing keys a type error — lean on that rather than grepping.
+- The hero's "Subagents" / "Skills" stat and the per-card lists are both computed from these arrays — don't hardcode numbers in JSX, and don't duplicate agent / skill IDs in component files. `UA_SKILLS_COUNT` / `PL_SKILLS_COUNT` are derived from `.length` so the count can't drift from the list.
 
 ### Copy discipline
 
