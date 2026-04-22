@@ -48,14 +48,14 @@ export const pl: Translation = {
       name: 'Ukraina',
       tag: 'Prawo ukraińskie · Cywilne · Gospodarcze · Administracyjne · Wojskowe',
       blurb:
-        'Pełen cykl pism w ukraińskim postępowaniu cywilnym, gospodarczym i administracyjnym — pozwy, odpowiedzi, apelacje, wnioski, umowy, windykacja, egzekucja — z arbitrażem międzynarodowym (ICC/LCIA/SCC/SIAC/HKIAC/VIAC, UNCITRAL) oraz osobną gałęzią dla żołnierzy i ich rodzin: raporty w łańcuchu dowodzenia, odwołania WLK, TCC i rezerwacja, świadczenia bojowe i rodzinne, obrona SZCz. Wsparte pobieraniem aktów z zakon.rada, wyszukiwaniem w ЄДРСР, kalkulatorami opłat sądowych i terminu przedawnienia, uwzględnieniem regulacji stanu wojennego.',
+        'Pełen cykl pism w ukraińskim postępowaniu cywilnym, gospodarczym i administracyjnym — pozwy, odpowiedzi, apelacje, wnioski, umowy (z trybem audytu ryzyk), windykacja, egzekucja — z arbitrażem międzynarodowym (ICC/LCIA/SCC/SIAC/HKIAC/VIAC, UNCITRAL) oraz osobną gałęzią dla żołnierzy i ich rodzin: raporty w łańcuchu dowodzenia, odwołania WLK, TCC i rezerwacja, świadczenia bojowe i rodzinne, obrona SZCz. Wsparte pobieraniem aktów z zakon.rada, wyszukiwaniem w ЄДРСР, kalkulatorami opłat sądowych i terminu przedawnienia, uwzględnieniem regulacji stanu wojennego, checklistami audytu umów (pojazd, nieruchomość) oraz przewodnikami proceduralnymi dla ЦНАП (paszporty), serwisowych centrów МВС i konsulatów za granicą.',
       lang_value: 'Ukraiński',
     },
     pl: {
       name: 'Polska',
       tag: 'Prawo polskie · Cywilne · Gospodarcze · Konsumenckie · Karne · Rodzinne · Pracy · RODO',
       blurb:
-        'Pisma wg aktualnego KPC i KC z reformami (przedawnienie 2018, KPC 2019/2023) — pozwy, odpowiedzi, apelacje, wnioski — plus spory konsumenckie (frankowicze, UOKiK), zawiadomienia karne, sprawy rodzinne (rozwód, alimenty), spadkowe, prawa pracy, audyty RODO oraz arbitraż międzynarodowy (ICC/LCIA/SCC/SIAC, UNCITRAL). Wsparte pobieraniem aktów z ISAP, wyszukiwaniem w Portalu Orzeczeń i KRS, kalkulatorami opłaty sądowej i przedawnienia.',
+        'Pisma wg aktualnego KPC i KC z reformami (przedawnienie 2018, KPC 2019/2023) — pozwy, odpowiedzi, apelacje, wnioski, umowy (z trybem audytu ryzyk) — plus spory konsumenckie (frankowicze, UOKiK), zawiadomienia karne, sprawy rodzinne (rozwód, alimenty), spadkowe, prawa pracy, audyty RODO oraz arbitraż międzynarodowy (ICC/LCIA/SCC/SIAC, UNCITRAL). Wsparte pobieraniem aktów z ISAP, wyszukiwaniem w Portalu Orzeczeń i KRS, kalkulatorami opłaty sądowej i przedawnienia, checklistami audytu umów (pojazd, nieruchomość) oraz przewodnikami proceduralnymi dla USC, ZUS, urzędu skarbowego i urzędu wojewódzkiego (cudzoziemcy).',
       lang_value: 'Polski',
     },
   },

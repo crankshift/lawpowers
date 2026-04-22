@@ -48,14 +48,14 @@ export const en = {
       name: 'Ukraine',
       tag: 'Ukrainian law · Civil · Commercial · Administrative · Military',
       blurb:
-        'End-to-end drafting across civil, commercial, and administrative procedure — claims, responses, appeals, motions, contracts, debt collection, and enforcement — with international arbitration (ICC/LCIA/SCC/SIAC/HKIAC/VIAC, UNCITRAL) and a parallel track for service members and their families: chain-of-command reports, VLK appeals, mobilization and reservation, combat pay and family benefits, СЗЧ defense. Backed by statute fetching from zakon.rada, ЄДРСР practice search, court-fee and limitations calculators, and martial-law overrides.',
+        'End-to-end drafting across civil, commercial, and administrative procedure — claims, responses, appeals, motions, contracts (with review-only audit mode), debt collection, and enforcement — with international arbitration (ICC/LCIA/SCC/SIAC/HKIAC/VIAC, UNCITRAL) and a parallel track for service members and their families: chain-of-command reports, VLK appeals, mobilization and reservation, combat pay and family benefits, СЗЧ defense. Backed by statute fetching from zakon.rada, ЄДРСР practice search, court-fee and limitations calculators, martial-law overrides, contract-review checklists (vehicle, real estate), and procedural walkthroughs for ЦНАП passports, МВС service centres, and consulates abroad.',
       lang_value: 'Ukrainian',
     },
     pl: {
       name: 'Poland',
       tag: 'Polish law · Civil · Commercial · Consumer · Criminal · Family · Labor · RODO',
       blurb:
-        'Drafting against current KPC and KC with reforms tracked (przedawnienie 2018, KPC 2019/2023) — pozwy, odpowiedzi, apelacje, wnioski — plus consumer disputes (frankowicze, UOKiK), criminal complaints, family (rozwód, alimenty), inheritance, labor, RODO compliance audits, and international arbitration (ICC/LCIA/SCC/SIAC, UNCITRAL). Backed by ISAP statute fetching, Portal Orzeczeń and KRS search, court-fee and limitations calculators.',
+        'Drafting against current KPC and KC with reforms tracked (przedawnienie 2018, KPC 2019/2023) — pozwy, odpowiedzi, apelacje, wnioski, umowy (with review-only audit mode) — plus consumer disputes (frankowicze, UOKiK), criminal complaints, family (rozwód, alimenty), inheritance, labor, RODO compliance audits, and international arbitration (ICC/LCIA/SCC/SIAC, UNCITRAL). Backed by ISAP statute fetching, Portal Orzeczeń and KRS search, court-fee and limitations calculators, contract-review checklists (vehicle, real estate), and procedural walkthroughs for USC, ZUS, urząd skarbowy, and urząd wojewódzki (cudzoziemcy).',
       lang_value: 'Polish',
     },
   },
