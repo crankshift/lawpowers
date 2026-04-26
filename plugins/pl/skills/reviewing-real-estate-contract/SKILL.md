@@ -1,6 +1,6 @@
 ---
 name: reviewing-real-estate-contract
-description: Use when auditing Polish real-estate contract (umowa przedwstępna / sprzedaży nieruchomości) — KW (działy I–IV), obciążenia (hipoteka, służebności, dożywocie), prawo pierwokupu (KOWR, gmina, spółdzielnia, SP), forma aktu notarialnego pod rygorem nieważności (art. 158 KC), zadatek vs zaliczka (art. 394 KC), PCC-3 2% vs VAT 8%/23%, rejestry (ekw.ms.gov.pl, EGiB, MPZP, zabytki)
+description: Use when auditing Polish real-estate contract (umowa przedwstępna / sprzedaży nieruchomości) — KW (działy I–IV), obciążenia (hipoteka, służebności, dożywocie), prawo pierwokupu (KOWR, gmina, spółdzielnia, SP), forma aktu notarialnego pod rygorem nieważności (art. 158 KC), zadatek vs zaliczka (art. 394 KC), PCC-3 2% (fallback) vs VAT 8%/23% (fallback), rejestry (ekw.ms.gov.pl, EGiB, MPZP, zabytki)
 ---
 
 # reviewing-real-estate-contract
@@ -54,7 +54,7 @@ Umowa sprzedaży nieruchomości — **forma aktu notarialnego pod rygorem niewa�
 - Zaświadczenia o braku zaległości, zgodności z MPZP.
 - Złożenie wniosku o wpis do KW (art. 92 § 4 PrNot) — z dokumentem uiszczenia opłaty.
 
-**Taksa notarialna**: art. 4-5 rozp. Min. Spraw. z 28.06.2004; zwykle między 0,25% a 1% wartości transakcji (dla wyższych nieruchomości — degresywnie).
+**Taksa notarialna**: art. 4-5 rozp. Min. Spraw. z 28.06.2004; zwykle między 0,25% a 1% _(fallback; stan na 2024)_ wartości transakcji (dla wyższych nieruchomości — degresywnie).
 
 ## Obowiązkowe elementy aktu notarialnego
 
@@ -96,10 +96,21 @@ Etap często stosowany przy kupnie mieszkania na kredyt:
 
 ## Podatki
 
+### Aktualne stawki — pobrać przed konsultacją
+
+| Parametr | Źródło | Sposób pobrania | Fallback _(ostatnio zweryfikowany)_ |
+|---|---|---|---|
+| PCC od nieruchomości | Ustawa o PCC art. 7 | WebFetch: `https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20001861150` — art. 7 | 2% _(stan na 2024)_ |
+| VAT na nieruchomości | Ustawa o VAT art. 41 | WebFetch: `https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20040540535` — art. 41 | 8% / 23% _(stan na 2024)_ |
+
+**Zasady:**
+1. **Fetch udany** → użyj pobranej, podaj źródło i datę.
+2. **Fetch nieudany** → użyj fallback. Ostrzeż: «⚠ Stawka pochodzi ze stanu na [data]. Sprawdź w ISAP.»
+
 ### PCC-3 (Podatek od Czynności Cywilnoprawnych)
 
 - **Podstawa**: ustawa z 09.09.2000 o PCC.
-- **Stawka**: **2%** od wartości rynkowej (art. 7 ust. 1 pkt 1 ustawy o PCC).
+- **Stawka**: **2%** _(fallback; stan na 2024)_ od wartości rynkowej (art. 7 ust. 1 pkt 1 ustawy o PCC).
 - **Zobowiązany**: kupujący.
 - **Termin**: 14 dni od dnia zawarcia umowy; deklaracja PCC-3.
 - **Notariusz** jako płatnik — pobiera PCC i odprowadza do US.
@@ -108,7 +119,7 @@ Etap często stosowany przy kupnie mieszkania na kredyt:
 
 ### VAT (alternatywa do PCC-3)
 
-- Gdy sprzedawca — czynny podatnik VAT, a transakcja podlega VAT (np. sprzedaż pierwsza, nowe mieszkanie od dewelopera) — VAT **8%** (mieszkania do 150 m²) / **23%** (pozostałe).
+- Gdy sprzedawca — czynny podatnik VAT, a transakcja podlega VAT (np. sprzedaż pierwsza, nowe mieszkanie od dewelopera) — VAT **8%** / **23%** _(fallback; stan na 2024)_ (mieszkania do 150 m² — 8%; pozostałe — 23%).
 - Gdy zwolnienie z VAT (art. 43 ust. 1 pkt 10 ustawy o VAT) — wtedy PCC obowiązuje.
 - Sprawdzić **białą listę VAT**, rachunek sprzedawcy.
 

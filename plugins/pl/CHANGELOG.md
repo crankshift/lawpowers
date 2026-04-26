@@ -4,6 +4,32 @@ Historia zmian plagina `pl` (polskie prawo) w ramach monorepo [`lawpowers`](../.
 
 Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Od wydań po v0.6.0 plagin jest tagowany osobno jako `pl/vX.Y.Z` (gdzie `X.Y.Z` odpowiada polu `version` w `plugin.json`). Wpisy historyczne poniżej (do 0.2.0 włącznie) były wydawane w ramach wspólnych tagów marketplace'u `vX.Y.Z` i zachowują linki do nich.
 
+## [0.3.2] — 2026-04-26
+
+### Changed — fetch-first z fallbackiem dla wszystkich wartości liczbowych
+
+Wszystkie skille i agenci zawierające zakodowane wartości prawne (stawki, opłaty, minimalne wynagrodzenie, progi) stosują teraz jednolity wzorzec: **najpierw próba pobrania aktualnej wartości ze źródła oficjalnego (WebFetch/WebSearch), a w razie niepowodzenia — użycie zakodowanej wartości z ostrzeżeniem dla użytkownika**.
+
+- **10 plików zaktualizowanych** (7 skilli + 1 agent z blokami fetch-first; 2 skille z lekkimi adnotacjami):
+  - `calculating-odsetki` — fetch stopy referencyjnej NBP z nbp.pl + kursu EUR/PLN.
+  - `calculating-oplata-sadowa` — fetch skali opłat z UKSC w ISAP.
+  - `labor-drafter` — fetch minimalnego wynagrodzenia z rozporządzenia RM w ISAP.
+  - `applying-cudzoziemcy-procedures` — fetch opłat za pobyt czasowy/stały z rozporządzenia MSWiA.
+  - `applying-usc-procedures` — fetch opłat skarbowych z ustawy o opłacie skarbowej.
+  - `applying-skarbowy-procedures` — fetch progu VAT (art. 113) i białej listy.
+  - `reviewing-real-estate-contract` — fetch stawki PCC i VAT z ISAP.
+  - `reviewing-vehicle-contract` — fetch PCC + kary OC z UFG.
+  - `determining-wps` — adnotacja progów jurysdykcyjnych (art. 17 KPC, art. 505¹ KPC).
+  - `calculating-alimenty` — fetch kryterium dochodowego Funduszu Alimentacyjnego.
+- **Wszystkie zakodowane kwoty** opatrzone `_(fallback; stan na [data])_` — data ostatniej weryfikacji widoczna w tekście.
+- **Cross-references:** stopa NBP dla pozostałych skilli odwołuje się do kanonicznego `calculating-odsetki`.
+
+### Bumped
+
+- Plagin `pl`: `0.3.1` → `0.3.2`.
+
+[0.3.2]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.3.2
+
 ## [0.3.1] — 2026-04-22
 
 ### Changed — optymalizacja tokenów (~55% stałego overheadu)

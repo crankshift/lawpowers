@@ -95,8 +95,8 @@ Wszystkie wydatki związane z utrzymaniem i rozwojem uprawnionego **na odpowiedn
 Dziecko ma prawo do standardu **takiego samego**, jaki ma rodzic. Sąd w tej zasadzie ma oparcie orzecznicze (SN: wyrok z 05.01.1956 r., III CR 919/55; wyrok z 25.03.1985 r., III CRN 341/84).
 
 **Konsekwencje:**
-- Jeżeli rodzic zarabia 20 000 zł, alimenty w wysokości 500 zł na dziecko — mogą być uznane za niewystarczające.
-- Jeżeli rodzic zarabia 3 000 zł, żądanie 3 000 zł na dziecko — nierealne.
+- Jeżeli rodzic zarabia 20 000 zł _(orientacyjne)_, alimenty w wysokości 500 zł _(orientacyjne)_ na dziecko — mogą być uznane za niewystarczające.
+- Jeżeli rodzic zarabia 3 000 zł _(orientacyjne)_, żądanie 3 000 zł _(orientacyjne)_ na dziecko — nierealne.
 
 ## Zmiana wysokości (art. 138 KRO)
 
@@ -139,15 +139,26 @@ Dziecko ma prawo do standardu **takiego samego**, jaki ma rodzic. Sąd w tej zas
 
 ## Fundusz Alimentacyjny
 
+### Aktualne parametry — pobrać przed obliczeniem
+
+| Parametr | Źródło | Sposób pobrania | Fallback _(ostatnio zweryfikowany)_ |
+|---|---|---|---|
+| Kryterium dochodowe FA | Ustawa z 07.09.2007 o pomocy osobom uprawnionym do alimentów | WebSearch: «kryterium dochodowe fundusz alimentacyjny [bieżący rok]» | 1 209 zł/os. _(stan na 2024)_ |
+| Maksymalna kwota FA | j.w. | j.w. | 500 zł/mies. _(stan na 2024)_ |
+
+**Zasady:**
+1. **Fetch udany** → użyj pobranej, podaj źródło i datę.
+2. **Fetch nieudany** → użyj fallback. Ostrzeż: «⚠ Kryterium pochodzi ze stanu na [data]. Sprawdź aktualną wartość.»
+
 **Ustawa z 07.09.2007 o pomocy osobom uprawnionym do alimentów** (Dz.U. 2024 poz. 1288 — weryfikować aktualne).
 
 **Warunki otrzymania świadczenia:**
 - Zasądzone alimenty z tytułem wykonawczym.
 - **Bezskuteczność egzekucji** — potwierdzona przez komornika (brak ściągnięcia co najmniej za ostatnie 2 miesiące).
-- **Kryterium dochodowe** — dochód rodziny nie przekracza 900 zł na osobę (weryfikować aktualne; zmienia się okresowo — ostatnio 1 209 zł w 2024).
+- **Kryterium dochodowe** — dochód rodziny nie przekracza 1 209 zł na osobę _(fallback; stan na 2024)_ (weryfikować aktualne; zmienia się okresowo).
 
 **Kwota:**
-- Do wysokości alimentów zasądzonych, maksymalnie **500 zł miesięcznie** na dziecko (weryfikować; kwota była podnoszona).
+- Do wysokości alimentów zasądzonych, maksymalnie **500 zł miesięcznie** _(fallback; stan na 2024)_ na dziecko (weryfikować; kwota była podnoszona).
 
 **Procedura:** wniosek do gminnego / miejskiego ośrodka pomocy społecznej w miejscu zamieszkania uprawnionego.
 
@@ -158,34 +169,34 @@ Dziecko ma prawo do standardu **takiego samego**, jaki ma rodzic. Sąd w tej zas
 ### Przykład 1 — dziecko w wieku szkolnym
 
 - Dziecko: 10 lat, uczeń szkoły podstawowej.
-- Potrzeby miesięczne (uzasadnione): 1 800 zł
-  - Wyżywienie: 500 zł
-  - Mieszkanie (1/3 udziału): 400 zł
-  - Ubranie: 150 zł
-  - Edukacja (podręczniki, angielski, basen): 250 zł
-  - Zdrowie: 100 zł
-  - Higiena: 50 zł
-  - Rozrywka, hobby: 150 zł
-  - Wakacje / urodziny (1/12): 100 zł
-  - Komunikacja: 50 zł
-  - Rezerwa: 50 zł
-- Rodzic A zarabia 8 000 zł netto; rodzic B — 5 000 zł netto. Dziecko mieszka z rodzicem B.
-- Podział proporcjonalny: A płaci 8 / (8 + 5) = 61,5% potrzeb = ~1 107 zł. **Żądanie alimentów: 1 100 zł.** Rodzic B uzupełnia resztą + osobiste starania.
+- Potrzeby miesięczne (uzasadnione): 1 800 zł _(orientacyjne)_
+  - Wyżywienie: 500 zł _(orientacyjne)_
+  - Mieszkanie (1/3 udziału): 400 zł _(orientacyjne)_
+  - Ubranie: 150 zł _(orientacyjne)_
+  - Edukacja (podręczniki, angielski, basen): 250 zł _(orientacyjne)_
+  - Zdrowie: 100 zł _(orientacyjne)_
+  - Higiena: 50 zł _(orientacyjne)_
+  - Rozrywka, hobby: 150 zł _(orientacyjne)_
+  - Wakacje / urodziny (1/12): 100 zł _(orientacyjne)_
+  - Komunikacja: 50 zł _(orientacyjne)_
+  - Rezerwa: 50 zł _(orientacyjne)_
+- Rodzic A zarabia 8 000 zł _(orientacyjne)_ netto; rodzic B — 5 000 zł _(orientacyjne)_ netto. Dziecko mieszka z rodzicem B.
+- Podział proporcjonalny: A płaci 8 / (8 + 5) = 61,5% potrzeb = ~1 107 zł _(orientacyjne)_. **Żądanie alimentów: 1 100 zł _(orientacyjne)_.** Rodzic B uzupełnia resztą + osobiste starania.
 
 ### Przykład 2 — pełnoletnie dziecko, student
 
 - Dziecko: 22 lata, student studiów magisterskich stacjonarnych.
-- Czesne: 0 zł (publiczna uczelnia); stancja: 1 500 zł; wyżywienie: 800 zł; książki / materiały: 200 zł; komunikacja: 200 zł; telefon / Internet: 100 zł; rozrywka: 200 zł.
-- Razem: 3 000 zł miesięcznie.
-- Dochód własny z pracy dorywczej: 500 zł.
-- Żądanie alimentów: 2 500 zł od obojga rodziców (proporcjonalnie do ich dochodów) lub od jednego, z którym dziecko ma konflikt.
+- Czesne: 0 zł (publiczna uczelnia); stancja: 1 500 zł _(orientacyjne)_; wyżywienie: 800 zł _(orientacyjne)_; książki / materiały: 200 zł _(orientacyjne)_; komunikacja: 200 zł _(orientacyjne)_; telefon / Internet: 100 zł _(orientacyjne)_; rozrywka: 200 zł _(orientacyjne)_.
+- Razem: 3 000 zł miesięcznie _(orientacyjne)_.
+- Dochód własny z pracy dorywczej: 500 zł _(orientacyjne)_.
+- Żądanie alimentów: 2 500 zł _(orientacyjne)_ od obojga rodziców (proporcjonalnie do ich dochodów) lub od jednego, z którym dziecko ma konflikt.
 
 ### Przykład 3 — zmiana (art. 138 KRO)
 
-- Alimenty zasądzone 5 lat temu: 800 zł.
-- Dziecko rozpoczęło studia, potrzeby wzrosły do 2 500 zł.
-- Dochód zobowiązanego wzrósł z 4 000 zł do 10 000 zł.
-- **Pozew o podwyższenie** — z 800 do 1 800 zł. Zmiana istotna po obu stronach.
+- Alimenty zasądzone 5 lat temu: 800 zł _(orientacyjne)_.
+- Dziecko rozpoczęło studia, potrzeby wzrosły do 2 500 zł _(orientacyjne)_.
+- Dochód zobowiązanego wzrósł z 4 000 zł do 10 000 zł _(orientacyjne)_.
+- **Pozew o podwyższenie** — z 800 do 1 800 zł _(orientacyjne)_. Zmiana istotna po obu stronach.
 
 ## Workflow
 
@@ -200,10 +211,10 @@ Dziecko ma prawo do standardu **takiego samego**, jaki ma rodzic. Sąd w tej zas
 
 ## Najczęstsze błędy
 
-- **Żądanie bez dokumentacji.** Sąd nie zasądzi 3 000 zł, jeżeli uzasadnione potrzeby nie są wykazane.
+- **Żądanie bez dokumentacji.** Sąd nie zasądzi 3 000 zł _(orientacyjne)_, jeżeli uzasadnione potrzeby nie są wykazane.
 - **Pomijanie wniosku o zabezpieczenie.** Bez zabezpieczenia — dziecko bez alimentów przez cały czas postępowania (zwykle rok-dwa).
 - **Stosowanie tabel z innych krajów.** Düsseldorfer Tabelle nie obowiązuje. Liczy się indywidualne rozpoznanie sprawy.
-- **Pomijanie zasady równej stopy życiowej.** Jeżeli rodzic zarabia 20k, żądanie 700 zł może być uznane za zaniżone (paradoksalnie) przez sąd z urzędu.
+- **Pomijanie zasady równej stopy życiowej.** Jeżeli rodzic zarabia 20k _(orientacyjne)_, żądanie 700 zł _(orientacyjne)_ może być uznane za zaniżone (paradoksalnie) przez sąd z urzędu.
 - **Mylenie alimentów na rzecz dziecka z alimentami między byłymi małżonkami** (art. 60 KRO). Różne przesłanki (niedostatek / istotne pogorszenie), różne terminy (5 lat / bez ograniczenia).
 - **Pomijanie „potencjalnych możliwości".** Jeżeli zobowiązany nagle „stracił" pracę — sąd może uwzględnić poprzednie dochody i kwalifikacje.
 - **Nieuwzględnianie nowych dzieci zobowiązanego.** Dzieli się zdolności alimentacyjne między wszystkie dzieci; pozew trzeba uzasadnić z uwzględnieniem nowych.

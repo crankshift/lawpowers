@@ -23,6 +23,18 @@ Krajowa Administracja Skarbowa (KAS) — formalnie podzielona na: urzędy skarbo
 - **KIS — interpretacje**: `https://eureka.mf.gov.pl/`.
 - ISAP: `https://isap.sejm.gov.pl`.
 
+## Aktualne parametry — pobrać przed konsultacją
+
+| Parametr | Źródło | Sposób pobrania | Fallback _(ostatnio zweryfikowany)_ |
+|---|---|---|---|
+| Próg zwolnienia z VAT | Ustawa o VAT art. 113 | WebFetch: `https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20040540535` — art. 113 | 200 000 zł _(stan na 2024)_ |
+| Próg białej listy VAT | Art. 19 Prawa przedsiębiorców | WebSearch: «biała lista VAT próg [rok]» site:isap.sejm.gov.pl | 15 000 zł _(stan na 2024)_ |
+| Opłata za interpretację indywidualną | Art. 14f OP | WebFetch ISAP: OP | 40 zł _(stan na 2024)_ |
+
+**Zasady:**
+1. **Fetch udany** → użyj pobranej, podaj źródło i datę.
+2. **Fetch nieudany** → użyj fallback. Ostrzeż: «⚠ Wartość pochodzi ze stanu na [data]. Sprawdź w ISAP.»
+
 ## 1. Rejestracja NIP
 
 ### JDG — przez CEIDG
@@ -48,7 +60,7 @@ Krajowa Administracja Skarbowa (KAS) — formalnie podzielona na: urzędy skarbo
 **Formularz**: **VAT-R** — zgłoszenie rejestracyjne / aktualizacyjne dla VAT.
 
 **Dobrowolnie vs obowiązkowo**:
-- **Obowiązkowo** — gdy obrót w poprzednim roku przekroczył **200 000 zł** (art. 113 ust. 1 ustawy VAT); przekroczenie limitu w trakcie roku; niektóre czynności (sprzedaż towarów z załącznika nr 12 ustawy VAT, nowe środki transportu do UE) — niezależnie od obrotu.
+- **Obowiązkowo** — gdy obrót w poprzednim roku przekroczył **200 000 zł** _(fallback; stan na 2024)_ (art. 113 ust. 1 ustawy VAT); przekroczenie limitu w trakcie roku; niektóre czynności (sprzedaż towarów z załącznika nr 12 ustawy VAT, nowe środki transportu do UE) — niezależnie od obrotu.
 - **Dobrowolnie** — dowolnie; zgłoszenie VAT-R przed pierwszą czynnością.
 
 **Rodzaj**:
@@ -57,7 +69,7 @@ Krajowa Administracja Skarbowa (KAS) — formalnie podzielona na: urzędy skarbo
 
 **Deregistracja**: **VAT-Z** — zgłoszenie o zaprzestaniu prowadzenia czynności.
 
-**Biała lista VAT** — wykaz podatników VAT czynnych (art. 96b ustawy VAT): weryfikacja numerów NIP / rachunków bankowych; obowiązek dla płatności B2B > 15 000 zł — przelewy tylko na rachunek z białej listy, pod rygorem odpowiedzialności solidarnej i niezaliczenia do kosztów.
+**Biała lista VAT** — wykaz podatników VAT czynnych (art. 96b ustawy VAT): weryfikacja numerów NIP / rachunków bankowych; obowiązek dla płatności B2B > 15 000 zł _(fallback; stan na 2024)_ — przelewy tylko na rachunek z białej listy, pod rygorem odpowiedzialności solidarnej i niezaliczenia do kosztów.
 
 ## 3. Deklaracje i korekty
 
@@ -66,7 +78,7 @@ Krajowa Administracja Skarbowa (KAS) — formalnie podzielona na: urzędy skarbo
 | Deklaracja | Podmiot | Termin |
 |---|---|---|
 | **PIT-36** (JDG na zasadach ogólnych) | Osoba fizyczna-przedsiębiorca | 30 kwietnia |
-| **PIT-36L** (liniowy) | JDG — podatek liniowy 19% | 30 kwietnia |
+| **PIT-36L** (liniowy) | JDG — podatek liniowy 19% _(fallback; stan na 2024)_ | 30 kwietnia |
 | **PIT-28** (ryczałt) | JDG — ryczałt od przychodów | Do końca lutego (roczna) |
 | **PIT-37** | Pracownik / zleceniobiorca | 30 kwietnia (w praktyce autoryzacja w e-US) |
 | **CIT-8** (spółki) | Osoba prawna | 3 miesiące po zakończeniu roku podatkowego |
@@ -161,7 +173,7 @@ Termin: 5 lat wsteczne (od końca roku, w którym upłynął termin zapłaty zaw
 
 **Wniosek**: ORD-IN (papierowy) lub przez e-Urząd Skarbowy.
 
-**Opłata**: **40 zł** za każdy stan faktyczny / zdarzenie przyszłe (art. 14f OP).
+**Opłata**: **40 zł** _(fallback; stan na 2024)_ za każdy stan faktyczny / zdarzenie przyszłe (art. 14f OP).
 
 **Termin wydania**: **3 miesiące** od doręczenia wniosku (art. 14d OP); zwłoka — wejście w życie „milczącej interpretacji" w myśl stanowiska wnioskodawcy.
 
@@ -213,7 +225,7 @@ Termin: 5 lat wsteczne (od końca roku, w którym upłynął termin zapłaty zaw
 
 **Termin**: **30 dni** od doręczenia rozstrzygnięcia.
 
-**Opłata wpisu**: stała — np. **500 zł** za skargę na decyzję podatkową (zależnie od wartości — rozporządzenie Min. Sprawiedl.).
+**Opłata wpisu**: stała — np. **500 zł** _(fallback; stan na 2024)_ za skargę na decyzję podatkową (zależnie od wartości — rozporządzenie Min. Sprawiedl.).
 
 ### Skarga kasacyjna do NSA
 
@@ -235,10 +247,10 @@ Termin: 5 lat wsteczne (od końca roku, w którym upłynął termin zapłaty zaw
 
 | Czynność | Opłata skarbowa |
 |---|---|
-| Wniosek o interpretację | 40 zł (art. 14f OP) |
-| Zaświadczenie o niezaleganiu | 21 zł (zał. do ustawy o opłacie skarbowej cz. II poz. 21) |
+| Wniosek o interpretację | 40 zł _(fallback; stan na 2024)_ (art. 14f OP) |
+| Zaświadczenie o niezaleganiu | 21 zł _(fallback; stan na 2024)_ (zał. do ustawy o opłacie skarbowej cz. II poz. 21) |
 | Odpis / wypis z akt | — |
-| Skarga na decyzję do WSA (opłata wpisu) | 500 zł (standardowo, kontekst skargi) |
+| Skarga na decyzję do WSA (opłata wpisu) | 500 zł _(fallback; stan na 2024)_ (standardowo, kontekst skargi) |
 
 ## Najczęstsze błędy i pułapki
 

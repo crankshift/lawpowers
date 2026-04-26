@@ -7,6 +7,17 @@ description: Use when calculating Polish court fees (opłata sądowa) for civil 
 
 Opłaty sądowe w sprawach cywilnych regulowane są **ustawą z dnia 28 lipca 2005 r. o kosztach sądowych w sprawach cywilnych (UKSC)** — Dz.U. 2005 nr 167 poz. 1398 z późn. zm. Po reformie z 21.08.2019 r. system został znacznie uproszczony.
 
+## Aktualne parametry — pobrać przed obliczeniem
+
+| Parametr | Źródło | Sposób pobrania | Fallback _(ostatnio zweryfikowany)_ |
+|---|---|---|---|
+| Skala opłat stosunkowych (art. 13 UKSC) | UKSC — Dz.U. 2005 nr 167 poz. 1398 | WebFetch: `https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20051671398` — tekst jednolity, art. 13 | Tabela poniżej _(skala od 21.08.2019)_ |
+| Opłaty stałe (art. 26–37 UKSC) | UKSC j.w. | j.w. — art. 26–37 | Tabela poniżej _(stan na 2024)_ |
+
+**Zasady:**
+1. **Fetch udany** → użyj pobranej wartości, podaj źródło i datę.
+2. **Fetch nieudany** → użyj fallback. Ostrzeż: «⚠ Skala opłat pochodzi ze stanu na [data]. Weryfikuj w ISAP.»
+
 ## Trzy rodzaje opłat (art. 12 UKSC)
 
 1. **Opłata stosunkowa** — od pism procesowych w sprawach o prawa majątkowe.
@@ -28,7 +39,7 @@ Opłaty sądowe w sprawach cywilnych regulowane są **ustawą z dnia 28 lipca 20
 | ponad 15 000 zł do 20 000 zł | 1 000 zł |
 | **ponad 20 000 zł** | **5% WPS, max 200 000 zł** |
 
-*Skalę zawsze weryfikować przez ISAP — przepisy mogą być nowelizowane.*
+*Skala — fallback; weryfikować przez fetch-blok wyżej.*
 
 ## Opłaty stałe (przykłady — art. 26–37 UKSC)
 
