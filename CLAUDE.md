@@ -150,6 +150,7 @@ Bumping marketplace `metadata.version` is separate — only needed when catalog 
 - **Placeholders for personal data.** Templates must use placeholders (`[ПІБ]`, `[РНОКПП]` for UA; `[imię i nazwisko]`, `[PESEL]` for PL). Never commit real client data.
 - **Drafts, not final advice.** Everything agents produce is a working draft for a human lawyer to review and sign off on. Make that explicit in agent prompts and output.
 - **Fast-moving law.** Both jurisdictions see frequent amendments (UA especially during martial law; PL around KPC and KC reforms). Agents should re-verify statute wording on each use rather than relying on cached knowledge.
+- **Fetch-first for volatile values.** Skills and agents that embed legal amounts (fees, rates, thresholds, minimum wages) must include a **fetch-first block**: attempt `WebFetch` / `WebSearch` from the authoritative source before falling back to the hardcoded value. Hardcoded values are annotated with `_(fallback; станом на [date])_` (UA) or `_(fallback; stan na [date])_` (PL) so staleness is visible. See any `calculating-*` skill for the standard table format. When a parameter is already fetched by a canonical skill (e.g. ПМ in `calculating-sudovyi-zbir`, NBP rate in `calculating-odsetki`), other skills cross-reference it instead of duplicating fetch logic.
 
 ## Key resources per jurisdiction
 

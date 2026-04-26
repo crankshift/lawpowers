@@ -23,6 +23,10 @@ W szablonach używać placeholderów: `[imię i nazwisko]`, `[PESEL]`, `[adres]`
 
 Przy projektowaniu klauzul, polityk i analizach — odwołania do RODO (rozp. 2016/679) i ustawy z 10.05.2018 o ochronie danych osobowych.
 
+## Aktualne wartości — fetch-first
+
+Skille i agenci zawierający zakodowane kwoty prawne (stawki, opłaty, progi, minimalne wynagrodzenie) muszą zawierać **blok fetch-first**: najpierw próba `WebFetch` / `WebSearch` ze źródła pierwotnego, a dopiero przy niepowodzeniu — wartość fallback z adnotacją `_(fallback; stan na [data])_`. Jeśli parametr jest już pobierany przez kanoniczny skill (np. stopa NBP w `calculating-odsetki`), inne skille odsyłają do niego zamiast duplikować logikę.
+
 ## Charakter wyniku
 
 Materiały plagina to robocze projekty dla prawnika-użytkownika, **nie** końcowa porada prawna dla klienta. Ostateczną redakcję i odpowiedzialność ponosi człowiek.
