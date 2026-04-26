@@ -63,14 +63,26 @@ Umowa sprzedaży pojazdu — elementy istotne wg art. 535 KC + wymogi praktyczne
 
 ## Obowiązki po zakupie
 
+### Aktualne stawki — pobrać przed konsultacją
+
+| Parametr | Źródło | Sposób pobrania | Fallback _(ostatnio zweryfikowany)_ |
+|---|---|---|---|
+| PCC od pojazdu | Ustawa o PCC art. 7 | WebFetch: `https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20001861150` — art. 7 | 2% _(stan na 2024)_ |
+| Kara za brak OC | Obwieszczenie UFG | WebSearch: «kara za brak OC [bieżący rok] UFG» | od 420 zł _(stan na 2026)_ |
+| Kara za nieterminową rejestrację | PoRD art. 140mb | WebFetch ISAP: PoRD | 200–1 000 zł _(stan na 2024)_ |
+
+**Zasady:**
+1. **Fetch udany** → użyj pobranej, podaj źródło i datę.
+2. **Fetch nieudany** → użyj fallback. Ostrzeż: «⚠ Wartość pochodzi ze stanu na [data]. Sprawdź w ISAP / UFG.»
+
 ### Kupujący
 
 | Obowiązek | Termin | Podstawa | Sankcja |
 |---|---|---|---|
-| **Zgłoszenie zbycia do CEPiK** | 30 dni od daty nabycia | Art. 78 ust. 2 pkt 1 PoRD | 200–1000 zł (art. 140mb PoRD) |
-| **Przerejestrowanie na siebie** | 30 dni | Art. 73 PoRD | 200–1000 zł |
-| **Zapłata PCC-3** (podatek od czynności cywilnoprawnych) | 14 dni od zawarcia umowy, deklaracja PCC-3 | Art. 3 ust. 1 pkt 1 i art. 10 ust. 1 ustawy z 09.09.2000 o PCC | 2% od wartości rynkowej; kara za niezgłoszenie |
-| **Zmiana ubezpieczenia OC** | Najpóźniej w dniu rejestracji | Ustawa z 22.05.2003 o ubezpieczeniach obowiązkowych | Kara za brak OC (od 420 zł — dla samochodów osobowych w 2026 r.) |
+| **Zgłoszenie zbycia do CEPiK** | 30 dni od daty nabycia | Art. 78 ust. 2 pkt 1 PoRD | 200–1000 zł _(fallback; stan na 2024)_ (art. 140mb PoRD) |
+| **Przerejestrowanie na siebie** | 30 dni | Art. 73 PoRD | 200–1000 zł _(fallback; stan na 2024)_ |
+| **Zapłata PCC-3** (podatek od czynności cywilnoprawnych) | 14 dni od zawarcia umowy, deklaracja PCC-3 | Art. 3 ust. 1 pkt 1 i art. 10 ust. 1 ustawy z 09.09.2000 o PCC | 2% _(fallback; stan na 2024)_ od wartości rynkowej; kara za niezgłoszenie |
+| **Zmiana ubezpieczenia OC** | Najpóźniej w dniu rejestracji | Ustawa z 22.05.2003 o ubezpieczeniach obowiązkowych | Kara za brak OC (od 420 zł _(fallback; stan na 2026)_ — dla samochodów osobowych) |
 | **Zgłoszenie w miejscu zamieszkania (CEPiK)** | W momencie przerejestrowania | Ustawa o kierujących pojazdami | — |
 
 **Wyjątki od PCC-3** — nabycie od czynnego podatnika VAT (opodatkowane VAT, a nie PCC) — sprawdzić białą listę i upewnić się, że faktura VAT, nie umowa kupna-sprzedaży.

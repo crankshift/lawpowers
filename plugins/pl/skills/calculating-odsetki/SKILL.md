@@ -32,9 +32,9 @@ Ogłoszenie Ministra Sprawiedliwości — uodo.gov.pl / gov.pl.
 **Stawka (art. 4a ustawy):** stopa referencyjna NBP + **8 punktów procentowych** (dla standardowych transakcji); dla dużych przedsiębiorstw wobec MŚP dolne progi bardziej wyrównane.
 
 **Rekompensata za koszty odzyskiwania należności (art. 10 ustawy):**
-- **40 euro** — gdy należność < 5 000 zł;
-- **70 euro** — gdy 5 000 zł ≤ należność < 50 000 zł;
-- **100 euro** — gdy należność ≥ 50 000 zł.
+- **40 euro** — gdy należność < 5 000 zł _(fallback; art. 10 ustawy 2013)_;
+- **70 euro** — gdy 5 000 zł ≤ należność < 50 000 zł _(fallback)_;
+- **100 euro** — gdy należność ≥ 50 000 zł _(fallback)_.
 
 Przeliczenie na złote — wg kursu średniego NBP z ostatniego dnia roboczego miesiąca poprzedzającego miesiąc wymagalności.
 
@@ -42,17 +42,20 @@ Przeliczenie na złote — wg kursu średniego NBP z ostatniego dnia roboczego m
 - B2B — co do zasady 60 dni; umowne ograniczenie możliwe, ale maksymalnie 30 dni dla dużego przedsiębiorstwa wobec MŚP jest bezskuteczne bez uzasadnienia (art. 7 ustawy).
 - Z podmiotem publicznym — 30 dni (art. 8); wyjątek 60 dni dla niektórych sektorów.
 
-## Stopa referencyjna NBP — podstawa dla wszystkich reżimów
+## Aktualne parametry — pobrać przed obliczeniem
 
-Stopa referencyjna NBP (kluczowa stawka polityki pieniężnej) ustalana przez RPP. Historyczne stawki — NBP publikuje na nbp.pl (archiwum uchwał).
+| Parametr | Źródło | Sposób pobrania | Fallback _(ostatnio zweryfikowany)_ |
+|---|---|---|---|
+| Stopa referencyjna NBP | RPP / NBP | WebFetch: `https://www.nbp.pl/home.aspx?f=/dzienne/stopy.htm` | 5,75% _(stan na 2024-10-03)_ |
+| Kurs EUR/PLN (dla rekompensaty) | NBP | WebFetch: `https://www.nbp.pl/home.aspx?f=/kursy/kursya.html` | Weryfikować na datę wymagalności |
 
-**Kluczowe punkty zmiany** (weryfikować aktualne):
-- 2023 i później — seria podwyżek a później stopniowe obniżki zgodnie z sytuacją makroekonomiczną.
-- Dla każdego okresu spornego — ustalić stopę obowiązującą.
+**Zasady:**
+1. **Fetch udany** → użyj pobranej wartości, podaj źródło i datę pobrania.
+2. **Fetch nieudany** → użyj fallback. Ostrzeż użytkownika: «⚠ Stopa referencyjna NBP = [fallback] pochodzi ze stanu na [data]. Sprawdź aktualną na nbp.pl.»
 
-**Aktualna stawka** — sprawdzać `https://www.nbp.pl/home.aspx?f=/dzienne/stopy.htm`.
+Stopa referencyjna NBP (kluczowa stawka polityki pieniężnej) ustalana przez RPP. Historyczne stawki — NBP publikuje na nbp.pl (archiwum uchwał). Dla każdego okresu spornego — ustalić stopę obowiązującą na dany podokres.
 
-## Tabela stawek (przykład — weryfikować aktualne przed użyciem)
+## Tabela stawek (fallback — weryfikować aktualne przez fetch-blok wyżej)
 
 | Reżim | Wzór | Przykładowa stawka przy referencyjnej 5,75% |
 |---|---|---|

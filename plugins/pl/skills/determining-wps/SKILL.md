@@ -6,8 +6,8 @@ description: Use when calculating wartość przedmiotu sporu (WPS) under Polish 
 # determining-wps
 
 Wartość przedmiotu sporu (WPS) — kluczowa kategoria procesowa w sprawach cywilnych. Decyduje o:
-- **Właściwości rzeczowej** — sąd rejonowy vs. okręgowy (art. 17 pkt 4 KPC — okręgowy przy WPS > 100 000 zł w sprawach majątkowych; z wyjątkami).
-- **Opłacie sądowej** — opłata stosunkowa vs. stała; tabelaryczna skala do 20 000 zł, od 20 000 zł — 5% WPS (skill `calculating-oplata-sadowa`).
+- **Właściwości rzeczowej** — sąd rejonowy vs. okręgowy (art. 17 pkt 4 KPC — okręgowy przy WPS > 100 000 zł _(art. 17 pkt 4 KPC — weryfikować w ISAP)_ w sprawach majątkowych; z wyjątkami).
+- **Opłacie sądowej** — opłata stosunkowa vs. stała; tabelaryczna skala do 20 000 zł _(art. 505¹ KPC — weryfikować w ISAP)_, od 20 000 zł — 5% WPS (skill `calculating-oplata-sadowa`).
 - **Trybie postępowania** — uproszczone (do 20 000 zł — art. 505¹ KPC).
 - **Kosztach zastępstwa procesowego** — stawki minimalne wg WPS (rozporządzenie o opłatach za czynności adwokackie / radcy prawnego).
 
@@ -156,7 +156,7 @@ Gdy powód dochodzi kilku roszczeń **w tym samym pozwie** — WPS = **suma wart
 
 - Miesięczne wynagrodzenie: 7 000 zł brutto.
 - **WPS = 84 000 zł** (7 000 × 12).
-- Opłata: zwolnienie (art. 96 ust. 1 pkt 4 UKSC — pracownik przy WPS ≤ 50 000 zł zwolniony; przy 84 000 zł — opłata od nadwyżki ponad 50 000, czyli od 34 000 = 1 700 zł).
+- Opłata: zwolnienie (art. 96 ust. 1 pkt 4 UKSC — pracownik przy WPS ≤ 50 000 zł _(art. 96 ust. 1 pkt 4 UKSC — weryfikować)_ zwolniony; przy 84 000 zł — opłata od nadwyżki ponad 50 000, czyli od 34 000 = 1 700 zł).
 - Właściwość: **rejonowy** (< 100 000 zł).
 
 ## Wpływ WPS na tryb postępowania

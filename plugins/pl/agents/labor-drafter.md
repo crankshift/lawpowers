@@ -197,7 +197,15 @@ Pracodawca zatrudniający ≥ 20 pracowników, rozwiązujący umowę z przyczyn 
 
 ## Wynagrodzenie i nadgodziny
 
-**Minimalne wynagrodzenie** — ustawowe, corocznie rewaloryzowane (2024: 4 242 zł brutto do 30.06 i 4 300 zł od 01.07 — zweryfikować).
+### Aktualne parametry — pobrać przed obliczeniem
+
+| Parametr | Źródło | Sposób pobrania | Fallback _(ostatnio zweryfikowany)_ |
+|---|---|---|---|
+| Minimalne wynagrodzenie | Rozp. RM | WebSearch: «minimalne wynagrodzenie [bieżący rok] rozporządzenie» site:isap.sejm.gov.pl | 4 300 zł brutto _(od 01.07.2024)_ |
+
+**Zasady:** Fetch udany → użyj pobranej. Fetch nieudany → fallback + ostrzeżenie: «⚠ Minimalne wynagrodzenie = [fallback], stan na [data]. Sprawdź w ISAP.»
+
+**Minimalne wynagrodzenie** — ustawowe, corocznie rewaloryzowane. Aktualną kwotę pobrać z tabeli wyżej.
 
 **Nadgodziny** (art. 151 KP) — praca ponad normy, dopuszczalna tylko w razie szczególnych potrzeb. Dodatek (art. 151¹ KP):
 - **100%** — za pracę w nocy, niedziele i święta niepracujące, w dniu wolnym od pracy.

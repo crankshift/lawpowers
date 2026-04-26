@@ -17,6 +17,18 @@ Urząd Stanu Cywilnego (USC) — organ administracji wykonujący zadania państw
 - Elektroniczna przez **ePUAP** / **mObywatel** / **mOjbywatel** aplikacja;
 - Wiele odpisów — wyłącznie elektronicznie przez `moj.gov.pl` (Profil Zaufany / e-dowód).
 
+## Aktualne parametry — pobrać przed konsultacją
+
+| Parametr | Źródło | Sposób pobrania | Fallback _(ostatnio zweryfikowany)_ |
+|---|---|---|---|
+| Opłaty skarbowe USC | Ustawa o opłacie skarbowej (Dz.U. 2006 nr 225 poz. 1635) | WebFetch: `https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20062251635` — załącznik (tabela opłat) | Tabela poniżej _(stan na 2024)_ |
+| Opłata za akt małżeństwa | j.w. | j.w. | 84 zł _(stan na 2024)_ |
+| Kara za nieterminowe zgłoszenie urodzenia | KRO art. 49 | WebFetch ISAP: KRO | 1 500 zł _(stan na 2024)_ |
+
+**Zasady:**
+1. **Fetch udany** → użyj pobranej wartości, podaj źródło i datę.
+2. **Fetch nieudany** → użyj fallback. Ostrzeż: «⚠ Opłata pochodzi ze stanu na [data]. Sprawdź w ISAP.»
+
 ## Rejestracja urodzenia dziecka
 
 | Parametr | Regulacja |
@@ -37,10 +49,10 @@ Urząd Stanu Cywilnego (USC) — organ administracji wykonujący zadania państw
 | **Właściwość** | USC wybranego przez nupturientów miasta/gminy (art. 76 ASC); nie musi być USC miejsca zamieszkania |
 | **Zgłoszenie zamiaru** | **Co najmniej 31 dni przed** (art. 76 ust. 3 ASC); max 6 miesięcy |
 | **Wymagane dokumenty** | Dowody tożsamości; odpisy skrócone aktów urodzenia (nie starsze niż 3 miesiące); jeżeli rozwiedziony — wyrok + klauzula prawomocności; jeżeli wdowiec/wdowa — odpis aktu zgonu małżonka; dla cudzoziemca — **zaświadczenie o zdolności do zawarcia związku małżeńskiego** z kraju pochodzenia (przetłumaczone przysięgle) lub zwolnienie sądu z jego przedstawienia (art. 79 ust. 1 pkt 1 ASC w zw. z art. 1146 KPC — zwolnienie postanowieniem sądu) |
-| **Opłata skarbowa** | **84 zł** — za sporządzenie aktu małżeństwa |
+| **Opłata skarbowa** | **84 zł** _(fallback; stan na 2024)_ — za sporządzenie aktu małżeństwa |
 | **Formularz** | Oświadczenie stron o wstąpieniu w związek małżeński (USC) + pisemne zapewnienie o braku przeszkód (art. 76 ust. 1 pkt 1 ASC) |
 
-**Małżeństwo poza lokalem USC** (plener, restauracja) — art. 85 ASC; opłata dodatkowa **1000 zł**.
+**Małżeństwo poza lokalem USC** (plener, restauracja) — art. 85 ASC; opłata dodatkowa **1000 zł** _(fallback; stan na 2024)_.
 
 ## Małżeństwo konkordatowe (kościelne)
 
@@ -52,7 +64,7 @@ Uregulowane **konkordatem z 28.07.1993** + ustawą z 17.05.1989 o stosunku Pańs
 | **Ważność zaświadczenia** | **6 miesięcy** od wydania |
 | **Opłata skarbowa za zaświadczenie** | **Bezpłatne** (zwolnienie w ramach zawarcia małżeństwa konkordatowego) |
 | **Akt małżeństwa** | Sporządza kierownik USC na podstawie zaświadczenia od duchownego (art. 87 ASC) — duchowny przekazuje USC w **5 dni** od ceremonii |
-| **Opłata za akt małżeństwa** | **84 zł** |
+| **Opłata za akt małżeństwa** | **84 zł** _(fallback; stan na 2024)_ |
 
 ## Zmiana imienia lub nazwiska
 
@@ -65,7 +77,7 @@ Uregulowane **konkordatem z 28.07.1993** + ustawą z 17.05.1989 o stosunku Pańs
 | **Właściwość** | Kierownik USC miejsca pobytu wnioskodawcy |
 | **Forma** | Wniosek pisemny lub ePUAP |
 | **Termin rozstrzygnięcia** | KPA art. 35: **1 miesiąc** (sprawy zwykłe) / **2 miesiące** (sprawy szczególnie skomplikowane) |
-| **Opłata skarbowa** | **37 zł** — za wydanie decyzji (zał. do ustawy o opłacie skarbowej, cz. I poz. 8) |
+| **Opłata skarbowa** | **37 zł** _(fallback; stan na 2024)_ — za wydanie decyzji (zał. do ustawy o opłacie skarbowej, cz. I poz. 8) |
 | **Zmiana nazwiska małżonka** | W chwili zawarcia małżeństwa lub w **3 miesięcy** po; potem tylko w trybie ustawy |
 | **Odwołanie** | Wojewoda (art. 127 § 2 KPA) w **14 dni** |
 | **Sąd administracyjny** | WSA / NSA po odwołaniu |
@@ -86,7 +98,7 @@ Wpisanie do polskiej księgi aktów stanu cywilnego dokumentu sporządzonego za 
 | **Właściwość** | Kierownik USC wybranego przez wnioskodawcę |
 | **Wymagane** | Oryginał aktu zagranicznego + tłumaczenie przysięgłe na polski; dokument tożsamości; potwierdzenie pokrewieństwa (gdy dotyczy innej osoby) |
 | **Apostille / legalizacja** | Dla państw konwencji haskiej 1961 — **apostille**; poza nimi — legalizacja konsulatem RP lub konsulatem danego państwa w RP |
-| **Opłata skarbowa** | **50 zł** — transkrypcja (zał. do ustawy o opłacie skarbowej) |
+| **Opłata skarbowa** | **50 zł** _(fallback; stan na 2024)_ — transkrypcja (zał. do ustawy o opłacie skarbowej) |
 | **Termin** | 1 miesiąc (KPA art. 35) |
 
 **Wyjątki**: z niektórych państw akty stanu cywilnego są uznawane bez transkrypcji (Konwencja CIEC Nr 16 z 08.09.1976 — akty wielojęzyczne); lista w rozporządzeniu MSW.
@@ -99,18 +111,18 @@ Wpisanie do polskiej księgi aktów stanu cywilnego dokumentu sporządzonego za 
 
 | Parametr | Regulacja |
 |---|---|
-| **Sprostowanie — opłata** | **39 zł** za decyzję w trybie administracyjnym |
+| **Sprostowanie — opłata** | **39 zł** _(fallback; stan na 2024)_ za decyzję w trybie administracyjnym |
 | **Unieważnienie — tryb** | Sąd rejonowy wydziału cywilnego — wniosek w trybie postępowania nieprocesowego (art. 609 KPC i nast.) |
 
 ## Wydawanie odpisów aktów stanu cywilnego
 
 | Typ odpisu | Opłata | E-usługa |
 |---|---|---|
-| **Odpis skrócony** (PL) | **22 zł** | Tak — `moj.gov.pl` |
-| **Odpis zupełny** (PL) | **33 zł** | Tak — `moj.gov.pl` |
-| **Odpis wielojęzyczny** (CIEC, format międzynarodowy) | **22 zł** | Tak — `moj.gov.pl` |
-| **Zaświadczenie o stanie cywilnym** | **38 zł** | Tak |
-| **Zaświadczenie o zamieszczonych lub niezamieszczonych danych** | **24 zł** | Tak |
+| **Odpis skrócony** (PL) | **22 zł** _(fallback; stan na 2024)_ | Tak — `moj.gov.pl` |
+| **Odpis zupełny** (PL) | **33 zł** _(fallback; stan na 2024)_ | Tak — `moj.gov.pl` |
+| **Odpis wielojęzyczny** (CIEC, format międzynarodowy) | **22 zł** _(fallback; stan na 2024)_ | Tak — `moj.gov.pl` |
+| **Zaświadczenie o stanie cywilnym** | **38 zł** _(fallback; stan na 2024)_ | Tak |
+| **Zaświadczenie o zamieszczonych lub niezamieszczonych danych** | **24 zł** _(fallback; stan na 2024)_ | Tak |
 
 **Forma e-odpisu**: plik PDF z kwalifikowanym podpisem elektronicznym kierownika USC; ważny tak samo jak papierowy.
 
@@ -137,7 +149,7 @@ Brak decyzji w terminie — **ponaglenie** (art. 37 KPA) do wojewody.
 
 - **Brak apostille przy transkrypcji** — USC nie przyjmie aktu bez apostille (z państw haskiej konwencji) lub legalizacji.
 - **Tłumaczenie „zwykłe" zamiast przysięgłego** — odrzucone.
-- **Upływ 21 dni od urodzenia** — po tym terminie rejestracja nadal jest dokonywana, ale przy możliwej grzywnie (art. 62 ust. 2 ASC) — do 1500 zł.
+- **Upływ 21 dni od urodzenia** — po tym terminie rejestracja nadal jest dokonywana, ale przy możliwej grzywnie (art. 62 ust. 2 ASC) — do 1500 zł _(fallback; stan na 2024)_.
 - **Mylenie odpisu skróconego ze zupełnym** — do spraw sądowych wymagany odpis zupełny; do urzędowych najczęściej skrócony wystarczy; CIEC dla spraw zagranicznych.
 - **Małżeństwo konkordatowe — brak zaświadczenia** — ceremonia się odbyła, ale akt USC nie powstanie bez zaświadczenia USC; 6-miesięczna ważność — pilnować.
 - **Transkrypcja aktu urodzenia dziecka zagranicznego bez zgody drugiego rodzica** — gdy jedno z rodziców nie jest wnioskodawcą, wymaga się formalnej zgody; unikać składania jednostronnie.
@@ -168,7 +180,7 @@ W załączeniu:
 1. Oryginał aktu z apostille/legalizacją.
 2. Tłumaczenie przysięgłe aktu na język polski.
 3. Kopia dokumentu tożsamości.
-4. Dowód opłaty skarbowej — 50 zł.
+4. Dowód opłaty skarbowej — 50 zł _(fallback; stan na 2024)_.
 
 [data, podpis]
 ```

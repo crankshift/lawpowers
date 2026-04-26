@@ -24,6 +24,19 @@ Procedury pobytowe, pracy i obywatelstwa dla cudzoziemców w Polsce są rozprosz
 
 **Forma**: częściowo elektronicznie przez **MOS**; stawiennictwo osobiste **wymagane** dla złożenia odcisków palców (biometria) i osobistego doręczenia karty pobytu.
 
+## Aktualne parametry — pobrać przed konsultacją
+
+| Parametr | Źródło | Sposób pobrania | Fallback _(ostatnio zweryfikowany)_ |
+|---|---|---|---|
+| Opłata za pobyt czasowy | Rozp. MSWiA | WebSearch: «opłata za zezwolenie na pobyt czasowy [bieżący rok]» site:isap.sejm.gov.pl | 440 zł _(stan na 2024)_ |
+| Opłata za pobyt stały / rezydenta UE | Rozp. MSWiA | j.w. | 640 zł _(stan na 2024)_ |
+| Opłata za kartę pobytu | Rozp. MSWiA | j.w. | 100 zł _(stan na 2024)_ |
+| Opłata za wizę | Rozp. MSZ | WebSearch: «opłata za wizę krajową [rok]» site:isap.sejm.gov.pl | 100 / 200 zł _(stan na 2024)_ |
+
+**Zasady:**
+1. **Fetch udany** → użyj pobranej wartości, podaj źródło i datę.
+2. **Fetch nieudany** → użyj fallback. Ostrzeż: «⚠ Opłata pochodzi ze stanu na [data]. Sprawdź w ISAP lub na gov.pl.»
+
 ## 1. Zezwolenie na pobyt czasowy
 
 **Właściwość**: wojewoda właściwy ze względu na miejsce zamieszkania cudzoziemca.
@@ -58,10 +71,10 @@ Procedury pobytowe, pracy i obywatelstwa dla cudzoziemców w Polsce są rozprosz
 
 | Czynność | Opłata |
 |---|---|
-| Wniosek o zezwolenie na pobyt czasowy | **440 zł** (opłata skarbowa) |
-| Wniosek o pobyt stały | **640 zł** |
-| Wniosek o rezydenta długoterminowego UE | **640 zł** |
-| Karta pobytu (wydanie / wymiana) | **100 zł** (opłata administracyjna) |
+| Wniosek o zezwolenie na pobyt czasowy | **440 zł** _(fallback; stan na 2024)_ (opłata skarbowa) |
+| Wniosek o pobyt stały | **640 zł** _(fallback; stan na 2024)_ |
+| Wniosek o rezydenta długoterminowego UE | **640 zł** _(fallback; stan na 2024)_ |
+| Karta pobytu (wydanie / wymiana) | **100 zł** _(fallback; stan na 2024)_ (opłata administracyjna) |
 | Szybka procedura biometrii | — |
 
 Opłata skarbowa na rachunek urzędu miasta/gminy (gdzie znajduje się urząd wojewódzki).
@@ -121,7 +134,7 @@ Podstawa: **PrZa** art. 88.
 2. Decyzja — zwykle 2–3 miesiące.
 3. Zezwolenie — wydawane **na okres wskazany w umowie o pracę**, max 3 lata.
 
-**Opłata**: **100 zł** za wniosek (dla zezwolenia < 3 miesięcy) lub **200 zł** (dla zezwolenia > 3 miesięcy).
+**Opłata**: **100 zł** _(fallback; stan na 2024)_ za wniosek (dla zezwolenia < 3 miesięcy) lub **200 zł** _(fallback; stan na 2024)_ (dla zezwolenia > 3 miesięcy).
 
 ## 5. Oświadczenie o powierzeniu wykonywania pracy
 
@@ -133,7 +146,7 @@ Podstawa: **PrZa** art. 88.
 
 **Rejestracja**: elektroniczna w portalu `https://praca.gov.pl`.
 
-**Opłata**: **100 zł** (pracodawca).
+**Opłata**: **100 zł** _(fallback; stan na 2024)_ (pracodawca).
 
 **Wjazd i pobyt cudzoziemca**: na podstawie wizy / ruchu bezwizowego + oświadczenia wpisanego do ewidencji.
 
@@ -186,14 +199,14 @@ Ustawa z 02.04.2009 o obywatelstwie polskim.
 ### Opłata skarbowa
 
 - Nadanie przez Prezydenta — **bezpłatne** (art. 2 ust. 1 pkt 7 ustawy o opłacie skarbowej).
-- Uznanie za obywatela — **219 zł** (decyzja wojewody).
-- Przywrócenie — **219 zł**.
+- Uznanie za obywatela — **219 zł** _(fallback; stan na 2024)_ (decyzja wojewody).
+- Przywrócenie — **219 zł** _(fallback; stan na 2024)_.
 
 ## 8. Karta pobytu i jej odbiór
 
 Po wydaniu pozytywnej decyzji — **karta pobytu** (KP):
 - Zamawiana automatycznie przez urząd.
-- **Opłata**: 100 zł.
+- **Opłata**: 100 zł _(fallback; stan na 2024)_.
 - **Odbiór**: osobiście w urzędzie wojewódzkim.
 - **Okres ważności**: tyle, ile ważne zezwolenie (max 3 lata dla czasowego; 10 lat dla stałego/rezydenta UE).
 
