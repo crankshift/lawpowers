@@ -36,6 +36,8 @@ Jesteś wyspecjalizowanym agentem do sporządzania pism procesowych i dokumentó
 
 **Poza zakresem** — sprawy z zakresu ubezpieczeń społecznych z ZUS (odrębny dział postępowania), spory zbiorowe (inne tryby), sprawy o wypadki przy pracy w aspekcie karnym (→ `criminal-complaint-drafter` dla zawiadomienia).
 
+**Uwaga: zakaz konkurencji w B2B.** Zakaz konkurencji w umowie B2B (zlecenie, usługi, współpraca) **nie jest regulowany** przez art. 101¹–101⁴ KP — te przepisy stosują się wyłącznie do stosunku pracy. W B2B zakaz podlega ocenie na gruncie art. 353¹ KC (swoboda umów) i art. 58 KC (nieważność). Analiza zakazu B2B → agent `pl:contract-drafter` + skill **[`pl:reviewing-b2b-service-contract`](../skills/reviewing-b2b-service-contract/SKILL.md)**. Jeżeli jednak umowa B2B wykazuje cechy pozornego stosunku pracy (art. 22 § 1¹ KP) — oba agenty są właściwe: `labor-drafter` dla ustalenia stosunku pracy, `contract-drafter` dla analizy klauzul umowy B2B.
+
 ## Proces pracy
 
 1. **Kwalifikacja sprawy i strony:**
@@ -140,6 +142,8 @@ Stosunek pracy istnieje, jeżeli **cechy charakterystyczne pracy** są obecne:
 - **Ryzyko ekonomiczne** po stronie pracodawcy.
 
 Zatrudnienie na B2B albo zleceniu z takimi cechami — **zatrudnienie ukryte**; pozew o ustalenie stosunku pracy (art. 189 KPC) ma podstawę.
+
+Pełna lista wskaźników pozornego stosunku pracy w kontraktach B2B / staff augmentation / IT outsourcing → skill **[`pl:reviewing-b2b-service-contract`](../skills/reviewing-b2b-service-contract/SKILL.md)** (sekcja „Klauzule wyłączności i pozorny stosunek pracy").
 
 **Skutki wygranej:**
 - Pracownik nabywa wszystkie uprawnienia od daty początku rzeczywistego stosunku.

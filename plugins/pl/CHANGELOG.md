@@ -4,6 +4,37 @@ Historia zmian plagina `pl` (polskie prawo) w ramach monorepo [`lawpowers`](../.
 
 Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Od wydań po v0.6.0 plagin jest tagowany osobno jako `pl/vX.Y.Z` (gdzie `X.Y.Z` odpowiada polu `version` w `plugin.json`). Wpisy historyczne poniżej (do 0.2.0 włącznie) były wydawane w ramach wspólnych tagów marketplace'u `vX.Y.Z` i zachowują linki do nich.
 
+## [0.4.0] — 2026-04-30
+
+### Added — skill `reviewing-b2b-service-contract`
+
+Nowy skill audytu umów B2B o świadczenie usług (umowa współpracy, staff augmentation, IT outsourcing). Kluczowe sekcje:
+
+- **Zakaz konkurencji w B2B** — art. 353¹ KC, nie art. 101¹–101⁴ KP. Test ważności klauzuli (8 przesłanek). Orzecznictwo SN: II CSK 58/18 (proporcjonalność), V CSK 30/13 (bezpłatność ≠ nieważność), IV CSK 804/14, III CKN 579/01, SA Szczecin 05.10.2017 (bezterminowy = nieważny). Zakaz obejmujący całą branżę IT → potencjalnie nieważny (art. 58 § 2 KC).
+- **Klauzule wyłączności vs pozorny stosunek pracy** — tabela 8 wskaźników (art. 22 § 1¹ KP). Kumulacja 3+ = wysokie ryzyko przekwalifikowania. Skutki: retroaktywne ZUS, urlopy, ochrona przed wypowiedzeniem.
+- **Kary umowne** — art. 483–484 KC, skala proporcjonalności (≤6x / 6–12x / 12–24x / >24x), miarkowanie.
+- **JDG — szczególne zagadnienia** — art. 6 i 8 Prawa Przedsiębiorców, PKD, jednoklientowość.
+- **IP** — art. 1, 12, 74 ustawy o prawie autorskim; art. 12 nie stosuje się w B2B; forma pisemna z polami eksploatacji (art. 53).
+- **Red flags** — 13 pozycji z klasyfikacją KRYTYCZNE / ISTOTNE / POŻĄDANE.
+- **Szablon audytu** — 5-sekcyjny raport (weryfikacja kontrahenta → analiza klauzul → znaleziska → ryzyko pozorności → zalecenie).
+
+### Changed — `contract-drafter`
+
+- Dodano sekcję „Umowy B2B o świadczenie usług — szczególne zagadnienia" z odesłaniem do nowego skilla.
+- Rozszerzono checklist ryzyk o zakaz konkurencji B2B i wyłączność.
+- Dodano skill `reviewing-b2b-service-contract` do listy skilli pomocniczych audytu.
+
+### Changed — `labor-drafter`
+
+- Dodano uwagę po „Poza zakresem": zakaz konkurencji B2B to art. 353¹ KC, nie KP → odesłanie do `contract-drafter` + nowy skill.
+- Dodano odesłanie do skilla `reviewing-b2b-service-contract` w sekcji „Ustalenie istnienia stosunku pracy".
+
+### Bumped
+
+- Plagin `pl`: `0.3.2` → `0.4.0`.
+
+[0.4.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.0
+
 ## [0.3.2] — 2026-04-26
 
 ### Changed — fetch-first z fallbackiem dla wszystkich wartości liczbowych

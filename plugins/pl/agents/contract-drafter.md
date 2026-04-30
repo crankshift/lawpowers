@@ -167,6 +167,8 @@ Umowa nie jest zawarta bez zgody co do **elementów istotnych** (essentialia neg
 - [ ] Dane osobowe — RODO, podstawy przetwarzania, umowa powierzenia (art. 28 RODO) jeżeli wymagana
 - [ ] Klauzule sankcyjne (compliance) — dla międzynarodowych
 - [ ] Klauzule niedozwolone (B2C — art. 385¹–385³ KC) — w umowach z konsumentami
+- [ ] Zakaz konkurencji (B2B) — proporcjonalność, kompensacja, czas, zakres (zob. skill `reviewing-b2b-service-contract`)
+- [ ] Wyłączność — ryzyko pozornego stosunku pracy (art. 22 § 1¹ KP)
 
 ## Klauzule niedozwolone w umowach z konsumentami
 
@@ -183,6 +185,17 @@ W nowych umowach — jasna definicja, co uważa się za siłę wyższą, termin 
 - **Umowa powierzenia przetwarzania danych** (art. 28 RODO) — gdy jedna strona przetwarza dane osobowe na zlecenie drugiej.
 - **Klauzule informacyjne** (art. 13–14 RODO) — w umowach z osobami fizycznymi.
 - **Wymóg pisemnej zgody na przekazywanie danych do państw trzecich** — odpowiednie zabezpieczenia (SCC, BCR).
+
+## Umowy B2B o świadczenie usług — szczególne zagadnienia
+
+Umowa o świadczenie usług B2B (umowa współpracy, kontrakt IT, staff augmentation, outsourcing) — regulowana art. 750 KC (odpowiednie stosowanie przepisów o zleceniu) i art. 353¹ KC (swoboda umów). Kluczowe różnice wobec umów klasycznych:
+
+- **Zakaz konkurencji w B2B ≠ art. 101¹–101⁴ KP.** Przepisy KP stosują się wyłącznie do stosunku pracy. W B2B zakaz konkurencji podlega ocenie na gruncie art. 353¹ KC i art. 58 KC (nieważność). Zakaz obejmujący całą branżę lub uniemożliwiający JDG prowadzenie działalności wg PKD — potencjalnie nieważny (SN II CSK 58/18).
+- **Wyłączność = ryzyko pozornego stosunku pracy.** Jeżeli umowa B2B zawiera wyłączność, stałe godziny, podporządkowanie, pracę w siedzibie i brak podwykonawców — zachodzi ryzyko przekwalifikowania na stosunek pracy (art. 22 § 1¹ KP) z retroaktywnymi składkami ZUS.
+- **Kary umowne** — art. 483–484 KC. Kara za naruszenie zakazu konkurencji = zobowiązanie niepieniężne, kara dopuszczalna. Ale sąd może miarkować (art. 484 § 2 KC) karę rażąco wygórowaną.
+- **IP** — przeniesienie praw autorskich wymaga formy pisemnej z wymienionymi polami eksploatacji (art. 53 ustawy o prawie autorskim). Art. 12 (utwór pracowniczy) **nie stosuje się** w B2B.
+
+Pełny checklist i red flags → skill **[`pl:reviewing-b2b-service-contract`](../skills/reviewing-b2b-service-contract/SKILL.md)**.
 
 ## Tryb audytu ryzyk (review-only)
 
@@ -244,6 +257,7 @@ V. ZALECENIA NEGOCJACYJNE
 - **[`pl:reviewing-real-estate-contract`](../skills/reviewing-real-estate-contract/SKILL.md)** — checklist + red flags dla umów na nieruchomościach (KW, hipoteki, służebności, prawo pierwokupu, zadatek vs. zaliczka, forma aktu notarialnego).
 - **[`pl:searching-krs`](../skills/searching-krs/SKILL.md)** — weryfikacja strony-osoby prawnej (reprezentacja, upadłość, biała lista VAT).
 - **[`pl:applying-rodo`](../skills/applying-rodo/SKILL.md)** — wymogi dla klauzul przetwarzania i umowy powierzenia (art. 28 RODO).
+- **[`pl:reviewing-b2b-service-contract`](../skills/reviewing-b2b-service-contract/SKILL.md)** — checklist + red flags dla umów B2B (zakaz konkurencji, wyłączność, kary umowne, IP, pozorny stosunek pracy).
 
 ## Workflow
 
