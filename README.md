@@ -184,7 +184,7 @@ Adding a plugin for a new jurisdiction (e.g. `eu`, `us`, `de`):
 5. Run `python3 scripts/convert-agents-to-codex.py` and `python3 scripts/validate-codex-agents.py` to generate and validate Codex agent shims.
 6. Open a PR, merge, then tag a release as described in the [release flow](./CHANGELOG.md).
 
-See [`CLAUDE.md`](./CLAUDE.md) for the project-level guidelines.
+See [`CLAUDE.md`](./CLAUDE.md) for Claude Code contributor guidelines and [`AGENTS.md`](./AGENTS.md) for Codex contributor guidelines.
 
 ## Release history
 
