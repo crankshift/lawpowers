@@ -18,12 +18,16 @@ User-facing install instructions live in the root [`README.md`](./README.md). Th
 ```
 lawpowers/                         # GitHub: crankshift/lawpowers
 ├── README.md                       # user-facing — install guide, links to per-plugin docs
-├── CLAUDE.md                       # this file — contributor context
+├── CLAUDE.md                       # this file — Claude Code contributor context
+├── AGENTS.md                       # Codex contributor context (mirrors CLAUDE.md for Codex)
 ├── CHANGELOG.md                    # index of per-plugin CHANGELOGs + monorepo-level structural log (English, dated entries, no monorepo version)
 ├── .version-bump.json              # maps versioned fields in plugin/marketplace manifests
 ├── LICENSE                         # MIT — covers the whole repo
 ├── .claude-plugin/
-│   └── marketplace.json            # marketplace catalog ("lawpowers"); lists ua and pl with their source paths
+│   └── marketplace.json            # Claude Code marketplace catalog ("lawpowers")
+├── .agents/
+│   └── plugins/
+│       └── marketplace.json        # Codex marketplace catalog (law-ua, law-pl)
 ├── .github/
 │   ├── PULL_REQUEST_TEMPLATE.md    # prefills scope / CHANGELOG / test-plan checkboxes on every PR
 │   └── ISSUE_TEMPLATE/
@@ -34,22 +38,30 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 ├── docs/
 │   └── RELEASING.md                # full release procedure
 ├── scripts/
-│   └── release.sh                  # bump + PR + tag + GitHub Release helper
+│   ├── release.sh                  # bump + PR + tag + GitHub Release helper
+│   ├── convert-agents-to-codex.py  # generates .codex/agents/*.toml from Claude agents/*.md
+│   └── validate-codex-agents.py    # validates generated Codex agent TOML files
 ├── plugins/                        # all jurisdiction plugins live here
 │   ├── ua/                         # plugin "ua" — Ukrainian law
 │   │   ├── README.md               # user-facing, Ukrainian
-│   │   ├── CLAUDE.md               # contributor context for the UA plugin
+│   │   ├── CLAUDE.md               # Claude Code contributor context for the UA plugin
+│   │   ├── AGENTS.md               # Codex contributor context for the UA plugin
 │   │   ├── CHANGELOG.md            # plugin-level change log, Ukrainian
-│   │   ├── .claude-plugin/plugin.json  # name: "ua"
-│   │   ├── agents/
-│   │   └── skills/
+│   │   ├── .claude-plugin/plugin.json  # Claude Code manifest; name: "ua"
+│   │   ├── .codex-plugin/plugin.json   # Codex manifest; name: "law-ua"
+│   │   ├── .codex/agents/*.toml    # generated Codex custom-agent shims (from agents/*.md)
+│   │   ├── agents/                 # source agent definitions (Claude + Codex source of truth)
+│   │   └── skills/                 # skill definitions (shared by Claude Code and Codex)
 │   └── pl/                         # plugin "pl" — Polish law
 │       ├── README.md               # user-facing, Polish
-│       ├── CLAUDE.md               # contributor context for the PL plugin
+│       ├── CLAUDE.md               # Claude Code contributor context for the PL plugin
+│       ├── AGENTS.md               # Codex contributor context for the PL plugin
 │       ├── CHANGELOG.md            # plugin-level change log, Polish
-│       ├── .claude-plugin/plugin.json  # name: "pl"
-│       ├── agents/
-│       └── skills/
+│       ├── .claude-plugin/plugin.json  # Claude Code manifest; name: "pl"
+│       ├── .codex-plugin/plugin.json   # Codex manifest; name: "law-pl"
+│       ├── .codex/agents/*.toml    # generated Codex custom-agent shims (from agents/*.md)
+│       ├── agents/                 # source agent definitions (Claude + Codex source of truth)
+│       └── skills/                 # skill definitions (shared by Claude Code and Codex)
 └── site/                           # public landing page (static Astro site, not a plugin)
     ├── README.md                   # site quick-start, deploy flow
     ├── CLAUDE.md                   # site contributor context
@@ -97,16 +109,20 @@ Example: adding a plugin for EU law.
    ```
    plugins/eu/
    ├── README.md                    # user-facing documentation
-   ├── CLAUDE.md                    # contributor context
+   ├── CLAUDE.md                    # Claude Code contributor context
+   ├── AGENTS.md                    # Codex contributor context
    ├── CHANGELOG.md                 # plugin-level change log
-   ├── .claude-plugin/plugin.json   # name: "eu", initial version 0.1.0
-   ├── agents/
-   └── skills/
+   ├── .claude-plugin/plugin.json   # Claude Code manifest; name: "eu", initial version 0.1.0
+   ├── .codex-plugin/plugin.json    # Codex manifest; name: "law-eu" (collision-safe)
+   ├── agents/                      # source agent definitions (shared by Claude + Codex)
+   └── skills/                      # skill definitions (shared by Claude Code and Codex)
    ```
-3. Register the plugin in `.claude-plugin/marketplace.json` under `plugins[…]`:
-   ```json
-   { "name": "eu", "source": "./plugins/eu", "version": "0.1.0", ... }
-   ```
+3. Register the plugin in both marketplace catalogs:
+   - `.claude-plugin/marketplace.json` under `plugins[…]`:
+     ```json
+     { "name": "eu", "source": "./plugins/eu", "version": "0.1.0", ... }
+     ```
+   - `.agents/plugins/marketplace.json` with the collision-safe Codex ID (`law-eu`).
 4. Update [`.version-bump.json`](./.version-bump.json) so the new plugin's version fields are tracked.
 5. Bump the marketplace version in `.claude-plugin/marketplace.json:metadata.version`.
 6. Add a CHANGELOG entry describing the new plugin.

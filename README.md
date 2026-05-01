@@ -177,11 +177,12 @@ All plugins in this monorepo follow the same working principles:
 
 Adding a plugin for a new jurisdiction (e.g. `eu`, `us`, `de`):
 
-1. Create a `./xx/` directory at the repo root with a short ISO-style code.
-2. Add `xx/.claude-plugin/plugin.json` with `"name": "xx"`, `xx/agents/`, `xx/skills/`, and `xx/README.md` + `xx/CLAUDE.md` documenting the plugin.
-3. Register it in `.claude-plugin/marketplace.json` under `plugins` with `"source": "./xx"`.
+1. Create a `./plugins/xx/` directory with a short ISO-style code.
+2. Add `xx/.claude-plugin/plugin.json` (Claude Code manifest), `xx/.codex-plugin/plugin.json` (Codex manifest with collision-safe ID), `xx/agents/`, `xx/skills/`, `xx/README.md`, `xx/CLAUDE.md`, and `xx/AGENTS.md`.
+3. Register it in both marketplace catalogs: `.claude-plugin/marketplace.json` with `"source": "./plugins/xx"`, and `.agents/plugins/marketplace.json` with the Codex plugin ID.
 4. Add a CHANGELOG entry and bump `metadata.version` in the marketplace manifest.
-5. Open a PR, merge, then tag a release as described in the [release flow](./CHANGELOG.md).
+5. Run `python3 scripts/convert-agents-to-codex.py` and `python3 scripts/validate-codex-agents.py` to generate and validate Codex agent shims.
+6. Open a PR, merge, then tag a release as described in the [release flow](./CHANGELOG.md).
 
 See [`CLAUDE.md`](./CLAUDE.md) for the project-level guidelines.
 
