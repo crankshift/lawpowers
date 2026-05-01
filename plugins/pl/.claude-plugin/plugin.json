@@ -1,7 +1,7 @@
 {
   "name": "pl",
   "description": "Lawpowers Poland — wyspecjalizowani subagenci i skille do pracy z polskim ustawodawstwem oraz dokumentami prawniczymi (KC, KPC, KRO, KP, KK, KSH, KPA, RODO, arbitraż, frankowicze, alimenty). Komendy w Claude Code mają prefiks /pl:…",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": {
     "name": "crankshift"
   },

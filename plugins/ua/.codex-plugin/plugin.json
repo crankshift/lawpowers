@@ -1,0 +1,55 @@
+{
+  "name": "law-ua",
+  "version": "0.6.1",
+  "description": "Lawpowers Ukraine — Codex support for Ukrainian legal drafting and source workflows. Codex plugin ID: law-ua. Claude Code keeps the ua plugin ID.",
+  "author": {
+    "name": "crankshift"
+  },
+  "homepage": "https://github.com/crankshift/lawpowers",
+  "repository": "https://github.com/crankshift/lawpowers",
+  "license": "MIT",
+  "keywords": [
+    "ukraine",
+    "ukrainian-law",
+    "legal",
+    "law",
+    "civil-procedure",
+    "commercial-procedure",
+    "administrative-procedure",
+    "arbitration",
+    "litigation",
+    "zakon-rada",
+    "yedrsr",
+    "military",
+    "zsu",
+    "tck",
+    "vlk",
+    "mobilization",
+    "rapport",
+    "szch",
+    "military-benefits"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Lawpowers Ukraine",
+    "shortDescription": "Ukrainian legal drafting and source workflows",
+    "longDescription": "Lawpowers Ukraine provides skills and agent prompts for Ukrainian legislation, legal documents, court filings, legal memos, source citation, and military-law workflows for service members and families. Codex plugin ID: law-ua; Claude Code keeps ua.",
+    "developerName": "crankshift",
+    "category": "Legal",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/crankshift/lawpowers",
+    "privacyPolicyURL": "https://github.com/crankshift",
+    "termsOfServiceURL": "https://github.com/crankshift",
+    "defaultPrompt": [
+      "Draft a Ukrainian legal memo.",
+      "Check Ukrainian statute citations.",
+      "Prepare a military-law document draft."
+    ],
+    "brandColor": "#2563EB",
+    "screenshots": []
+  }
+}

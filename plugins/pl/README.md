@@ -1,12 +1,12 @@
 # lawpowers / pl
 
-Plagin Claude Code do pracy z polskim prawem i dokumentami prawniczymi. Zawiera wyspecjalizowanych subagentów pod konkretne zadania prawne oraz skille do efektywnej pracy z oficjalnymi źródłami (ISAP, Dziennik Ustaw, Portal Orzeczeń SP, SN, NSA, TK).
+Plagin Claude Code i Codex do pracy z polskim prawem i dokumentami prawniczymi. Zawiera wyspecjalizowanych subagentów pod konkretne zadania prawne oraz skille do efektywnej pracy z oficjalnymi źródłami (ISAP, Dziennik Ustaw, Portal Orzeczeń SP, SN, NSA, TK).
 
-Część monorepo [`lawpowers`](../../README.md) — kolekcji plaginów prawnych dla Claude Code. Identyfikator plagina: `pl`; wszystkie komendy mają prefiks `/pl:…`.
+Część monorepo [`lawpowers`](../../README.md) — kolekcji plaginów prawnych dla Claude Code i Codex. W Claude Code identyfikator plagina to `pl`, a komendy mają prefiks `/pl:…`. W Codex używaj ID `law-pl`.
 
 > Przestrzeń robocza dla prawnika-praktyka. Wszystkie dokumenty, odpowiedzi i szablony — po polsku.
 
-> ⚠️ **Zastrzeżenie.** To narzędzie do **wspomagania sporządzania dokumentów prawnych**, a nie porada prawna ani zastępstwo adwokata lub radcy prawnego. Wszystkie wyniki agentów to projekty robocze generowane przez model AI na podstawie tekstu aktów prawnych i **wymagają** weryfikacji przez wykwalifikowanego prawnika względem aktualnych źródeł pierwotnych przed podpisaniem, złożeniem w sądzie lub jakimkolwiek innym użyciem. Ani Anthropic (Claude), ani autorzy i współtwórcy tego repozytorium **nie gwarantują** poprawności, kompletności ani aktualności wyników i **nie ponoszą żadnej odpowiedzialności** za jakiekolwiek skutki ich użycia. Korzystasz na własne ryzyko.
+> ⚠️ **Zastrzeżenie.** To narzędzie do **wspomagania sporządzania dokumentów prawnych**, a nie porada prawna ani zastępstwo adwokata lub radcy prawnego. Wszystkie wyniki agentów to projekty robocze generowane przez model AI na podstawie tekstu aktów prawnych i **wymagają** weryfikacji przez wykwalifikowanego prawnika względem aktualnych źródeł pierwotnych przed podpisaniem, złożeniem w sądzie lub jakimkolwiek innym użyciem. Ani Anthropic (Claude), OpenAI (Codex), ani autorzy i współtwórcy tego repozytorium **nie gwarantują** poprawności, kompletności ani aktualności wyników i **nie ponoszą żadnej odpowiedzialności** za jakiekolwiek skutki ich użycia. Korzystasz na własne ryzyko.
 
 ## Instalacja
 
@@ -38,6 +38,25 @@ claude --plugin-dir ./lawpowers/plugins/pl
 - `/plugin` → zakładka **Installed** — plagin `pl` na liście.
 - `/agents` — subagenci z prefiksem `pl:` (np. `pl:claim-drafter`, `pl:legislation-analyst`).
 - Skille aktywują się automatycznie według kontekstu (np. wzmianka „opłata sądowa" tryguje `pl:calculating-oplata-sadowa`, „przedawnienie" — `pl:checking-przedawnienie`).
+
+## Instalacja w Codex
+
+Codex ID tego plagina: `law-pl`. Claude Code ID pozostaje `pl`.
+
+Z marketplace GitHub:
+
+```bash
+codex plugin marketplace add crankshift/lawpowers
+```
+
+Lokalnie z checkoutu repozytorium:
+
+```bash
+cd /path/to/lawpowers
+codex plugin marketplace add .
+```
+
+Po dodaniu marketplace'u włącz `law-pl` w Codex plugin UI / marketplace flow. Codex czyta instrukcje z `AGENTS.md`; Claude Code czyta `CLAUDE.md`.
 
 ## Zawartość
 

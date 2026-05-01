@@ -2,7 +2,7 @@
 
 Плагін Claude Code для роботи з українським законодавством і правничими документами. Містить спеціалізованих субагентів під конкретні юридичні задачі та скіли для ефективної роботи з офіційними джерелами (`zakon.rada.gov.ua`, ЄДРСР, сайти ВС / КСУ / НААУ).
 
-Частина монорепо [`lawpowers`](../../README.md) — колекції юридичних плагінів для Claude Code. Ідентифікатор плагіна: `ua`; усі команди отримують префікс `/ua:…`.
+Частина монорепо [`lawpowers`](../../README.md) — колекції юридичних плагінів для Claude Code і Codex. Для Claude Code ідентифікатор плагіна: `ua`; команди отримують префікс `/ua:…`. Для Codex використовуйте ID `law-ua`.
 
 Окремий блок — для **військовослужбовців ЗСУ та їхніх сімей**: рапорти, оскарження ВЛК, питання ТЦК і бронювання, виплати, СЗЧ.
 
@@ -40,6 +40,25 @@ claude --plugin-dir ./lawpowers/plugins/ua
 - `/plugin` → вкладка **Installed** — плагін `ua` у списку.
 - `/agents` — субагенти з префіксом `ua:` (наприклад, `ua:claim-drafter`, `ua:raport-drafter`).
 - Скіли активуються автоматично за контекстом: згадка «судовий збір» тригерить `ua:calculating-sudovyi-zbir`; «рапорт на відпустку» — `ua:raport-drafter`; «ВЛК» — `ua:vlk-procedure`.
+
+## Встановлення в Codex
+
+Codex ID цього плагіна: `law-ua`. Claude Code ID лишається `ua`.
+
+З marketplace GitHub:
+
+```bash
+codex plugin marketplace add crankshift/lawpowers
+```
+
+Локально з checkout репозиторію:
+
+```bash
+cd /path/to/lawpowers
+codex plugin marketplace add .
+```
+
+Після додавання marketplace увімкніть `law-ua` у Codex plugin UI / marketplace flow. Codex читає інструкції з `AGENTS.md`; Claude Code читає `CLAUDE.md`.
 
 ## Що всередині
 

@@ -4,6 +4,23 @@ Historia zmian plagina `pl` (polskie prawo) w ramach monorepo [`lawpowers`](../.
 
 Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Od wydań po v0.6.0 plagin jest tagowany osobno jako `pl/vX.Y.Z` (gdzie `X.Y.Z` odpowiada polu `version` w `plugin.json`). Wpisy historyczne poniżej (do 0.2.0 włącznie) były wydawane w ramach wspólnych tagów marketplace'u `vX.Y.Z` i zachowują linki do nich.
 
+
+## [0.4.1] — 2026-05-01
+
+### Added — wsparcie Codex
+
+- Dodano Codex marketplace `.agents/plugins/marketplace.json` i manifest `.codex-plugin/plugin.json` z ID `law-pl`.
+- Dodano instrukcje Codex `AGENTS.md` na poziomie repozytorium i plagina.
+- README uzupełniono o instalację w Codex bez zmiany istniejącego Claude Code ID `pl`.
+
+### Changed
+
+- `CLAUDE.md` uzupełniono o reguły synchronizacji artefaktów Claude/Codex.
+
+### Bumped
+
+- Plagin `pl`: `0.4.0` → `0.4.1`.
+
 ## [0.4.0] — 2026-04-30
 
 ### Added — skill `reviewing-b2b-service-contract`
@@ -244,3 +261,4 @@ Dostępny w tagu marketplace'u [v0.4.0](https://github.com/crankshift/lawpowers/
 [0.3.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.3.0
 [0.2.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.2.0
 [0.1.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.0
+[0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.1

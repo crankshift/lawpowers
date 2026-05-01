@@ -30,3 +30,7 @@ Skille i agenci zawierający zakodowane kwoty prawne (stawki, opłaty, progi, mi
 ## Charakter wyniku
 
 Materiały plagina to robocze projekty dla prawnika-użytkownika, **nie** końcowa porada prawna dla klienta. Ostateczną redakcję i odpowiedzialność ponosi człowiek.
+
+## Codex support
+
+This plugin also has Codex support. Keep `AGENTS.md` and `.codex-plugin/plugin.json` in sync with this Claude-facing file and `.claude-plugin/plugin.json` when user-visible behavior changes. Claude Code continues to use the existing Claude plugin ID; Codex may use a collision-safe ID documented in `AGENTS.md`.

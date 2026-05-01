@@ -1,0 +1,47 @@
+{
+  "name": "law-pl",
+  "version": "0.4.1",
+  "description": "Lawpowers Poland — Codex support for Polish legal drafting and source workflows. Codex plugin ID: law-pl. Claude Code keeps the pl plugin ID.",
+  "author": {
+    "name": "crankshift"
+  },
+  "homepage": "https://github.com/crankshift/lawpowers",
+  "repository": "https://github.com/crankshift/lawpowers",
+  "license": "MIT",
+  "keywords": [
+    "poland",
+    "polish-law",
+    "legal",
+    "law",
+    "civil-procedure",
+    "commercial-procedure",
+    "administrative-procedure",
+    "litigation",
+    "isap",
+    "sejm",
+    "orzeczenia"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Lawpowers Poland",
+    "shortDescription": "Polish legal drafting and source workflows",
+    "longDescription": "Lawpowers Poland provides skills and agent prompts for Polish legislation, legal documents, litigation, arbitration, family, labor, consumer, enforcement, RODO, source citation, and case-law workflows. Codex plugin ID: law-pl; Claude Code keeps pl.",
+    "developerName": "crankshift",
+    "category": "Legal",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/crankshift/lawpowers",
+    "privacyPolicyURL": "https://github.com/crankshift",
+    "termsOfServiceURL": "https://github.com/crankshift",
+    "defaultPrompt": [
+      "Draft a Polish legal memo.",
+      "Check Polish statute citations.",
+      "Prepare a Polish court filing draft."
+    ],
+    "brandColor": "#B91C1C",
+    "screenshots": []
+  }
+}

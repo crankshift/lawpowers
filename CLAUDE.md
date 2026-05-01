@@ -1,6 +1,6 @@
 # lawpowers — monorepo
 
-Monorepo of jurisdiction-specific legal plugins for **Claude Code**. One marketplace (`lawpowers`) hosts several plugins; each plugin wraps subagents and skills for a single legal system.
+Monorepo of jurisdiction-specific legal plugins for **Claude Code and Codex**. One marketplace (`lawpowers`) hosts several plugins; each plugin wraps subagents and skills for a single legal system.
 
 | Plugin | Jurisdiction | Command prefix | Working language | Documentation |
 |---|---|---|---|---|
@@ -160,3 +160,13 @@ Bumping marketplace `metadata.version` is separate — only needed when catalog 
 | Poland | [isap.sejm.gov.pl](https://isap.sejm.gov.pl), [dziennikustaw.gov.pl](https://dziennikustaw.gov.pl) | [orzeczenia.ms.gov.pl](https://orzeczenia.ms.gov.pl) (Portal Orzeczeń) | [sn.pl](https://www.sn.pl) (Sąd Najwyższy), [nsa.gov.pl](https://orzeczenia.nsa.gov.pl) (NSA), [trybunal.gov.pl](https://trybunal.gov.pl) (TK) |
 
 For plugin-specific context (agent catalogs, jurisdiction-specific procedural rules, architectural notes) see the per-plugin `CLAUDE.md` files linked at the top.
+
+## Codex support
+
+This repository also ships Codex plugin metadata. Keep Claude and Codex surfaces in sync when changing plugin structure.
+
+- Claude marketplace: `.claude-plugin/marketplace.json`; Codex marketplace: `.agents/plugins/marketplace.json`.
+- Claude plugin manifests stay in `plugins/*/.claude-plugin/plugin.json`; Codex plugin manifests stay in `plugins/*/.codex-plugin/plugin.json`.
+- Claude contributor instructions live in `CLAUDE.md`; Codex contributor instructions live in `AGENTS.md`.
+- Claude plugin IDs remain `ua` and `pl`; Codex plugin IDs are `law-ua` and `law-pl` to avoid collisions with `businesspowers`.
+- When adding a plugin, agent, skill, or public install instruction, update README, CLAUDE.md, AGENTS.md, and both manifest families as applicable.

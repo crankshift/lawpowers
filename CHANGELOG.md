@@ -11,6 +11,12 @@ For the release procedure, see [`docs/RELEASING.md`](./docs/RELEASING.md).
 
 ## Monorepo-level log
 
+### 2026-05-01 — Codex support
+
+- `ua` bumped to `0.6.1`: Codex marketplace/manifest support, `AGENTS.md`, and Codex install docs.
+- `pl` bumped to `0.4.1`: same Codex support.
+- Marketplace `metadata.version` bumped to `0.6.1`.
+
 Entries below cover cross-cutting changes only (layout moves, release tooling, CI, shared scripts, repo renames). Plugin content changes — new agents, new skills, updated statute references — go in the plugin CHANGELOG, not here. The log is dated; there is no monorepo-level version anymore.
 
 ### 2026-04-21 — Per-plugin release tags

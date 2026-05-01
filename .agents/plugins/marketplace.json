@@ -1,0 +1,32 @@
+{
+  "name": "lawpowers",
+  "interface": {
+    "displayName": "Lawpowers"
+  },
+  "plugins": [
+    {
+      "name": "law-ua",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ua"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Legal"
+    },
+    {
+      "name": "law-pl",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pl"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Legal"
+    }
+  ]
+}
