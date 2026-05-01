@@ -60,6 +60,8 @@ codex plugin marketplace add .
 
 Після додавання marketplace увімкніть `law-ua` у Codex plugin UI / marketplace flow. Codex читає інструкції з `AGENTS.md`; Claude Code читає `CLAUDE.md`.
 
+Codex custom-agent files are included in `.codex/agents/`. They are generated from `agents/*.md`, so update the Markdown source first and run the repo-level converter/validator before release.
+
 ## Що всередині
 
 Усі команди — з префіксом `/ua:…`.

@@ -1,6 +1,6 @@
 {
   "name": "law-pl",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Lawpowers Poland — Codex support for Polish legal drafting and source workflows. Codex plugin ID: law-pl. Claude Code keeps the pl plugin ID.",
   "author": {
     "name": "crankshift"

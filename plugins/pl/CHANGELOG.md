@@ -1,5 +1,20 @@
 # Plagin `pl` — Changelog
 
+## [0.4.2] — 2026-05-01
+
+### Added — zgodność agentów Codex
+
+- Wygenerowano pliki Codex custom-agent TOML w `.codex/agents/` dla wszystkich agentów Claude w pluginie.
+- Dodano skrypty `scripts/convert-agents-to-codex.py` i `scripts/validate-codex-agents.py` do synchronizacji agentów Claude/Codex.
+
+### Changed
+
+- README, `AGENTS.md` i `CLAUDE.md` wyjaśniają, że `agents/*.md` pozostają źródłem prawdy, a agenci Codex są z nich generowani.
+
+### Bumped
+
+- Plagin `pl`: `0.4.1` → `0.4.2`.
+
 Historia zmian plagina `pl` (polskie prawo) w ramach monorepo [`lawpowers`](../../CHANGELOG.md).
 
 Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Od wydań po v0.6.0 plagin jest tagowany osobno jako `pl/vX.Y.Z` (gdzie `X.Y.Z` odpowiada polu `version` w `plugin.json`). Wpisy historyczne poniżej (do 0.2.0 włącznie) były wydawane w ramach wspólnych tagów marketplace'u `vX.Y.Z` i zachowują linki do nich.
@@ -262,3 +277,4 @@ Dostępny w tagu marketplace'u [v0.4.0](https://github.com/crankshift/lawpowers/
 [0.2.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.2.0
 [0.1.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.0
 [0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.1
+[0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.2

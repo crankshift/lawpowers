@@ -58,6 +58,8 @@ codex plugin marketplace add .
 
 Po dodaniu marketplace'u włącz `law-pl` w Codex plugin UI / marketplace flow. Codex czyta instrukcje z `AGENTS.md`; Claude Code czyta `CLAUDE.md`.
 
+Codex custom-agent files are included in `.codex/agents/`. They are generated from `agents/*.md`, so update the Markdown source first and run the repo-level converter/validator before release.
+
 ## Zawartość
 
 Wszystkie komendy wywoływane z prefiksem `/pl:…`.

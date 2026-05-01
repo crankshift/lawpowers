@@ -26,7 +26,18 @@ Keep the existing folders and Claude IDs unchanged. Codex uses collision-safe ID
 - `plugins/*/.codex-plugin/plugin.json` is the Codex plugin manifest.
 - `AGENTS.md` files are Codex-facing contributor instructions.
 - `CLAUDE.md` files remain Claude-facing contributor instructions.
+- `plugins/*/.codex/agents/*.toml` are generated Codex custom-agent shims derived from Claude `agents/*.md` files.
+- Codex plugin manifests do not currently expose an `agents` field, so do not add one unless the schema changes; commit the generated `.codex/agents/` files for compatibility/import workflows.
 
 ## Verification
 
 After changing Codex support, validate JSON manifests and verify each marketplace `source.path` points to a plugin folder with `.codex-plugin/plugin.json` and `skills/`.
+
+Run these after editing agents or Codex support:
+
+```bash
+python3 scripts/convert-agents-to-codex.py
+python3 scripts/validate-codex-agents.py
+```
+
+Then validate JSON manifests with `python3 -m json.tool` and run the normal Claude plugin validation flow.

@@ -34,3 +34,5 @@ Materiały plagina to robocze projekty dla prawnika-użytkownika, **nie** końco
 ## Codex support
 
 This plugin also has Codex support. Keep `AGENTS.md` and `.codex-plugin/plugin.json` in sync with this Claude-facing file and `.claude-plugin/plugin.json` when user-visible behavior changes. Claude Code continues to use the existing Claude plugin ID; Codex may use a collision-safe ID documented in `AGENTS.md`.
+
+Codex custom-agent files are generated into `.codex/agents/*.toml` from the Claude `agents/*.md` files. Keep `agents/*.md` authoritative, run `python3 scripts/convert-agents-to-codex.py` after agent edits, and verify with `python3 scripts/validate-codex-agents.py`. Do not hand-maintain generated TOML unless the converter is updated too. Current Codex plugin manifests do not declare agents directly; `.codex/agents/` is the compatibility/import layer.

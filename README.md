@@ -144,6 +144,14 @@ codex plugin marketplace upgrade lawpowers
 
 Codex reads repo and plugin guidance from `AGENTS.md`; Claude Code reads `CLAUDE.md`. Keep both in sync when changing behavior.
 
+Codex agent compatibility: this repo commits generated custom-agent files under `plugins/*/.codex/agents/`. They are generated from the Claude `agents/*.md` source files; after changing agents, run:
+
+```bash
+python3 scripts/convert-agents-to-codex.py
+python3 scripts/validate-codex-agents.py
+```
+
+
 ## Disclaimer
 
 `lawpowers` is a tooling project whose sole purpose is to **assist with the drafting of legal documents**. It doesn't replace a lawyer, and running an agent is not a legal consultation.

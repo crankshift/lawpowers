@@ -1,6 +1,6 @@
 {
   "name": "law-ua",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Lawpowers Ukraine — Codex support for Ukrainian legal drafting and source workflows. Codex plugin ID: law-ua. Claude Code keeps the ua plugin ID.",
   "author": {
     "name": "crankshift"

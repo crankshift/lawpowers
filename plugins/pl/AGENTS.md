@@ -17,3 +17,7 @@ Use this plugin for Polish legal drafting, legal analysis, and official-source w
 - Codex manifest: `.codex-plugin/plugin.json`.
 - Claude manifest: `.claude-plugin/plugin.json`.
 - If agents or skills change, update both Codex and Claude docs where user-visible names or behavior changes.
+- Generated Codex agents: `.codex/agents/*.toml`; source files: `agents/*.md`.
+- After editing an agent, run `python3 scripts/convert-agents-to-codex.py` from the repo root, then `python3 scripts/validate-codex-agents.py`.
+- Do not add an `agents` field to `.codex-plugin/plugin.json` unless Codex schema support is confirmed.
+- Tool lists from Claude agents are carried into Codex instructions as guidance, not hard permission boundaries.
