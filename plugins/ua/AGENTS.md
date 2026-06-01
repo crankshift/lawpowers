@@ -11,6 +11,7 @@ Use this plugin for Ukrainian legal drafting, legal analysis, source lookup, and
 - Never fabricate case law, case numbers, dates, quotations, registry results, or official positions.
 - Use placeholders for personal data: `[ПІБ]`, `[РНОКПП]`, `[адреса]`.
 - Outputs are legal-document drafts for qualified human review, not final legal advice.
+- For letters, requests, applications, and complaints to authorities, first route the document through `skills/determining-ua-request-regime/SKILL.md`. Do not mix public-information requests, citizen appeals, administrative-procedure filings, administrative services, personal-data requests, and advocate requests in one document.
 
 ## Codex maintenance
 

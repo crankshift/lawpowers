@@ -27,6 +27,10 @@
 
 Матеріали плагіна — робочі чернетки для юриста-користувача, **не** кінцева юридична консультація клієнту. Фінальну редакцію і відповідальність несе людина.
 
+## Режими запитів, заяв і скарг
+
+Перед складанням листів, запитів, заяв і скарг до органів влади, консульств, установ або розпорядників інформації спочатку визначити правовий режим через `skills/determining-ua-request-regime/SKILL.md`. Не змішувати в одному документі запит на публічну інформацію, звернення громадян, адміністративну процедуру, адмінпослугу, запит суб'єкта персональних даних і адвокатський запит.
+
 ## Codex support
 
 This plugin also has Codex support. Keep `AGENTS.md` and `.codex-plugin/plugin.json` in sync with this Claude-facing file and `.claude-plugin/plugin.json` when user-visible behavior changes. Claude Code continues to use the existing Claude plugin ID; Codex may use a collision-safe ID documented in `AGENTS.md`.
