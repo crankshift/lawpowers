@@ -11,6 +11,7 @@ Use this plugin for Polish legal drafting, legal analysis, and official-source w
 - Never fabricate case law, case numbers, dates, quotations, registry results, or official positions.
 - Use placeholders for personal data: `[imię i nazwisko]`, `[PESEL]`, `[NIP]`, `[adres]`.
 - Outputs are legal-document drafts for qualified human review, not final legal advice.
+- For letters, requests, applications, complaints, petitions, registry requests, RODO requests, and special-procedure filings, first route the document through `skills/determining-pl-request-regime/SKILL.md`. Do not mix UDIP, KPA, PPSA, RODO, registry, tax, ZUS, cudzoziemcy, USC, and professional-letter regimes in one document.
 
 ## Codex maintenance
 

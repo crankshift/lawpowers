@@ -76,7 +76,7 @@ Wszystkie komendy wywoływane z prefiksem `/pl:…`.
 | `pl:motion-drafter` | Wnioski procesowe (zabezpieczenie, dowody, biegli, wyłączenie sędziego, terminy) |
 | `pl:legislation-analyst` | Analiza obowiązującego prawa, wykładnia norm, brzmienie na datę, dobór orzecznictwa |
 | `pl:legal-memo` | Opinie prawne, memoranda, ocena perspektyw sporu |
-| `pl:request-drafter` | Wnioski o udostępnienie informacji publicznej (UDIP), pisma adwokata / radcy prawnego, KPA |
+| `pl:request-drafter` | Router i drafter pism do organów, sądów, rejestrów i instytucji: UDIP, KPA, PPSA, RODO, rejestry, procedury podatkowe/ZUS/cudzoziemcy/USC, pisma adwokata/radcy |
 | `pl:contract-drafter` | Sporządzanie i analiza umów cywilnoprawnych i gospodarczych, RODO; **tryb audytu ryzyk** (review-only) z ustrukturyzowanym raportem (KRYTYCZNE / ISTOTNE / POŻĄDANE) |
 
 **Windykacja i egzekucja:**
@@ -112,6 +112,7 @@ Wszystkie komendy wywoływane z prefiksem `/pl:…`.
 | `pl:fetching-isap-sejm` | Pobieranie aktów z ISAP / Dziennika Ustaw, brzmienia historyczne, ID kluczowych kodeksów |
 | `pl:searching-orzeczenia` | Wyszukiwanie orzecznictwa (Portal Orzeczeń SP, SN, NSA, TK), struktura sygnatury akt |
 | `pl:citing-polish-law` | Format cytowania aktów prawnych, orzeczeń SN/TK/TSUE/ETPCz, skróty kodeksów |
+| `pl:determining-pl-request-regime` | Wybór właściwego trybu dla pism, wniosków, skarg, petycji i żądań: nie miesza UDIP, KPA, PPSA, RODO, rejestrów, procedur szczególnych i pism adwokata/radcy |
 | `pl:determining-pl-jurisdiction` | Właściwość sądu (rzeczowa, miejscowa, funkcjonalna), cywilna vs gospodarcza vs administracyjna |
 | `pl:determining-wps` | Wartość przedmiotu sporu (art. 19–26 KPC), sumowanie żądań, wpływ na właściwość i opłatę |
 | `pl:searching-krs` | KRS, CEIDG, biała lista VAT, KRD / BIG, MSiG — identyfikacja osób prawnych i wierzytelności |

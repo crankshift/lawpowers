@@ -27,6 +27,10 @@ Przy projektowaniu klauzul, polityk i analizach — odwołania do RODO (rozp. 20
 
 Skille i agenci zawierający zakodowane kwoty prawne (stawki, opłaty, progi, minimalne wynagrodzenie) muszą zawierać **blok fetch-first**: najpierw próba `WebFetch` / `WebSearch` ze źródła pierwotnego, a dopiero przy niepowodzeniu — wartość fallback z adnotacją `_(fallback; stan na [data])_`. Jeśli parametr jest już pobierany przez kanoniczny skill (np. stopa NBP w `calculating-odsetki`), inne skille odsyłają do niego zamiast duplikować logikę.
 
+## Tryby pism, wniosków, skarg i żądań
+
+Przed sporządzaniem pism, wniosków, skarg, petycji, żądań z RODO, wniosków rejestrowych i pism w procedurach szczególnych najpierw ustalić tryb prawny przez `skills/determining-pl-request-regime/SKILL.md`. Nie mieszać w jednym dokumencie UDIP, KPA, PPSA, RODO, dostępu do akt, rejestrów publicznych, procedur podatkowych, ZUS, cudzoziemców, USC i pism adwokata/radcy.
+
 ## Charakter wyniku
 
 Materiały plagina to robocze projekty dla prawnika-użytkownika, **nie** końcowa porada prawna dla klienta. Ostateczną redakcję i odpowiedzialność ponosi człowiek.

@@ -45,7 +45,7 @@
       "name": "pl",
       "source": "./plugins/pl",
       "description": "Lawpowers Poland — wyspecjalizowani subagenci i skille do pracy z polskim ustawodawstwem oraz dokumentami prawniczymi (ISAP, orzeczenia, KC/KPC/KRO/KP/KK/KSH, arbitraż, frankowicze, RODO). Komendy otrzymują prefiks /pl:…",
-      "version": "0.4.2",
+      "version": "0.4.3",
       "author": {
         "name": "crankshift"
       },

@@ -1,5 +1,25 @@
 # Plagin `pl` — Changelog
 
+## [0.4.3] — 2026-06-01
+
+### Added
+
+- Dodano skill `determining-pl-request-regime` do wyboru właściwego trybu pism, wniosków, skarg, petycji i żądań: UDIP, KPA, PPSA, RODO, rejestry, procedury podatkowe, ZUS, cudzoziemcy, USC oraz pisma adwokata/radcy.
+- Dodano validator `scripts/validate-pl-request-regime.py`, który sprawdza obecność routera i guardrails w agencie Claude, wygenerowanym agencie Codex, dokumentacji i manifestach.
+
+### Changed
+
+- `request-drafter` zostaje przekształcony z agenta z lokalną tabelą trybów w router-then-drafter: najpierw ustala jeden tryb prawny, potem przygotowuje pismo.
+- Dokumentacja PL pluginu doprecyzowuje zasadę `jedno pismo = jeden tryb prawny` dla UDIP, KPA, PPSA, RODO, rejestrów i procedur szczególnych.
+
+### Fixed
+
+- Pisma o status sprawy, datę wpływu, znak sprawy, kopie dokumentów albo reakcję organu nie powinny automatycznie mieszać UDIP, skargi z KPA, petycji, RODO i gróźb procesowych. Agent ma najpierw ustalić właściwy tryb, a cele mieszane rozdzielać na osobne dokumenty.
+
+### Bumped
+
+- Plagin `pl`: `0.4.2` → `0.4.3`.
+
 ## [0.4.2] — 2026-05-01
 
 ### Added — zgodność agentów Codex
@@ -272,9 +292,10 @@ Plagin `pl` dla polskiego prawa dodany do monorepo `lawpowers` (tag marketplace:
 
 Dostępny w tagu marketplace'u [v0.4.0](https://github.com/crankshift/lawpowers/releases/tag/v0.4.0).
 
+[0.4.3]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.3
+[0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.2
+[0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.1
 [0.3.1]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.3.1
 [0.3.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.3.0
 [0.2.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.2.0
 [0.1.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.0
-[0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.1
-[0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.2
