@@ -187,7 +187,9 @@ For a global install, add the same plugin entry to your global OpenCode config a
 
 If the config file already exists, append `"lawpowers@git+https://github.com/crankshift/lawpowers.git"` to its existing `plugin` array.
 
-Restart OpenCode. The plugin package anchors itself to the installed Lawpowers package root, adds `skills/ua` and `skills/pl` to OpenCode, and loads Markdown agents from `agents/ua` and `agents/pl`.
+Restart OpenCode. Config and package plugins are loaded only at startup. The plugin package anchors itself to the installed Lawpowers package root, adds `skills/ua` and `skills/pl` to OpenCode, and loads Markdown agents from `agents/ua` and `agents/pl`.
+
+To verify a project or global install, run `opencode debug skill` after restarting OpenCode and look for `law-ua-*` or `law-pl-*` skills loaded from the Lawpowers package cache. If a running session still does not show Lawpowers skills, quit OpenCode fully and start a new session. If the debug output still points at stale package contents, clear the Lawpowers entry under `~/.cache/opencode/packages/` and restart so OpenCode fetches the git package again.
 
 For local development before pushing:
 

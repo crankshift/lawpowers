@@ -64,7 +64,7 @@ Codex custom-agent files are included in `.codex/agents/`. Вони генеру
 
 ### OpenCode
 
-Для OpenCode додайте Lawpowers як plugin у `opencode.jsonc` вашого робочого проєкту: `lawpowers@git+https://github.com/crankshift/lawpowers.git`. Package entrypoint `../../.opencode/plugins/lawpowers.js` завантажує скіли з `../../skills/ua` і реєструє агенти `../../agents/ua/law-ua-*.md`. Наприклад, router запитів доступний як `law-ua-determining-ua-request-regime`.
+Для OpenCode додайте Lawpowers як plugin у `opencode.jsonc` вашого робочого проєкту або в глобальний `~/.config/opencode/opencode.jsonc`: `lawpowers@git+https://github.com/crankshift/lawpowers.git`. Package entrypoint `../../.opencode/plugins/lawpowers.js` завантажує скіли з `../../skills/ua` і реєструє агенти `../../agents/ua/law-ua-*.md`. Наприклад, router запитів доступний як `law-ua-determining-ua-request-regime`. Після зміни конфігурації повністю перезапустіть OpenCode; для перевірки виконайте `opencode debug skill` і знайдіть скіли з префіксом `law-ua-`.
 
 ## Що всередині
 
