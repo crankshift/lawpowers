@@ -1,25 +1,24 @@
 # Releasing
 
-How to cut a release of a `lawpowers` plugin. Each plugin (`ua`, `pl`) is released **independently**, with its own tag, its own GitHub Release, and its own CHANGELOG.
+How to cut a unified `lawpowers` package release. A release has one version, one `vX.Y.Z` tag, and one GitHub Release. The UA and PL changelogs remain component history, but they are not released as separate public version lines.
 
 > **TL;DR:** most of this is automated by [`scripts/release.sh`](../scripts/release.sh):
 > ```bash
-> ./scripts/release.sh prepare ua 0.5.0       # bump + branch + PR
-> # … review and merge the PR on GitHub …
-> ./scripts/release.sh publish ua 0.5.0       # tag ua/v0.5.0 + GitHub Release
+> ./scripts/release.sh prepare 0.7.1       # bump + branch + PR
+> # ... review and merge the PR on GitHub ...
+> ./scripts/release.sh publish 0.7.1       # tag v0.7.1 + GitHub Release
 > ```
 > The manual procedure below explains what the script does step by step; follow it when debugging or when you want finer control.
 
-## Why per-plugin releases
+## Why Unified Releases
 
-Users don't install "the marketplace" — they install a specific plugin via `/plugin install ua@lawpowers` or `/plugin install pl@lawpowers`. Each plugin has its own `version` in `plugin.json` and moves on its own schedule. Releasing them together under one umbrella tag (`v0.6.0` = `ua 0.4.0` + `pl 0.2.0`) confused users who saw "install v0.6.0" and wondered why their plugin showed `0.4.0`.
+OpenCode installs Lawpowers as one git package plugin, and the Claude/Codex adapter manifests are generated compatibility surfaces for the same canonical root sources. Keeping one version avoids a mismatch where OpenCode reports one package while UA and PL report separate release lines.
 
 Going forward:
 
-- **One release = one plugin.** Tags are namespaced: `ua/vX.Y.Z`, `pl/vX.Y.Z`. The tag version always matches the plugin's `version` field exactly.
-- **Umbrella `vX.Y.Z` tags are retired.** Historical tags (`v0.1.0`…`v0.6.0`) stay on the repo unchanged; no new umbrella tags are created.
-- **Marketplace `metadata.version`** remains as an internal field in `.claude-plugin/marketplace.json`. It's bumped on catalog-shape changes (plugin added/removed, cross-plugin structural reshuffle) — but it's **not** tagged publicly and has no GitHub Release.
-- **Root `CHANGELOG.md`** is historical; new version-specific entries go only into plugin CHANGELOGs (`plugins/ua/CHANGELOG.md`, `plugins/pl/CHANGELOG.md`). Monorepo-level tooling or structural notes can still land there as dated (not versioned) entries.
+- **One release = one Lawpowers package version.** Tags are `vX.Y.Z`.
+- **All active version fields move together.** Root `package.json`, marketplace metadata, marketplace plugin entries, Claude manifests, and Codex manifests share the same version.
+- **Component changelogs still matter.** Update `plugins/ua/CHANGELOG.md` or `plugins/pl/CHANGELOG.md` when that jurisdiction changed, but publish release notes from the root `CHANGELOG.md`.
 
 ## Prerequisites
 
@@ -27,176 +26,178 @@ Going forward:
 - Write access to the repo.
 - Clean `main` locally: `git checkout main && git pull`.
 
-## 1. Decide the bump
+## 1. Decide The Bump
 
-Pick one plugin (`ua` or `pl`) and one version per semver.
+Pick one Lawpowers version per semver.
 
 Semver guidelines for `0.x`:
 
-- **Patch** (`0.4.0 → 0.4.1`) — wording fixes, new skills or agents that don't break existing invocations, non-breaking internal refactors.
-- **Minor** (`0.4.0 → 0.5.0`) — significant additions (new agent category, new skill set) or a breaking change during `0.x` pre-1.0.
-- **Major** (`0.x → 1.0.0`) — not yet; reserved for first stable API commitment or a deliberate breaking restructure.
+- **Patch** (`0.7.0` → `0.7.1`) — wording fixes, non-breaking validation/script fixes, or small docs corrections.
+- **Minor** (`0.7.0` → `0.8.0`) — significant additions or breaking changes during `0.x` pre-1.0.
+- **Major** (`0.x` → `1.0.0`) — reserved for first stable API commitment or a deliberate breaking restructure.
 
-## 2. Update the version fields
+## 2. Update Version Fields
 
-For a release of plugin `<P>` (`ua` or `pl`) to version `X.Y.Z`, two fields move in lockstep — both must change:
+For release `X.Y.Z`, update every field listed in [`.version-bump.json`](../.version-bump.json):
 
+```text
+package.json                                  -> "version": "X.Y.Z"
+.claude-plugin/marketplace.json              -> "metadata.version": "X.Y.Z"
+.claude-plugin/marketplace.json              -> "plugins[0].version": "X.Y.Z"
+.claude-plugin/marketplace.json              -> "plugins[1].version": "X.Y.Z"
+plugins/ua/.claude-plugin/plugin.json        -> "version": "X.Y.Z"
+plugins/ua/.codex-plugin/plugin.json         -> "version": "X.Y.Z"
+plugins/pl/.claude-plugin/plugin.json        -> "version": "X.Y.Z"
+plugins/pl/.codex-plugin/plugin.json         -> "version": "X.Y.Z"
 ```
-plugins/<P>/.claude-plugin/plugin.json       → "version": "X.Y.Z"
-.claude-plugin/marketplace.json              → "plugins[N].version": "X.Y.Z"   # N=0 for ua, 1 for pl
-```
 
-If this release also changes the marketplace catalog shape (e.g. adding or removing a plugin), also bump `marketplace.json` → `metadata.version`. For ordinary plugin-only releases, leave `metadata.version` alone.
-
-Source of truth — [`.version-bump.json`](../.version-bump.json).
-
-Validate after:
+The release helper does this automatically:
 
 ```bash
-claude plugin validate .
+./scripts/release.sh bump X.Y.Z
 ```
 
-Must report `✔ Validation passed`.
+## 3. Add Changelog Entries
 
-## 3. Add the CHANGELOG entry
-
-Edit the CHANGELOG of the plugin you're releasing:
+Edit the root changelog for every public release:
 
 | Changelog | Language | When to edit |
 |---|---|---|
-| [`plugins/ua/CHANGELOG.md`](../plugins/ua/CHANGELOG.md) | Ukrainian | Every `ua` release. |
-| [`plugins/pl/CHANGELOG.md`](../plugins/pl/CHANGELOG.md) | Polish | Every `pl` release. |
-| [root `CHANGELOG.md`](../CHANGELOG.md) | English | **Only** for cross-cutting monorepo changes (tooling, structural reshuffle touching both plugins). Add a new dated `### YYYY-MM-DD — …` entry to the monorepo-level log — the root file has no versioned sections anymore. Ordinary plugin releases do not touch this file. |
+| [`CHANGELOG.md`](../CHANGELOG.md) | English | Every public release. Release notes are extracted from here. |
+| [`plugins/ua/CHANGELOG.md`](../plugins/ua/CHANGELOG.md) | Ukrainian | When UA agents, skills, manifests, or docs changed. |
+| [`plugins/pl/CHANGELOG.md`](../plugins/pl/CHANGELOG.md) | Polish | When PL agents, skills, manifests, or docs changed. |
 
-Every changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Insert a new section at the top (right below the heading) and add a matching link reference at the bottom — pointing to the **per-plugin tag URL**.
-
-### Plugin `plugins/ua/CHANGELOG.md` template (Ukrainian)
+Root changelog template:
 
 ```markdown
 ## [X.Y.Z] — YYYY-MM-DD
 
 ### Added / Changed / Fixed / Removed
 
-- **Короткий жирний заголовок** — конкретний опис. Посилатись на статті НПА (zakon.rada ID), рішення ВС, PR-номер.
+- Short concrete description of what changed.
 
 ### Migration
 
-Only if breaking. Exact commands users need to run:
+Only if breaking. Include exact user commands.
 
-    /plugin marketplace update lawpowers
-    /plugin uninstall ua@lawpowers
-    /plugin install ua@lawpowers
-    /reload-plugins
-
-[X.Y.Z]: https://github.com/crankshift/lawpowers/releases/tag/ua/vX.Y.Z
+[X.Y.Z]: https://github.com/crankshift/lawpowers/releases/tag/vX.Y.Z
 ```
 
-### Plugin `plugins/pl/CHANGELOG.md` template (Polish)
+Component changelog headings use the same `X.Y.Z` version and link to the same root `vX.Y.Z` release tag.
 
-```markdown
-## [X.Y.Z] — YYYY-MM-DD
+## 4. Validate
 
-### Added / Changed / Fixed / Removed
+Run the adapter generators and validators before committing:
 
-- **Krótki pogrubiony nagłówek** — konkretny opis. Odwołania do ISAP, Portal Orzeczeń, sygnatur akt, numer PR.
-
-[X.Y.Z]: https://github.com/crankshift/lawpowers/releases/tag/pl/vX.Y.Z
+```bash
+python3 scripts/generate-claude-plugin-files.py
+python3 scripts/convert-agents-to-codex.py
+python3 scripts/validate-codex-agents.py
+python3 scripts/validate-platform-adapters.py
+python3 scripts/validate-ua-request-regime.py
+python3 scripts/validate-pl-request-regime.py
+python3 -m json.tool package.json >/dev/null
+python3 -m json.tool .claude-plugin/marketplace.json >/dev/null
+python3 -m json.tool plugins/ua/.claude-plugin/plugin.json >/dev/null
+python3 -m json.tool plugins/ua/.codex-plugin/plugin.json >/dev/null
+python3 -m json.tool plugins/pl/.claude-plugin/plugin.json >/dev/null
+python3 -m json.tool plugins/pl/.codex-plugin/plugin.json >/dev/null
+git diff --check
 ```
 
-## 4. PR and merge
+All commands must exit 0.
+
+## 5. PR And Merge
 
 Open a feature branch, push, open a PR, merge.
 
 ```bash
-git checkout -b release-<plugin>-vX.Y.Z           # e.g. release-ua-v0.5.0
+git checkout -b release-vX.Y.Z
 git add -A
-git commit -m "<plugin> vX.Y.Z: <headline>"
-git push -u origin release-<plugin>-vX.Y.Z
-gh pr create --base main --head release-<plugin>-vX.Y.Z \
-  --title "<plugin> vX.Y.Z: <headline>" \
-  --body "$(sed -n '/## \[X.Y.Z\]/,/## \[/p' plugins/<plugin>/CHANGELOG.md | sed '$d')"
+git commit -m "lawpowers vX.Y.Z: release"
+git push -u origin release-vX.Y.Z
+gh pr create --base main --head release-vX.Y.Z \
+  --title "lawpowers vX.Y.Z" \
+  --body "$(awk '/## \[X.Y.Z\]/,/## \[/' CHANGELOG.md | sed '$d')"
 ```
 
-Review. Merge the PR on GitHub (this repo enforces PR review — direct push to `main` is blocked).
+Review and merge the PR on GitHub.
 
-## 5. Tag the merge commit and push
+## 6. Tag And Publish
 
-The tag name is `<plugin>/vX.Y.Z` — GitHub supports `/` in tag names.
+The tag name is `vX.Y.Z`.
 
 ```bash
-git checkout main && git pull
+git checkout main
+git pull --ff-only origin main
 MERGE_SHA=$(git rev-parse HEAD)
-git tag -a "<plugin>/vX.Y.Z" "$MERGE_SHA" -m "<plugin> vX.Y.Z — <headline>"
-git push origin "<plugin>/vX.Y.Z"
+git tag -a "vX.Y.Z" "$MERGE_SHA" -m "lawpowers vX.Y.Z"
+git push origin "vX.Y.Z"
 ```
 
-## 6. Create the GitHub Release
-
-Release notes use the **plugin's** CHANGELOG section as the body (language of the plugin).
+Create the GitHub Release from the root changelog section:
 
 ```bash
-gh release create "<plugin>/vX.Y.Z" \
-  --title "<plugin> vX.Y.Z — <headline>" \
-  --notes-file <(awk '/## \[X.Y.Z\]/,/## \[/' plugins/<plugin>/CHANGELOG.md | sed '$d')
+gh release create "vX.Y.Z" \
+  --title "lawpowers vX.Y.Z" \
+  --notes-file <(awk '/## \[X.Y.Z\]/,/## \[/' CHANGELOG.md | sed '$d')
 ```
 
 Flags:
 
 - `--prerelease` — for `-rc.N` or similar.
 - `--draft` — inspect the generated page before publishing.
-- `--latest` — **skip** this flag in most cases. With two independent release lines, marking one as "latest" hides the other on the Releases page; let GitHub pick the latest by date automatically.
+- Do not use `--latest` unless you deliberately need to override GitHub's default release ordering.
 
 ## 7. Verify
 
 ```bash
-gh release view "<plugin>/vX.Y.Z" --json name,tagName,isLatest,url
+git ls-remote --tags origin "refs/tags/vX.Y.Z"
+gh release view "vX.Y.Z" --json name,tagName,url,isDraft,isPrerelease
 ```
 
-Users with installed plugins pick up the new version with:
+Users with installed Claude plugins pick up the new version with:
 
-```
+```text
 /plugin marketplace update lawpowers
 /reload-plugins
 ```
 
-Users with auto-update enabled for the `lawpowers` marketplace get it on their next Claude Code startup.
-
-## Common pitfalls
-
-- **Forgetting to bump `plugins[N].version` in the marketplace.** The plugin version is listed in two places; leaving one stale makes updates silently fail. Always grep for the old version after editing.
-- **Tagging before the PR merges.** Tag the merge commit, not the last commit on the feature branch.
-- **Omitting the link reference at the bottom of the plugin CHANGELOG.** The `[X.Y.Z]: https://…` line at the end is what makes the section title clickable.
-- **Using an umbrella `vX.Y.Z` tag instead of `<plugin>/vX.Y.Z`.** Umbrella tags are retired — they caused the UX confusion that motivated this split. Always use the namespaced form.
-- **Marking a plugin release as `--latest`.** With two release lines, this hides the sibling plugin's latest on the Releases page. Leave it off unless you really mean it.
-
-## Bumping marketplace `metadata.version`
-
-Needed only when the marketplace catalog itself changes shape (plugin added/removed, entries renamed, cross-cutting doc reshuffle). It is not tied to a git tag.
+Codex users should run:
 
 ```bash
-./scripts/release.sh bump-marketplace 0.7.0
+codex plugin marketplace upgrade lawpowers
 ```
 
-Commit the change on a regular feature branch; no tag, no GitHub Release. The bump exists so Claude Code can detect catalog changes for `/plugin marketplace update`.
+OpenCode users should restart OpenCode after updating config or package state, then verify with `opencode debug skill`.
 
-## Rolling back a release
+## Common Pitfalls
+
+- **Forgetting one version field.** All active version fields listed in `.version-bump.json` move together.
+- **Tagging before the PR merges.** Tag the merge commit, not a stale branch commit.
+- **Using retired per-jurisdiction tags.** Do not publish `ua/vX.Y.Z` or `pl/vX.Y.Z` for new releases.
+- **Omitting the root changelog link reference.** The `[X.Y.Z]: https://...` line makes the section title clickable and keeps release notes traceable.
+
+## Rolling Back A Release
 
 If a release has a critical issue:
 
-1. Publish a hotfix as a new patch version — don't delete the tag.
-2. If the tag was pushed but the Release isn't public yet, delete the draft and the tag:
-   ```bash
-   gh release delete "<plugin>/vX.Y.Z" --yes
-   git push origin ":refs/tags/<plugin>/vX.Y.Z"
-   git tag -d "<plugin>/vX.Y.Z"
-   ```
-3. Never force-push to `main` to "undo" a merged release PR; always roll forward with a new patch.
+1. Prefer a hotfix as a new patch version.
+2. If the tag was pushed but the Release should not stay public, delete the Release and tag:
 
-## Related files
+```bash
+gh release delete "vX.Y.Z" --yes
+git push origin ":refs/tags/vX.Y.Z"
+git tag -d "vX.Y.Z"
+```
 
-- [`scripts/release.sh`](../scripts/release.sh) — automates `bump`, `prepare` (bump + branch + PR), and `publish` (tag + GitHub Release) per plugin.
-- [`plugins/ua/CHANGELOG.md`](../plugins/ua/CHANGELOG.md) — plugin `ua` history (Ukrainian).
-- [`plugins/pl/CHANGELOG.md`](../plugins/pl/CHANGELOG.md) — plugin `pl` history (Polish).
-- [`CHANGELOG.md`](../CHANGELOG.md) — index of per-plugin CHANGELOGs + monorepo-level dated log (English).
+3. Never force-push to `main` to undo a merged release PR; always roll forward with a new patch.
+
+## Related Files
+
+- [`scripts/release.sh`](../scripts/release.sh) — automates `bump`, `prepare` and `publish` for unified package releases.
+- [`CHANGELOG.md`](../CHANGELOG.md) — root release changelog and release-note source.
+- [`plugins/ua/CHANGELOG.md`](../plugins/ua/CHANGELOG.md) — UA component history.
+- [`plugins/pl/CHANGELOG.md`](../plugins/pl/CHANGELOG.md) — PL component history.
 - [`.version-bump.json`](../.version-bump.json) — inventory of versioned fields.
-- [`CLAUDE.md`](../CLAUDE.md) — contributor guide with the abbreviated release section.
+- [`CLAUDE.md`](../CLAUDE.md) — contributor guide with abbreviated release guidance.

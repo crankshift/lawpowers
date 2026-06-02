@@ -252,7 +252,7 @@ Adding a plugin for a new jurisdiction (e.g. `eu`, `us`, `de`):
 2. Add plugin metadata under `./plugins/xx/`: `.claude-plugin/plugin.json` (Claude Code manifest), `.codex-plugin/plugin.json` (Codex manifest with collision-safe ID), `README.md`, `CLAUDE.md`, `AGENTS.md`, and `CHANGELOG.md`.
 3. Register it in both marketplace catalogs: `.claude-plugin/marketplace.json` with `"source": "./plugins/xx"`, and `.agents/plugins/marketplace.json` with the Codex plugin ID.
 4. Add the jurisdiction code to the `JURISDICTIONS` constants in the generators and platform validator, and expose its root skill/agent paths in `.opencode/plugins/lawpowers.js` if OpenCode should load it.
-5. Add a CHANGELOG entry and bump `metadata.version` in the marketplace manifest.
+5. Add CHANGELOG entries and bump the unified release fields listed in `.version-bump.json`.
 6. Run `python3 scripts/generate-claude-plugin-files.py`, `python3 scripts/convert-agents-to-codex.py`, `python3 scripts/validate-codex-agents.py`, and `python3 scripts/validate-platform-adapters.py` to generate and validate adapters.
 7. Open a PR, merge, then tag a release as described in the [release flow](./CHANGELOG.md).
 

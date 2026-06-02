@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PL = ROOT / "plugins" / "pl"
-EXPECTED_PLUGIN_VERSION = "0.5.0"
+EXPECTED_PLUGIN_VERSION = "0.7.0"
 
 
 def fail(message: str) -> None:

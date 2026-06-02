@@ -13,7 +13,7 @@ JURISDICTIONS = ("pl", "ua")
 FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n?(.*)\Z", re.S)
 EXPECTED_PACKAGE_JSON = {
     "name": "lawpowers",
-    "version": "0.1.0",
+    "version": "0.7.0",
     "type": "module",
     "main": ".opencode/plugins/lawpowers.js",
 }

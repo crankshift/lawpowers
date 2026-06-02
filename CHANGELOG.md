@@ -1,23 +1,39 @@
 # lawpowers — Changelog
 
-Index of per-plugin CHANGELOGs and a log of **monorepo-level** structural and tooling changes. Plugin content history lives with each plugin.
+Unified Lawpowers package changelog. Jurisdiction changelogs capture component-level history, but public releases now use one package tag, `vX.Y.Z`.
 
-## Plugin history
+## Component History
 
-- [`plugins/ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) — plugin `ua` (Ukrainian law, written in Ukrainian). Tagged `ua/vX.Y.Z`.
-- [`plugins/pl/CHANGELOG.md`](./plugins/pl/CHANGELOG.md) — plugin `pl` (Polish law, written in Polish). Tagged `pl/vX.Y.Z`.
+- [`plugins/ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) — UA component history, written in Ukrainian.
+- [`plugins/pl/CHANGELOG.md`](./plugins/pl/CHANGELOG.md) — PL component history, written in Polish.
 
 For the release procedure, see [`docs/RELEASING.md`](./docs/RELEASING.md).
 
-## Monorepo-level log
+## [0.7.0] — 2026-06-02
 
-### 2026-06-02 — OpenCode support and platform adapter rename
+### Added
 
 - Added OpenCode git package support through root `package.json` and `.opencode/plugins/lawpowers.js`; OpenCode now loads canonical `skills/ua`, `skills/pl`, `agents/ua`, and `agents/pl` directly from the installed git package.
-- Documented both project-scoped and global OpenCode installation in `README.md`.
-- `ua` bumped to `0.7.0` and `pl` bumped to `0.5.0` for a breaking `0.x` platform-adapter release: generated Claude plugin adapter files and Codex custom-agent shims now use collision-safe `law-ua-*` / `law-pl-*` canonical names.
+- Documented both project-scoped and global OpenCode installation in `README.md`, including restart and `opencode debug skill` verification guidance.
+
+### Changed
+
+- Lawpowers now uses one unified package/plugin version, `0.7.0`, across root `package.json`, marketplace metadata, Claude plugin manifests, Codex plugin manifests, and the marketplace plugin entries.
 - Added/updated platform adapter validation so Claude-compatible copies, Codex shims, and OpenCode package loading stay tied to the top-level canonical sources.
-- Migration: Claude Code users should update the marketplace and reinstall the affected plugin to clear stale generated adapter files; Codex users should run `codex plugin marketplace upgrade lawpowers`; OpenCode users should add the git package plugin to `opencode.jsonc` and restart OpenCode.
+- Generated Claude plugin adapter files and Codex custom-agent shims now use collision-safe `law-ua-*` / `law-pl-*` canonical names.
+
+### Breaking
+
+- Direct references to old generated adapter names such as `claim-drafter`, `request-drafter`, or `calculating-oplata-sadowa` should be updated to the corresponding `law-ua-*` or `law-pl-*` names.
+- Local edits in generated Codex files under `plugins/*/.codex/agents` are not preserved; edit top-level canonical `agents/<jurisdiction>/law-*.md` and regenerate adapters instead.
+
+### Migration
+
+- Claude Code users should update the marketplace and reinstall affected plugins to clear stale generated adapter files.
+- Codex users should run `codex plugin marketplace upgrade lawpowers`.
+- OpenCode users should add `lawpowers@git+https://github.com/crankshift/lawpowers.git` to project or global `opencode.jsonc`, restart OpenCode, then verify with `opencode debug skill`.
+
+## Older Monorepo-Level Log
 
 ### 2026-05-01 — Codex agent compatibility
 
@@ -32,15 +48,15 @@ For the release procedure, see [`docs/RELEASING.md`](./docs/RELEASING.md).
 - `pl` bumped to `0.4.1`: same Codex support.
 - Marketplace `metadata.version` bumped to `0.6.1`.
 
-Entries below cover cross-cutting changes only (layout moves, release tooling, CI, shared scripts, repo renames). Plugin content changes — new agents, new skills, updated statute references — go in the plugin CHANGELOG, not here. The log is dated; there is no monorepo-level version anymore.
+Entries below cover older cross-cutting changes only (layout moves, release tooling, CI, shared scripts, repo renames). Plugin content changes — new agents, new skills, updated statute references — live in the component changelogs.
 
 ### 2026-04-21 — Per-plugin release tags
 
-Releases are now cut per plugin with namespaced tags (`ua/vX.Y.Z`, `pl/vX.Y.Z`). The umbrella `vX.Y.Z` tag scheme is retired — it confused users who install plugins individually.
+Per-plugin namespaced tags (`ua/vX.Y.Z`, `pl/vX.Y.Z`) were introduced here and later retired for `v0.7.0` in favor of one unified Lawpowers package tag, `vX.Y.Z`.
 
-- Historical umbrella tags `v0.1.0`…`v0.5.0` remain on the repo as git tags and have GitHub Releases. `v0.6.0` was deleted in favour of the per-plugin tag `pl/v0.2.0` that covers the same state.
-- Marketplace `metadata.version` stays as an internal field, bumped on catalog-shape changes. It is not publicly tagged.
-- Release helper `scripts/release.sh` rewired for per-plugin flow (`bump <plugin> <version>`, `prepare`, `publish`). Separate `bump-marketplace` command for catalog-shape bumps.
+- Historical umbrella tags `v0.1.0`…`v0.5.0` remain on the repo as git tags and have GitHub Releases. `v0.6.0` was deleted in favour of the per-plugin tag `pl/v0.2.0` that covered the same state at the time.
+- Marketplace `metadata.version` was temporarily treated as an internal field. As of `v0.7.0`, it follows the unified package version.
+- Release helper `scripts/release.sh` was temporarily rewired for per-plugin flow and was later restored to unified package releases.
 
 PRs: #19 (tooling + docs switch), #20 (CHANGELOG link-ref cleanup).
 
@@ -113,9 +129,9 @@ Plugin-level changes for `ua` (including the sonnet→inherit model switch) — 
 - Umbrella `v0.1.0` — repo converted to an installable Claude Code plugin (`plugin.json` + `marketplace.json`). Plugin-level detail: [`plugins/ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) `[0.1.0]`.
 - Umbrella `v0.2.0` — military block for service members in ЗСУ added to plugin `ua`. Plugin-level detail: [`plugins/ua/CHANGELOG.md`](./plugins/ua/CHANGELOG.md) `[0.2.0]`.
 
-## Historical umbrella release tags
+## Historical Release Tags
 
-These existed under the retired umbrella-tag scheme. They continue to resolve on GitHub as git tags and (mostly) as Releases; the per-plugin tags introduced on 2026-04-21 are the canonical way to link to a plugin version going forward.
+These tags predate the current unified `vX.Y.Z` release model or belong to the retired per-plugin experiment. They remain listed for history.
 
 | Tag | Date | What was shipped | Per-plugin pointer |
 |---|---|---|---|
@@ -128,6 +144,7 @@ These existed under the retired umbrella-tag scheme. They continue to resolve on
 | `v0.1.0` | 2026-04-20 | Plugin `ua` `[0.1.0]` — initial conversion. | `ua` [`[0.1.0]`](./plugins/ua/CHANGELOG.md#010--2026-04-20) |
 | ~~`v0.6.0`~~ | ~~2026-04-21~~ | Plugin `pl` `[0.2.0]` — 7 new agents + 8 new skills. | **Replaced by** [`pl/v0.2.0`](https://github.com/crankshift/lawpowers/releases/tag/pl/v0.2.0) |
 
+[0.7.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.7.0
 [v0.5.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.5.0
 [v0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.2
 [v0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.1

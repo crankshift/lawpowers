@@ -1,15 +1,16 @@
 # Plagin `pl` — Changelog
 
-## [0.5.0] — 2026-06-02
+## [0.7.0] — 2026-06-02
 
 ### Added
 
 - Dodano wsparcie OpenCode jako git package plugin: root `package.json` wskazuje `.opencode/plugins/lawpowers.js`, który ładuje canonical `skills/pl` i rejestruje agentów z `agents/pl/law-pl-*.md`.
-- Root README opisuje dwa sposoby instalacji OpenCode: w `opencode.jsonc` pojedynczego projektu albo globalnie w `~/.config/opencode/opencode.jsonc`.
+- Root README opisuje dwa sposoby instalacji OpenCode: w `opencode.jsonc` pojedynczego projektu albo globalnie w `~/.config/opencode/opencode.jsonc`, a także weryfikację przez `opencode debug skill`.
 
 ### Changed
 
 - Kanoniczne źródła agentów i skilli PL są utrzymywane w top-level `agents/pl/law-pl-*.md` oraz `skills/pl/law-pl-*/SKILL.md`; pliki w `plugins/pl/agents`, `plugins/pl/skills` i `plugins/pl/.codex/agents` są wygenerowanymi adapterami.
+- Lawpowers używa jednej wersji pakietu `0.7.0` dla root package, marketplace metadata, Claude manifests i Codex manifests.
 - Codex custom-agent shims wskazują teraz canonical lawpowers sources i używają nazw `law-pl-*` w developer instructions.
 
 ### Breaking
@@ -34,11 +35,11 @@ Użytkownicy Codex powinni odświeżyć marketplace:
 codex plugin marketplace upgrade lawpowers
 ```
 
-Użytkownicy OpenCode powinni dodać `lawpowers@git+https://github.com/crankshift/lawpowers.git` do projektowego albo globalnego `opencode.jsonc`, a potem zrestartować OpenCode.
+Użytkownicy OpenCode powinni dodać `lawpowers@git+https://github.com/crankshift/lawpowers.git` do projektowego albo globalnego `opencode.jsonc`, zrestartować OpenCode, a potem zweryfikować instalację przez `opencode debug skill`.
 
 ### Bumped
 
-- Plagin `pl`: `0.4.3` → `0.5.0`.
+- Plagin `pl`: `0.4.3` → `0.7.0` w ramach jednolitej wersji pakietu Lawpowers.
 
 ## [0.4.3] — 2026-06-01
 
@@ -77,7 +78,7 @@ Użytkownicy OpenCode powinni dodać `lawpowers@git+https://github.com/crankshif
 
 Historia zmian plagina `pl` (polskie prawo) w ramach monorepo [`lawpowers`](../../CHANGELOG.md).
 
-Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Od wydań po v0.6.0 plagin jest tagowany osobno jako `pl/vX.Y.Z` (gdzie `X.Y.Z` odpowiada polu `version` w `plugin.json`). Wpisy historyczne poniżej (do 0.2.0 włącznie) były wydawane w ramach wspólnych tagów marketplace'u `vX.Y.Z` i zachowują linki do nich.
+Format — [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Od wydania `0.7.0` Lawpowers ma jedną wersję pakietu i jeden publiczny tag `vX.Y.Z`; ten plik pozostaje historią komponentu PL. Wpisy historyczne poniżej zachowują wcześniejsze linki do release tags.
 
 
 ## [0.4.1] — 2026-05-01
@@ -332,7 +333,7 @@ Plagin `pl` dla polskiego prawa dodany do monorepo `lawpowers` (tag marketplace:
 
 Dostępny w tagu marketplace'u [v0.4.0](https://github.com/crankshift/lawpowers/releases/tag/v0.4.0).
 
-[0.5.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.5.0
+[0.7.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.7.0
 [0.4.3]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.3
 [0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.2
 [0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.1

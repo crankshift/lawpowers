@@ -8,7 +8,7 @@ Open a [feature request](./.github/ISSUE_TEMPLATE/feature_request.yml) to add so
 
 A batch of roadmap items landed in `pl/v0.3.0` + `ua/v0.5.0` (2026-04-22):
 
-- Contract review — risk audit mode added to both `pl:contract-drafter` and `ua:contract-drafter` (review-only mode with structured KRYTYCZNE / ISTOTNE / POŻĄDANE classification, per-clause findings, no rewriting). See per-plugin CHANGELOGs.
+- Contract review — risk audit mode added to both `pl:contract-drafter` and `ua:contract-drafter` (review-only mode with structured KRYTYCZNE / ISTOTNE / POŻĄDANE classification, per-clause findings, no rewriting). See component CHANGELOGs.
 - Sale–purchase contract review skills for both jurisdictions:
   - `pl:reviewing-vehicle-contract` / `ua:reviewing-vehicle-contract` — VIN / mileage / encumbrance / import-clearance red flags, registry links, post-purchase obligations.
   - `pl:reviewing-real-estate-contract` / `ua:reviewing-real-estate-contract` — title-chain, encumbrances, pre-emption rights, notarial form, zadatek / завдаток distinction, taxes.

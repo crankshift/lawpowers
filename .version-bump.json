@@ -1,22 +1,15 @@
 {
-  "marketplace": {
+  "release": {
     "files": [
-      { "path": ".claude-plugin/marketplace.json", "field": "metadata.version" }
+      { "path": "package.json", "field": "version" },
+      { "path": ".claude-plugin/marketplace.json", "field": "metadata.version" },
+      { "path": ".claude-plugin/marketplace.json", "field": "plugins.0.version" },
+      { "path": ".claude-plugin/marketplace.json", "field": "plugins.1.version" },
+      { "path": "plugins/ua/.claude-plugin/plugin.json", "field": "version" },
+      { "path": "plugins/ua/.codex-plugin/plugin.json", "field": "version" },
+      { "path": "plugins/pl/.claude-plugin/plugin.json", "field": "version" },
+      { "path": "plugins/pl/.codex-plugin/plugin.json", "field": "version" }
     ]
-  },
-  "plugins": {
-    "ua": {
-      "files": [
-        { "path": "plugins/ua/.claude-plugin/plugin.json", "field": "version" },
-        { "path": ".claude-plugin/marketplace.json", "field": "plugins.0.version" }
-      ]
-    },
-    "pl": {
-      "files": [
-        { "path": "plugins/pl/.claude-plugin/plugin.json", "field": "version" },
-        { "path": ".claude-plugin/marketplace.json", "field": "plugins.1.version" }
-      ]
-    }
   },
   "audit": {
     "exclude": [

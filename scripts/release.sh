@@ -1,35 +1,35 @@
 #!/usr/bin/env bash
 #
-# Release helper for the lawpowers monorepo.
+# Release helper for the lawpowers package.
 # See docs/RELEASING.md for the full manual procedure; this script
 # automates the mechanical parts.
 #
 # Usage:
-#   ./scripts/release.sh bump <plugin> <version>
-#       Update the plugin's version in its plugin.json and in the
-#       marketplace entry. <plugin> is 'ua' or 'pl'. Validates after.
+#   ./scripts/release.sh bump <version>
+#       Update the unified Lawpowers version across package.json,
+#       marketplace metadata, Claude manifests, and Codex manifests.
 #
-#   ./scripts/release.sh bump-marketplace <version>
-#       Update marketplace.json metadata.version only. Used on
-#       catalog-shape changes (plugin added/removed, structural
-#       reshuffle). Does not tag or publish anything.
+#   ./scripts/release.sh prepare <version>
+#       From a clean main: create branch release-v<version>, run bump,
+#       wait for you to edit changelogs, commit, push, open a PR.
 #
-#   ./scripts/release.sh prepare <plugin> <version>
-#       From a clean main: create branch release-<plugin>-v<version>,
-#       run bump, wait for you to edit the plugin CHANGELOG, commit,
-#       push, open a PR.
-#
-#   ./scripts/release.sh publish <plugin> <version>
+#   ./scripts/release.sh publish <version>
 #       After the PR merges: pull main, tag the merge commit as
-#       <plugin>/v<version>, publish a GitHub Release with body
-#       extracted from the plugin CHANGELOG section for that version.
+#       v<version>, publish one GitHub Release with body extracted
+#       from the root CHANGELOG section for that version.
 #
-# Requirements: bash, git, gh (authenticated), jq, awk, claude CLI.
+# Requirements: bash, git, gh (authenticated), jq, awk, python3.
 
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PACKAGE_JSON="$REPO_ROOT/package.json"
 MARKETPLACE_JSON="$REPO_ROOT/.claude-plugin/marketplace.json"
+ROOT_CHANGELOG="$REPO_ROOT/CHANGELOG.md"
+UA_CLAUDE_JSON="$REPO_ROOT/plugins/ua/.claude-plugin/plugin.json"
+UA_CODEX_JSON="$REPO_ROOT/plugins/ua/.codex-plugin/plugin.json"
+PL_CLAUDE_JSON="$REPO_ROOT/plugins/pl/.claude-plugin/plugin.json"
+PL_CODEX_JSON="$REPO_ROOT/plugins/pl/.codex-plugin/plugin.json"
 
 die() { echo "error: $*" >&2; exit 1; }
 info() { echo "==> $*"; }
@@ -39,35 +39,10 @@ require_tool() {
 }
 
 check_tools() {
-  for t in git gh jq awk claude; do
+  for t in git gh jq awk python3; do
     require_tool "$t"
   done
   gh auth status >/dev/null 2>&1 || die "gh not authenticated; run 'gh auth login'"
-}
-
-# Resolve plugin paths/indices. Keeps plugin-specific knowledge in one place.
-plugin_json_path() {
-  case "$1" in
-    ua) echo "$REPO_ROOT/plugins/ua/.claude-plugin/plugin.json" ;;
-    pl) echo "$REPO_ROOT/plugins/pl/.claude-plugin/plugin.json" ;;
-    *)  die "unknown plugin: $1 (expected 'ua' or 'pl')" ;;
-  esac
-}
-
-plugin_changelog_path() {
-  case "$1" in
-    ua) echo "$REPO_ROOT/plugins/ua/CHANGELOG.md" ;;
-    pl) echo "$REPO_ROOT/plugins/pl/CHANGELOG.md" ;;
-    *)  die "unknown plugin: $1 (expected 'ua' or 'pl')" ;;
-  esac
-}
-
-plugin_marketplace_index() {
-  case "$1" in
-    ua) echo "0" ;;
-    pl) echo "1" ;;
-    *)  die "unknown plugin: $1 (expected 'ua' or 'pl')" ;;
-  esac
 }
 
 # Set a JSON field using jq, preserving 2-space indent.
@@ -80,12 +55,40 @@ set_json_field() {
   mv "$tmp" "$file"
 }
 
-# Extract the CHANGELOG section for a given version.
+require_json_version() {
+  local file="$1" path="$2" expected="$3"
+  local actual
+  actual=$(jq -r "$path" "$file")
+  [[ "$actual" == "$expected" ]] || die "$file $path is $actual, expected $expected"
+}
+
+validate_versions() {
+  local version="$1"
+  require_json_version "$PACKAGE_JSON" '.version' "$version"
+  require_json_version "$MARKETPLACE_JSON" '.metadata.version' "$version"
+  require_json_version "$MARKETPLACE_JSON" '.plugins[0].version' "$version"
+  require_json_version "$MARKETPLACE_JSON" '.plugins[1].version' "$version"
+  require_json_version "$UA_CLAUDE_JSON" '.version' "$version"
+  require_json_version "$UA_CODEX_JSON" '.version' "$version"
+  require_json_version "$PL_CLAUDE_JSON" '.version' "$version"
+  require_json_version "$PL_CODEX_JSON" '.version' "$version"
+}
+
+run_validations() {
+  python3 -m json.tool "$PACKAGE_JSON" >/dev/null
+  python3 -m json.tool "$MARKETPLACE_JSON" >/dev/null
+  python3 -m json.tool "$UA_CLAUDE_JSON" >/dev/null
+  python3 -m json.tool "$UA_CODEX_JSON" >/dev/null
+  python3 -m json.tool "$PL_CLAUDE_JSON" >/dev/null
+  python3 -m json.tool "$PL_CODEX_JSON" >/dev/null
+  python3 "$REPO_ROOT/scripts/validate-platform-adapters.py"
+  python3 "$REPO_ROOT/scripts/validate-ua-request-regime.py"
+  python3 "$REPO_ROOT/scripts/validate-pl-request-regime.py"
+}
+
+# Extract the root CHANGELOG section for a given version.
 # Reads from "## [VERSION]" up to (but not including) the next "## [".
-# Strips markdown link-reference lines ("[x.y.z]: http…") from the output —
-# if one slips inside a version section, GitHub turns the [x.y.z] in the
-# heading into a clickable link to whatever URL was declared, which is
-# almost never what you want in release notes.
+# Strips markdown link-reference lines from release notes.
 extract_section() {
   local file="$1" version="$2"
   awk -v v="$version" '
@@ -98,34 +101,25 @@ extract_section() {
 }
 
 cmd_bump() {
-  local plugin="${1:?usage: bump <plugin> <version>}"
-  local version="${2:?usage: bump <plugin> <version>}"
+  local version="${1:?usage: bump <version>}"
 
-  local plugin_json idx
-  plugin_json=$(plugin_json_path "$plugin")
-  idx=$(plugin_marketplace_index "$plugin")
-
-  info "$plugin plugin → $version"
-  set_json_field "$plugin_json" '.version' "$version"
-  set_json_field "$MARKETPLACE_JSON" ".plugins[$idx].version" "$version"
-
-  info "validating plugin..."
-  claude plugin validate "$REPO_ROOT"
-}
-
-cmd_bump_marketplace() {
-  local version="${1:?usage: bump-marketplace <version>}"
-
-  info "marketplace.metadata.version → $version"
+  info "lawpowers → $version"
+  set_json_field "$PACKAGE_JSON" '.version' "$version"
   set_json_field "$MARKETPLACE_JSON" '.metadata.version' "$version"
+  set_json_field "$MARKETPLACE_JSON" '.plugins[0].version' "$version"
+  set_json_field "$MARKETPLACE_JSON" '.plugins[1].version' "$version"
+  set_json_field "$UA_CLAUDE_JSON" '.version' "$version"
+  set_json_field "$UA_CODEX_JSON" '.version' "$version"
+  set_json_field "$PL_CLAUDE_JSON" '.version' "$version"
+  set_json_field "$PL_CODEX_JSON" '.version' "$version"
 
-  info "validating plugin..."
-  claude plugin validate "$REPO_ROOT"
+  info "validating release metadata..."
+  validate_versions "$version"
+  run_validations
 }
 
 cmd_prepare() {
-  local plugin="${1:?usage: prepare <plugin> <version>}"
-  local version="${2:?usage: prepare <plugin> <version>}"
+  local version="${1:?usage: prepare <version>}"
 
   cd "$REPO_ROOT"
 
@@ -137,62 +131,60 @@ cmd_prepare() {
   git checkout main
   git pull --ff-only origin main
 
-  local branch="release-$plugin-v$version"
+  local branch="release-v$version"
   if git rev-parse --verify "$branch" >/dev/null 2>&1; then
     die "branch $branch already exists locally"
   fi
   git checkout -b "$branch"
 
-  cmd_bump "$plugin" "$version"
-
-  local changelog
-  changelog=$(plugin_changelog_path "$plugin")
+  cmd_bump "$version"
 
   cat <<MSG
 
-Now edit the CHANGELOG:
+Now edit the changelogs:
 
-  - $changelog
+  - $ROOT_CHANGELOG
+  - $REPO_ROOT/plugins/ua/CHANGELOG.md
+  - $REPO_ROOT/plugins/pl/CHANGELOG.md
 
-Add a [$version] section at the top, plus the link reference at the bottom
-pointing to https://github.com/crankshift/lawpowers/releases/tag/$plugin/v$version
+Add a [$version] section to the root changelog, plus the link reference at the bottom
+pointing to https://github.com/crankshift/lawpowers/releases/tag/v$version
 See docs/RELEASING.md for templates.
 
 Press Enter when done.
 MSG
   read -r _
 
-  if ! grep -q "^## \[$version\]" "$changelog"; then
-    die "no [$version] section found in $changelog"
+  if ! grep -q "^## \[$version\]" "$ROOT_CHANGELOG"; then
+    die "no [$version] section found in $ROOT_CHANGELOG"
   fi
-  if ! grep -q "^\[$version\]:" "$changelog"; then
-    die "no [$version]: link reference at the bottom of $changelog"
+  if ! grep -q "^\[$version\]:" "$ROOT_CHANGELOG"; then
+    die "no [$version]: link reference at the bottom of $ROOT_CHANGELOG"
   fi
 
   info "committing..."
   git add -A
-  git commit -m "$plugin v$version: release"
+  git commit -m "lawpowers v$version: release"
   git push -u origin "$branch"
 
   info "opening PR..."
   local body
-  body=$(extract_section "$changelog" "$version")
+  body=$(extract_section "$ROOT_CHANGELOG" "$version")
   gh pr create --base main --head "$branch" \
-    --title "$plugin v$version" \
+    --title "lawpowers v$version" \
     --body "$body"
 
   cat <<MSG
 
 PR opened. Merge it on GitHub, then run:
 
-  ./scripts/release.sh publish $plugin $version
+  ./scripts/release.sh publish $version
 
 MSG
 }
 
 cmd_publish() {
-  local plugin="${1:?usage: publish <plugin> <version>}"
-  local version="${2:?usage: publish <plugin> <version>}"
+  local version="${1:?usage: publish <version>}"
 
   cd "$REPO_ROOT"
 
@@ -202,22 +194,21 @@ cmd_publish() {
 
   local merge_sha tag
   merge_sha=$(git rev-parse HEAD)
-  tag="$plugin/v$version"
+  tag="v$version"
 
   if git rev-parse --verify "$tag" >/dev/null 2>&1; then
     die "tag $tag already exists"
   fi
 
   info "tagging $tag on $merge_sha..."
-  git tag -a "$tag" "$merge_sha" -m "$plugin v$version"
+  git tag -a "$tag" "$merge_sha" -m "lawpowers v$version"
   git push origin "$tag"
 
   info "publishing GitHub release..."
-  local changelog body
-  changelog=$(plugin_changelog_path "$plugin")
-  body=$(extract_section "$changelog" "$version")
+  local body
+  body=$(extract_section "$ROOT_CHANGELOG" "$version")
   echo "$body" | gh release create "$tag" \
-    --title "$plugin v$version" \
+    --title "lawpowers v$version" \
     --notes-file -
 
   local url
@@ -232,7 +223,6 @@ main() {
 
   case "$cmd" in
     bump) cmd_bump "$@" ;;
-    bump-marketplace) cmd_bump_marketplace "$@" ;;
     prepare) cmd_prepare "$@" ;;
     publish) cmd_publish "$@" ;;
     -h|--help|help|"")
