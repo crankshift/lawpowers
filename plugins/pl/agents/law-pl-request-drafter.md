@@ -29,6 +29,32 @@ Przed sporządzeniem jakiegokolwiek pisma zrób triage:
 
 Jeżeli fakty nie są jeszcze ustalone, **najpierw ustal tryb i uzyskaj informację albo akta**, a dopiero po odpowiedzi, odmowie, bezczynności albo przewlekłości przygotuj skargę, ponaglenie, odwołanie albo skargę do WSA.
 
+## Praktyczny styl pisma
+
+Po wyborze trybu zrób krótką kontrolę stylu. Prawidłowy tryb nie jest powodem do przeładowania pisma ani pouczania adresata.
+
+Dla wniosków, podań, skarg i żądań używaj praktycznej struktury znanej z formularzy urzędowych i realnych wzorów:
+
+1. Adresat.
+2. Wnioskodawca/składający i dane kontaktowe.
+3. Tytuł pisma.
+4. Krótki kontekst faktyczny, jeśli bez niego adresat nie odnajdzie informacji lub sprawy.
+5. `WNOSZĘ O:` z konkretnymi punktami.
+6. Sposób doręczenia odpowiedzi.
+7. Data i miejsce na podpis.
+
+Dla prostego pierwszego pisma nie buduj tonu sporu:
+
+- Nie proś adresata o zarejestrowanie pisma dokładnie w wybranym trybie.
+- Nie pouczaj adresata, jak "ma obowiązek" zakwalifikować pismo.
+- Nie dodawaj gróźb sankcjami, odpowiedzialnością, skargą albo pozwem, jeśli użytkownik nie prosi wprost o pismo eskalacyjne.
+- Nie pisz długiej preambuły z listą przepisów, gdy wystarczy jedna kluczowa podstawa.
+- Nie dodawaj zdań typu "brak odpowiedzi będzie bezprawną odmową" w pierwszym zwykłym wniosku.
+
+Wyjątek: w piśmie adwokata/radcy krótkie wskazanie konsekwencji może być właściwe, jeżeli ma konkretną podstawę i jest użyteczne. Nie przenoś tego tonu do zwykłego UDIP, KPA, RODO, rejestru lub pisma obywatela.
+
+Jeżeli użytkownik prosi o wyszukanie, sprawdzenie albo porównanie z przykładami z internetu, użyj dostępnego web search/fetch. Priorytet: oficjalne formularze organów, strony rządowe i praktyczne wzory NGO dla dostępu do informacji publicznej. Po wyszukaniu krótko wskaż, co porównałeś, i uprość pismo do typowej praktycznej struktury. Jeżeli web-dostęp jest niedostępny, powiedz to wprost.
+
 ## Drafting notes after routing
 
 Ta sekcja nie jest routerem. Wybór trybu robi `law-pl-determining-pl-request-regime`; poniżej są krótkie notatki i szkielety do sporządzenia pisma po wyborze trybu.

@@ -13,6 +13,12 @@ Ten skill ustala, w jakim trybie prawnym przygotować pismo do organu, sądu, ur
 
 Nie łącz w jednym piśmie UDIP, skargi z KPA, petycji, żądania z RODO, dostępu do akt, wniosku rejestrowego i groźby skargi do WSA tylko po to, żeby tekst wyglądał mocniej. Mieszanie trybów pozwala adresatowi rozpoznać pismo w wolniejszym albo niewłaściwym trybie.
 
+## Styl po wyborze trybu
+
+Prawidłowy tryb nie jest powodem do przeładowania pisma. Po wyborze trybu odzwierciedlaj go minimum: tytułem pisma, kluczową podstawą prawną i konkretnymi punktami żądania.
+
+Nie dodawaj defensywnych, pouczających ani grożących zdań tylko po to, żeby adresatowi trudniej było pominąć wybrany tryb. Jeżeli potrzebna jest skarga, odpowiedzialność urzędnika albo sądowa kontrola bezczynności, to jest osobne następne pismo po odpowiedzi, odmowie albo upływie terminu.
+
 Jeżeli użytkownik chce jednocześnie ustalić fakty, uzyskać kopie, złożyć skargę, żądać kary i wszcząć sprawę administracyjną, podziel pracę na etapy:
 
 1. Najpierw ustal fakty, status sprawy, daty wpływu, znaki sprawy i dokumenty.
