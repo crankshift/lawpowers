@@ -94,6 +94,7 @@ python3 scripts/generate-claude-plugin-files.py
 python3 scripts/convert-agents-to-codex.py
 python3 scripts/validate-codex-agents.py
 python3 scripts/validate-platform-adapters.py
+python3 scripts/validate-request-drafting-style.py
 python3 scripts/validate-ua-request-regime.py
 python3 scripts/validate-pl-request-regime.py
 python3 -m json.tool package.json >/dev/null

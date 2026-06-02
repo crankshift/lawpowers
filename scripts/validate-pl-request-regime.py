@@ -9,7 +9,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PL = ROOT / "plugins" / "pl"
-EXPECTED_PLUGIN_VERSION = "0.7.0"
 
 
 def fail(message: str) -> None:
@@ -54,6 +53,14 @@ def require_marketplace_plugin_version(path: Path, plugin_name: str, expected: s
     fail(f"{path.relative_to(ROOT)} is missing plugin {plugin_name!r}")
 
 
+def package_version() -> str:
+    data = json.loads(require_file(ROOT / "package.json"))
+    version = data.get("version")
+    if not isinstance(version, str):
+        fail("package.json version must be a string")
+    return version
+
+
 def main() -> None:
     skill_path = PL / "skills" / "law-pl-determining-pl-request-regime" / "SKILL.md"
     agent_path = PL / "agents" / "law-pl-request-drafter.md"
@@ -65,6 +72,7 @@ def main() -> None:
     claude_manifest_path = PL / ".claude-plugin" / "plugin.json"
     codex_manifest_path = PL / ".codex-plugin" / "plugin.json"
     claude_marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"
+    expected_plugin_version = package_version()
 
     skill = require_file(skill_path)
     agent = require_file(agent_path)
@@ -128,9 +136,9 @@ def main() -> None:
         require_contains(text, "law-pl-determining-pl-request-regime", path)
 
     require_contains(changelog, "## [0.4.3] — 2026-06-01", changelog_path)
-    require_json_version(claude_manifest_path, EXPECTED_PLUGIN_VERSION)
-    require_json_version(codex_manifest_path, EXPECTED_PLUGIN_VERSION)
-    require_marketplace_plugin_version(claude_marketplace_path, "pl", EXPECTED_PLUGIN_VERSION)
+    require_json_version(claude_manifest_path, expected_plugin_version)
+    require_json_version(codex_manifest_path, expected_plugin_version)
+    require_marketplace_plugin_version(claude_marketplace_path, "pl", expected_plugin_version)
 
     print("Validated Polish request-regime routing guardrails.")
 

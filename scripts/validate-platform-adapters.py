@@ -11,9 +11,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 JURISDICTIONS = ("pl", "ua")
 FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n?(.*)\Z", re.S)
-EXPECTED_PACKAGE_JSON = {
+EXPECTED_PACKAGE_JSON_FIELDS = {
     "name": "lawpowers",
-    "version": "0.7.0",
     "type": "module",
     "main": ".opencode/plugins/lawpowers.js",
 }
@@ -229,8 +228,13 @@ def validate_codex_agents(jurisdiction: str, seen_names: set[str]) -> int:
 
 def validate_opencode_package() -> None:
     package_path = ROOT / "package.json"
-    if json.loads(read(package_path)) != EXPECTED_PACKAGE_JSON:
-        fail(f"{rel(package_path)} does not match expected OpenCode package metadata")
+    package = json.loads(read(package_path))
+    for key, expected in EXPECTED_PACKAGE_JSON_FIELDS.items():
+        if package.get(key) != expected:
+            fail(f"{rel(package_path)} field {key!r} is {package.get(key)!r}; expected {expected!r}")
+    version = package.get("version")
+    if not isinstance(version, str) or not re.fullmatch(r"\d+\.\d+\.\d+", version):
+        fail(f"{rel(package_path)} field 'version' must be a semver string")
     plugin_path = ROOT / ".opencode" / "plugins" / "lawpowers.js"
     plugin_text = read(plugin_path)
     for needle in (

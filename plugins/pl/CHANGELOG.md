@@ -1,5 +1,16 @@
 # Plagin `pl` — Changelog
 
+## [0.7.1] — 2026-06-02
+
+### Changed
+
+- `law-pl-request-drafter` po wyborze trybu sprawdza praktyczny styl pisma: krótka struktura, minimalna podstawa prawna, bez pouczania adresata i bez eskalacyjnych gróźb w pierwszym zwykłym wniosku.
+- Gdy użytkownik prosi o porównanie z przykładami z internetu, agent ma szukać oficjalnych formularzy, stron rządowych albo praktycznych wzorów NGO i upraszczać pismo do realnej struktury.
+
+### Fixed
+
+- Dodano validator `scripts/validate-request-drafting-style.py`, który blokuje powrót zwrotów w stylu „zarejestrować to pismo dokładnie jako...” w UA/PL request drafters.
+
 ## [0.7.0] — 2026-06-02
 
 ### Added
@@ -333,6 +344,7 @@ Plagin `pl` dla polskiego prawa dodany do monorepo `lawpowers` (tag marketplace:
 
 Dostępny w tagu marketplace'u [v0.4.0](https://github.com/crankshift/lawpowers/releases/tag/v0.4.0).
 
+[0.7.1]: https://github.com/crankshift/lawpowers/releases/tag/v0.7.1
 [0.7.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.7.0
 [0.4.3]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.3
 [0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.2

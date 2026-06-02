@@ -81,7 +81,9 @@ run_validations() {
   python3 -m json.tool "$UA_CODEX_JSON" >/dev/null
   python3 -m json.tool "$PL_CLAUDE_JSON" >/dev/null
   python3 -m json.tool "$PL_CODEX_JSON" >/dev/null
+  python3 "$REPO_ROOT/scripts/validate-codex-agents.py"
   python3 "$REPO_ROOT/scripts/validate-platform-adapters.py"
+  python3 "$REPO_ROOT/scripts/validate-request-drafting-style.py"
   python3 "$REPO_ROOT/scripts/validate-ua-request-regime.py"
   python3 "$REPO_ROOT/scripts/validate-pl-request-regime.py"
 }

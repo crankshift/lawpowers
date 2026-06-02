@@ -9,6 +9,17 @@ Unified Lawpowers package changelog. Jurisdiction changelogs capture component-l
 
 For the release procedure, see [`docs/RELEASING.md`](./docs/RELEASING.md).
 
+## [0.7.1] — 2026-06-02
+
+### Changed
+
+- Improved UA and PL request drafters so first-instance requests use practical official-form style, avoid AI-lawyer escalation language, and search real examples when the user asks for an internet comparison.
+- Added a validator for practical request-drafting guardrails across canonical agents, generated Claude adapter copies, and generated Codex shims.
+
+### Fixed
+
+- Release validation no longer hard-codes `0.7.0` in OpenCode package metadata or PL manifest checks, so future unified patch releases can bump all active version fields together.
+
 ## [0.7.0] — 2026-06-02
 
 ### Added
@@ -144,6 +155,7 @@ These tags predate the current unified `vX.Y.Z` release model or belong to the r
 | `v0.1.0` | 2026-04-20 | Plugin `ua` `[0.1.0]` — initial conversion. | `ua` [`[0.1.0]`](./plugins/ua/CHANGELOG.md#010--2026-04-20) |
 | ~~`v0.6.0`~~ | ~~2026-04-21~~ | Plugin `pl` `[0.2.0]` — 7 new agents + 8 new skills. | **Replaced by** [`pl/v0.2.0`](https://github.com/crankshift/lawpowers/releases/tag/pl/v0.2.0) |
 
+[0.7.1]: https://github.com/crankshift/lawpowers/releases/tag/v0.7.1
 [0.7.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.7.0
 [v0.5.0]: https://github.com/crankshift/lawpowers/releases/tag/v0.5.0
 [v0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/v0.4.2
