@@ -29,10 +29,10 @@
 
 ## Режими запитів, заяв і скарг
 
-Перед складанням листів, запитів, заяв і скарг до органів влади, консульств, установ або розпорядників інформації спочатку визначити правовий режим через `skills/determining-ua-request-regime/SKILL.md`. Не змішувати в одному документі запит на публічну інформацію, звернення громадян, адміністративну процедуру, адмінпослугу, запит суб'єкта персональних даних і адвокатський запит.
+Перед складанням листів, запитів, заяв і скарг до органів влади, консульств, установ або розпорядників інформації спочатку визначити правовий режим через `skills/law-ua-determining-ua-request-regime/SKILL.md`. Не змішувати в одному документі запит на публічну інформацію, звернення громадян, адміністративну процедуру, адмінпослугу, запит суб'єкта персональних даних і адвокатський запит.
 
 ## Codex support
 
 This plugin also has Codex support. Keep `AGENTS.md` and `.codex-plugin/plugin.json` in sync with this Claude-facing file and `.claude-plugin/plugin.json` when user-visible behavior changes. Claude Code continues to use the existing Claude plugin ID; Codex may use a collision-safe ID documented in `AGENTS.md`.
 
-Codex custom-agent files are generated into `.codex/agents/*.toml` from the Claude `agents/*.md` files. Keep `agents/*.md` authoritative, run `python3 scripts/convert-agents-to-codex.py` after agent edits, and verify with `python3 scripts/validate-codex-agents.py`. Do not hand-maintain generated TOML unless the converter is updated too. Current Codex plugin manifests do not declare agents directly; `.codex/agents/` is the compatibility/import layer.
+Canonical UA sources live in `../../agents/ua/law-ua-*.md` and `../../skills/ua/law-ua-*/SKILL.md`. The local `agents/` and `skills/` folders are generated Claude-compatible plugin copies; OpenCode installs this repository as a package plugin via `../../package.json` and `../../.opencode/plugins/lawpowers.js`. Edit canonical sources first, then run the root adapter generators before release.

@@ -1,8 +1,8 @@
 # lawpowers / ua
 
-Плагін Claude Code для роботи з українським законодавством і правничими документами. Містить спеціалізованих субагентів під конкретні юридичні задачі та скіли для ефективної роботи з офіційними джерелами (`zakon.rada.gov.ua`, ЄДРСР, сайти ВС / КСУ / НААУ).
+Плагін Claude Code, Codex і OpenCode для роботи з українським законодавством і правничими документами. Канонічні джерела агентів і скілів живуть у `../../agents/ua` та `../../skills/ua`; файли в цьому каталозі плагіна є згенерованими адаптерами для платформ.
 
-Частина монорепо [`lawpowers`](../../README.md) — колекції юридичних плагінів для Claude Code і Codex. Для Claude Code ідентифікатор плагіна: `ua`; команди отримують префікс `/ua:…`. Для Codex використовуйте ID `law-ua`.
+Частина монорепо [`lawpowers`](../../README.md) — колекції юридичних плагінів для Claude Code, Codex і OpenCode. Для Claude Code ідентифікатор плагіна: `ua`; команди отримують префікс `/ua:…`. Для Codex використовуйте ID `law-ua`, а для OpenCode — префікс `law-ua-`.
 
 Окремий блок — для **військовослужбовців ЗСУ та їхніх сімей**: рапорти, оскарження ВЛК, питання ТЦК і бронювання, виплати, СЗЧ.
 
@@ -60,7 +60,11 @@ codex plugin marketplace add .
 
 Після додавання marketplace увімкніть `law-ua` у Codex plugin UI / marketplace flow. Codex читає інструкції з `AGENTS.md`; Claude Code читає `CLAUDE.md`.
 
-Codex custom-agent files are included in `.codex/agents/`. They are generated from `agents/*.md`, so update the Markdown source first and run the repo-level converter/validator before release.
+Codex custom-agent files are included in `.codex/agents/`. Вони генеруються з канонічних prefixed `../../agents/ua/law-ua-*.md`, тому редагуйте ці джерела перед запуском репозиторних генераторів і валідаторів перед релізом.
+
+### OpenCode
+
+Для OpenCode додайте Lawpowers як plugin у `opencode.json` вашого робочого проєкту: `lawpowers@git+https://github.com/crankshift/lawpowers.git`. Package entrypoint `../../.opencode/plugins/lawpowers.js` завантажує скіли з `../../skills/ua` і реєструє агенти `../../agents/ua/law-ua-*.md`. Наприклад, router запитів доступний як `law-ua-determining-ua-request-regime`.
 
 ## Що всередині
 

@@ -14,6 +14,10 @@ def plugin_codex_name(plugin_dir: Path) -> str:
     return json.loads((plugin_dir / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))["name"]
 
 
+def prefixed_name(plugin_name: str, source_name: str) -> str:
+    return source_name if source_name.startswith(f"{plugin_name}-") else f"{plugin_name}-{source_name}"
+
+
 def fail(message: str) -> None:
     print(f"error: {message}", file=sys.stderr)
     raise SystemExit(1)
@@ -69,7 +73,7 @@ def main() -> None:
 
         for source in sorted(agents_dir.glob("*.md")):
             source_count += 1
-            expected_name = f"{plugin_name}-{source.stem}"
+            expected_name = prefixed_name(plugin_name, source.stem)
             generated = output_dir / f"{expected_name}.toml"
             if not generated.is_file():
                 fail(f"missing generated agent for {source}: {generated}")
@@ -88,7 +92,7 @@ def main() -> None:
                 fail(f"placeholder found in {generated}")
 
         extra = sorted(output_dir.glob("*.toml"))
-        expected = {f"{plugin_name}-{source.stem}.toml" for source in agents_dir.glob("*.md")}
+        expected = {f"{prefixed_name(plugin_name, source.stem)}.toml" for source in agents_dir.glob("*.md")}
         for generated in extra:
             if generated.name not in expected:
                 fail(f"stale generated agent file: {generated}")

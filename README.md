@@ -1,6 +1,6 @@
 # lawpowers
 
-A collection of jurisdiction-specific legal plugins for **Claude Code and Codex**. Each plugin wraps a set of subagents and skills tuned to one country's legal system, official sources, and procedural quirks.
+A collection of jurisdiction-specific legal plugins for **Claude Code, Codex, and OpenCode**. Each jurisdiction is authored once under top-level namespaced `agents/` and `skills/` source folders, then generated into platform-specific adapters where needed.
 
 Monorepo structure — install only the jurisdictions you need.
 
@@ -14,6 +14,25 @@ Monorepo structure — install only the jurisdictions you need.
 | [`pl`](./plugins/pl) | Poland | `/pl:…` | [`pl/README.md`](./plugins/pl/README.md) | Polish |
 
 Each plugin's README covers the agents and skills it provides. The plugins are independent — installing one doesn't pull in the other.
+
+## Source layout
+
+`agents/` and `skills/` are the canonical source folders:
+
+| Source | Purpose |
+|---|---|
+| `agents/ua`, `skills/ua` | Ukrainian legal agents and skills |
+| `agents/pl`, `skills/pl` | Polish legal agents and skills |
+
+Platform folders are generated adapters:
+
+| Generated path | Consumer |
+|---|---|
+| `plugins/*/agents`, `plugins/*/skills` | Claude Code plugins |
+| `plugins/*/.codex/agents` | Codex custom-agent shims |
+| `package.json`, `.opencode/plugins/lawpowers.js` | OpenCode git package plugin and root skill/agent loader |
+
+Edit canonical files first, then run the generators and validators listed in the verification section.
 
 ## Installation
 
@@ -144,11 +163,48 @@ codex plugin marketplace upgrade lawpowers
 
 Codex reads repo and plugin guidance from `AGENTS.md`; Claude Code reads `CLAUDE.md`. Keep both in sync when changing behavior.
 
-Codex agent compatibility: this repo commits generated custom-agent files under `plugins/*/.codex/agents/`. They are generated from the Claude `agents/*.md` source files; after changing agents, run:
+## Use in OpenCode
+
+Install Lawpowers as an OpenCode plugin in the project where you want to use it. Add this to that project's `opencode.json`:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["lawpowers@git+https://github.com/crankshift/lawpowers.git"]
+}
+```
+
+Restart OpenCode. The plugin package anchors itself to the installed Lawpowers package root, adds `skills/ua` and `skills/pl` to OpenCode, and loads Markdown agents from `agents/ua` and `agents/pl`.
+
+For local development before pushing:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["file:///path/to/lawpowers"]
+}
+```
+
+Generated OpenCode names are collision-safe:
+
+| Jurisdiction | Agent and skill prefix | Example |
+|---|---|---|
+| Ukraine | `law-ua-` | `law-ua-claim-drafter` |
+| Poland | `law-pl-` | `law-pl-claim-drafter` |
+
+Validate OpenCode package metadata and root source compatibility after changing canonical agents or skills:
 
 ```bash
+python3 scripts/validate-platform-adapters.py
+```
+
+Adapter compatibility: this repo commits generated Claude plugin copies and Codex custom-agent files. OpenCode consumes the canonical root files through the package entrypoint `.opencode/plugins/lawpowers.js`. After changing canonical `agents/` or `skills/`, run:
+
+```bash
+python3 scripts/generate-claude-plugin-files.py
 python3 scripts/convert-agents-to-codex.py
 python3 scripts/validate-codex-agents.py
+python3 scripts/validate-platform-adapters.py
 ```
 
 
@@ -177,12 +233,13 @@ All plugins in this monorepo follow the same working principles:
 
 Adding a plugin for a new jurisdiction (e.g. `eu`, `us`, `de`):
 
-1. Create a `./plugins/xx/` directory with a short ISO-style code.
-2. Add `xx/.claude-plugin/plugin.json` (Claude Code manifest), `xx/.codex-plugin/plugin.json` (Codex manifest with collision-safe ID), `xx/agents/`, `xx/skills/`, `xx/README.md`, `xx/CLAUDE.md`, and `xx/AGENTS.md`.
+1. Create canonical top-level `./agents/xx/` and `./skills/xx/` source folders with a short ISO-style code; use namespaced file and folder names such as `law-xx-claim-drafter.md` and `law-xx-calculating-fees/`.
+2. Add plugin metadata under `./plugins/xx/`: `.claude-plugin/plugin.json` (Claude Code manifest), `.codex-plugin/plugin.json` (Codex manifest with collision-safe ID), `README.md`, `CLAUDE.md`, `AGENTS.md`, and `CHANGELOG.md`.
 3. Register it in both marketplace catalogs: `.claude-plugin/marketplace.json` with `"source": "./plugins/xx"`, and `.agents/plugins/marketplace.json` with the Codex plugin ID.
-4. Add a CHANGELOG entry and bump `metadata.version` in the marketplace manifest.
-5. Run `python3 scripts/convert-agents-to-codex.py` and `python3 scripts/validate-codex-agents.py` to generate and validate Codex agent shims.
-6. Open a PR, merge, then tag a release as described in the [release flow](./CHANGELOG.md).
+4. Add the jurisdiction code to the `JURISDICTIONS` constants in the generators and platform validator, and expose its root skill/agent paths in `.opencode/plugins/lawpowers.js` if OpenCode should load it.
+5. Add a CHANGELOG entry and bump `metadata.version` in the marketplace manifest.
+6. Run `python3 scripts/generate-claude-plugin-files.py`, `python3 scripts/convert-agents-to-codex.py`, `python3 scripts/validate-codex-agents.py`, and `python3 scripts/validate-platform-adapters.py` to generate and validate adapters.
+7. Open a PR, merge, then tag a release as described in the [release flow](./CHANGELOG.md).
 
 See [`CLAUDE.md`](./CLAUDE.md) for Claude Code contributor guidelines and [`AGENTS.md`](./AGENTS.md) for Codex contributor guidelines.
 

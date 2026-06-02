@@ -29,7 +29,7 @@ Skille i agenci zawierający zakodowane kwoty prawne (stawki, opłaty, progi, mi
 
 ## Tryby pism, wniosków, skarg i żądań
 
-Przed sporządzaniem pism, wniosków, skarg, petycji, żądań z RODO, wniosków rejestrowych i pism w procedurach szczególnych najpierw ustalić tryb prawny przez `skills/determining-pl-request-regime/SKILL.md`. Nie mieszać w jednym dokumencie UDIP, KPA, PPSA, RODO, dostępu do akt, rejestrów publicznych, procedur podatkowych, ZUS, cudzoziemców, USC i pism adwokata/radcy.
+Przed sporządzaniem pism, wniosków, skarg, petycji, żądań z RODO, wniosków rejestrowych i pism w procedurach szczególnych najpierw ustalić tryb prawny przez `skills/law-pl-determining-pl-request-regime/SKILL.md`. Nie mieszać w jednym dokumencie UDIP, KPA, PPSA, RODO, dostępu do akt, rejestrów publicznych, procedur podatkowych, ZUS, cudzoziemców, USC i pism adwokata/radcy.
 
 ## Charakter wyniku
 
@@ -39,4 +39,4 @@ Materiały plagina to robocze projekty dla prawnika-użytkownika, **nie** końco
 
 This plugin also has Codex support. Keep `AGENTS.md` and `.codex-plugin/plugin.json` in sync with this Claude-facing file and `.claude-plugin/plugin.json` when user-visible behavior changes. Claude Code continues to use the existing Claude plugin ID; Codex may use a collision-safe ID documented in `AGENTS.md`.
 
-Codex custom-agent files are generated into `.codex/agents/*.toml` from the Claude `agents/*.md` files. Keep `agents/*.md` authoritative, run `python3 scripts/convert-agents-to-codex.py` after agent edits, and verify with `python3 scripts/validate-codex-agents.py`. Do not hand-maintain generated TOML unless the converter is updated too. Current Codex plugin manifests do not declare agents directly; `.codex/agents/` is the compatibility/import layer.
+Canonical PL sources live in `../../agents/pl/law-pl-*.md` and `../../skills/pl/law-pl-*/SKILL.md`. The local `agents/` and `skills/` folders are generated Claude-compatible plugin copies; OpenCode installs this repository as a package plugin via `../../package.json` and `../../.opencode/plugins/lawpowers.js`. Edit canonical sources first, then run the root adapter generators before release.

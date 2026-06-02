@@ -4,7 +4,7 @@
 
 ### Added
 
-- Dodano skill `determining-pl-request-regime` do wyboru właściwego trybu pism, wniosków, skarg, petycji i żądań: UDIP, KPA, PPSA, RODO, rejestry, procedury podatkowe, ZUS, cudzoziemcy, USC oraz pisma adwokata/radcy.
+- Dodano skill `law-pl-determining-pl-request-regime` do wyboru właściwego trybu pism, wniosków, skarg, petycji i żądań: UDIP, KPA, PPSA, RODO, rejestry, procedury podatkowe, ZUS, cudzoziemcy, USC oraz pisma adwokata/radcy.
 - Dodano validator `scripts/validate-pl-request-regime.py`, który sprawdza obecność routera i guardrails w agencie Claude, wygenerowanym agencie Codex, dokumentacji i manifestach.
 
 ### Changed

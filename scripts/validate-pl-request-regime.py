@@ -54,8 +54,8 @@ def require_marketplace_plugin_version(path: Path, plugin_name: str, expected: s
 
 
 def main() -> None:
-    skill_path = PL / "skills" / "determining-pl-request-regime" / "SKILL.md"
-    agent_path = PL / "agents" / "request-drafter.md"
+    skill_path = PL / "skills" / "law-pl-determining-pl-request-regime" / "SKILL.md"
+    agent_path = PL / "agents" / "law-pl-request-drafter.md"
     codex_agent_path = PL / ".codex" / "agents" / "law-pl-request-drafter.toml"
     readme_path = PL / "README.md"
     agents_guide_path = PL / "AGENTS.md"
@@ -74,7 +74,7 @@ def main() -> None:
     changelog = require_file(changelog_path)
 
     for needle in (
-        "name: determining-pl-request-regime",
+        "name: law-pl-determining-pl-request-regime",
         "jedno pismo = jeden tryb prawny",
         "UDIP",
         "art. 63 KPA",
@@ -97,7 +97,7 @@ def main() -> None:
         require_contains(skill, needle, skill_path)
 
     for needle in (
-        "determining-pl-request-regime",
+        "law-pl-determining-pl-request-regime",
         "Mandatory routing",
         "jedno pismo = jeden tryb prawny",
         "Nie mieszaj trybów prawnych",
@@ -124,7 +124,7 @@ def main() -> None:
         (claude_guide, claude_guide_path),
         (changelog, changelog_path),
     ):
-        require_contains(text, "determining-pl-request-regime", path)
+        require_contains(text, "law-pl-determining-pl-request-regime", path)
 
     require_contains(changelog, "## [0.4.3] — 2026-06-01", changelog_path)
     require_json_version(claude_manifest_path, "0.4.3")

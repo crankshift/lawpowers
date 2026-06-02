@@ -1,6 +1,6 @@
 # lawpowers — monorepo
 
-Monorepo of jurisdiction-specific legal plugins for **Claude Code and Codex**. One marketplace (`lawpowers`) hosts several plugins; each plugin wraps subagents and skills for a single legal system.
+Monorepo of jurisdiction-specific legal plugins for **Claude Code, Codex, and OpenCode**. One marketplace (`lawpowers`) hosts several plugins; each jurisdiction wraps subagents and skills for a single legal system.
 
 | Plugin | Jurisdiction | Command prefix | Working language | Documentation |
 |---|---|---|---|---|
@@ -12,6 +12,8 @@ Plugins are independent: users install whichever jurisdiction(s) they need. Name
 Alongside the plugins, the repo also hosts the public landing page under [`site/`](./site/) — a static Astro build deployed to Firebase Hosting. It is a separate sub-project (its own `package.json`, its own deploy flow, its own docs [`site/README.md`](./site/README.md) + [`site/CLAUDE.md`](./site/CLAUDE.md)) and is **not** a Claude Code plugin.
 
 User-facing install instructions live in the root [`README.md`](./README.md). This file is for contributors working on the repo itself.
+
+Top-level `agents/<jurisdiction>` and `skills/<jurisdiction>` are the canonical source files and use namespaced `law-ua-*` / `law-pl-*` names. Files under `plugins/*/agents`, `plugins/*/skills`, and `plugins/*/.codex/agents` are generated adapters; OpenCode reads root sources through the package plugin entrypoint `.opencode/plugins/lawpowers.js`. Edit canonical files first, then regenerate adapters.
 
 ## Repository layout
 
@@ -39,8 +41,10 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 │   └── RELEASING.md                # full release procedure
 ├── scripts/
 │   ├── release.sh                  # bump + PR + tag + GitHub Release helper
-│   ├── convert-agents-to-codex.py  # generates .codex/agents/*.toml from Claude agents/*.md
-│   └── validate-codex-agents.py    # validates generated Codex agent TOML files
+│   ├── generate-claude-plugin-files.py # generates Claude plugin agents/skills from canonical sources
+│   ├── convert-agents-to-codex.py  # generates .codex/agents/*.toml from canonical agents
+│   ├── validate-codex-agents.py    # validates generated Codex agent TOML files
+│   └── validate-platform-adapters.py # validates generated adapters and OpenCode package plugin
 ├── plugins/                        # all jurisdiction plugins live here
 │   ├── ua/                         # plugin "ua" — Ukrainian law
 │   │   ├── README.md               # user-facing, Ukrainian
@@ -49,9 +53,9 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 │   │   ├── CHANGELOG.md            # plugin-level change log, Ukrainian
 │   │   ├── .claude-plugin/plugin.json  # Claude Code manifest; name: "ua"
 │   │   ├── .codex-plugin/plugin.json   # Codex manifest; name: "law-ua"
-│   │   ├── .codex/agents/*.toml    # generated Codex custom-agent shims (from agents/*.md)
-│   │   ├── agents/                 # source agent definitions (Claude + Codex source of truth)
-│   │   └── skills/                 # skill definitions (shared by Claude Code and Codex)
+│   │   ├── .codex/agents/*.toml    # generated Codex custom-agent shims (from top-level agents/ua)
+│   │   ├── agents/                 # generated Claude-compatible copy; canonical source is agents/ua
+│   │   └── skills/                 # generated Claude-compatible copy; canonical source is skills/ua
 │   └── pl/                         # plugin "pl" — Polish law
 │       ├── README.md               # user-facing, Polish
 │       ├── CLAUDE.md               # Claude Code contributor context for the PL plugin
@@ -59,9 +63,9 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 │       ├── CHANGELOG.md            # plugin-level change log, Polish
 │       ├── .claude-plugin/plugin.json  # Claude Code manifest; name: "pl"
 │       ├── .codex-plugin/plugin.json   # Codex manifest; name: "law-pl"
-│       ├── .codex/agents/*.toml    # generated Codex custom-agent shims (from agents/*.md)
-│       ├── agents/                 # source agent definitions (Claude + Codex source of truth)
-│       └── skills/                 # skill definitions (shared by Claude Code and Codex)
+│       ├── .codex/agents/*.toml    # generated Codex custom-agent shims (from top-level agents/pl)
+│       ├── agents/                 # generated Claude-compatible copy; canonical source is agents/pl
+│       └── skills/                 # generated Claude-compatible copy; canonical source is skills/pl
 └── site/                           # public landing page (static Astro site, not a plugin)
     ├── README.md                   # site quick-start, deploy flow
     ├── CLAUDE.md                   # site contributor context
@@ -104,8 +108,8 @@ lawpowers/                         # GitHub: crankshift/lawpowers
 
 Example: adding a plugin for EU law.
 
-1. Create `./plugins/eu/` next to `./plugins/ua/` and `./plugins/pl/`. Short ISO-style code; keep it two or three letters where possible.
-2. Lay out the plugin directory:
+1. Create canonical top-level `./agents/eu/` and `./skills/eu/` source folders. Short ISO-style code; keep it two or three letters where possible.
+2. Lay out the plugin metadata directory at `./plugins/eu/` next to `./plugins/ua/` and `./plugins/pl/`:
    ```
    plugins/eu/
    ├── README.md                    # user-facing documentation
@@ -113,9 +117,7 @@ Example: adding a plugin for EU law.
    ├── AGENTS.md                    # Codex contributor context
    ├── CHANGELOG.md                 # plugin-level change log
    ├── .claude-plugin/plugin.json   # Claude Code manifest; name: "eu", initial version 0.1.0
-   ├── .codex-plugin/plugin.json    # Codex manifest; name: "law-eu" (collision-safe)
-   ├── agents/                      # source agent definitions (shared by Claude + Codex)
-   └── skills/                      # skill definitions (shared by Claude Code and Codex)
+   └── .codex-plugin/plugin.json    # Codex manifest; name: "law-eu" (collision-safe)
    ```
 3. Register the plugin in both marketplace catalogs:
    - `.claude-plugin/marketplace.json` under `plugins[…]`:
@@ -124,9 +126,11 @@ Example: adding a plugin for EU law.
      ```
    - `.agents/plugins/marketplace.json` with the collision-safe Codex ID (`law-eu`).
 4. Update [`.version-bump.json`](./.version-bump.json) so the new plugin's version fields are tracked.
-5. Bump the marketplace version in `.claude-plugin/marketplace.json:metadata.version`.
-6. Add a CHANGELOG entry describing the new plugin.
-7. Open a PR, merge, then tag the release (see [Release flow](#release-flow)).
+5. Add the jurisdiction code to the `JURISDICTIONS` constants in the generators and platform validator; update `.opencode/plugins/lawpowers.js` if OpenCode should load it.
+6. Bump the marketplace version in `.claude-plugin/marketplace.json:metadata.version`.
+7. Run `python3 scripts/generate-claude-plugin-files.py`, `python3 scripts/convert-agents-to-codex.py`, `python3 scripts/validate-codex-agents.py`, and `python3 scripts/validate-platform-adapters.py` to generate and validate adapters.
+8. Add a CHANGELOG entry describing the new plugin.
+9. Open a PR, merge, then tag the release (see [Release flow](#release-flow)).
 
 ## Landing site (`site/`)
 
@@ -186,7 +190,7 @@ This repository also ships Codex plugin metadata. Keep Claude and Codex surfaces
 - Claude contributor instructions live in `CLAUDE.md`; Codex contributor instructions live in `AGENTS.md`.
 - Claude plugin IDs remain `ua` and `pl`; Codex plugin IDs are `law-ua` and `law-pl` to avoid collisions with `businesspowers`.
 - When adding a plugin, agent, skill, or public install instruction, update README, CLAUDE.md, AGENTS.md, and both manifest families as applicable.
-- Codex custom-agent files live in `plugins/*/.codex/agents/*.toml` and are generated from Claude `agents/*.md` files.
-- After changing any agent frontmatter/body, run `python3 scripts/convert-agents-to-codex.py` and `python3 scripts/validate-codex-agents.py`.
-- Do not hand-edit generated Codex agent TOML unless you also update the converter; Claude agent files remain the source of truth.
+- Codex custom-agent files live in `plugins/*/.codex/agents/*.toml` and are generated from top-level canonical `agents/<jurisdiction>/*.md` files.
+- After changing canonical agents or skills, run `python3 scripts/generate-claude-plugin-files.py`, `python3 scripts/convert-agents-to-codex.py`, `python3 scripts/validate-codex-agents.py`, and `python3 scripts/validate-platform-adapters.py`.
+- Do not hand-edit generated Codex agent TOML unless you also update the converter; top-level canonical agent files remain the source of truth.
 - Current Codex plugin manifests do not declare agents directly, so `.codex/agents/` is the compatibility/import layer.

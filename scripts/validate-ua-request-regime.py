@@ -32,9 +32,9 @@ def require_absent(text: str, needle: str, path: Path) -> None:
 
 
 def main() -> None:
-    skill_path = UA / "skills" / "determining-ua-request-regime" / "SKILL.md"
-    agent_path = UA / "agents" / "request-drafter.md"
-    consular_path = UA / "skills" / "applying-consular-procedures" / "SKILL.md"
+    skill_path = UA / "skills" / "law-ua-determining-ua-request-regime" / "SKILL.md"
+    agent_path = UA / "agents" / "law-ua-request-drafter.md"
+    consular_path = UA / "skills" / "law-ua-applying-consular-procedures" / "SKILL.md"
     codex_agent_path = UA / ".codex" / "agents" / "law-ua-request-drafter.toml"
     readme_path = UA / "README.md"
     agents_guide_path = UA / "AGENTS.md"
@@ -49,7 +49,7 @@ def main() -> None:
     claude_guide = require_file(claude_guide_path)
 
     for needle in (
-        "name: determining-ua-request-regime",
+        "name: law-ua-determining-ua-request-regime",
         "один документ = один правовий режим",
         "Запит на публічну інформацію",
         "Адвокатський запит",
@@ -66,7 +66,7 @@ def main() -> None:
         require_contains(skill, needle, skill_path)
 
     for needle in (
-        "determining-ua-request-regime",
+        "law-ua-determining-ua-request-regime",
         "Mandatory routing",
         "один документ = один правовий режим",
         "Не змішуй правові режими",
@@ -88,8 +88,8 @@ def main() -> None:
         require_absent(codex_agent, needle, codex_agent_path)
 
     for needle in (
-        "determining-ua-request-regime",
-        "request-drafter",
+        "law-ua-determining-ua-request-regime",
+        "law-ua-request-drafter",
         "статусні запити",
         "чи надходив документ",
         "дата, вхідний номер, стан або результат обробки",
@@ -101,7 +101,7 @@ def main() -> None:
         (agents_guide, agents_guide_path),
         (claude_guide, claude_guide_path),
     ):
-        require_contains(text, "determining-ua-request-regime", path)
+        require_contains(text, "law-ua-determining-ua-request-regime", path)
 
     print("Validated Ukrainian request-regime routing guardrails.")
 

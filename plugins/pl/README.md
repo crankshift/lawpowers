@@ -1,8 +1,8 @@
 # lawpowers / pl
 
-Plagin Claude Code i Codex do pracy z polskim prawem i dokumentami prawniczymi. Zawiera wyspecjalizowanych subagentów pod konkretne zadania prawne oraz skille do efektywnej pracy z oficjalnymi źródłami (ISAP, Dziennik Ustaw, Portal Orzeczeń SP, SN, NSA, TK).
+Plagin Claude Code, Codex i OpenCode do pracy z polskim prawem i dokumentami prawniczymi. Kanoniczne źródła agentów i skilli znajdują się w `../../agents/pl` oraz `../../skills/pl`; pliki w tym katalogu plagina są wygenerowanymi adapterami platformowymi.
 
-Część monorepo [`lawpowers`](../../README.md) — kolekcji plaginów prawnych dla Claude Code i Codex. W Claude Code identyfikator plagina to `pl`, a komendy mają prefiks `/pl:…`. W Codex używaj ID `law-pl`.
+Część monorepo [`lawpowers`](../../README.md) — kolekcji plaginów prawnych dla Claude Code, Codex i OpenCode. W Claude Code identyfikator plagina to `pl`, a komendy mają prefiks `/pl:…`. W Codex używaj ID `law-pl`, a w OpenCode prefiksu `law-pl-`.
 
 > Przestrzeń robocza dla prawnika-praktyka. Wszystkie dokumenty, odpowiedzi i szablony — po polsku.
 
@@ -58,7 +58,11 @@ codex plugin marketplace add .
 
 Po dodaniu marketplace'u włącz `law-pl` w Codex plugin UI / marketplace flow. Codex czyta instrukcje z `AGENTS.md`; Claude Code czyta `CLAUDE.md`.
 
-Codex custom-agent files are included in `.codex/agents/`. They are generated from `agents/*.md`, so update the Markdown source first and run the repo-level converter/validator before release.
+Codex custom-agent files are included in `.codex/agents/`. Są generowane z kanonicznych prefixed `../../agents/pl/law-pl-*.md`, dlatego edytuj te źródła przed uruchomieniem repozytoryjnych generatorów i walidatorów przed wydaniem.
+
+### OpenCode
+
+Dla OpenCode dodaj Lawpowers jako plugin w `opencode.json` projektu roboczego: `lawpowers@git+https://github.com/crankshift/lawpowers.git`. Package entrypoint `../../.opencode/plugins/lawpowers.js` ładuje skille z `../../skills/pl` i rejestruje agenty `../../agents/pl/law-pl-*.md`. Na przykład router pism jest dostępny jako `law-pl-determining-pl-request-regime`.
 
 ## Zawartość
 
