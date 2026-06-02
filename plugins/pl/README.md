@@ -62,7 +62,7 @@ Codex custom-agent files are included in `.codex/agents/`. Są generowane z kano
 
 ### OpenCode
 
-Dla OpenCode dodaj Lawpowers jako plugin w `opencode.json` projektu roboczego: `lawpowers@git+https://github.com/crankshift/lawpowers.git`. Package entrypoint `../../.opencode/plugins/lawpowers.js` ładuje skille z `../../skills/pl` i rejestruje agenty `../../agents/pl/law-pl-*.md`. Na przykład router pism jest dostępny jako `law-pl-determining-pl-request-regime`.
+Dla OpenCode dodaj Lawpowers jako plugin w `opencode.jsonc` projektu roboczego: `lawpowers@git+https://github.com/crankshift/lawpowers.git`. Package entrypoint `../../.opencode/plugins/lawpowers.js` ładuje skille z `../../skills/pl` i rejestruje agenty `../../agents/pl/law-pl-*.md`. Na przykład router pism jest dostępny jako `law-pl-determining-pl-request-regime`.
 
 ## Zawartość
 

@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PL = ROOT / "plugins" / "pl"
+EXPECTED_PLUGIN_VERSION = "0.5.0"
 
 
 def fail(message: str) -> None:
@@ -127,9 +128,9 @@ def main() -> None:
         require_contains(text, "law-pl-determining-pl-request-regime", path)
 
     require_contains(changelog, "## [0.4.3] — 2026-06-01", changelog_path)
-    require_json_version(claude_manifest_path, "0.4.3")
-    require_json_version(codex_manifest_path, "0.4.3")
-    require_marketplace_plugin_version(claude_marketplace_path, "pl", "0.4.3")
+    require_json_version(claude_manifest_path, EXPECTED_PLUGIN_VERSION)
+    require_json_version(codex_manifest_path, EXPECTED_PLUGIN_VERSION)
+    require_marketplace_plugin_version(claude_marketplace_path, "pl", EXPECTED_PLUGIN_VERSION)
 
     print("Validated Polish request-regime routing guardrails.")
 

@@ -11,6 +11,14 @@ For the release procedure, see [`docs/RELEASING.md`](./docs/RELEASING.md).
 
 ## Monorepo-level log
 
+### 2026-06-02 — OpenCode support and platform adapter rename
+
+- Added OpenCode git package support through root `package.json` and `.opencode/plugins/lawpowers.js`; OpenCode now loads canonical `skills/ua`, `skills/pl`, `agents/ua`, and `agents/pl` directly from the installed git package.
+- Documented both project-scoped and global OpenCode installation in `README.md`.
+- `ua` bumped to `0.7.0` and `pl` bumped to `0.5.0` for a breaking `0.x` platform-adapter release: generated Claude plugin adapter files and Codex custom-agent shims now use collision-safe `law-ua-*` / `law-pl-*` canonical names.
+- Added/updated platform adapter validation so Claude-compatible copies, Codex shims, and OpenCode package loading stay tied to the top-level canonical sources.
+- Migration: Claude Code users should update the marketplace and reinstall the affected plugin to clear stale generated adapter files; Codex users should run `codex plugin marketplace upgrade lawpowers`; OpenCode users should add the git package plugin to `opencode.jsonc` and restart OpenCode.
+
 ### 2026-05-01 — Codex agent compatibility
 
 - `ua` bumped to `0.6.2`: generated Codex custom-agent TOML files from the existing Claude agents.

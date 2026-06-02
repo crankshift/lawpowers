@@ -1,5 +1,45 @@
 # Plagin `pl` — Changelog
 
+## [0.5.0] — 2026-06-02
+
+### Added
+
+- Dodano wsparcie OpenCode jako git package plugin: root `package.json` wskazuje `.opencode/plugins/lawpowers.js`, który ładuje canonical `skills/pl` i rejestruje agentów z `agents/pl/law-pl-*.md`.
+- Root README opisuje dwa sposoby instalacji OpenCode: w `opencode.jsonc` pojedynczego projektu albo globalnie w `~/.config/opencode/opencode.jsonc`.
+
+### Changed
+
+- Kanoniczne źródła agentów i skilli PL są utrzymywane w top-level `agents/pl/law-pl-*.md` oraz `skills/pl/law-pl-*/SKILL.md`; pliki w `plugins/pl/agents`, `plugins/pl/skills` i `plugins/pl/.codex/agents` są wygenerowanymi adapterami.
+- Codex custom-agent shims wskazują teraz canonical lawpowers sources i używają nazw `law-pl-*` w developer instructions.
+
+### Breaking
+
+- Generated Claude adapter files and skill folders now use collision-safe `law-pl-*` names. Direct references to old generated adapter names such as `claim-drafter`, `request-drafter`, or `calculating-oplata-sadowa` should be updated to `law-pl-claim-drafter`, `law-pl-request-drafter`, and `law-pl-calculating-oplata-sadowa`.
+- Local edits in generated Codex files under `plugins/pl/.codex/agents` are not preserved; edit top-level canonical `agents/pl/law-pl-*.md` and regenerate adapters instead.
+
+### Migracja
+
+Użytkownicy Claude Code powinni przeinstalować plugin, aby usunąć stare wygenerowane adaptery:
+
+```
+/plugin marketplace update lawpowers
+/plugin uninstall pl@lawpowers
+/plugin install pl@lawpowers
+/reload-plugins
+```
+
+Użytkownicy Codex powinni odświeżyć marketplace:
+
+```bash
+codex plugin marketplace upgrade lawpowers
+```
+
+Użytkownicy OpenCode powinni dodać `lawpowers@git+https://github.com/crankshift/lawpowers.git` do projektowego albo globalnego `opencode.jsonc`, a potem zrestartować OpenCode.
+
+### Bumped
+
+- Plagin `pl`: `0.4.3` → `0.5.0`.
+
 ## [0.4.3] — 2026-06-01
 
 ### Added
@@ -292,6 +332,7 @@ Plagin `pl` dla polskiego prawa dodany do monorepo `lawpowers` (tag marketplace:
 
 Dostępny w tagu marketplace'u [v0.4.0](https://github.com/crankshift/lawpowers/releases/tag/v0.4.0).
 
+[0.5.0]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.5.0
 [0.4.3]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.3
 [0.4.2]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.2
 [0.4.1]: https://github.com/crankshift/lawpowers/releases/tag/pl/v0.4.1

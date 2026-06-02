@@ -167,7 +167,7 @@ Codex reads repo and plugin guidance from `AGENTS.md`; Claude Code reads `CLAUDE
 
 Install Lawpowers either for one project or globally.
 
-For a project-scoped install, add this to the target project's `opencode.json`:
+For a project-scoped install, add this to the target project's `opencode.jsonc`:
 
 ```json
 {
@@ -176,7 +176,7 @@ For a project-scoped install, add this to the target project's `opencode.json`:
 }
 ```
 
-For a global install, add the same plugin entry to your global OpenCode config at `~/.config/opencode/opencode.json`:
+For a global install, add the same plugin entry to your global OpenCode config at `~/.config/opencode/opencode.jsonc`:
 
 ```json
 {
