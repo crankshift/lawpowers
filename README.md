@@ -165,7 +165,9 @@ Codex reads repo and plugin guidance from `AGENTS.md`; Claude Code reads `CLAUDE
 
 ## Use in OpenCode
 
-Install Lawpowers as an OpenCode plugin in the project where you want to use it. Add this to that project's `opencode.json`:
+Install Lawpowers either for one project or globally.
+
+For a project-scoped install, add this to the target project's `opencode.json`:
 
 ```json
 {
@@ -173,6 +175,17 @@ Install Lawpowers as an OpenCode plugin in the project where you want to use it.
   "plugin": ["lawpowers@git+https://github.com/crankshift/lawpowers.git"]
 }
 ```
+
+For a global install, add the same plugin entry to your global OpenCode config at `~/.config/opencode/opencode.json`:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["lawpowers@git+https://github.com/crankshift/lawpowers.git"]
+}
+```
+
+If the config file already exists, append `"lawpowers@git+https://github.com/crankshift/lawpowers.git"` to its existing `plugin` array.
 
 Restart OpenCode. The plugin package anchors itself to the installed Lawpowers package root, adds `skills/ua` and `skills/pl` to OpenCode, and loads Markdown agents from `agents/ua` and `agents/pl`.
 
